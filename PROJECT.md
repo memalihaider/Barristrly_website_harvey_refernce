@@ -49,6 +49,7 @@ Barristrly is a Next.js 16 application that serves as a **legal services marketp
 
 ---
 
+
 ## Tech Stack
 
 | Layer | Technology |
