@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/apps/web/src/app/harveyserif_5fa775a9.module.css"],"sourcesContent":["@font-face {\n    \nfont-family: 'harveySerif';\n    src: url('@vercel/turbopack-next/internal/font/local/font?{%22path%22:%22../../public/fonts/HarveySerif-Regular.woff2%22,%22preload%22:true,%22has_size_adjust%22:true}') format('woff2');\n    font-display: swap;\n    \nfont-weight: 400;\nfont-style: normal;\n}\n@font-face {\n    \nfont-family: 'harveySerif';\n    src: url('@vercel/turbopack-next/internal/font/local/font?{%22path%22:%22../../public/fonts/HarveySerif-Italic.woff2%22,%22preload%22:true,%22has_size_adjust%22:true}') format('woff2');\n    font-display: swap;\n    \nfont-weight: 400;\nfont-style: italic;\n}\n\n@font-face {\n    font-family: 'harveySerif Fallback';\n    src: local(\"Arial\");\n    ascent-override: 97.54%;\ndescent-override: 36.07%;\nline-gap-override: 0.00%;\nsize-adjust: 99.24%;\n\n}\n\n.className {\n    font-family: 'harveySerif', 'harveySerif Fallback';\n    \n}\n.variable {\n    --font-serif-family: 'harveySerif', 'harveySerif Fallback';\n}\n\n"],"names":[],"mappings":"AAAA;;;;;;;;AASA;;;;;;;;AAUA;;;;;;;;;AAUA;;;;AAIA"}}]
-}
