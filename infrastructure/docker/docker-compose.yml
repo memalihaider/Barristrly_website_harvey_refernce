@@ -1,0 +1,24 @@
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  # Optional local Postgres when not using hosted Supabase
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: barristrly
+      POSTGRES_PASSWORD: barristrly
+      POSTGRES_DB: barristrly
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ../supabase/migrations:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  redis_data:
+  pg_data:

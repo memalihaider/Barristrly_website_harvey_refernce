@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "jetro": {
+      "command": "/Users/macbookpro/.jetro/runtime/node-darwin-x64",
+      "args": [
+        "/Users/macbookpro/.jetro/mcp-server/index.js"
+      ],
+      "env": {
+        "JET_WORKSPACE": "/Users/macbookpro/Desktop/barristrly_website",
+        "JET_API_URL": "https://api.jetro.ai",
+        "PATH": "/Users/macbookpro/.jetro/runtime:/Users/macbookpro/.local/bin:/Users/macbookpro/.antigravity-ide/antigravity-ide/bin:/Users/macbookpro/.antigravity/antigravity/bin:/Users/macbookpro/.local/bin:/Users/macbookpro/.nvm/versions/node/v25.0.0/bin:/usr/local/opt/openjdk@17/bin:/Users/macbookpro/.local/bin:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Users/macbookpro/.cargo/bin:/Users/macbookpro/flutter/bin:/Users/macbookpro/develop/flutter/bin:/Users/macbookpro/Library/Android/sdk/emulator:/Users/macbookpro/Library/Android/sdk/platform-tools:/Users/macbookpro/Library/Android/sdk/cmdline-tools/latest/bin"
+      }
+    }
+  }
+}

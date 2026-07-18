@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+        working-directory: .
+      - run: npm run lint -w @barristrly/web
+        working-directory: .
+      - run: npm run typecheck -w @barristrly/web
+        working-directory: .
+      - run: npm run build -w @barristrly/web
+        working-directory: .
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+          NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: public-anon-key
+          SUPABASE_SERVICE_ROLE_KEY: service-role-ci-placeholder

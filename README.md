@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Barristrly
 
-## Getting Started
+AI-powered legal services marketplace + LegalOS.
 
-First, run the development server:
+## Repository layout
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+barristrly/
+├── apps/
+│   ├── web/          # Next.js SaaS + marketing (primary)
+│   └── mobile/       # React Native (Phase 7)
+├── packages/
+│   └── ui/           # Shared design tokens
+├── supabase/         # Migrations & config
+├── infrastructure/   # Docker compose
+├── doc/              # Architecture & product docs
+└── package.json      # npm workspaces root
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`apps/web/src` follows feature-first structure:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `app/` — routes (marketing, auth, portal, api)
+- `components/` — shared UI
+- `features/` — domain logic (marketplace, payments, meetings, …)
+- `lib/` — supabase, auth, ontology, jobs, observability
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Develop
 
-## Learn More
+```bash
+cp .env.example apps/web/.env.local   # fill Supabase keys
+npm install
+npm run test:app                      # recommended: checks env + typecheck + dev server
+# or: npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Smoke (CI-like): `npm run test:smoke`  
+Production-like locally: `npm run test:prod`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Portals: `/client`, `/lawyer`, `/admin`  
+API: `/api/v1/health`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy
 
-## Deploy on Vercel
+See **[doc/DEPLOYMENT.md](doc/DEPLOYMENT.md)** for Vercel and VPS (Nginx + PM2) steps.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Docs
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See [doc/IMPLEMENTATION_ROADMAP.md](doc/IMPLEMENTATION_ROADMAP.md) (marketplace-first) and [doc/PLATFORM_STATUS.md](doc/PLATFORM_STATUS.md).

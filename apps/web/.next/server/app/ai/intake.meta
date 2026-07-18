@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(marketing)/layout,_N_T_/(marketing)/ai/layout,_N_T_/(marketing)/ai/intake/layout,_N_T_/(marketing)/ai/intake/page,_N_T_/ai/intake"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KG1hcmtldGluZyk/ai/intake/__PAGE__",
+    "/!KG1hcmtldGluZyk/ai/intake",
+    "/!KG1hcmtldGluZyk/ai",
+    "/!KG1hcmtldGluZyk",
+    "/_index",
+    "/_head"
+  ]
+}

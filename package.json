@@ -1,28 +1,22 @@
 {
-  "name": "barristrly_website",
-  "version": "0.1.0",
+  "name": "barristrly",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "npm run dev -w @barristrly/web",
+    "build": "npm run build -w @barristrly/web",
+    "start": "npm run start -w @barristrly/web",
+    "lint": "npm run lint -w @barristrly/web",
+    "typecheck": "npm run typecheck -w @barristrly/web",
+    "test:app": "bash scripts/run-test.sh",
+    "test:smoke": "bash scripts/run-test.sh --smoke",
+    "test:prod": "bash scripts/run-test.sh --build",
+    "seed:test-users": "node scripts/seed-test-users.mjs"
   },
-  "dependencies": {
-    "framer-motion": "^12.42.2",
-    "lucide-react": "^1.24.0",
-    "next": "16.2.10",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.10",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+  "engines": {
+    "node": ">=20"
   }
 }

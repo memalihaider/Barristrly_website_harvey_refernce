@@ -1,0 +1,11 @@
+# Supabase local project placeholder
+# Link with: npx supabase link --project-ref <ref>
+# Push migrations: npx supabase db push
+
+project_id = "barristrly"
+
+[api]
+enabled = true
+
+[db]
+major_version = 15

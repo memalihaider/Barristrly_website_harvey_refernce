@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(portal)/layout,_N_T_/(portal)/lawyer/layout,_N_T_/(portal)/lawyer/profile/layout,_N_T_/(portal)/lawyer/profile/page,_N_T_/lawyer/profile"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KHBvcnRhbCk/lawyer/profile/__PAGE__",
+    "/!KHBvcnRhbCk/lawyer/profile",
+    "/!KHBvcnRhbCk/lawyer",
+    "/!KHBvcnRhbCk",
+    "/_index",
+    "/_head"
+  ]
+}

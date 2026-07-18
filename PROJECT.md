@@ -30,7 +30,7 @@ Barristrly is a Next.js 16 application that serves as a **legal services marketp
 - **Double-Blind COI Vetting**: Conflict-of-interest checks execute before any case details are shared with lawyers
 - **Anonymous Matching**: Clients remain anonymous (silhouette masks, voice morphing) until dual consent is granted
 - **Milestone Escrow**: Funds are held in Stripe-protected escrow and released only upon milestone completion
-- **Encrypted Consultations**: Jitsi-based video calls with voice morphing and silhouette masking
+- **Encrypted Consultations**: mediasoup-based video calls with voice morphing and silhouette masking
 
 ### User Roles
 
@@ -60,7 +60,7 @@ Barristrly is a Next.js 16 application that serves as a **legal services marketp
 | Auth | Supabase Auth (with Firebase compatibility layer) |
 | Database | Supabase PostgreSQL with Row Level Security (RLS) |
 | Payments | Stripe (Checkout Sessions, Webhooks, Subscriptions) |
-| Video | Jitsi React SDK |
+| Video | mediasoup |
 | State | React Context (AuthProvider) |
 | Styling | shadcn/ui components, Tailwind, tw-animate-css |
 
@@ -109,7 +109,7 @@ Barristrly is a Next.js 16 application that serves as a **legal services marketp
 
 | Table | Purpose |
 |-------|---------|
-| `meetings` | Scheduled video meetings with Jitsi room names |
+| `meetings` | Scheduled video meetings with mediasoup room names |
 | `ice_candidates` | WebRTC signaling candidates |
 | `meeting_messages` | In-meeting chat messages |
 | `meeting_transcripts` | Post-meeting transcript storage |
@@ -450,7 +450,7 @@ Shared layout wrapping all auth pages with `SiteHeader`, `SiteFooter`, and `Home
 - Schedule meetings for leads with assigned lawyers
 - List of existing meetings with status badges
 - Join button for active meetings
-- Jitsi Meet integration with anonymous labels
+- mediasoup SFU integration with anonymous labels
 
 ---
 
@@ -662,7 +662,7 @@ Editable profile form with:
 
 - Loads meeting by ID
 - Auth check + participant authorization (client or lawyer only)
-- Renders `JitsiRoom` component with:
+- Renders `MeetingRoom` component with:
   - Display label (anonymous until dual consent)
   - "Back to Meetings" navigation
 - Leave action redirects to appropriate dashboard
@@ -742,7 +742,7 @@ Standard shadcn/ui components: Button, Input, Label, Textarea, Checkbox, Card, B
 
 ### Meeting Components (`components/meetings/`)
 
-- `JitsiRoom` — Jitsi Meet video call integration
+- `MeetingRoom` — mediasoup video call integration
 
 ### Intake Components (`components/intake/`)
 

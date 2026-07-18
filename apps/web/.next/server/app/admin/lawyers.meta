@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(portal)/layout,_N_T_/(portal)/admin/layout,_N_T_/(portal)/admin/lawyers/layout,_N_T_/(portal)/admin/lawyers/page,_N_T_/admin/lawyers"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KHBvcnRhbCk/admin/lawyers/__PAGE__",
+    "/!KHBvcnRhbCk/admin/lawyers",
+    "/!KHBvcnRhbCk/admin",
+    "/!KHBvcnRhbCk",
+    "/_index",
+    "/_head"
+  ]
+}

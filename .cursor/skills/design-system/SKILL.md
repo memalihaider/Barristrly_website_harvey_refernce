@@ -5,24 +5,24 @@ description: Creates implementation-ready design-system guidance with tokens, co
 
 <!-- TYPEUI_SH_MANAGED_START -->
 
-# Layers (Harvey-structure + Orange primary)
+# Harvey
 
 ## Mission
-Deliver implementation-ready design-system guidance for Layers that mirrors Harvey.ai layout structure with orange as the primary accent, optimized for marketing and dashboard web app consistency.
+Deliver implementation-ready design-system guidance for Harvey that can be applied consistently across dashboard web app interfaces.
 
 ## Brand
-- Product/brand: Layers
-- Reference URL: https://www.harvey.ai/
+- Product/brand: Harvey
+- URL: https://www.harvey.ai/
 - Audience: buyers, teams, and decision-makers
-- Product surface: marketing site + dashboard web app
+- Product surface: dashboard web app
 
 ## Style Foundations
-- Visual style: high-contrast monochrome structure with orange primary actions; serif display + sans UI
-- Main font style: `font.family.sans=DM Sans`, `font.family.serif=Instrument Serif`, `font.size.base=16px`, `font.weight.base=400`, `font.lineHeight.base=24px`
+- Visual style: structured, accessible, implementation-first
+- Main font style: `font.family.primary=HarveySansFont`, `font.family.stack=HarveySansFont, HarveySansFont Fallback, -apple-system, system-ui, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif, sans-serif`, `font.size.base=16px`, `font.weight.base=400`, `font.lineHeight.base=24px`
 - Typography scale: `font.size.xs=14px`, `font.size.sm=16px`, `font.size.md=20px`, `font.size.lg=40px`, `font.size.xl=96px`
-- Color palette: `color.primary=#E85D04`, `color.primary.hover=#D45103`, `color.primary.active=#C2410C`, `color.primary.light=#FF8A3D`, `color.on.primary=#FFFFFF`, `color.text.primary=#FAFAF9`, `color.text.secondary=#CCCAC6`, `color.text.tertiary=#0F0E0D`, `color.text.inverse=#FFFFFF`, `color.surface.base=#000000`, `color.surface.light=#FAFAF9`, `color.surface.soft=#F5F4F1`, `color.surface.muted=oklab(0.984819 -0.000328124 0.00128484 / 0.15)`
-- Spacing scale: `space.1=7px`, `space.2=8px`, `space.3=10px`, `space.4=12px`, `space.5=16px`, `space.6=20px`, `space.7=24px`, `space.8=32px`
-- Radius/shadow/motion tokens: `radius.xs=4px`, `radius.pill=9999px` | `motion.duration.instant=300ms`
+- Color palette: `color.text.primary=#fafaf9`, `color.text.secondary=#cccac6`, `color.text.tertiary=#0f0e0d`, `color.text.inverse=#ffffff`, `color.surface.base=#000000`, `color.surface.muted=oklab(0.984819 -0.000328124 0.00128484 / 0.15)`
+- Spacing scale: `space.1=7px`, `space.2=8px`, `space.3=9.92px`, `space.4=10px`, `space.5=12px`, `space.6=16px`, `space.7=20px`, `space.8=24px`
+- Radius/shadow/motion tokens: `radius.xs=4px`, `radius.sm=16777200px` | `motion.duration.instant=300ms`
 
 ## Accessibility
 - Target: WCAG 2.2 AA
@@ -38,14 +38,11 @@ concise, confident, implementation-focused
 - Every component must define required states: default, hover, focus-visible, active, disabled, loading, error.
 - Responsive behavior and edge-case handling should be specified for every component family.
 - Accessibility acceptance criteria must be testable in implementation.
-- Keep hero to brand + headline + support + CTA + full-bleed media only.
 
 ## Rules: Don't
 - Do not allow low-contrast text or hidden focus indicators.
 - Do not introduce one-off spacing or typography exceptions.
 - Do not use ambiguous labels or non-descriptive actions.
-- Do not place trust pills, stats, or floating badges in the hero.
-- Do not use cream/terracotta or purple-glow default themes.
 
 ## Guideline Authoring Workflow
 1. Restate design intent in one sentence.
@@ -76,5 +73,3 @@ concise, confident, implementation-focused
 - Prefer system consistency over local visual exceptions.
 
 <!-- TYPEUI_SH_MANAGED_END -->
-
-Full living spec: see `DESIGN.md` at the repository root.

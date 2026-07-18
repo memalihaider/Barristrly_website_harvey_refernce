@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(marketing)/layout,_N_T_/(marketing)/legal-services/layout,_N_T_/(marketing)/legal-services/[slug]/layout,_N_T_/(marketing)/legal-services/[slug]/page,_N_T_/legal-services/immigration"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KG1hcmtldGluZyk/legal-services/$d$slug/__PAGE__",
+    "/!KG1hcmtldGluZyk/legal-services/$d$slug",
+    "/!KG1hcmtldGluZyk/legal-services",
+    "/!KG1hcmtldGluZyk",
+    "/_index",
+    "/_head"
+  ]
+}

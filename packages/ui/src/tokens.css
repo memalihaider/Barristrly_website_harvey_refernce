@@ -1,0 +1,7 @@
+/* Shared design tokens — orange primary, cream background */
+:root {
+  --color-primary: #e85d04;
+  --color-primary-hover: #d45103;
+  --color-ivory: #fafaf9;
+  --color-ink: #0f0e0d;
+}
