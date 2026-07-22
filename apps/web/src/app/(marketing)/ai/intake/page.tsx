@@ -7,18 +7,18 @@ import {
 } from "@/components/marketing/section";
 
 export const metadata: Metadata = {
-  title: "AI Intake | Barristrly",
+  title: "BARRI Intake | Barristrly",
   description:
-    "Conversational AI intake that understands your case and suggests matched lawyers.",
+    "BARRI classifies your matter for Barristrly’s legal marketplace — then routes you toward matched providers with COI-aware matching.",
 };
 
 export default function AiIntakePage() {
   return (
     <>
       <PageHero
-        eyebrow="AI Intake"
-        title="Understand your case. Match the right counsel."
-        description="Describe what happened in your own words. Barristrly structures practice area, jurisdiction, and urgency — then suggests lawyers through Marketplace matching."
+        eyebrow="BARRI"
+        title="Classify your matter. Match the right provider."
+        description="Describe what happened in your own words. BARRI structures practice area, jurisdiction, and urgency — then suggests counsel through marketplace matching, with COI before consult."
       />
 
       <MarketingSection tight>

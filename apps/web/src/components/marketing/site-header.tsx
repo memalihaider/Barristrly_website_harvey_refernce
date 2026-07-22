@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Scale, CalendarDays } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import GradientButton from "@/components/ui/gradient-button";
@@ -44,17 +44,19 @@ export default function SiteHeader() {
           ? "bg-ivory/95 backdrop-blur-md border-b border-gray-200 shadow-sm py-3"
           : "bg-ivory/90 backdrop-blur-sm border-b border-transparent py-4";
 
-  // Always orange wordmark (home + mega + cream pages)
   const logoClass =
-    "font-serif text-2xl font-bold tracking-wider text-primary transition-colors duration-200";
+    "font-serif text-xl lg:text-[1.35rem] xl:text-2xl font-extrabold tracking-wider text-primary transition-colors duration-200 whitespace-nowrap";
 
   const loginClass = onDark
-    ? "text-sm font-medium !text-white/90 hover:!text-white transition-colors duration-200"
-    : "text-sm font-medium text-ink/80 hover:text-ink transition-colors duration-200";
+    ? "text-sm font-medium !text-white/90 hover:!text-white transition-colors duration-200 whitespace-nowrap"
+    : "text-sm font-medium text-ink/80 hover:text-ink transition-colors duration-200 whitespace-nowrap";
 
   const mobileBtnClass = onDark
     ? "text-white hover:text-white/80"
     : "text-ink hover:text-primary";
+
+  const ctaClass =
+    "!px-3.5 !py-2 text-xs xl:!px-4 xl:!py-2.5 xl:text-sm whitespace-nowrap shrink-0";
 
   return (
     <>
@@ -64,12 +66,12 @@ export default function SiteHeader() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${headerShell}`}
       >
-        <div className="container-wide flex items-center justify-between gap-4">
-          <Link href="/" className="flex items-center group shrink-0">
+        <div className="container-wide grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 xl:gap-6">
+          <Link href="/" className="flex items-center group shrink-0 min-w-0 z-[1]">
             <span className={logoClass}>BARRISTRLY</span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
+          <div className="hidden lg:flex items-center justify-center min-w-0 px-2">
             <MegaMenu
               groups={PRIMARY_NAV}
               onDark={onDark}
@@ -77,7 +79,7 @@ export default function SiteHeader() {
             />
           </div>
 
-          <div className="hidden lg:flex items-center gap-3 shrink-0">
+          <div className="hidden lg:flex items-center justify-end gap-2 xl:gap-3 shrink-0 z-[1]">
             <Link href="/login" className={loginClass}>
               Log In
             </Link>
@@ -85,18 +87,26 @@ export default function SiteHeader() {
               size="sm"
               href="/find-lawyers"
               variant="outline"
-              className="!text-primary !border-primary hover:!bg-primary/10"
+              className={`!text-primary !border-primary hover:!bg-primary/10 inline-flex items-center gap-1.5 ${ctaClass}`}
             >
-              Match my Lawyer
+              <Scale className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden />
+              <span className="hidden xl:inline">Match my Lawyer</span>
+              <span className="xl:hidden">Match</span>
             </GradientButton>
-            <GradientButton size="sm" href="/ai/intake">
-              AI Intake
+            <GradientButton
+              size="sm"
+              href="/request-demo"
+              className={`inline-flex items-center gap-1.5 ${ctaClass}`}
+            >
+              <CalendarDays className="h-3.5 w-3.5 shrink-0" aria-hidden />
+              <span className="hidden xl:inline">Schedule Meeting</span>
+              <span className="xl:hidden">Schedule</span>
             </GradientButton>
           </div>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`lg:hidden p-2 rounded-lg focus:outline-none transition-colors duration-200 ${mobileBtnClass}`}
+            className={`lg:hidden col-start-3 justify-self-end p-2 rounded-lg focus:outline-none transition-colors duration-200 ${mobileBtnClass}`}
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -170,26 +180,21 @@ export default function SiteHeader() {
                 href="/find-lawyers"
                 size="md"
                 variant="outline"
-                className="w-full text-center !border-primary !text-primary"
+                className="w-full text-center !border-primary !text-primary inline-flex items-center justify-center gap-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
+                <Scale className="h-4 w-4 text-primary" aria-hidden />
                 Match my Lawyer
               </GradientButton>
               <GradientButton
-                href="/ai/intake"
-                size="md"
-                className="w-full text-center"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                AI Intake
-              </GradientButton>
-              <Link
                 href="/request-demo"
+                size="md"
+                className="w-full text-center inline-flex items-center justify-center gap-2"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-center text-sm font-medium text-white/60 hover:text-primary py-1"
               >
-                Request a Demo
-              </Link>
+                <CalendarDays className="h-4 w-4" aria-hidden />
+                Schedule Meeting
+              </GradientButton>
             </div>
           </motion.div>
         )}

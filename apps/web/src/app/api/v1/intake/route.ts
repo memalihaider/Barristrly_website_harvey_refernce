@@ -1,11 +1,11 @@
 import { NextRequest } from "next/server";
+import { z } from "zod";
 import { apiOk, apiError, apiCreated } from "@/lib/api/response";
 import {
   extractIntakeStub,
   intakeRequestSchema,
   type StructuredIntake,
 } from "@/features/marketplace/intake";
-import { runAiAgent } from "@/features/ai";
 import { enqueueJob } from "@/lib/jobs/queue";
 import { logger } from "@/lib/observability/logger";
 import { getSessionUser } from "@/lib/auth/session";
@@ -14,73 +14,88 @@ import { isSupabaseConfigured } from "@/lib/supabase/client";
 import { PRACTICE_AREAS, JURISDICTIONS, URGENCY_LEVELS } from "@/lib/ontology";
 import { trackEvent } from "@/features/analytics";
 
-function mergeIntakeFromAi(
-  fallback: StructuredIntake,
-  structured: unknown
-): StructuredIntake {
-  if (!structured || typeof structured !== "object") return fallback;
-  const s = structured as Record<string, unknown>;
-  const practiceArea =
-    typeof s.practiceArea === "string" &&
-    (PRACTICE_AREAS as readonly string[]).includes(s.practiceArea)
-      ? (s.practiceArea as StructuredIntake["practiceArea"])
-      : fallback.practiceArea;
-  const jurisdiction =
-    typeof s.jurisdiction === "string" &&
-    (JURISDICTIONS as readonly string[]).includes(s.jurisdiction)
-      ? (s.jurisdiction as StructuredIntake["jurisdiction"])
-      : fallback.jurisdiction;
-  const urgency =
-    typeof s.urgency === "string" &&
-    (URGENCY_LEVELS as readonly string[]).includes(s.urgency)
-      ? (s.urgency as StructuredIntake["urgency"])
-      : fallback.urgency;
-  const summary =
-    typeof s.summary === "string" && s.summary.trim()
-      ? s.summary.trim().slice(0, 500)
-      : fallback.summary;
-  return { ...fallback, practiceArea, jurisdiction, urgency, summary };
+const structuredBodySchema = z.object({
+  message: z.string().min(1).max(20000).optional(),
+  locale: z.string().default("en").optional(),
+  draft: z
+    .object({
+      jurisdiction: z.enum(JURISDICTIONS).optional(),
+      practiceArea: z.enum(PRACTICE_AREAS).optional(),
+      urgency: z.enum(URGENCY_LEVELS).optional(),
+      summary: z.string(),
+      facts: z.record(z.string(), z.unknown()).optional(),
+    })
+    .optional(),
+});
+
+function coerceStructured(input: {
+  message?: string;
+  draft?: StructuredIntake;
+}): StructuredIntake {
+  if (input.draft?.summary) {
+    return {
+      practiceArea: input.draft.practiceArea,
+      jurisdiction: input.draft.jurisdiction,
+      urgency: input.draft.urgency ?? "medium",
+      summary: input.draft.summary,
+      facts: {
+        masked: true,
+        contactReleased: false,
+        ...(input.draft.facts ?? {}),
+      },
+    };
+  }
+  const stub = extractIntakeStub(input.message ?? "Legal matter");
+  return {
+    ...stub,
+    facts: { masked: true, contactReleased: false, ...(stub.facts ?? {}) },
+  };
 }
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
-  const parsed = intakeRequestSchema.safeParse(body);
+  const parsed = structuredBodySchema.safeParse(body);
   if (!parsed.success) {
-    return apiError(
-      "validation_error",
-      "Invalid intake payload",
-      400,
-      parsed.error.flatten()
-    );
-  }
-
-  let structured = extractIntakeStub(parsed.data.message);
-  let aiGated = true;
-
-  if (process.env.GEMINI_API_KEY) {
-    const ai = await runAiAgent({
-      agent: "intake",
-      prompt: parsed.data.message,
-    });
-    aiGated = ai.gated;
-    structured = mergeIntakeFromAi(structured, ai.structured);
-    if (!ai.structured && ai.text) {
-      structured = { ...structured, summary: ai.text.slice(0, 280) };
+    // Back-compat: classic { message } only
+    const legacy = intakeRequestSchema.safeParse(body);
+    if (!legacy.success) {
+      return apiError(
+        "validation_error",
+        "Invalid intake payload",
+        400,
+        parsed.error.flatten()
+      );
     }
   }
+
+  const message =
+    parsed.success
+      ? parsed.data.message ?? parsed.data.draft?.summary ?? ""
+      : ((body as { message?: string })?.message ?? "");
+  const draftIn = parsed.success
+    ? (parsed.data.draft as StructuredIntake | undefined)
+    : undefined;
+
+  if (!message && !draftIn) {
+    return apiError("validation_error", "message or draft required", 400);
+  }
+
+  const structured = coerceStructured({
+    message: message || draftIn?.summary,
+    draft: draftIn,
+  });
 
   await enqueueJob("ai_intake_extract", { preview: structured.summary });
   logger.info("intake_extracted", {
     practiceArea: structured.practiceArea,
     jurisdiction: structured.jurisdiction,
-    aiGated,
+    masked: structured.facts?.masked === true,
   });
 
   if (!isSupabaseConfigured()) {
     return apiOk({
       leadDraft: structured,
       persisted: false,
-      aiGated,
       next: "POST /api/v1/matches",
     });
   }
@@ -92,19 +107,33 @@ export async function POST(req: NextRequest) {
         leadDraft: structured,
         persisted: false,
         message: "Sign in to save a lead",
-        aiGated,
         next: "POST /api/v1/matches",
       });
     }
 
     const supabase = await createClient();
+    const description = [
+      structured.summary,
+      structured.facts?.subCategory
+        ? `Sub: ${String(structured.facts.subCategory)}`
+        : null,
+      structured.facts?.engagementModel
+        ? `Engagement: ${String(structured.facts.engagementModel)}`
+        : null,
+      structured.facts?.budgetTier
+        ? `Budget: ${String(structured.facts.budgetTier)}`
+        : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
     const { data: lead, error } = await supabase
       .from("leads")
       .insert({
         client_id: session.auth.id,
         status: "open",
         category: structured.practiceArea ?? "general",
-        description: parsed.data.message,
+        description,
       })
       .select("id, status, category, created_at")
       .single();
@@ -119,7 +148,7 @@ export async function POST(req: NextRequest) {
         leadId: lead.id,
         practiceArea: structured.practiceArea,
         jurisdiction: structured.jurisdiction,
-        aiGated,
+        masked: true,
       },
       session.auth.id
     );
@@ -128,7 +157,6 @@ export async function POST(req: NextRequest) {
       lead,
       leadDraft: structured,
       persisted: true,
-      aiGated,
       next: "POST /api/v1/matches",
     });
   } catch (err) {

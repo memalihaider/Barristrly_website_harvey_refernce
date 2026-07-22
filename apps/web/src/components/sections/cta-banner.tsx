@@ -28,17 +28,25 @@ export default function CtaBanner() {
             className="max-w-2xl"
           >
             <h2 className="font-serif text-[clamp(2rem,4vw,3.25rem)] text-white leading-[1.1] tracking-tight">
-              Unlock Professional Class AI for Your Firm
+              Find your exact legal match — anonymously
             </h2>
+            <p className="mt-4 text-white/65 leading-relaxed max-w-lg">
+              Directory · COI clearance · escrow-backed meetings. Schedule with
+              our team or start with BARRI intake.
+            </p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex flex-wrap gap-3"
           >
             <GradientButton size="lg" href="/request-demo" variant="primary">
-              Request a Demo
+              Schedule Meeting
+            </GradientButton>
+            <GradientButton size="lg" href="/find-lawyers" variant="outline" className="!text-primary !border-primary">
+              Legal Direction
             </GradientButton>
           </motion.div>
         </div>

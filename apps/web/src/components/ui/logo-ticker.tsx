@@ -36,7 +36,7 @@ export default function LogoTicker({ partners, speed = 38 }: LogoTickerProps) {
           {items.map((partner, i) => (
             <span
               key={`${partner.name}-${i}`}
-              className="whitespace-nowrap text-sm sm:text-base font-semibold tracking-wide text-white/30 hover:text-white/60 transition-colors duration-300"
+              className="whitespace-nowrap text-sm sm:text-base font-semibold tracking-wide text-white/85 hover:text-white transition-colors duration-300"
             >
               {partner.name}
             </span>

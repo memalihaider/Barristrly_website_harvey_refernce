@@ -12,7 +12,7 @@ import { allPracticeSlugs, SEO_CITIES } from "@/lib/marketing/seo-slugs";
 export const metadata: Metadata = {
   title: "Find Lawyers | Barristrly",
   description:
-    "Browse lawyers by practice area and city across the GCC corridor.",
+    "Anonymous legal directory by practice and city — match counsel after COI, then schedule confidential meetings.",
 };
 
 export default function FindLawyersPage() {
@@ -21,15 +21,15 @@ export default function FindLawyersPage() {
   return (
     <>
       <PageHero
-        eyebrow="Directory"
+        eyebrow="Anonymous directory"
         title="Find lawyers by practice and city"
-        description="Explore Barristrly’s directory hubs — or start with AI Intake for matched introductions."
+        description="Browse Barristrly’s aggregator hubs by practice and corridor — or ask BARRI to classify your matter and start matching."
       >
         <GradientButton href="/ai/intake" size="lg">
-          Start AI Intake
+          Ask BARRI
         </GradientButton>
-        <GradientButton href="/register?role=client" size="lg" variant="outline">
-          Post a case
+        <GradientButton href="/request-demo" size="lg" variant="outline">
+          Schedule Meeting
         </GradientButton>
       </PageHero>
 
@@ -65,9 +65,9 @@ export default function FindLawyersPage() {
 
       <MarketingCtaBand
         title="Not sure who you need?"
-        description="AI Intake interviews your case and suggests matched lawyers."
+        description="Ask BARRI to classify your matter, then match through the anonymous directory."
         primaryHref="/ai/intake"
-        primaryLabel="Start AI Intake"
+        primaryLabel="Ask BARRI"
       />
     </>
   );

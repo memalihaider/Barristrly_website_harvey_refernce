@@ -7,27 +7,33 @@ export default function FaqSection() {
   const faqs = [
     {
       question: "How does the AI intake process work?",
-      answer: "Our natural language AI chatbot guides clients through case submission in plain English. It automatically extracts jurisdiction, case type, urgency level, and budget parameters. The system then runs conflict-of-interest screening before any lawyer sees the case details.",
+      answer:
+        "Clients complete a multi-step registration gate first: client entities, then adverse parties. Narrative and document upload stay locked until the COI engine clears matching. Structured practice area, jurisdiction, and urgency feed ranking — without exposing privileged facts early.",
     },
     {
       question: "Is my information truly anonymous?",
-      answer: "Absolutely. Barristrly uses a double-blind system where neither clients nor lawyers see each other's identity until both parties explicitly grant dual consent. During consultations, we employ voice morphing and silhouette masking for complete anonymity.",
+      answer:
+        "Yes at Gate 2. Matched firms receive only an anonymized Case ID, practice area, claim value, and opposing-party nodes. Client name and documents unlock only after mandatory firm COI affirmation and successful payment.",
+    },
+    {
+      question: "How does conflict screening work?",
+      answer:
+        "The system runs deterministic ID checks (Emirates ID / passport) and fuzzy / phonetic matching for name variants, plus multi-hop filtering for associated third parties. Firms must certify internal clearance in a blocking Accept Lead modal before unblind.",
     },
     {
       question: "How does the escrow payment system work?",
-      answer: "All payments are held in Stripe-protected milestone escrow. Funds are only released when both the client and lawyer confirm milestone completion through our dual-confirmation system. This protects both parties throughout the engagement.",
+      answer:
+        "Payment success is the reveal trigger with COI affirmation. Funds stay in milestone escrow and release only when both sides confirm completion — protecting both parties through engagement.",
     },
     {
       question: "Which jurisdictions does Barristrly support?",
-      answer: "We currently support UAE (Dubai, Abu Dhabi, DIFC, ADGM), GCC countries (Saudi Arabia, Kuwait, Bahrain, Oman, Qatar), Pakistan, and London (UK). Our global jurisdiction router automatically matches cases to the appropriate legal framework.",
+      answer:
+        "We currently support UAE (Dubai, Abu Dhabi, DIFC, ADGM), GCC countries (Saudi Arabia, Kuwait, Bahrain, Oman, Qatar), Pakistan, and London (UK). Our global jurisdiction router matches cases to the appropriate legal framework.",
     },
     {
-      question: "How are lawyers vetted on the platform?",
-      answer: "Every lawyer undergoes a rigorous verification process managed by our mediator team. This includes credential verification, license validation, conflict-of-interest clearance, and ongoing performance monitoring. Only approved lawyers appear in our directory.",
-    },
-    {
-      question: "Can I try Barristrly for free?",
-      answer: "Yes! Our Intake Starter plan is free forever and includes 5 AI intakes per month, basic jurisdiction routing, and standard COI screening. No credit card required to get started.",
+      question: "What if a conflict appears after unlock?",
+      answer:
+        "Firms have 24 hours to report a post-unlock conflict. Barristrly revokes case access, clears cached previews, issues a refund or credit, and rematches the client to the next non-conflicted firm.",
     },
   ];
 
@@ -38,7 +44,7 @@ export default function FaqSection() {
           <SectionHeading
             eyebrow="Support"
             heading="Frequently asked questions"
-            subtitle="Everything you need to know about our legal intake, double-blind matching, and payment guarantees."
+            subtitle="Everything you need to know about two-gate conflict clearing, blind matching, and payment-gated reveal."
           />
         </div>
 

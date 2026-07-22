@@ -7,24 +7,43 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const testimonials = [
   {
     quote:
-      "What we have seen with Barristrly is by far the most successful legal tech adoption story I have ever been a part of. Dual-consent routing protects client relationships from day one.",
-    name: "Sarah Mitchell",
-    title: "Managing Partner",
-    org: "International Legal Partners",
-  },
-  {
-    quote:
-      "Barristrly has become part of our routine. Having a partner at this stage of cross-border practice is a real game-changer for conflict-safe matching.",
-    name: "Marie-Cécile Martin",
-    title: "Head of Legal Operations",
-    org: "Gulf Corporate Counsel",
-  },
-  {
-    quote:
-      "The legal industry is evolving rapidly. Barristrly enables us to navigate COI complexity, streamline intake, and focus on delivering strategic value.",
-    name: "Dr. Claudia Junker",
+      "We stopped paying for sequential mismatched intros. Barristrly’s anonymous directory and COI clear before consult changed how our GC office hires counsel.",
+    name: "Amira Al-Hassan",
     title: "General Counsel",
-    org: "Regional Enterprise Legal",
+    org: "Gulf Holdings Group",
+    initials: "AH",
+  },
+  {
+    quote:
+      "As in-house counsel, the masked VoIP consult and escrow-backed session fees give us control. Identity only releases when we say so.",
+    name: "James Okonkwo",
+    title: "Head of Legal",
+    org: "Regional Fintech",
+    initials: "JO",
+  },
+  {
+    quote:
+      "For arbitration support we needed stenographers and interpreters fast — the aggregator panel matched us without exposing our matter narrative early.",
+    name: "Priya Mehta",
+    title: "Disputes Lead",
+    org: "Cross-Border Disputes Desk",
+    initials: "PM",
+  },
+  {
+    quote:
+      "Zero listing fees and a 12-hour conflict SLA keep our firm responsive. Pre-vetted briefs beat raw marketplace noise.",
+    name: "Omar Farouk",
+    title: "Managing Partner",
+    org: "Farouk & Associates",
+    initials: "OF",
+  },
+  {
+    quote:
+      "Corporate secretarial and PRO services alongside counsel in one directory — Barristrly is the bridge we needed between India and the GCC.",
+    name: "Neha Kapoor",
+    title: "Founder",
+    org: "Kapoor Ventures",
+    initials: "NK",
   },
 ];
 
@@ -63,7 +82,7 @@ export default function TestimonialsSlider() {
       <div className="container-wide relative z-10">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
           <h2 className="font-serif text-[clamp(1.75rem,3vw,2.75rem)] text-white tracking-tight">
-            Trusted by counsel who move with confidence
+            Client testimonials
           </h2>
           <div className="flex gap-2">
             <button
@@ -85,7 +104,7 @@ export default function TestimonialsSlider() {
           </div>
         </div>
 
-        <div className="max-w-3xl min-h-[220px]">
+        <div className="max-w-3xl min-h-[260px]">
           <AnimatePresence mode="wait">
             <motion.blockquote
               key={t.name}
@@ -97,13 +116,21 @@ export default function TestimonialsSlider() {
               <p className="font-serif text-[clamp(1.35rem,2.8vw,2.1rem)] text-white leading-[1.35] tracking-tight">
                 “{t.quote}”
               </p>
-              <footer className="mt-8 space-y-1">
-                <cite className="not-italic block text-sm font-semibold text-white">
-                  {t.name}
-                </cite>
-                <span className="block text-sm text-white/55">
-                  {t.title}, {t.org}
+              <footer className="mt-8 flex items-center gap-4">
+                <span
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary text-on-primary text-sm font-bold tracking-wide"
+                  aria-hidden
+                >
+                  {t.initials}
                 </span>
+                <div>
+                  <cite className="not-italic block text-sm font-semibold text-white">
+                    {t.name}
+                  </cite>
+                  <span className="block text-sm text-white/55">
+                    {t.title}, {t.org}
+                  </span>
+                </div>
               </footer>
             </motion.blockquote>
           </AnimatePresence>

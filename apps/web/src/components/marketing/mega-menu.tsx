@@ -261,7 +261,7 @@ export default function MegaMenu({
   return (
     <>
       <nav
-        className="hidden lg:flex items-center gap-0.5"
+        className="flex items-center gap-0.5 flex-nowrap"
         onMouseLeave={scheduleClose}
         onMouseEnter={clearClose}
       >
@@ -274,7 +274,7 @@ export default function MegaMenu({
               <Link
                 key={group.name}
                 href={group.href ?? "#"}
-                className={`${triggerBase} relative px-3.5 py-2 transition-colors`}
+                className={`${triggerBase} relative px-2.5 xl:px-3.5 py-2 transition-colors whitespace-nowrap`}
               >
                 {group.name}
               </Link>
@@ -285,7 +285,7 @@ export default function MegaMenu({
             <button
               key={group.name}
               type="button"
-              className={`${triggerBase} relative inline-flex items-center gap-1.5 px-3.5 py-2 transition-colors ${
+              className={`${triggerBase} relative inline-flex items-center gap-1 xl:gap-1.5 px-2.5 xl:px-3.5 py-2 transition-colors whitespace-nowrap ${
                 isOpen ? "!text-white" : ""
               }`}
               aria-expanded={isOpen}
@@ -296,12 +296,12 @@ export default function MegaMenu({
             >
               {group.name}
               <ChevronDown
-                className={`h-3.5 w-3.5 opacity-60 transition-transform duration-200 ${
+                className={`h-3.5 w-3.5 opacity-60 shrink-0 transition-transform duration-200 ${
                   isOpen ? "rotate-180" : ""
                 }`}
               />
               <span
-                className={`absolute left-3.5 right-3.5 bottom-0 h-px bg-white transition-opacity duration-200 ${
+                className={`absolute left-2.5 right-2.5 xl:left-3.5 xl:right-3.5 bottom-0 h-px bg-white transition-opacity duration-200 ${
                   isOpen ? "opacity-100" : "opacity-0"
                 }`}
               />

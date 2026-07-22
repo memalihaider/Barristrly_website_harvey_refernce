@@ -3,46 +3,10 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import GradientButton from "@/components/ui/gradient-button";
-
-const plans = [
-  {
-    name: "Client",
-    price: "$0",
-    period: "to start",
-    detail:
-      "AI Intake, post matters, review matches, and book escrow-protected consults.",
-    features: [
-      "AI Intake chat",
-      "Lawyer matching",
-      "Escrow-protected consults",
-    ],
-  },
-  {
-    name: "Lawyer",
-    price: "From $49",
-    period: "/month",
-    detail:
-      "Marketplace leads, PracticeOS CRM, documents, and AI assistants for counsel.",
-    features: [
-      "Qualified Marketplace leads",
-      "Matter workspace & docs",
-      "Profile & discovery",
-    ],
-    highlight: true,
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    period: "quote",
-    detail:
-      "CLM, compliance, analytics, and controls for in-house and multi-office firms.",
-    features: [
-      "CLM & compliance",
-      "Admin analytics",
-      "Dedicated rollout",
-    ],
-  },
-];
+import {
+  INDIVIDUAL_SESSIONS,
+  SUBSCRIPTION_PLANS,
+} from "@/lib/marketing/pricing";
 
 export default function HomePricing() {
   const ref = useRef<HTMLDivElement>(null);
@@ -57,32 +21,51 @@ export default function HomePricing() {
               Pricing
             </p>
             <h2 className="font-serif text-[clamp(1.75rem,3vw,2.75rem)] text-ink tracking-tight">
-              Subscription plans
+              Escrow-backed consults & corporate caps
             </h2>
             <p className="mt-3 text-gray-600 leading-relaxed">
-              Three plans for clients, lawyers, and enterprise teams — view full
-              details on the pricing page.
+              Anonymous session rates fund the match loop in escrow. Corporate
+              plans use capped meetings and conflict-check cycles — marketplace
+              matching, not unlimited AI workspace seats.
             </p>
           </div>
           <GradientButton href="/pricing" size="md">
-            View pricing
+            View full pricing
           </GradientButton>
         </div>
 
+        <div className="grid sm:grid-cols-3 gap-6 mb-12">
+          {INDIVIDUAL_SESSIONS.map((session, i) => (
+            <motion.div
+              key={session.name}
+              initial={{ opacity: 0, y: 16 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: i * 0.05 }}
+              className="border-t-2 border-gray-200 pt-5"
+            >
+              <p className="text-sm font-medium text-ink">{session.name}</p>
+              <p className="mt-2 font-serif text-2xl text-primary tracking-tight">
+                {session.price}
+              </p>
+              <p className="mt-1 text-xs text-gray-500">{session.period}</p>
+            </motion.div>
+          ))}
+        </div>
+
         <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-          {plans.map((plan, i) => (
+          {SUBSCRIPTION_PLANS.map((plan, i) => (
             <motion.div
               key={plan.name}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.45, delay: i * 0.08 }}
+              transition={{ duration: 0.45, delay: 0.1 + i * 0.08 }}
               className={`rounded-2xl border bg-[#fafaf9] p-7 md:p-8 flex flex-col ${
-                plan.highlight
+                "highlight" in plan && plan.highlight
                   ? "border-primary shadow-[0_0_0_1px_var(--color-primary)]"
                   : "border-gray-200"
               }`}
             >
-              {plan.highlight ? (
+              {"highlight" in plan && plan.highlight ? (
                 <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary mb-3">
                   Most popular
                 </span>
@@ -111,12 +94,12 @@ export default function HomePricing() {
               </ul>
               <div className="mt-8">
                 <GradientButton
-                  href="/pricing"
+                  href={plan.cta.href}
                   size="sm"
                   variant="outline"
                   className="w-full !text-primary !border-primary justify-center"
                 >
-                  View pricing
+                  {plan.cta.label}
                 </GradientButton>
               </div>
             </motion.div>

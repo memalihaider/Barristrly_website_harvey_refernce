@@ -3,9 +3,9 @@ import Link from "next/link";
 import DemoRequestForm from "@/components/marketing/demo-request-form";
 
 export const metadata: Metadata = {
-  title: "Request a Demo | Barristrly",
+  title: "Schedule Meeting | Barristrly",
   description:
-    "See Marketplace, AI Intake, PracticeOS, and Enterprise — scheduled with our team.",
+    "Schedule a walkthrough of Barristrly’s legal marketplace — directory, COI, BARRI intake, and PracticeOS.",
 };
 
 export default function RequestDemoPage() {
@@ -15,15 +15,15 @@ export default function RequestDemoPage() {
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
           <div className="max-w-xl">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary mb-5">
-              Request a demo
+              Schedule Meeting
             </p>
             <h1 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] text-ink tracking-tight leading-[1.08]">
-              See Barristrly as a system
+              See the legal marketplace in action
             </h1>
             <p className="mt-5 text-lg text-gray-600 leading-relaxed">
-              We walk through AI Intake and Marketplace matching, PracticeOS for
-              counsel, and enterprise controls — tailored to your role and
-              jurisdiction.
+              We walk through anonymous directory matching, COI clearance, BARRI
+              intake, PracticeOS for providers, and corporate panels — tailored
+              to your role and jurisdiction.
             </p>
             <ul className="mt-10 space-y-4 text-gray-600">
               {[
@@ -43,7 +43,7 @@ export default function RequestDemoPage() {
                 href="/ai/intake"
                 className="font-semibold text-primary hover:text-primary-hover"
               >
-                Start AI Intake
+                Open BARRI
               </Link>
             </p>
           </div>

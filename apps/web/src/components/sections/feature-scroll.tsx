@@ -2,17 +2,16 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useInView } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const features = [
-  "Case Intake",
-  "Conflict Vetting",
-  "Anonymous Matching",
-  "Deal Management",
+  "Anonymous Directory",
+  "Automated COI",
+  "Confidential Meetings",
+  "Provider Matching",
   "Milestone Escrow",
-  "Encrypted Consults",
-  "Identity Routing",
+  "Expert Witnesses",
+  "Global Corridor",
 ];
 
 export default function FeatureScroll() {
@@ -36,23 +35,17 @@ export default function FeatureScroll() {
       aria-labelledby="capabilities-heading"
     >
       <div className="container-wide">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 items-center">
+          <div className="lg:col-span-3 space-y-4">
             <h2
               id="capabilities-heading"
-              className="font-serif text-[clamp(1.5rem,2.5vw,2rem)] text-ink leading-snug tracking-tight"
+              className="font-serif text-[clamp(1.35rem,2.2vw,1.85rem)] text-ink leading-snug tracking-tight max-w-[16rem]"
             >
               The top legal teams use Barristrly for
             </h2>
-            <Link
-              href="#platform"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-hover transition-colors"
-            >
-              Explore Platform <ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
 
-          <ul className="lg:col-span-8 flex flex-col gap-2 md:gap-3 list-none p-0 m-0">
+          <ul className="lg:col-span-6 flex flex-col gap-1.5 md:gap-2 list-none p-0 m-0">
             {features.map((title, index) => {
               const isActive = index === activeIndex;
               return (
@@ -71,6 +64,15 @@ export default function FeatureScroll() {
               );
             })}
           </ul>
+
+          <div className="lg:col-span-3 lg:flex lg:justify-end lg:self-center">
+            <Link
+              href="/marketplace"
+              className="inline-flex items-center justify-center rounded-sm border border-ink/25 px-5 py-2.5 text-sm font-medium text-ink hover:border-primary hover:text-primary transition-colors"
+            >
+              Explore Platform
+            </Link>
+          </div>
         </div>
       </div>
     </section>

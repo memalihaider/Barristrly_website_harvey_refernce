@@ -29,7 +29,7 @@ const harveySerif = localFont({
 export const metadata: Metadata = {
   title: "Barristrly | Privacy-First Legal Intelligence",
   description:
-    "AI-powered legal marketplace with double-blind COI vetting, anonymous matching, milestone escrow, and encrypted consultations across UAE, GCC, and Pakistan.",
+    "AI-powered legal marketplace with two-gate COI isolation, blind firm affirmation, milestone escrow, and encrypted consultations across UAE, GCC, and Pakistan.",
   robots: { index: true, follow: true },
 };
 

@@ -12,39 +12,42 @@ import {
 import { AI_TOOLS } from "@/lib/marketing/seo-slugs";
 
 export const metadata: Metadata = {
-  title: "AI | Barristrly",
+  title: "BARRI | Barristrly",
   description:
-    "Legal research, drafting, contract review, intake, and agents — grounded in your matters.",
+    "BARRI — AI intake and triage for the Barristrly legal marketplace. Classify matters, then match providers.",
 };
 
 export default function AiPage() {
   return (
     <>
       <PageHero
-        eyebrow="AI"
-        title="Professional-class legal AI inside the work"
-        description="Research, draft, review, and run agents where matters already live — starting with AI Intake that understands the case and matches counsel."
+        eyebrow="BARRI"
+        title="AI that feeds the marketplace — not a LegalOS desk"
+        description="BARRI classifies your matter for matching. Research and draft helpers support briefs — the product is aggregator matchmaking, anonymous directory, and scheduled consults."
         aside={
           <ProductMock
-            title="AI Intake"
+            title="BARRI"
             lines={[
               "Client: Terminated without notice after 3 years…",
               "Structured: Employment · AE-DIFC · High urgency",
-              "Ready to match verified lawyers",
+              "Ready to match vetted providers",
             ]}
           />
         }
       >
         <GradientButton href="/ai/intake" size="lg">
-          Start AI Intake
+          Open BARRI
         </GradientButton>
         <GradientButton href="/request-demo" size="lg" variant="outline">
-          See AI in a demo
+          Schedule Meeting
         </GradientButton>
       </PageHero>
 
       <MarketingSection tone="soft">
-        <SectionIntro title="Tools" description="Each assistant sits inside the same matter context." />
+        <SectionIntro
+          title="Tools"
+          description="Helpers that support marketplace matching — not a standalone LegalOS workspace."
+        />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
           {AI_TOOLS.map((tool) => (
             <Link
@@ -87,10 +90,10 @@ export default function AiPage() {
       </MarketingSection>
 
       <MarketingCtaBand
-        title="Start with intake"
-        description="The fastest path into Barristrly is describing your case to the AI Intake assistant."
+        title="Start with BARRI"
+        description="Describe your matter to BARRI — we classify, clear privacy gates, and route toward matched providers."
         primaryHref="/ai/intake"
-        primaryLabel="Start AI Intake"
+        primaryLabel="Open BARRI"
         secondaryHref="/marketplace"
         secondaryLabel="Marketplace"
       />

@@ -11,32 +11,32 @@ export const PRODUCTS: {
     id: "marketplace",
     name: "Marketplace",
     href: "/marketplace",
-    tagline: "Hire counsel with confidence",
+    tagline: "Match counsel with confidence",
     description:
-      "AI intake, COI-aware matching, escrow-protected consults, and encrypted meetings.",
+      "Anonymous directory, automated COI, escrow-protected consults, and global provider matching.",
   },
   {
     id: "ai",
-    name: "AI",
+    name: "BARRI",
     href: "/ai",
-    tagline: "Research, draft, review",
+    tagline: "Intake & triage",
     description:
-      "Legal research, drafting, contract review, and agent workflows grounded in your matters.",
+      "BARRI classifies matters and prepares matching — research and draft helpers support the aggregator flow.",
   },
   {
     id: "practice",
     name: "PracticeOS",
     href: "/practice",
-    tagline: "Run your practice",
+    tagline: "Provider panel",
     description:
-      "Pipeline, clients, calendar, documents, billing, and accounting for lawyers and firms.",
+      "Zero listing fees, pre-vetted leads, 12-hour conflict SLA, and escrow-protected consult payouts.",
   },
   {
     id: "enterprise",
     name: "Enterprise",
     href: "/enterprise",
-    tagline: "Legal ops at scale",
+    tagline: "Corporate panels",
     description:
-      "CLM, compliance, analytics, and enterprise controls for in-house and large firms.",
+      "Capped subscriptions, conflict-check cycles, and controls for in-house legal teams.",
   },
 ];

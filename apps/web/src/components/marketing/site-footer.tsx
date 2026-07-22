@@ -14,8 +14,8 @@ export default function SiteFooter() {
               BARRISTRLY
             </Link>
             <p className="text-sm !text-white leading-relaxed max-w-xs">
-              The legal operating system — Marketplace, AI, PracticeOS, and
-              Enterprise for counsel who move with confidence.
+              Premier legal tech marketplace — anonymous directory, COI
+              clearance, and confidential meetings with vetted providers.
             </p>
           </div>
 
@@ -43,6 +43,12 @@ export default function SiteFooter() {
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs !text-white">
           <p>© 2026 Barristrly Technologies Inc. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            <Link href="/terms" className="!text-white hover:text-primary transition-colors">
+              Terms
+            </Link>
+            <Link href="/privacy" className="!text-white hover:text-primary transition-colors">
+              Privacy
+            </Link>
             <Link href="/security" className="!text-white hover:text-primary transition-colors">
               Security
             </Link>

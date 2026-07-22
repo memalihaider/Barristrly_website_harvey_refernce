@@ -16,8 +16,8 @@ import Link from "next/link";
 const controls = [
   {
     icon: ShieldCheck,
-    name: "Privacy-first matching",
-    detail: "Double-blind routing before identity reveal",
+    name: "Two-gate COI",
+    detail: "Parties first — narrative locked until clearance",
   },
   {
     icon: Lock,
@@ -26,13 +26,13 @@ const controls = [
   },
   {
     icon: EyeOff,
-    name: "COI safeguards",
-    detail: "Conflict screening before engagement",
+    name: "Blind firm leads",
+    detail: "Opposing parties only — client identity hidden",
   },
   {
     icon: Fingerprint,
-    name: "Role-based access",
-    detail: "Client, lawyer, and admin boundaries",
+    name: "Firm affirmation",
+    detail: "Mandatory conflict cert before unblind",
   },
   {
     icon: ScrollText,
@@ -41,8 +41,8 @@ const controls = [
   },
   {
     icon: Server,
-    name: "Escrow controls",
-    detail: "Milestone holds until work clears",
+    name: "Escrow unlock",
+    detail: "Payment success gates identity & docs",
   },
 ];
 
@@ -79,9 +79,10 @@ export default function SecuritySection() {
             className="lg:col-span-6 space-y-5"
           >
             <p className="text-text-secondary text-base leading-relaxed">
-              Barristrly is built around the controls enterprise teams expect:
-              double-blind identity routing, escrow guarantees, audit logs, and
-              clear data access boundaries — designed for confidential legal work.
+              Barristrly isolates matching parameters before privileged facts
+              enter the system, then unblinds counsel only after mandatory COI
+              affirmation and payment — with escrow, audit logs, and a 24-hour
+              post-unlock quarantine if a conflict surfaces later.
             </p>
             <Link
               href="/security"

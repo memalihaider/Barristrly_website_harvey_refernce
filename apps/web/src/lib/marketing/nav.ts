@@ -26,52 +26,53 @@ const PRODUCT_LINKS: NavLink[] = [
     name: "Overview",
     href: "/marketplace",
     description:
-      "How Marketplace, AI, PracticeOS, and Enterprise work together as one system.",
+      "Legal tech marketplace — directory, COI, anonymous meetings, escrow.",
   },
   {
     name: "Marketplace",
     href: "/marketplace",
-    description: "Hire counsel with AI intake, COI-aware matching, and escrow.",
+    description: "Match clients to counsel, experts, and arbitrators globally.",
   },
   {
-    name: "AI Intake",
+    name: "BARRI Intake",
     href: "/ai/intake",
-    description: "Describe your case, structure the matter, and match lawyers.",
+    description: "AI assistant that classifies your matter and starts matching.",
   },
   {
-    name: "AI Assistant",
+    name: "BARRI Assist",
     href: "/ai",
-    description: "Research, draft, review, and agents grounded in your matters.",
+    description: "Intake-led AI helpers for research and brief structuring.",
   },
   {
     name: "PracticeOS",
     href: "/practice",
-    description: "Pipeline, clients, documents, billing, and accounting for counsel.",
+    description:
+      "Zero listing fees — pre-vetted leads, 12-hour COI SLA, escrow payouts.",
   },
   {
     name: "Enterprise",
     href: "/enterprise",
-    description: "CLM, compliance, analytics, and controls for legal ops at scale.",
+    description: "Corporate panels, capped subscriptions, and compliance ops.",
   },
   {
     name: "Legal Research",
     href: "/ai/research",
-    description: "Ask grounded questions across statutes, cases, and matter files.",
+    description: "Grounded questions to support intake and matter briefs.",
   },
   {
     name: "Contract Review",
     href: "/ai/review",
-    description: "Flag risk, missing clauses, and negotiation points faster.",
+    description: "Flag risk themes before you schedule counsel.",
   },
   {
     name: "Drafting",
     href: "/ai/draft",
-    description: "Generate memos, letters, and first-draft agreements with controls.",
+    description: "First-pass notices and briefs for marketplace handoff.",
   },
   {
     name: "Agents",
     href: "/ai/agents",
-    description: "Multi-step workflows for diligence, summarization, and follow-ups.",
+    description: "Multi-step triage workflows that feed matching.",
   },
 ];
 
@@ -84,10 +85,10 @@ export const PRIMARY_NAV: NavGroup[] = [
     ],
     featured: {
       href: "/ai/intake",
-      badge: "AI Intake",
-      title: "AI Intake",
+      badge: "BARRI",
+      title: "BARRI Intake",
       description:
-        "Barristrly’s intake agent understands the case, completes the brief, and suggests matched lawyers — so you can focus on counsel that fits.",
+        "Our AI intake assistant classifies your matter, runs privacy-safe triage, and routes you toward matched providers — directory, COI, and scheduled meetings.",
       media: "/bg-video.mp4",
     },
   },
@@ -99,12 +100,13 @@ export const PRIMARY_NAV: NavGroup[] = [
           {
             name: "Clients",
             href: "/ai/intake",
-            description: "Intake, matching, and escrow-protected consults.",
+            description:
+              "Anonymous directory, BARRI triage, COI, and escrow-backed meetings.",
           },
           {
             name: "In-House",
             href: "/enterprise",
-            description: "Route work, manage panel counsel, and see spend clearly.",
+            description: "Corporate panels, capped meetings, and conflict cycles.",
           },
           {
             name: "Transactional",
@@ -123,7 +125,8 @@ export const PRIMARY_NAV: NavGroup[] = [
           {
             name: "Lawyers & Firms",
             href: "/practice",
-            description: "PracticeOS for solos and growing firms.",
+            description:
+              "Zero listing fees, 12-hour COI SLA, and escrow consult payouts.",
           },
           {
             name: "Find Lawyers",
@@ -138,7 +141,7 @@ export const PRIMARY_NAV: NavGroup[] = [
       badge: "Marketplace",
       title: "Marketplace matching",
       description:
-        "From intake to ranked counsel with COI-aware matching — built for clients and the lawyers who serve them.",
+        "From party registration to ranked counsel with two-gate COI — built for clients and the lawyers who serve them.",
       media: "/bg-video.mp4",
     },
   },
@@ -159,7 +162,8 @@ export const PRIMARY_NAV: NavGroup[] = [
           {
             name: "Pricing",
             href: "/pricing",
-            description: "Plans for clients, lawyers, firms, and enterprise.",
+            description:
+              "Consult rates, corporate caps, and digital escrow routing.",
           },
           {
             name: "Request a demo",
@@ -173,7 +177,7 @@ export const PRIMARY_NAV: NavGroup[] = [
           {
             name: "Security",
             href: "/security",
-            description: "Trust center — access, escrow, COI, and audit.",
+            description: "Trust center — two-gate COI, escrow, and audit.",
           },
           {
             name: "Legal services",
@@ -200,12 +204,26 @@ export const PRIMARY_NAV: NavGroup[] = [
           {
             name: "About",
             href: "/about",
-            description: "Who we are and what we’re building.",
+            description:
+              "Founder Heena Mohammed — vision for precise, anonymous legal matchmaking.",
+          },
+          {
+            name: "Terms",
+            href: "/terms",
+            description:
+              "Master User Agreement — tech-only aggregator status and liability shield.",
+          },
+          {
+            name: "Privacy",
+            href: "/privacy",
+            description:
+              "Data protection master agreement — anonymity, COI data, and retention.",
           },
           {
             name: "Pricing",
             href: "/pricing",
-            description: "Plans for clients, lawyers, firms, and enterprise.",
+            description:
+              "Consult rates, corporate caps, and digital escrow routing.",
           },
           {
             name: "Request a demo",
@@ -232,9 +250,9 @@ export const PRIMARY_NAV: NavGroup[] = [
     featured: {
       href: "/about",
       badge: "Barristrly",
-      title: "The legal operating system",
+      title: "The mediating bridge of trust",
       description:
-        "Marketplace, AI, PracticeOS, and Enterprise — one system for hiring counsel and running the work.",
+        "Strip inefficiency from legal procurement — match clients to exact counsel by specialty, jurisdiction, and budget.",
       media: "/bg-video.mp4",
     },
   },
@@ -248,7 +266,7 @@ export const FOOTER_COLUMNS: { title: string; links: NavLink[] }[] = [
     title: "Products",
     links: [
       ...PRODUCTS.map((p) => ({ name: p.name, href: p.href })),
-      { name: "AI Intake", href: "/ai/intake" },
+      { name: "BARRI Intake", href: "/ai/intake" },
     ],
   },
   {
@@ -274,6 +292,8 @@ export const FOOTER_COLUMNS: { title: string; links: NavLink[] }[] = [
     links: [
       { name: "About", href: "/about" },
       { name: "Pricing", href: "/pricing" },
+      { name: "Terms", href: "/terms" },
+      { name: "Privacy", href: "/privacy" },
       { name: "Request Demo", href: "/request-demo" },
       { name: "Log In", href: "/login" },
       { name: "Register", href: "/register" },

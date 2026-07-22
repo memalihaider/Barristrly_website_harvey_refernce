@@ -13,9 +13,9 @@ const features = [
   },
   {
     icon: ShieldCheck,
-    title: "Double-Blind Conflict Clearing",
+    title: "Two-Gate Conflict Clearing",
     description:
-      "Cryptographic vetting of parties runs before case details are revealed to counsel.",
+      "Collect parties first with narrative locked. Firms get a blind lead, affirm no conflict, then unlock identity only after payment.",
   },
   {
     icon: Lock,
@@ -33,7 +33,7 @@ const features = [
     icon: Users,
     title: "Dual Consent Gateway",
     description:
-      "Identity stays masked until both parties explicitly consent to unmask.",
+      "Client identity stays masked until firm COI affirmation and payment success trigger unblind.",
   },
   {
     icon: Globe,

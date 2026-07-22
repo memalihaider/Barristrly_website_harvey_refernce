@@ -13,65 +13,96 @@ import {
 export const metadata: Metadata = {
   title: "PracticeOS | Barristrly",
   description:
-    "CRM, matters, calendar, documents, billing, and accounting for lawyers and firms.",
+    "Provider panel for Barristrly’s legal marketplace — zero listing fees, pre-vetted leads, 12-hour COI SLA, and escrow consult payouts.",
 };
 
 export default function PracticePage() {
   return (
     <>
       <PageHero
-        eyebrow="PracticeOS"
-        title="Run your practice as a system"
-        description="Pipeline, clients, calendar, documents, billing, and accounting — connected to Marketplace leads and AI assistants."
+        eyebrow="PracticeOS · Provider panel"
+        title="Join the marketplace panel at zero listing cost"
+        description="List on Barristrly’s aggregator with no subscription overhead. Receive structured, conflict-ready intent briefs — clear opponents in 12 hours, consult on masked VoIP, and get paid from escrow when the session completes."
         aside={
           <ProductMock
             title="PracticeOS"
             lines={[
-              "Pipeline: 4 new Marketplace leads",
-              "Matter: Al-Rashid · Employment · Hearing Tue",
-              "Escrow cleared · Invoice draft ready",
+              "Marketplace lead · adverse parties · 12h COI SLA",
+              "Conflict clear · anonymous meeting session",
+              "Escrow delivered · payout to registry",
             ]}
           />
         }
       >
         <GradientButton href="/register?role=lawyer" size="lg">
-          Join as a lawyer
+          Join as a provider
         </GradientButton>
-        <GradientButton href="/login" size="lg" variant="outline">
-          Open lawyer portal
+        <GradientButton href="/request-demo" size="lg" variant="outline">
+          Schedule Meeting
         </GradientButton>
       </PageHero>
 
       <MarketingSection tone="soft" tight>
         <StatRow
           stats={[
-            { value: "CRM", label: "Pipeline and clients" },
-            { value: "Docs", label: "Matter document vault" },
-            { value: "Bill", label: "Escrow and invoices" },
-            { value: "AI", label: "Assistants in context" },
+            { value: "AED 0", label: "Listing / subscription fee" },
+            { value: "12h", label: "Conflict clearance SLA" },
+            { value: "Escrow", label: "Consult fees secured upfront" },
+            { value: "VoIP", label: "Tokenized anonymous sessions" },
           ]}
         />
       </MarketingSection>
 
       <MarketingSection>
-        <SectionIntro title="What PracticeOS covers" />
+        <SectionIntro
+          eyebrow="Supply-side"
+          title="The provider value proposition"
+          description="Build an elite, responsive panel by removing entry friction while enforcing platform-mediated conflict clearing and intake loops."
+        />
         <FeatureList
           items={[
             {
+              title: "Zero listing fees",
+              body: "Lawyers, arbitrators, and experts register and list profiles with zero subscription overhead — eliminating initial supply-side friction so the panel can scale.",
+            },
+            {
+              title: "Pre-vetted lead routing",
+              body: "Instead of sorting raw inquiries, providers receive structured intent briefs that already cleared baseline parameter matching.",
+            },
+            {
+              title: "Systemized conflict clearing",
+              body: "The platform pushes target adverse-party names into your internal conflict workspace so compliance can check records instantly — without revealing client identity prematurely.",
+            },
+            {
+              title: "PracticeOS workspace",
+              body: "Marketplace leads land in your pipeline with matter workspace, documents, calendar, and ledger views for the full engagement.",
+            },
+          ]}
+        />
+      </MarketingSection>
+
+      <MarketingSection tone="soft">
+        <SectionIntro
+          title="Provider SLA & engagement mandates"
+          description="Strict rules that protect responsiveness, anonymity, and fee capture."
+        />
+        <FeatureList
+          items={[
+            {
+              title: "12-hour conflict window",
+              body: "When a client targets you in their top 2–3 selection, you have 12 hours to review opponent names and submit conflict clearance. Failure to respond auto-reverts the lead to the available pool.",
+            },
+            {
+              title: "Tokenized identity compliance",
+              body: "Initial consultations run in the metadata-masked anonymous VoIP chamber using rotating session token IDs. Harvesting client data off-platform before an executed retainer triggers algorithmic penalization.",
+            },
+            {
+              title: "Fee structures & escrow payout",
+              body: "Primary consultation fees (400 / 600 / 800 AED tiers) are secured in platform escrow upfront. Payouts clear to your registry balance on successful completion of the timed session, minus standard platform processing overhead.",
+            },
+            {
               title: "Lead to matter",
-              body: "Marketplace matches land in your pipeline. Approve, consult, and convert without switching tools.",
-            },
-            {
-              title: "Matter workspace",
-              body: "Timeline, notes, messages, deadlines, and documents stay attached to the engagement.",
-            },
-            {
-              title: "Profile and discovery",
-              body: "Public practice profile with jurisdictions, rates, and verification status for matching.",
-            },
-            {
-              title: "Firm-ready accounting",
-              body: "Track fees, escrow events, and practice economics from one ledger view.",
+              body: "After consult, convert into a living matter with notes, documents, milestone invoices, and PracticeOS accounting — without switching tools.",
             },
           ]}
         />
@@ -80,11 +111,11 @@ export default function PracticePage() {
       <MarketingCtaBand
         dark
         title="Built for solos and growing firms"
-        description="Start with Marketplace demand. Scale into PracticeOS when the firm needs structure."
-        primaryHref="/request-demo"
-        primaryLabel="Book a practice demo"
+        description="List free. Clear conflicts fast. Get paid from escrow. Scale into PracticeOS when the firm needs structure."
+        primaryHref="/register?role=lawyer"
+        primaryLabel="Join as a lawyer"
         secondaryHref="/pricing"
-        secondaryLabel="See pricing"
+        secondaryLabel="See escrow & pricing"
       />
     </>
   );

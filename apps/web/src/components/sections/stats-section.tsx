@@ -9,7 +9,7 @@ const stats = [
   { target: 300, suffix: "+", label: "Vetted firms on the network" },
   { target: 5, suffix: "+", label: "Countries Barristrly is used in" },
   { target: 12, suffix: " min", label: "Average time to first match", prefix: "<" },
-  { target: 100, suffix: "%", label: "Cases COI-screened before reveal" },
+  { target: 100, suffix: "%", label: "Cases party-screened before narrative unlock" },
 ];
 
 export default function StatsSection() {

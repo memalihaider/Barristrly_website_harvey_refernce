@@ -11,25 +11,33 @@ import {
 export const metadata: Metadata = {
   title: "Security | Barristrly",
   description:
-    "Privacy-first architecture, escrow controls, and security practices for legal work.",
+    "Two-gate conflict architecture — client data isolation, blind firm affirmation, and post-unlock quarantine for confidential legal matching.",
 };
 
 const FAQS = [
   {
-    q: "How is client data handled?",
-    a: "Matter data is access-scoped by role. Portals enforce client, lawyer, and admin boundaries.",
+    q: "What is the Two-Gate conflict architecture?",
+    a: "Gate 1 collects only matching parameters — client entities and opposing parties — while narrative and documents stay locked. Gate 2 notifies matched firms with a blind payload; client identity and files unlock only after mandatory COI affirmation and successful payment.",
   },
   {
-    q: "Are consultations encrypted?",
-    a: "Consult meetings are designed for encrypted sessions with consent recorded before engagement.",
+    q: "What do law firms see before they accept a lead?",
+    a: "Only an anonymized Case ID, practice area and claim value, and opposing-party / third-party nodes. Client name, narrative, and documents remain hidden until the firm certifies no conflict and payment clears.",
   },
   {
-    q: "What about conflicts?",
-    a: "COI workflows support double-blind screening before counsel sees full client identity where required.",
+    q: "How are conflicts screened before matching?",
+    a: "The COI engine runs fuzzy matching and deterministic ID checks (Emirates ID / passport indexes) on Step A and Step B data held in an isolated Pending Matching store — before any narrative enters the system or maps to firm visibility.",
+  },
+  {
+    q: "What if a conflict appears after unlock?",
+    a: "Firms get a 24-hour Report Post-Unlock Conflict control. It revokes case access, clears cached previews, issues a refund or credit, and re-enters the client into the matching pool for the next non-conflicted firm.",
+  },
+  {
+    q: "How do you handle multi-party and name-variation risk?",
+    a: "Associated third parties (co-defendant, guarantor, expert, funder) are multi-hop filtered so firms connected within 2–3 degrees are excluded. Individual names use Levenshtein and phonetic matching adapted for Arabic–English transliteration.",
   },
   {
     q: "Do you support enterprise reviews?",
-    a: "Yes — security questionnaires and roadmap items (SSO/API) are handled through sales and compliance.",
+    a: "Yes — security questionnaires, reverse firm whitelists for corporates, and roadmap items (SSO/API, hashed conflict checks) are handled through sales and compliance.",
   },
 ];
 
@@ -39,7 +47,7 @@ export default function SecurityPage() {
       <PageHero
         eyebrow="Security"
         title="Trust is part of the product"
-        description="Barristrly is built for confidential legal work — role gates, escrow, COI-aware matching, and audit trails."
+        description="Two-gate conflict architecture: isolate matching data before privileged facts enter the system, then unblind counsel only after firm affirmation and payment."
       >
         <GradientButton href="/request-demo" size="lg">
           Request security brief
@@ -51,32 +59,34 @@ export default function SecurityPage() {
         <CertGrid
           items={[
             {
-              title: "Role-based access",
+              title: "Client registration gate",
               detail:
-                "Client, lawyer, firm, and platform admin portals with middleware gates.",
+                "Step A (client entities) and Step B (adverse parties) run first. Narrative and document upload stay hidden until clearance.",
             },
             {
-              title: "Escrow controls",
-              detail: "Fees held until milestones clear — reducing payment disputes.",
-            },
-            {
-              title: "Audit events",
-              detail: "Analytics and admin audit surfaces for sensitive actions.",
-            },
-            {
-              title: "Document vault",
+              title: "Pending Matching isolation",
               detail:
-                "Matter documents stored with scoped access for engagement parties.",
+                "Early COI data lives in an isolated pending store — not mapped to any firm visibility matrix.",
             },
             {
-              title: "Privacy-first matching",
+              title: "Blind firm notification",
               detail:
-                "COI screening before full exposure of party identities.",
+                "Matched firms see Case ID, practice area, claim value, and opposing-party nodes — never client identity yet.",
             },
             {
-              title: "Enterprise roadmap",
+              title: "Mandatory COI affirmation",
               detail:
-                "SSO and deeper identity controls available via enterprise engagement.",
+                "Accept Lead opens a blocking modal: the firm certifies internal conflict clearance before any reveal.",
+            },
+            {
+              title: "Payment-gated unblind",
+              detail:
+                "Checkbox true + payment success unlocks client name and documents. Escrow and access stay coupled.",
+            },
+            {
+              title: "Post-unlock quarantine",
+              detail:
+                "24-hour conflict report revokes access, clears cached previews, refunds or credits, and rematches the client.",
             },
           ]}
         />
@@ -96,7 +106,7 @@ export default function SecurityPage() {
 
       <MarketingCtaBand
         title="Need a questionnaire completed?"
-        description="Send your security pack — we respond with architecture and control mapping."
+        description="Send your security pack — we respond with two-gate COI architecture and control mapping."
         primaryHref="/request-demo"
         primaryLabel="Contact us"
       />

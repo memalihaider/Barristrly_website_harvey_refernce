@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Compass, CalendarDays } from "lucide-react";
 import GradientButton from "@/components/ui/gradient-button";
 
 export default function Hero() {
@@ -33,7 +34,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif text-[clamp(3rem,8vw,6rem)] text-white leading-[1.02] tracking-[-0.03em] mb-6"
+            className="font-serif text-[clamp(2.75rem,7vw,5.5rem)] text-white leading-[1.02] tracking-[-0.03em] mb-6"
           >
             Lawyer Match, Redefined
           </motion.h1>
@@ -44,7 +45,11 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-2xl text-base md:text-lg text-white leading-relaxed mb-10"
           >
-            Global cross-border lawyer matching — find verified legal experts through AI-driven intake, shielded by anonymity, real-time consultations, and automated conflict-of-interest verification across UAE, GCC, Pakistan, India, and worldwide.
+            Barristrly is a premier legal technology marketplace connecting
+            clients with top-tier lawyers, industry experts, certified
+            arbitrators, and legal service providers — with an anonymous
+            directory, confidential meeting scheduling, and automated conflict
+            checks before consultation begins.
           </motion.p>
 
           <motion.div
@@ -53,11 +58,23 @@ export default function Hero() {
             transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-wrap items-center gap-3 sm:gap-4"
           >
-            <GradientButton size="lg" href="#cta" variant="primary">
-              Match Lawyer
+            <GradientButton
+              size="lg"
+              href="/find-lawyers"
+              variant="primary"
+              className="inline-flex items-center gap-2"
+            >
+              <Compass className="h-5 w-5" aria-hidden />
+              Legal Direction
             </GradientButton>
-            <GradientButton size="lg" href="#customers" variant="white">
-              Lawyer Directory
+            <GradientButton
+              size="lg"
+              href="/request-demo"
+              variant="white"
+              className="inline-flex items-center gap-2"
+            >
+              <CalendarDays className="h-5 w-5" aria-hidden />
+              Schedule Meeting
             </GradientButton>
           </motion.div>
         </div>
