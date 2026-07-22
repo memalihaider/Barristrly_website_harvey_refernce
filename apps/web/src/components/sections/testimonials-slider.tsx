@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -11,7 +12,7 @@ const testimonials = [
     name: "Amira Al-Hassan",
     title: "General Counsel",
     org: "Gulf Holdings Group",
-    initials: "AH",
+    photo: "/testimonials/amira.jpg",
   },
   {
     quote:
@@ -19,7 +20,7 @@ const testimonials = [
     name: "James Okonkwo",
     title: "Head of Legal",
     org: "Regional Fintech",
-    initials: "JO",
+    photo: "/testimonials/james.jpg",
   },
   {
     quote:
@@ -27,7 +28,7 @@ const testimonials = [
     name: "Priya Mehta",
     title: "Disputes Lead",
     org: "Cross-Border Disputes Desk",
-    initials: "PM",
+    photo: "/testimonials/priya.jpg",
   },
   {
     quote:
@@ -35,7 +36,7 @@ const testimonials = [
     name: "Omar Farouk",
     title: "Managing Partner",
     org: "Farouk & Associates",
-    initials: "OF",
+    photo: "/testimonials/omar.jpg",
   },
   {
     quote:
@@ -43,7 +44,7 @@ const testimonials = [
     name: "Neha Kapoor",
     title: "Founder",
     org: "Kapoor Ventures",
-    initials: "NK",
+    photo: "/testimonials/neha.jpg",
   },
 ];
 
@@ -117,12 +118,13 @@ export default function TestimonialsSlider() {
                 “{t.quote}”
               </p>
               <footer className="mt-8 flex items-center gap-4">
-                <span
-                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary text-on-primary text-sm font-bold tracking-wide"
-                  aria-hidden
-                >
-                  {t.initials}
-                </span>
+                <Image
+                  src={t.photo}
+                  alt={t.name}
+                  width={56}
+                  height={56}
+                  className="h-14 w-14 shrink-0 rounded-full object-cover ring-2 ring-primary/40"
+                />
                 <div>
                   <cite className="not-italic block text-sm font-semibold text-white">
                     {t.name}
@@ -137,18 +139,28 @@ export default function TestimonialsSlider() {
         </div>
 
         <div className="flex gap-2 mt-10" role="tablist" aria-label="Testimonials">
-          {testimonials.map((_, i) => (
+          {testimonials.map((item, i) => (
             <button
-              key={i}
+              key={item.name}
               type="button"
               role="tab"
               aria-selected={i === index}
               onClick={() => setIndex(i)}
-              className={`h-1.5 rounded-full transition-all ${
-                i === index ? "w-8 bg-primary" : "w-1.5 bg-white/25 hover:bg-white/40"
+              className={`rounded-full overflow-hidden transition-all ${
+                i === index
+                  ? "ring-2 ring-primary h-9 w-9"
+                  : "h-7 w-7 opacity-55 hover:opacity-90"
               }`}
-              aria-label={`Show testimonial ${i + 1}`}
-            />
+              aria-label={`Show testimonial from ${item.name}`}
+            >
+              <Image
+                src={item.photo}
+                alt=""
+                width={36}
+                height={36}
+                className="h-full w-full object-cover"
+              />
+            </button>
           ))}
         </div>
       </div>
