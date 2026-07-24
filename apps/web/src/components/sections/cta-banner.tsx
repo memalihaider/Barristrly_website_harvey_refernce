@@ -42,8 +42,8 @@ export default function CtaBanner() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="flex flex-wrap gap-3"
           >
-            <GradientButton size="lg" href="/request-demo" variant="primary">
-              Schedule Meeting
+            <GradientButton size="lg" href="/find-lawyers" variant="primary">
+              Match my Lawyer
             </GradientButton>
             <GradientButton size="lg" href="/find-lawyers" variant="outline" className="!text-primary !border-primary">
               Legal Direction

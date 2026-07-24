@@ -1,74 +1,53 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import GradientButton from "@/components/ui/gradient-button";
-import {
-  MarketingCtaBand,
-  MarketingSection,
-  PageHero,
-  SectionIntro,
-} from "@/components/marketing/section";
-import { allPracticeSlugs, SEO_CITIES } from "@/lib/marketing/seo-slugs";
+import LegalDirectory from "@/components/marketing/legal-directory";
 
 export const metadata: Metadata = {
-  title: "Find Lawyers | Barristrly",
+  title: "Anonymous Legal Directory | Barristrly",
   description:
-    "Anonymous legal directory by practice and city — match counsel after COI, then schedule confidential meetings.",
+    "Browse Barristrly’s anonymous legal directory — filter by practice, location, languages, and session fee. Match after COI.",
 };
 
 export default function FindLawyersPage() {
-  const practices = allPracticeSlugs();
-
   return (
-    <>
-      <PageHero
-        eyebrow="Anonymous directory"
-        title="Find lawyers by practice and city"
-        description="Browse Barristrly’s aggregator hubs by practice and corridor — or ask BARRI to classify your matter and start matching."
-      >
-        <GradientButton href="/ai/intake" size="lg">
-          Ask BARRI
-        </GradientButton>
-        <GradientButton href="/request-demo" size="lg" variant="outline">
-          Schedule Meeting
-        </GradientButton>
-      </PageHero>
-
-      <MarketingSection>
-        <SectionIntro title="Practice areas" />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
-          {practices.map((p) => (
-            <Link
-              key={p.slug}
-              href={`/lawyers/${p.slug}`}
-              className="text-ink hover:text-primary font-medium border-b border-gray-200 pb-3 transition-colors"
-            >
-              {p.label} lawyers
-            </Link>
-          ))}
+    <div className="light-section min-h-dvh">
+      <header className="border-b border-gray-200/80 bg-ivory pt-28 pb-10 md:pt-32 md:pb-12">
+        <div className="container-wide">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary mb-3">
+            Browse providers like a marketplace
+          </p>
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div className="max-w-2xl">
+              <h1 className="font-serif text-[clamp(2rem,4vw,3.25rem)] text-ink tracking-tight leading-[1.1]">
+                Anonymous Legal Directory
+              </h1>
+              <p className="mt-4 text-base md:text-lg text-gray-600 leading-relaxed">
+                Filter vetted lawyers, arbitrators, and legal service providers
+                by expertise and corridor. Profiles stay masked until conflict
+                clearance and escrow booking.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3 shrink-0">
+              <Link
+                href="/ai/intake"
+                className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-on-primary hover:bg-primary-hover transition-colors"
+              >
+                Ask BARRI
+              </Link>
+              <Link
+                href="/request-demo"
+                className="inline-flex items-center justify-center rounded-full border border-ink/20 px-5 py-2.5 text-sm font-semibold text-ink hover:border-primary hover:text-primary transition-colors"
+              >
+                Schedule Meeting
+              </Link>
+            </div>
+          </div>
         </div>
-      </MarketingSection>
+      </header>
 
-      <MarketingSection tone="soft">
-        <SectionIntro title="Cities" />
-        <div className="flex flex-wrap gap-x-8 gap-y-4">
-          {SEO_CITIES.map((city) => (
-            <Link
-              key={city.slug}
-              href={`/lawyers/corporate/${city.slug}`}
-              className="text-ink hover:text-primary font-medium transition-colors"
-            >
-              Corporate lawyers in {city.label}
-            </Link>
-          ))}
-        </div>
-      </MarketingSection>
-
-      <MarketingCtaBand
-        title="Not sure who you need?"
-        description="Ask BARRI to classify your matter, then match through the anonymous directory."
-        primaryHref="/ai/intake"
-        primaryLabel="Ask BARRI"
-      />
-    </>
+      <div className="pt-10 md:pt-12">
+        <LegalDirectory />
+      </div>
+    </div>
   );
 }

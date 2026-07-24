@@ -17,7 +17,7 @@ export default function PlatformOverview() {
           className="max-w-3xl mx-auto text-center mb-10 md:mb-12"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary mb-4">
-            Who &amp; why
+            Who is Barristrly?
           </p>
           <h2 className="font-serif text-[clamp(1.75rem,3vw,2.75rem)] text-ink tracking-tight leading-tight mb-5">
             Premier legal technology marketplace
@@ -35,7 +35,7 @@ export default function PlatformOverview() {
           initial={{ opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.75, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          className="media-frame mx-auto max-w-5xl relative overflow-hidden"
+          className="media-frame mx-auto max-w-5xl relative overflow-hidden rounded-3xl"
         >
           <video
             autoPlay
@@ -44,22 +44,10 @@ export default function PlatformOverview() {
             playsInline
             preload="metadata"
             className="absolute inset-0 h-full w-full object-cover"
-            aria-label="Barristrly who and why overview"
+            aria-label="Who is Barristrly overview"
           >
             <source src="/bg-video.mp4" type="video/mp4" />
           </video>
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"
-            aria-hidden
-          />
-          <div className="relative z-10 flex flex-col items-center justify-center gap-2 text-white py-28 md:py-40 px-6 text-center">
-            <span className="font-serif text-5xl md:text-6xl tracking-tight text-primary-light font-extrabold">
-              B
-            </span>
-            <p className="text-sm text-white/80 max-w-md">
-              Who Barristrly is — and how it supports corporates and individuals
-            </p>
-          </div>
         </motion.div>
       </div>
     </section>

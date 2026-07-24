@@ -1,12 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Compass, CalendarDays } from "lucide-react";
+import { Compass, Scale } from "lucide-react";
 import GradientButton from "@/components/ui/gradient-button";
+import LogoTicker from "@/components/ui/logo-ticker";
+
+const partners = [
+  { name: "ADGM Registry" },
+  { name: "DIFC Courts" },
+  { name: "Dubai Land Dept" },
+  { name: "UAE Laws Applied" },
+  { name: "GCC Arbitration" },
+  { name: "Abu Dhabi Courts" },
+  { name: "London Commercial Court" },
+];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-dvh flex flex-col justify-end overflow-hidden bg-black">
+    <section className="relative min-h-dvh flex flex-col justify-between overflow-hidden bg-black">
+      {/* Video Background */}
       <video
         autoPlay
         loop
@@ -19,6 +31,7 @@ export default function Hero() {
         <source src="/bg-video.mp4" type="video/mp4" />
       </video>
 
+      {/* Gradients Overlay */}
       <div
         className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20"
         aria-hidden="true"
@@ -28,7 +41,8 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <div className="container-wide relative z-10 pb-24 pt-40 md:pb-32 md:pt-48">
+      {/* Main Hero Copy Content */}
+      <div className="container-wide relative z-10 pt-40 md:pt-48 pb-10 flex-1 flex flex-col justify-center">
         <div className="max-w-3xl">
           <motion.h1
             initial={{ opacity: 0, y: 28 }}
@@ -45,11 +59,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-2xl text-base md:text-lg text-white leading-relaxed mb-10"
           >
-            Barristrly is a premier legal technology marketplace connecting
-            clients with top-tier lawyers, industry experts, certified
-            arbitrators, and legal service providers — with an anonymous
-            directory, confidential meeting scheduling, and automated conflict
-            checks before consultation begins.
+            Anonymous legal directory. Automated conflict checks before every
+            consult. Confidential meeting scheduling with escrow-backed matches.
           </motion.p>
 
           <motion.div
@@ -69,14 +80,28 @@ export default function Hero() {
             </GradientButton>
             <GradientButton
               size="lg"
-              href="/request-demo"
+              href="/find-lawyers"
               variant="white"
               className="inline-flex items-center gap-2"
             >
-              <CalendarDays className="h-5 w-5" aria-hidden />
-              Schedule Meeting
+              <Scale className="h-5 w-5" aria-hidden />
+              Match my Lawyer
             </GradientButton>
           </motion.div>
+        </div>
+      </div>
+
+      {/* Moving Logos Bar Overlayed at the bottom (Harvey-Style) */}
+      <div className="w-full bg-[#0b0a09]/50 backdrop-blur-md border-t border-white/10 py-5 relative z-10 shrink-0">
+        <div className="container-wide flex items-center justify-between gap-6">
+          <div className="flex-1 overflow-hidden">
+            <LogoTicker partners={partners} speed={36} />
+          </div>
+          <div className="shrink-0 hidden md:block">
+            <span className="text-[9px] uppercase font-bold tracking-widest text-white/60 border border-white/15 px-3.5 py-1.5 rounded bg-white/5 whitespace-nowrap">
+              Vetted Forums
+            </span>
+          </div>
         </div>
       </div>
     </section>

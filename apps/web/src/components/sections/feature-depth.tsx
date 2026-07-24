@@ -1,78 +1,96 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useInView } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { CardStack, CardStackItem } from "@/components/ui/card-stack";
 
-const BLOCKS = [
+const BLOCKS: CardStackItem[] = [
   {
-    title: "Conflict of interest",
-    body: "Every engagement runs automated COI before consultation — adverse parties screened, client identity still masked, firms affirm clearance blind.",
+    id: 1,
+    title: "Blind Conflict Screening",
+    description: "Clears conflicts automatically before consultation. Adverse parties screened, client identity masked, firms clear COI blind.",
+    videoSrc: "/bg-video.mp4",
   },
   {
-    title: "Anonymous legal directory",
-    body: "Select on merit metrics — practice, forum, ratings, fee tier — without geographic or firm-branding bias until mutual unlock.",
+    id: 2,
+    title: "Merit-First Listings",
+    description: "Browse and select counsel purely on merit metrics — practice, forum, ratings, fee tier — without branding bias.",
+    videoSrc: "/bg-video.mp4",
   },
   {
-    title: "Anonymous meeting scheduling",
-    body: "Timed VoIP sessions with escrow-backed fees. Contact details stay platform-held until the consult ends and you authorize release.",
+    id: 3,
+    title: "Escrow-Protected VoIP",
+    description: "Book timed anonymous audio/video sessions. Contact details remain platform-held until consult ends and you release them.",
+    videoSrc: "/bg-video.mp4",
   },
   {
-    title: "Global presence",
-    body: "UAE mainland and free zones, GCC corridors, India–GCC bridge, and connected markets — one aggregator for cross-border legal matchmaking.",
+    id: 4,
+    title: "Cross-Border Matchmaking",
+    description: "One aggregator corridor connecting UAE mainland, ADGM, DIFC, GCC corridors, and the India–GCC bridge.",
+    videoSrc: "/bg-video.mp4",
+  },
+  {
+    id: 5,
+    title: "Milestone Escrow Protection",
+    description: "Secure escrow payment routing where funds are safely held and only released upon milestone verification and client approval.",
+    videoSrc: "/bg-video.mp4",
+  },
+  {
+    id: 6,
+    title: "Vetted Counsel Network",
+    description: "Access a vetted network of premium firm practices, solo practitioners, and specialized arbitrators aligned to your forum.",
+    videoSrc: "/bg-video.mp4",
   },
 ];
 
 export default function FeatureDepth() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [windowWidth, setWindowWidth] = useState(1200);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    setWindowWidth(window.innerWidth);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const cardWidth = Math.min(760, windowWidth * 0.9);
+  const cardHeight = Math.min(420, cardWidth * 0.6);
 
   return (
-    <section id="why-features" ref={ref} className="section-padding light-section">
+    <section id="why-features" ref={ref} className="section-padding light-section overflow-hidden">
       <div className="container-wide">
-        <div className="max-w-2xl mb-12 md:mb-14">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary mb-3">
+        <div className="max-w-2xl mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold uppercase tracking-wider text-primary mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" aria-hidden />
             Why it matters
-          </p>
-          <h2 className="font-serif text-[clamp(1.75rem,3vw,2.75rem)] text-ink tracking-tight">
+          </div>
+          <h2 className="font-serif text-[clamp(2rem,4vw,3.25rem)] text-ink tracking-tight leading-[1.1]">
             Core protections, global reach
           </h2>
-          <p className="mt-3 text-gray-600 leading-relaxed">
+          <p className="mt-3 text-gray-600 leading-relaxed text-base md:text-lg">
             Short explainers for COI, anonymous directory, confidential meetings,
             and Barristrly’s corridor footprint.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10">
-          {BLOCKS.map((block, i) => (
-            <motion.article
-              key={block.title}
-              initial={{ opacity: 0, y: 18 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.06 }}
-              className="rounded-2xl border border-gray-200 overflow-hidden bg-[#fafaf9]"
-            >
-              <div className="relative aspect-[16/9] bg-black overflow-hidden">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  className="absolute inset-0 h-full w-full object-cover opacity-80"
-                  aria-hidden
-                >
-                  <source src="/bg-video.mp4" type="video/mp4" />
-                </video>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                <p className="absolute bottom-4 left-4 right-4 text-sm font-semibold text-white">
-                  {block.title}
-                </p>
-              </div>
-              <div className="p-6">
-                <p className="text-sm text-gray-600 leading-relaxed">{block.body}</p>
-              </div>
-            </motion.article>
-          ))}
+        {/* Integrated Premium 3D Card Stack */}
+        <div className="mx-auto w-full max-w-4xl flex justify-center mt-6">
+          {isInView && (
+            <CardStack
+              items={BLOCKS}
+              initialIndex={0}
+              autoAdvance
+              intervalMs={3200}
+              pauseOnHover
+              showDots={false}
+              maxVisible={5}
+              cardWidth={cardWidth}
+              cardHeight={cardHeight}
+            />
+          )}
         </div>
       </div>
     </section>

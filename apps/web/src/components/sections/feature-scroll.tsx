@@ -5,13 +5,16 @@ import { useInView } from "framer-motion";
 import Link from "next/link";
 
 const features = [
-  "Anonymous Directory",
-  "Automated COI",
-  "Confidential Meetings",
-  "Provider Matching",
-  "Milestone Escrow",
-  "Expert Witnesses",
-  "Global Corridor",
+  "Qualified lawyers with law firms",
+  "Legal consultants",
+  "Independent legal practitioners",
+  "Industry and court experts",
+  "Qualified arbitrators",
+  "Expert witnesses",
+  "Arbitration hearing support",
+  "Legal notaries",
+  "Corporate secretarial & PRO",
+  "Legal translators",
 ];
 
 export default function FeatureScroll() {
@@ -41,7 +44,7 @@ export default function FeatureScroll() {
               id="capabilities-heading"
               className="font-serif text-[clamp(1.35rem,2.2vw,1.85rem)] text-ink leading-snug tracking-tight max-w-[16rem]"
             >
-              The top legal teams use Barristrly for
+              Connect with vetted providers
             </h2>
           </div>
 

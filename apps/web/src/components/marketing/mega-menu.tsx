@@ -149,8 +149,8 @@ export default function MegaMenu({
 
   const active = groups.find((g) => g.name === open) ?? null;
   const triggerBase = onDark
-    ? "text-sm font-medium !text-white/85 hover:!text-white"
-    : "text-sm font-medium text-ink/80 hover:text-ink";
+    ? "text-[15px] font-medium !text-white/85 hover:!text-white"
+    : "text-[15px] font-medium text-ink/80 hover:text-ink";
 
   const panel =
     mounted &&
@@ -186,70 +186,79 @@ export default function MegaMenu({
               onMouseEnter={clearClose}
               onMouseLeave={scheduleClose}
             >
-              <div className="w-screen max-w-[100vw] border-b border-white/[0.06]">
-                <div className="container-wide py-14 xl:py-16">
-                  <div className="grid grid-cols-12 gap-12 xl:gap-20 items-start">
-                    <div
-                      className={`col-span-12 ${
-                        active.featured
-                          ? "lg:col-span-7 xl:col-span-7"
-                          : "lg:col-span-12"
-                      }`}
-                    >
+              <div className="w-screen max-w-[100vw] border-b border-white/[0.06] overflow-hidden">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={active.name}
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
+                    transition={{ duration: 0.15, ease: "easeInOut" }}
+                    className="container-wide py-14 xl:py-16"
+                  >
+                    <div className="grid grid-cols-12 gap-12 xl:gap-20 items-start">
                       <div
-                        className={`grid gap-12 xl:gap-16 ${
-                          (active.columns?.length ?? 0) > 1
-                            ? "sm:grid-cols-2"
-                            : "grid-cols-1 max-w-sm"
+                        className={`col-span-12 ${
+                          active.featured
+                            ? "lg:col-span-7 xl:col-span-7"
+                            : "lg:col-span-12"
                         }`}
                       >
-                        {active.columns
-                          ? active.columns.map((col, i) => (
-                              <div key={col.title ?? `col-${i}`}>
-                                {col.title ? (
-                                  <p className="mb-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/30">
-                                    {col.title}
-                                  </p>
-                                ) : null}
+                        <div
+                          className={`grid gap-12 xl:gap-16 ${
+                            (active.columns?.length ?? 0) > 1
+                              ? "sm:grid-cols-2"
+                              : "grid-cols-1 max-w-sm"
+                          }`}
+                        >
+                          {active.columns
+                            ? active.columns.map((col, i) => (
+                                <div key={col.title ?? `col-${i}`}>
+                                  {col.title ? (
+                                    <p className="mb-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/30">
+                                      {col.title}
+                                    </p>
+                                  ) : null}
+                                  <LinkColumn
+                                    items={col.items}
+                                    onNavigate={close}
+                                  />
+                                </div>
+                              ))
+                            : (
                                 <LinkColumn
-                                  items={col.items}
+                                  items={active.items ?? []}
                                   onNavigate={close}
                                 />
-                              </div>
-                            ))
-                          : (
-                              <LinkColumn
-                                items={active.items ?? []}
-                                onNavigate={close}
-                              />
-                            )}
+                              )}
+                        </div>
                       </div>
+
+                      {active.featured ? (
+                        <div className="col-span-12 lg:col-span-5 xl:col-span-5">
+                          <FeaturedMedia
+                            featured={active.featured}
+                            onNavigate={close}
+                          />
+                        </div>
+                      ) : null}
                     </div>
 
-                    {active.featured ? (
-                      <div className="col-span-12 lg:col-span-5 xl:col-span-5">
-                        <FeaturedMedia
-                          featured={active.featured}
-                          onNavigate={close}
-                        />
-                      </div>
-                    ) : null}
-                  </div>
-
-                  {/* Mega footer — Request a Demo on every panel */}
-                  <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <p className="text-sm text-white/45">
-                      Prefer a guided walkthrough of Marketplace, AI, and PracticeOS?
-                    </p>
-                    <Link
-                      href="/request-demo"
-                      onClick={close}
-                      className="inline-flex items-center justify-center self-start rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-on-primary hover:bg-primary-hover transition-colors"
-                    >
-                      Request a Demo
-                    </Link>
-                  </div>
-                </div>
+                    {/* Mega footer — Request a Demo on every panel */}
+                    <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <p className="text-sm text-white/45">
+                        Prefer a guided walkthrough of Marketplace, AI, and PracticeOS?
+                      </p>
+                      <Link
+                        href="/request-demo"
+                        onClick={close}
+                        className="inline-flex items-center justify-center self-start rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-on-primary hover:bg-primary-hover transition-colors"
+                      >
+                        Request a Demo
+                      </Link>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </motion.div>
           </>

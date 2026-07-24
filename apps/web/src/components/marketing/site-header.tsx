@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Scale, CalendarDays } from "lucide-react";
+import { Menu, X, CalendarDays } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import GradientButton from "@/components/ui/gradient-button";
@@ -45,18 +45,18 @@ export default function SiteHeader() {
           : "bg-ivory/90 backdrop-blur-sm border-b border-transparent py-4";
 
   const logoClass =
-    "font-serif text-xl lg:text-[1.35rem] xl:text-2xl font-extrabold tracking-wider text-primary transition-colors duration-200 whitespace-nowrap";
+    "font-serif text-[1.35rem] lg:text-[1.55rem] xl:text-[1.8rem] font-extrabold tracking-wider text-primary transition-colors duration-200 whitespace-nowrap";
 
   const loginClass = onDark
-    ? "text-sm font-medium !text-white/90 hover:!text-white transition-colors duration-200 whitespace-nowrap"
-    : "text-sm font-medium text-ink/80 hover:text-ink transition-colors duration-200 whitespace-nowrap";
+    ? "text-[15px] font-medium !text-white/90 hover:!text-white transition-colors duration-200 whitespace-nowrap"
+    : "text-[15px] font-medium text-ink/80 hover:text-ink transition-colors duration-200 whitespace-nowrap";
 
   const mobileBtnClass = onDark
     ? "text-white hover:text-white/80"
     : "text-ink hover:text-primary";
 
   const ctaClass =
-    "!px-3.5 !py-2 text-xs xl:!px-4 xl:!py-2.5 xl:text-sm whitespace-nowrap shrink-0";
+    "!px-4 !py-2 text-sm xl:!px-5 xl:!py-2.5 xl:text-[15px] whitespace-nowrap shrink-0";
 
   return (
     <>
@@ -83,22 +83,13 @@ export default function SiteHeader() {
             <Link href="/login" className={loginClass}>
               Log In
             </Link>
-            <GradientButton
-              size="sm"
-              href="/find-lawyers"
-              variant="outline"
-              className={`!text-primary !border-primary hover:!bg-primary/10 inline-flex items-center gap-1.5 ${ctaClass}`}
-            >
-              <Scale className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden />
-              <span className="hidden xl:inline">Match my Lawyer</span>
-              <span className="xl:hidden">Match</span>
-            </GradientButton>
+
             <GradientButton
               size="sm"
               href="/request-demo"
               className={`inline-flex items-center gap-1.5 ${ctaClass}`}
             >
-              <CalendarDays className="h-3.5 w-3.5 shrink-0" aria-hidden />
+              <CalendarDays className="h-4 w-4 shrink-0" aria-hidden />
               <span className="hidden xl:inline">Schedule Meeting</span>
               <span className="xl:hidden">Schedule</span>
             </GradientButton>
@@ -176,16 +167,7 @@ export default function SiteHeader() {
               >
                 Log In
               </Link>
-              <GradientButton
-                href="/find-lawyers"
-                size="md"
-                variant="outline"
-                className="w-full text-center !border-primary !text-primary inline-flex items-center justify-center gap-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <Scale className="h-4 w-4 text-primary" aria-hidden />
-                Match my Lawyer
-              </GradientButton>
+
               <GradientButton
                 href="/request-demo"
                 size="md"

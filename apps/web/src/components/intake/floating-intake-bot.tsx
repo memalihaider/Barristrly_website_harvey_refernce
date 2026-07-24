@@ -86,17 +86,6 @@ export default function FloatingIntakeBot() {
           type="button"
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
-          onClick={() => router.push("/ai/intake")}
-          className="h-12 w-12 rounded-full border-2 border-primary bg-ivory text-primary shadow-[0_8px_24px_-8px_rgba(232,93,4,0.45)] flex items-center justify-center hover:bg-primary/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-          aria-label="Open BARRI VOICE"
-          title="BARRI VOICE"
-        >
-          <Mic className="h-5 w-5" aria-hidden />
-        </motion.button>
-        <motion.button
-          type="button"
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.97 }}
           onClick={() => setOpen((v) => !v)}
           className="h-14 w-14 rounded-full bg-primary text-on-primary shadow-[0_12px_32px_-8px_rgba(232,93,4,0.65)] flex items-center justify-center hover:bg-primary-hover transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           aria-label={open ? "Close BARRI" : "Open BARRI"}
@@ -105,9 +94,20 @@ export default function FloatingIntakeBot() {
         >
           {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
         </motion.button>
+        <motion.button
+          type="button"
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={() => router.push("/ai/intake")}
+          className="h-12 w-12 rounded-full border-2 border-primary bg-ivory text-primary shadow-[0_8px_24px_-8px_rgba(232,93,4,0.45)] flex items-center justify-center hover:bg-primary/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          aria-label="Open BARRI VOICE"
+          title="BARRI VOICE"
+        >
+          <Mic className="h-5 w-5" aria-hidden />
+        </motion.button>
       </div>
       {!open ? (
-        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-primary/80 pr-1">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-primary/80 pr-1 text-center w-full">
           BARRI · V-BARRI
         </p>
       ) : null}

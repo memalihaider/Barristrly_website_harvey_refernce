@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { ShieldCheck, CalendarDays, EyeOff, Scale } from "lucide-react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { ShieldCheck, Calendar, EyeOff, Scale } from "lucide-react";
 
 const STEPS = [
   {
@@ -21,7 +21,7 @@ const STEPS = [
     body: "Automated COI runs before consult; firms affirm adverse parties blind.",
   },
   {
-    icon: CalendarDays,
+    icon: Calendar,
     title: "Schedule & meet",
     body: "Fund escrow, book a timed anonymous VoIP session, then unmask on consent.",
   },
@@ -30,6 +30,16 @@ const STEPS = [
 export default function FeaturesProcess() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [activeStep, setActiveStep] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (isHovered || !isInView) return;
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % STEPS.length);
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [isHovered, isInView]);
 
   return (
     <section id="features" ref={ref} className="section-padding light-section">
@@ -48,62 +58,180 @@ export default function FeaturesProcess() {
                 in-house LegalOS workspaces.
               </p>
             </div>
-            <ul className="space-y-6 list-none p-0 m-0">
+            
+            <div className="space-y-4">
               {STEPS.map((step, i) => {
                 const Icon = step.icon;
+                const isActive = i === activeStep;
                 return (
-                  <motion.li
+                  <button
                     key={step.title}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: i * 0.06 }}
-                    className="flex gap-4"
+                    onMouseEnter={() => {
+                      setActiveStep(i);
+                      setIsHovered(true);
+                    }}
+                    onMouseLeave={() => setIsHovered(false)}
+                    onClick={() => setActiveStep(i)}
+                    className={`w-full text-left flex gap-4 p-5 rounded-2xl border transition-all duration-300 ${
+                      isActive
+                        ? "bg-[#faf9f6] border-[#e5e3dc] shadow-[0_12px_30px_rgba(0,0,0,0.015)]"
+                        : "bg-transparent border-transparent opacity-60 hover:opacity-95"
+                    }`}
                   >
-                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                      <Icon className="h-4 w-4" aria-hidden />
+                    <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
+                      isActive ? "bg-primary text-white scale-105 shadow-md shadow-primary/10" : "bg-primary/10 text-primary"
+                    }`}>
+                      <Icon className="h-4.5 w-4.5" aria-hidden />
                     </span>
                     <div>
-                      <p className="font-semibold text-ink tracking-tight">
-                        {i + 1}. {step.title}
+                      <p className="font-semibold text-ink tracking-tight text-base">
+                        {step.title}
                       </p>
-                      <p className="mt-1 text-sm text-gray-600 leading-relaxed">
+                      <p className="mt-1.5 text-sm text-gray-600 leading-relaxed">
                         {step.body}
                       </p>
                     </div>
-                  </motion.li>
+                  </button>
                 );
               })}
-            </ul>
+            </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55, delay: 0.1 }}
-            className="lg:col-span-7 media-frame relative overflow-hidden min-h-[280px] md:min-h-[380px]"
-          >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              className="absolute inset-0 h-full w-full object-cover"
-              aria-label="Barristrly features and process"
+          <div className="lg:col-span-7 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.55, delay: 0.1 }}
+              className="media-frame relative overflow-hidden min-h-[380px] md:min-h-[460px] rounded-2xl shadow-xl border border-gray-100"
             >
-              <source src="/bg-video.mp4" type="video/mp4" />
-            </video>
-            <div
-              className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent"
-              aria-hidden
-            />
-            <div className="relative z-10 flex h-full min-h-[280px] md:min-h-[380px] items-end p-8 md:p-10">
-              <p className="text-white text-sm md:text-base max-w-md leading-relaxed">
-                Feature walkthrough — matching, COI, anonymous directory, and
-                meeting scheduling (placeholder video until branded asset lands).
-              </p>
-            </div>
-          </motion.div>
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                className="absolute inset-0 h-full w-full object-cover opacity-60"
+                aria-label="Barristrly features and process"
+              >
+                <source src="/bg-video.mp4" type="video/mp4" />
+              </video>
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"
+                aria-hidden
+              />
+              
+              {/* Dynamic Interactive HUD / Screen Mockup Overlay */}
+              <div className="absolute inset-0 z-20 flex items-center justify-center p-6 md:p-10">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeStep}
+                    initial={{ opacity: 0, scale: 0.94, y: 15 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.94, y: -15 }}
+                    transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                    className="bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-[0_30px_60px_rgba(0,0,0,0.5)] max-w-sm w-full text-white"
+                  >
+                    {activeStep === 0 && (
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                          <div className="flex items-center gap-2">
+                            <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+                            <span className="text-[11px] font-semibold uppercase tracking-wider text-primary">BARRI Intake AI</span>
+                          </div>
+                          <span className="text-[10px] text-white/40 font-mono">v1.2</span>
+                        </div>
+                        <div className="p-3 bg-white/5 rounded-lg border border-white/5">
+                          <p className="text-xs font-mono text-white/90 leading-relaxed">
+                            "Intake query: Dispute over Commercial lease in Dubai, AED 1.2M value."
+                          </p>
+                        </div>
+                        <div className="flex flex-wrap gap-1.5 pt-1">
+                          <span className="text-[10px] px-2.5 py-1 rounded-full bg-white/10 border border-white/5 text-white/80 font-medium">Corporate Lease</span>
+                          <span className="text-[10px] px-2.5 py-1 rounded-full bg-white/10 border border-white/5 text-white/80 font-medium">Dubai IFC</span>
+                          <span className="text-[10px] px-2.5 py-1 rounded-full bg-white/10 border border-white/5 text-white/80 font-medium">AED 1M+</span>
+                        </div>
+                      </div>
+                    )}
+                    {activeStep === 1 && (
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                          <div className="flex items-center gap-2">
+                            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                            <span className="text-[11px] font-semibold uppercase tracking-wider text-emerald-400">Masked Matching</span>
+                          </div>
+                          <span className="text-[10px] text-white/40 font-mono">2 candidates</span>
+                        </div>
+                        <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-2">
+                          <div className="flex items-center justify-between">
+                            <span className="font-mono text-xs text-primary font-bold">COUNSEL-8390</span>
+                            <span className="text-[9px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-semibold">98% Merit Match</span>
+                          </div>
+                          <p className="text-[11px] text-white/70 leading-relaxed">
+                            Dubai Arbitrator · 14 yrs exp · Qualified in corporate commercial litigation & DIFC rules.
+                          </p>
+                        </div>
+                        <p className="text-[10px] text-white/40 text-center italic leading-tight">
+                          Firm identities and profiles remain encrypted.
+                        </p>
+                      </div>
+                    )}
+                    {activeStep === 2 && (
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                          <div className="flex items-center gap-2">
+                            <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+                            <span className="text-[11px] font-semibold uppercase tracking-wider text-primary">Conflict Screening</span>
+                          </div>
+                          <span className="text-[10px] px-2 py-0.5 rounded bg-primary/20 text-primary font-bold">PASSED</span>
+                        </div>
+                        <div className="space-y-2.5 py-1">
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="text-white/60">Party registration list</span>
+                            <span className="text-emerald-400 font-mono font-medium">Clear</span>
+                          </div>
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="text-white/60">Blind adverse search</span>
+                            <span className="text-emerald-400 font-mono font-medium">Passed</span>
+                          </div>
+                        </div>
+                        <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+                          <motion.div 
+                            className="h-full bg-primary" 
+                            initial={{ width: 0 }}
+                            animate={{ width: "100%" }}
+                            transition={{ duration: 0.8 }}
+                          />
+                        </div>
+                      </div>
+                    )}
+                    {activeStep === 3 && (
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                          <div className="flex items-center gap-2">
+                            <span className="h-2.5 w-2.5 rounded-full bg-red-500 animate-pulse" />
+                            <span className="text-[11px] font-semibold uppercase tracking-wider text-red-400">VoIP Session Ready</span>
+                          </div>
+                          <span className="text-[10px] text-white/40 font-mono">Escrow Active</span>
+                        </div>
+                        <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-3.5 rounded-xl">
+                          <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                            <Calendar className="h-5 w-5" />
+                          </div>
+                          <div>
+                            <p className="text-[10px] text-white/50 font-medium">Meeting Protected</p>
+                            <p className="text-xs font-semibold text-white">Timed VoIP starting in 02:40</p>
+                          </div>
+                        </div>
+                        <button className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white text-xs font-semibold rounded-lg transition-colors shadow-lg shadow-primary/20">
+                          Enter Meeting Room
+                        </button>
+                      </div>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
