@@ -105,7 +105,7 @@ export default function SecuritySection() {
                 className="flex flex-col items-center text-center group"
               >
                 <Icon
-                  className="h-16 w-16 md:h-20 md:w-20 text-white/35 group-hover:text-white/55 transition-colors duration-300"
+                  className="h-16 w-16 md:h-20 md:w-20 text-white/35 group-hover:text-primary transition-colors duration-300"
                   strokeWidth={1}
                   aria-hidden
                 />

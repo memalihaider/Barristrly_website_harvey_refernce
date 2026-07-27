@@ -36,6 +36,12 @@ export default function HomePricing() {
           </GradientButton>
         </div>
 
+        <div className="mb-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+            For Individuals
+          </p>
+        </div>
+
         {/* Individual Sessions (Highly Highlighted Meeting Time & Price) */}
         <div className="grid sm:grid-cols-3 gap-6 mb-16">
           {INDIVIDUAL_SESSIONS.map((session, i) => (
@@ -86,6 +92,12 @@ export default function HomePricing() {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mb-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+            For SMEs and Corporates
+          </p>
         </div>
 
         {/* Subscription Plans (Enhanced UI Cards) */}

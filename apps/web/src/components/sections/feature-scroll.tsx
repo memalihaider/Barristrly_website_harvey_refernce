@@ -58,7 +58,7 @@ export default function FeatureScroll() {
                     onMouseEnter={() => setActiveIndex(index)}
                     onFocus={() => setActiveIndex(index)}
                     onClick={() => setActiveIndex(index)}
-                    className={`capability-item ${isActive ? "is-active" : ""}`}
+                    className={`capability-item !text-[clamp(1.35rem,3.2vw,2.7rem)] ${isActive ? "is-active" : ""}`}
                     aria-current={isActive ? "true" : undefined}
                   >
                     {title}

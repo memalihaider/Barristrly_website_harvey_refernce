@@ -2,6 +2,7 @@ import Hero from "@/components/sections/hero";
 import PlatformOverview from "@/components/sections/platform-overview";
 import FeatureScroll from "@/components/sections/feature-scroll";
 import VettedProviders from "@/components/sections/vetted-providers";
+import AnonymousWhy from "@/components/sections/anonymous-why";
 import FeaturesProcess from "@/components/sections/features-process";
 import DirectoryMarquee from "@/components/sections/directory-marquee";
 import FeatureDepth from "@/components/sections/feature-depth";
@@ -18,6 +19,7 @@ export default function Home() {
       <PlatformOverview />
       <FeatureScroll />
       <VettedProviders />
+      <AnonymousWhy />
       <FeaturesProcess />
       <DirectoryMarquee />
       <FeatureDepth />

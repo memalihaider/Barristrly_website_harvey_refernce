@@ -75,7 +75,7 @@ export default function Hero() {
               variant="primary"
               className="inline-flex items-center gap-2"
             >
-              <Compass className="h-5 w-5" aria-hidden />
+              <Scale className="h-5 w-5" aria-hidden />
               Legal Direction
             </GradientButton>
             <GradientButton
@@ -84,7 +84,7 @@ export default function Hero() {
               variant="white"
               className="inline-flex items-center gap-2"
             >
-              <Scale className="h-5 w-5" aria-hidden />
+              <Compass className="h-5 w-5" aria-hidden />
               Match my Lawyer
             </GradientButton>
           </motion.div>
