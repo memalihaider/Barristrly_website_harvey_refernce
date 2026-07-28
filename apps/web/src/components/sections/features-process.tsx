@@ -10,6 +10,7 @@ import {
   Check,
   Lock,
   Mic,
+  Handshake,
 } from "lucide-react";
 
 const STEPS = [
@@ -36,6 +37,12 @@ const STEPS = [
     title: "Schedule & meet",
     body: "Fund escrow, book a timed anonymous VoIP session, then unmask on consent.",
     label: "Meet",
+  },
+  {
+    icon: Handshake,
+    title: "Lawyer matched",
+    body: "After the consult, you accept counsel — identity unlocks and the engagement is confirmed.",
+    label: "Matched",
   },
 ];
 
@@ -160,49 +167,100 @@ function StepPreview({ step }: { step: number }) {
     );
   }
 
+  if (step === 3) {
+    return (
+      <div className="space-y-5">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+            <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
+              Session ready
+            </span>
+          </div>
+          <span className="text-[11px] font-medium text-gray-500">
+            Escrow held
+          </span>
+        </div>
+        <div className="rounded-xl border border-[#e8e5df] bg-white p-5">
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <Mic className="h-5 w-5" aria-hidden />
+            </div>
+            <div>
+              <p className="text-xs text-gray-500">Anonymous VoIP</p>
+              <p className="font-serif text-xl text-ink tracking-tight">
+                Starts in 02:40
+              </p>
+            </div>
+          </div>
+          <div className="mt-5 grid grid-cols-2 gap-2 text-center">
+            <div className="rounded-lg bg-[#faf9f6] px-3 py-2.5">
+              <p className="text-[10px] uppercase tracking-wider text-gray-500">
+                Duration
+              </p>
+              <p className="mt-0.5 text-sm font-semibold text-ink">45 min</p>
+            </div>
+            <div className="rounded-lg bg-[#faf9f6] px-3 py-2.5">
+              <p className="text-[10px] uppercase tracking-wider text-gray-500">
+                Status
+              </p>
+              <p className="mt-0.5 text-sm font-semibold text-primary">Protected</p>
+            </div>
+          </div>
+        </div>
+        <div className="w-full rounded-xl bg-primary py-3 text-center text-sm font-semibold text-on-primary">
+          Enter meeting room
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-          <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
-            Session ready
+          <span className="h-2 w-2 rounded-full bg-emerald-500" />
+          <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-700">
+            Match confirmed
           </span>
         </div>
-        <span className="text-[11px] font-medium text-gray-500">
-          Escrow held
+        <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-700">
+          ACCEPTED
         </span>
       </div>
       <div className="rounded-xl border border-[#e8e5df] bg-white p-5">
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-            <Mic className="h-5 w-5" aria-hidden />
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-on-primary">
+            <Handshake className="h-5 w-5" aria-hidden />
           </div>
           <div>
-            <p className="text-xs text-gray-500">Anonymous VoIP</p>
+            <p className="text-xs text-gray-500">Counsel selected</p>
             <p className="font-serif text-xl text-ink tracking-tight">
-              Starts in 02:40
+              Lawyer matched
             </p>
           </div>
         </div>
-        <div className="mt-5 grid grid-cols-2 gap-2 text-center">
-          <div className="rounded-lg bg-[#faf9f6] px-3 py-2.5">
-            <p className="text-[10px] uppercase tracking-wider text-gray-500">
-              Duration
-            </p>
-            <p className="mt-0.5 text-sm font-semibold text-ink">45 min</p>
-          </div>
-          <div className="rounded-lg bg-[#faf9f6] px-3 py-2.5">
-            <p className="text-[10px] uppercase tracking-wider text-gray-500">
-              Status
-            </p>
-            <p className="mt-0.5 text-sm font-semibold text-primary">Protected</p>
-          </div>
-        </div>
+        <ul className="mt-5 space-y-2.5 list-none p-0 m-0">
+          {[
+            "Consult completed under escrow",
+            "Client accepted counsel",
+            "Identity unlocked · engagement live",
+          ].map((row) => (
+            <li
+              key={row}
+              className="flex items-center gap-2.5 text-sm text-ink"
+            >
+              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 shrink-0">
+                <Check className="h-3 w-3" aria-hidden />
+              </span>
+              {row}
+            </li>
+          ))}
+        </ul>
       </div>
-      <div className="w-full rounded-xl bg-primary py-3 text-center text-sm font-semibold text-on-primary">
-        Enter meeting room
-      </div>
+      <p className="text-center text-xs text-gray-500 leading-relaxed">
+        Journey complete — you are matched with verified counsel.
+      </p>
     </div>
   );
 }
@@ -248,11 +306,11 @@ export default function FeaturesProcess() {
             Features
           </p>
           <h2 className="font-serif text-[clamp(1.85rem,3.5vw,3rem)] text-ink tracking-tight leading-[1.08]">
-            From matter to meeting — four clear steps
+            From matter to match — five clear steps
           </h2>
           <p className="mt-3 text-gray-600 leading-relaxed max-w-xl">
             A guided marketplace flow: classify, browse anonymously, clear
-            conflicts, then meet under escrow.
+            conflicts, meet under escrow, then confirm your lawyer match.
           </p>
         </div>
 

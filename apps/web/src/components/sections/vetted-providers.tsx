@@ -109,11 +109,11 @@ export default function VettedProviders() {
       />
 
       <div className="container-wide relative z-10">
-        <div className="max-w-2xl mb-12 md:mb-16">
+        <div className="max-w-4xl mb-12 md:mb-16">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-4">
             Features
           </p>
-          <h2 className="font-serif text-[clamp(2rem,4.5vw,3.5rem)] tracking-tight leading-[1.05] text-white">
+          <h2 className="font-serif text-[clamp(2.35rem,5vw,4rem)] tracking-tight leading-[1.05] text-white lg:whitespace-nowrap">
             Built for match, privacy, and trust
           </h2>
           <p className="mt-4 text-base md:text-lg text-white/55 leading-relaxed max-w-xl">

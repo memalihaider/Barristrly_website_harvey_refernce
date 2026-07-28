@@ -98,7 +98,7 @@ export default function AnonymousWhy() {
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gray-500 mb-5">
                 The motive
               </p>
-              <ul className="space-y-0 list-none p-0 m-0 border-t border-[#e5e3dc]">
+              <ul className="space-y-4 list-none p-0 m-0">
                 {MOTIVES.map((item, i) => {
                   const Icon = item.icon;
                   return (
@@ -107,13 +107,18 @@ export default function AnonymousWhy() {
                       initial={{ opacity: 0, y: 12 }}
                       animate={isInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.4, delay: 0.08 * i }}
-                      className="flex gap-4 border-b border-[#e5e3dc] py-5"
+                      className="group flex gap-4 rounded-2xl border border-[#e5e3dc] bg-[#faf9f6]/90 p-5 md:p-6
+                        transition-all duration-300 ease-out
+                        hover:-translate-y-0.5 hover:scale-[1.015]
+                        hover:border-primary/35 hover:bg-white
+                        hover:shadow-[0_18px_40px_-20px_rgba(232,93,4,0.28)]
+                        focus-within:border-primary/35 focus-within:shadow-[0_18px_40px_-20px_rgba(232,93,4,0.28)]"
                     >
-                      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-on-primary">
                         <Icon className="h-4 w-4" aria-hidden />
                       </span>
                       <div>
-                        <h3 className="font-serif text-xl text-ink tracking-tight">
+                        <h3 className="font-serif text-xl text-ink tracking-tight transition-colors duration-300 group-hover:text-primary">
                           {item.title}
                         </h3>
                         <p className="mt-1.5 text-sm text-gray-600 leading-relaxed">
