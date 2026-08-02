@@ -16,7 +16,13 @@ export async function GET(_req: NextRequest) {
             id: session.auth.id,
             email: session.auth.email,
             role: session.profile.role,
-            displayName: (session.profile as { display_name?: string }).display_name ?? null,
+            displayName:
+              (session.profile as { display_name?: string }).display_name ??
+              null,
+            onboardingCompleted: Boolean(
+              (session.profile as { onboarding_completed?: boolean })
+                .onboarding_completed
+            ),
           }
         : null,
     });

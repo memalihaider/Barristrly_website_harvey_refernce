@@ -76,9 +76,9 @@ The platform combines:
 
 # Target Users
 
-## Client
+## Client (Customer)
 
-Individuals or organizations seeking legal advice.
+Individuals or organizations seeking legal advice — the customer who needs a lawyer.
 
 Primary needs:
 
@@ -92,7 +92,7 @@ Primary needs:
 
 ## Lawyer
 
-Licensed legal professionals.
+Licensed legal professionals who need clients via Barristrly. Together with Clients, Lawyers are platform customers.
 
 Primary needs:
 
@@ -106,21 +106,37 @@ Primary needs:
 
 ## Mediator
 
-Internal Barristrly operations team.
+AI Bot (BARRI / BARRI VOICE) — automated intake, triage, and matching assistance. Not a human operations role.
 
 Primary needs:
 
-- Verify lawyers
-- Resolve conflicts
-- Moderate platform
-- Manage users
-- Generate reports
+- Classify matters and budget
+- Assist anonymous matching
+- Guide clients through intake
 
 ---
 
-## Administrator
+## Admin
 
-Platform administrators responsible for system configuration, security, billing, AI configuration, and operational oversight.
+Business owner or agency that has / manages many lawyers on the platform.
+
+Primary needs:
+
+- Manage lawyer panel / roster
+- Oversee firm or agency operations
+- Billing and compliance at org level
+
+---
+
+## Super Admin
+
+Owner of the Barristrly SaaS application.
+
+Primary needs:
+
+- System configuration and security
+- Platform billing and AI configuration
+- Operational oversight of the entire product
 
 ---
 

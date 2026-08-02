@@ -76,7 +76,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2"
             >
               <Scale className="h-5 w-5" aria-hidden />
-              Legal Direction
+              Legal Directory
             </GradientButton>
             <GradientButton
               size="lg"

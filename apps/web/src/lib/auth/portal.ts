@@ -13,6 +13,7 @@ export function isSafeNextPath(path: string | null | undefined): path is string 
   if (path.startsWith("//")) return false;
   if (path.includes("://")) return false;
   if (path.startsWith("/login") || path.startsWith("/register")) return false;
+  if (path.startsWith("/onboarding")) return true;
   return true;
 }
 
@@ -20,9 +21,10 @@ export function homeForRole(role: string | null | undefined): string {
   switch (role) {
     case "lawyer":
       return "/lawyer";
+    // Admin (firm/agency) + Super Admin + legacy mediator portal home
     case "platform_admin":
-    case "mediator":
     case "firm_admin":
+    case "mediator":
       return "/admin";
     case "client":
     default:

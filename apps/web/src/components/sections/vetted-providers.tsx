@@ -114,7 +114,7 @@ export default function VettedProviders() {
             Features
           </p>
           <h2 className="font-serif text-[clamp(2.35rem,5vw,4rem)] tracking-tight leading-[1.05] text-white lg:whitespace-nowrap">
-            Built for match, privacy, and trust
+            Built for Match, Privacy, and Trust
           </h2>
           <p className="mt-4 text-base md:text-lg text-white/55 leading-relaxed max-w-xl">
             Six marketplace capabilities that move you from directory browse to

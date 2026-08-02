@@ -36,9 +36,13 @@ Barristrly is a Next.js 16 application that serves as a **legal services marketp
 
 | Role | Description |
 |------|-------------|
-| **Client** | Submits legal cases, gets matched with lawyers, attends encrypted consultations |
-| **Lawyer** | Receives pre-vetted leads, manages profile, conducts consultations, runs sponsored ads |
-| **Mediator** | Platform admin — oversees matching, approves lawyers, reviews COI flags, manages accounting |
+| **Client (Customer)** | End customer who needs a lawyer — submits matters, matches counsel, attends anonymous consults |
+| **Lawyer** | Legal provider who needs clients via Barristrly — receives leads, clears COI, consults, grows practice |
+| **Mediator** | AI Bot (BARRI / BARRI VOICE) — intake, triage, matching assistance; not a human ops role |
+| **Admin** | Business owner or agency that manages many lawyers on the platform |
+| **Super Admin** | Owner of the Barristrly SaaS application — full platform control |
+
+> Note: **Client** and **Lawyer** are both Barristrly customers (buyers of platform value). Admin is a firm/agency tenant. Super Admin is the SaaS operator.
 
 ### Target Markets
 

@@ -20,10 +20,10 @@ export default function PlatformOverview() {
             Who is Barristrly?
           </p>
           <h2 className="font-serif text-[clamp(1.75rem,3vw,2.75rem)] text-ink tracking-tight leading-tight mb-5">
-            Premier legal technology marketplace
+            Global Legal Technology Marketplace
           </h2>
           <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-            Barristrly is an AI-designed premier legal technology marketplace
+            Barristrly is an AI-designed global legal technology marketplace
             connecting clients with top-tier lawyers, industry experts,
             certified arbitrators, and other legal service providers globally.
             Confidential meeting scheduling, an anonymous legal directory, and

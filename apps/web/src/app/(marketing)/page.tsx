@@ -25,9 +25,11 @@ export default function Home() {
       <FeatureDepth />
       <TestimonialsSlider />
       <HomePricing />
-      <TrustBar />
-      <SecuritySection />
-      <CtaBanner />
+      <div className="bg-primary text-white">
+        <TrustBar />
+        <SecuritySection />
+        <CtaBanner />
+      </div>
     </>
   );
 }

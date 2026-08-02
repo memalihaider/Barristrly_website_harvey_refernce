@@ -33,7 +33,7 @@ export default function GradientButton({
   const variants = {
     primary:
       "bg-primary !text-white hover:bg-primary-hover",
-    white: "bg-ivory text-ink hover:bg-[#f5f3ef]",
+    white: "bg-[#f5f3ef] !text-ink hover:bg-[#ebe7df] hover:!text-ink",
     ghost:
       "bg-transparent text-ivory border border-white/30 hover:border-white/60 hover:bg-white/5",
     outline:

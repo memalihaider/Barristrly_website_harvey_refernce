@@ -61,7 +61,7 @@ export default function AiIntakePage() {
               </Link>
             </p>
           </div>
-          <IntakeChat mode="public" />
+          <IntakeChat mode="public" showVoiceToggle />
         </div>
       </MarketingSection>
     </>

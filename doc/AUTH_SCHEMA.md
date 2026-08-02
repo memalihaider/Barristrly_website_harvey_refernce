@@ -448,11 +448,13 @@ on every profile modification.
 
 Initial roles:
 
-- Client
-- Lawyer
-- Mediator
-- Admin
-- Super Admin
+- **Client** — Customer who needs a lawyer (end buyer seeking counsel)
+- **Lawyer** — Provider who needs clients via the platform (Client and Lawyer are both Barristrly customers)
+- **Mediator** — AI Bot (BARRI / BARRI VOICE) for intake, triage, and matching assistance
+- **Admin** — Business owner or agency that has / manages many lawyers
+- **Super Admin** — Owner of the Barristrly SaaS application
+
+Role assignment happens at account creation / provisioning — not on the shared login screen.
 
 Initial permissions should cover:
 

@@ -45,7 +45,6 @@ export async function updateSession(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname;
 
-  // Skip auth refresh for health / static-like API probes
   if (pathname === "/api/v1/health") {
     return supabaseResponse;
   }
@@ -54,8 +53,59 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const portal = portalPrefix(pathname);
+  const isOnboarding =
+    pathname === "/onboarding" || pathname.startsWith("/onboarding/");
+  const isAuthPage =
+    pathname === "/login" ||
+    pathname === "/register" ||
+    pathname.startsWith("/login/") ||
+    pathname.startsWith("/register/");
+  const isApi = pathname.startsWith("/api/");
 
+  if (user && !isApi && !isAuthPage) {
+    const { data: profile } = await supabase
+      .from("users")
+      .select("role, onboarding_completed")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    const completed = Boolean(profile?.onboarding_completed);
+    const role = (profile?.role as string | undefined) ?? "client";
+
+    if (!completed && !isOnboarding) {
+      const welcome = request.nextUrl.clone();
+      welcome.pathname = "/onboarding/welcome";
+      welcome.search = "";
+      return NextResponse.redirect(welcome);
+    }
+
+    if (completed && isOnboarding) {
+      const dest = request.nextUrl.clone();
+      dest.pathname = homeForRole(role);
+      dest.search = "";
+      return NextResponse.redirect(dest);
+    }
+
+    const portal = portalPrefix(pathname);
+    if (portal) {
+      if (!completed) {
+        const welcome = request.nextUrl.clone();
+        welcome.pathname = "/onboarding/welcome";
+        welcome.search = "";
+        return NextResponse.redirect(welcome);
+      }
+      if (!roleAllowedForPortal(role, portal)) {
+        const dest = request.nextUrl.clone();
+        dest.pathname = homeForRole(role);
+        dest.search = "";
+        return NextResponse.redirect(dest);
+      }
+    }
+
+    return supabaseResponse;
+  }
+
+  const portal = portalPrefix(pathname);
   if (portal) {
     if (!user) {
       const loginUrl = request.nextUrl.clone();
@@ -66,21 +116,13 @@ export async function updateSession(request: NextRequest) {
       );
       return NextResponse.redirect(loginUrl);
     }
+  }
 
-    const { data: profile } = await supabase
-      .from("users")
-      .select("role")
-      .eq("id", user.id)
-      .maybeSingle();
-
-    const role = (profile?.role as string | undefined) ?? "client";
-
-    if (!roleAllowedForPortal(role, portal)) {
-      const dest = request.nextUrl.clone();
-      dest.pathname = homeForRole(role);
-      dest.search = "";
-      return NextResponse.redirect(dest);
-    }
+  if (isOnboarding && !user) {
+    const loginUrl = request.nextUrl.clone();
+    loginUrl.pathname = "/login";
+    loginUrl.searchParams.set("next", pathname);
+    return NextResponse.redirect(loginUrl);
   }
 
   return supabaseResponse;

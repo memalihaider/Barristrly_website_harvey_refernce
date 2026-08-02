@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Volume2, VolumeX, X } from "lucide-react";
 import {
   INTAKE_DRAFT_STORAGE_KEY,
   type IntakeChatMessage,
@@ -10,21 +11,29 @@ import {
 } from "@/features/marketplace/intake-chat";
 import type { StructuredIntake } from "@/features/marketplace/intake";
 import type { ChatSessionData } from "@/lib/intake/types";
+import { HARDCODED_QUICK_QUESTIONS } from "@/lib/intake/hardcoded-questions";
+import { speakSequence, speakText, stopSpeech } from "@/lib/intake/speech";
 
 type Mode = "portal" | "public";
 
 type Props = {
   mode: Mode;
   authRedirect?: string;
+  /** Show voice toggle in header (unified BARRI agent). Voice defaults off. */
+  showVoiceToggle?: boolean;
+  onClose?: () => void;
 };
 
 export default function IntakeChat({
   mode,
   authRedirect = "/register?role=client&next=/client/intake",
+  showVoiceToggle = false,
+  onClose,
 }: Props) {
   const router = useRouter();
   const bottomRef = useRef<HTMLDivElement>(null);
   const startedRef = useRef(false);
+  const voiceEnabledRef = useRef(false);
   const [messages, setMessages] = useState<IntakeChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [draft, setDraft] = useState<StructuredIntake | null>(null);
@@ -34,6 +43,22 @@ export default function IntakeChat({
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  /** Voice is off by default */
+  const [voiceEnabled, setVoiceEnabled] = useState(false);
+
+  useEffect(() => {
+    voiceEnabledRef.current = voiceEnabled;
+    if (!voiceEnabled) stopSpeech();
+  }, [voiceEnabled]);
+
+  useEffect(() => {
+    return () => stopSpeech();
+  }, []);
+
+  const maybeSpeak = useCallback((text: string) => {
+    if (!voiceEnabledRef.current) return;
+    speakText(text);
+  }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -111,12 +136,15 @@ export default function IntakeChat({
       }
       setMessages([]);
       applyServerResult(json.data);
+      const greeting =
+        json.data.botMessages?.join(" ") || json.data.reply || "";
+      if (greeting) maybeSpeak(greeting);
     } catch {
       setError("Network error. Please try again.");
     } finally {
       setLoading(false);
     }
-  }, [applyServerResult]);
+  }, [applyServerResult, maybeSpeak]);
 
   useEffect(() => {
     if (startedRef.current) return;
@@ -151,6 +179,7 @@ export default function IntakeChat({
     if ((!text && !selectedOption) || loading) return;
 
     const displayUser = selectedOption || text || "";
+
     setInput("");
     setLoading(true);
     setError(null);
@@ -206,6 +235,11 @@ export default function IntakeChat({
       setSession(json.data.session ?? null);
       setOptions(json.data.options ?? []);
       setComplete(Boolean(json.data.complete));
+
+      if (voiceEnabledRef.current) {
+        // Read clicked option/question, then the assistant reply
+        speakSequence([displayUser, botParts.join(" ")].filter(Boolean));
+      }
     } catch {
       setError("Network error. Please try again.");
     } finally {
@@ -285,12 +319,12 @@ export default function IntakeChat({
             BARRI
           </p>
           <p className="text-sm text-gray-600 mt-0.5">
-            Questionnaire → masked lead → lawyer match
+            Chat intake · voice optional
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           {draft?.practiceArea || draft?.jurisdiction ? (
-            <div className="text-right text-xs text-gray-500 hidden sm:block">
+            <div className="text-right text-xs text-gray-500 hidden sm:block mr-1">
               {draft.practiceArea ? (
                 <div className="font-medium text-ink capitalize">
                   {draft.practiceArea.replace(/_/g, " ")}
@@ -299,9 +333,34 @@ export default function IntakeChat({
               {draft.jurisdiction ? <div>{draft.jurisdiction}</div> : null}
             </div>
           ) : null}
+          {showVoiceToggle ? (
+            <button
+              type="button"
+              onClick={() => setVoiceEnabled((v) => !v)}
+              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[11px] font-semibold transition-colors ${
+                voiceEnabled
+                  ? "bg-primary text-on-primary"
+                  : "bg-white border border-gray-200 text-gray-600 hover:border-primary/40"
+              }`}
+              aria-pressed={voiceEnabled}
+              title={
+                voiceEnabled
+                  ? "Voice on — click to mute"
+                  : "Voice off — click to enable system speech"
+              }
+            >
+              {voiceEnabled ? (
+                <Volume2 className="h-3.5 w-3.5" aria-hidden />
+              ) : (
+                <VolumeX className="h-3.5 w-3.5" aria-hidden />
+              )}
+              {voiceEnabled ? "Voice on" : "Voice off"}
+            </button>
+          ) : null}
           <button
             type="button"
             onClick={() => {
+              stopSpeech();
               try {
                 sessionStorage.removeItem(INTAKE_DRAFT_STORAGE_KEY);
               } catch {
@@ -314,6 +373,19 @@ export default function IntakeChat({
           >
             Restart
           </button>
+          {onClose ? (
+            <button
+              type="button"
+              onClick={() => {
+                stopSpeech();
+                onClose();
+              }}
+              className="p-1.5 rounded-full text-ink/60 hover:text-ink hover:bg-gray-100 transition-colors"
+              aria-label="Close BARRI"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          ) : null}
         </div>
       </div>
 
@@ -339,8 +411,34 @@ export default function IntakeChat({
             Thinking…
           </div>
         ) : null}
+
+        {/* Hardcoded quick questions */}
+        {!complete && !loading && messages.length > 0 ? (
+          <div className="pt-1">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500 mb-2">
+              Quick questions
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {HARDCODED_QUICK_QUESTIONS.map((q) => (
+                <button
+                  key={q}
+                  type="button"
+                  disabled={loading}
+                  onClick={() => void sendTurn({ text: q })}
+                  className="rounded-full border border-[#e5e3dc] bg-white px-3 py-1.5 text-left text-xs font-medium text-ink hover:border-primary hover:bg-primary/5 transition-colors max-w-full"
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
         {!complete && options.length > 0 && !loading ? (
           <div className="flex flex-wrap gap-2 pt-1">
+            <p className="w-full text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500">
+              Choose an option
+            </p>
             {options.map((opt) => (
               <button
                 key={opt}
