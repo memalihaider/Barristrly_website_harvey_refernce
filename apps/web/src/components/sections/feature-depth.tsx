@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import {
   EyeOff,
@@ -8,61 +8,93 @@ import {
   PhoneCall,
   ShieldCheck,
   Lock,
+  Landmark,
+  Users,
   Fingerprint,
   CreditCard,
   RefreshCw,
+  Plane,
 } from "lucide-react";
 import Link from "next/link";
-import { CardStack, type CardStackItem } from "@/components/ui/card-stack";
+import type { LucideIcon } from "lucide-react";
 
-const VIDEO_BLOCKS: CardStackItem[] = [
+type Feature = {
+  icon: LucideIcon;
+  label: string;
+  title: string;
+  lead: string;
+  body: string[];
+  photo: string;
+};
+
+const FEATURES: Feature[] = [
   {
-    id: 1,
-    title: "Blind Conflict Screening",
-    description:
-      "Clears conflicts automatically before consultation. Adverse parties screened, client identity masked, firms clear COI blind.",
-    tag: "COI",
-    videoSrc: "/bg-video.mp4",
+    icon: ShieldCheck,
+    label: "COI",
+    title: "Two-gate conflict screening",
+    lead: "Parties first — narrative locked until clearance.",
+    body: [
+      "Unlike a static directory dump, Barristrly runs a conflict workflow before anyone sees your story. Clients list themselves and adverse parties first. Case narrative and documents stay locked so privileged facts never enter the pool before COI runs.",
+      "Firms see Case ID, practice area, claim value, and opposing-party nodes only. Accepting a lead requires mandatory conflict certification. Client name and documents unlock only after affirmation and payment. If a conflict surfaces after reveal, firms can report within 24 hours — access is revoked and the matter rematches.",
+      "Conflict checks are verified and protected with cryptographic hashing — so clearance cannot be spoofed or quietly altered.",
+    ],
+    photo: "/testimonials/james.jpg",
   },
   {
-    id: 2,
-    title: "Merit-First Listings",
-    description:
-      "Browse and select counsel purely on merit metrics — practice, forum, ratings, fee tier — without branding bias.",
-    tag: "Directory",
-    videoSrc: "/bg-video.mp4",
+    icon: EyeOff,
+    label: "Directory",
+    title: "Anonymous directory",
+    lead: "Evaluate counsel on merit. Identity stays hidden until both sides opt in.",
+    body: [
+      "The anonymous directory is engineered to protect prospective clients from premature exposure, solicitation, and privacy risk. You evaluate credentials strictly on merit and strategic alignment. Personal data stays obscured during discovery. Practitioners assess cases on facts, legal viability, and practice-area fit — not financial capability.",
+      "Traditional marketplaces expose contact details and invite spam. Barristrly keeps client information completely hidden until a mutual decision to connect is established. Contact details are shared only when both parties affirm intent.",
+    ],
+    photo: "/testimonials/priya.jpg",
   },
   {
-    id: 3,
-    title: "Escrow-Protected VoIP",
-    description:
-      "Book timed anonymous audio/video sessions. Contact details remain platform-held until consult ends and you release them.",
-    tag: "Meetings",
-    videoSrc: "/bg-video.mp4",
+    icon: PhoneCall,
+    label: "Meetings",
+    title: "Anonymous meetings",
+    lead: "Speak first. Share identity only if you choose.",
+    body: [
+      "Consults run through Barristrly-held audio and video — not personal phone numbers, WhatsApp, or email. You book a timed 30, 45, or 60-minute session. Fees sit in escrow and release when the meeting is complete.",
+      "The first meeting happens only after COI clearance. Identity and contacts remain masked, so there is no channel for unsolicited follow-up. After the consult, you decide whether to authorize release. Names and contacts unlock only when you accept counsel.",
+    ],
+    photo: "/testimonials/amira.jpg",
   },
   {
-    id: 4,
-    title: "Cross-Border Matchmaking",
-    description:
-      "One aggregator corridor connecting UAE mainland, ADGM, DIFC, GCC corridors, and the India–GCC bridge.",
-    tag: "Corridors",
-    videoSrc: "/bg-video.mp4",
+    icon: Globe2,
+    label: "Corridors",
+    title: "Global legal corridor",
+    lead: "Hire UAE counsel from India or Pakistan — or hire worldwide from the UAE — without flying in.",
+    body: [
+      "Clients in India, Pakistan, and other countries can find lawyers and legal service providers on Barristrly without the heavy expense of travelling to the UAE or being physically present to hire them. Evaluate credentials, meet anonymously, and retain counsel on the platform — saving time, energy, and money.",
+      "Clients in the UAE can do the same in any region of the world: browse forum-aligned counsel, clear conflicts, meet by secure session, and hire without leaving their market. Cross-border transactions, IP registrations, and international arbitration often demand secrecy long before contracts are signed. The corridor lets corporations and investors evaluate multi-jurisdictional expertise without revealing proprietary commercial intent.",
+      "One aggregator path across UAE mainland, ADGM, DIFC, GCC corridors, India, Pakistan, and beyond — so matters match on forum, not on who can afford a flight.",
+    ],
+    photo: "/testimonials/neha.jpg",
   },
   {
-    id: 5,
-    title: "Milestone Escrow Protection",
-    description:
-      "Secure escrow payment routing where funds are safely held and only released upon milestone verification and client approval.",
-    tag: "Escrow",
-    videoSrc: "/bg-video.mp4",
+    icon: Landmark,
+    label: "Escrow",
+    title: "Milestone escrow",
+    lead: "Funds held until the session or milestone is verified.",
+    body: [
+      "Session fees and later engagement payments route through platform escrow. Money is safely held and released only upon milestone verification and client approval — so neither side is asked to trust a wire into the unknown.",
+      "This removes the financial friction that usually sits between a first consult and formal retention, especially across borders where banking, currency, and collection risk would otherwise stall the hire.",
+    ],
+    photo: "/testimonials/omar.jpg",
   },
   {
-    id: 6,
-    title: "Vetted Counsel Network",
-    description:
-      "Access a vetted network of premium firm practices, solo practitioners, and specialized arbitrators aligned to your forum.",
-    tag: "Network",
-    videoSrc: "/bg-video.mp4",
+    icon: Users,
+    label: "Network",
+    title: "Vetted counsel network",
+    lead: "Firms, solo practitioners, and arbitrators aligned to your forum.",
+    body: [
+      "Access a vetted network of premium firm practices, independent lawyers, experts, and specialized arbitrators. Listings stay anonymous until unlock, so you compare practice fit, forum experience, and fee tier — not brand theater.",
+      "Providers receive conflict-ready briefs instead of cold open inquiries, and compete on expertise rather than marketing spend.",
+    ],
+    photo: "/testimonials/james.jpg",
   },
 ];
 
@@ -70,80 +102,143 @@ const COI_GATES = [
   {
     icon: Lock,
     title: "Registration gate",
-    body: "Clients list themselves and adverse parties first. Case narrative and documents stay locked so privileged facts never enter the pool before COI runs.",
+    body: "Clients list themselves and adverse parties first. Narrative and documents stay locked.",
   },
   {
     icon: Fingerprint,
     title: "Blind match & affirmation",
-    body: "Firms see Case ID, practice area, claim value, and opposing-party nodes only. Accepting a lead requires mandatory conflict certification before any client reveal.",
+    body: "Firms see Case ID, practice, claim value, and opposing parties only.",
   },
   {
     icon: CreditCard,
     title: "Payment-gated unblind",
-    body: "Client name and documents unlock only after affirmation and payment succeed. Escrow holds fees until milestones clear.",
+    body: "Name and documents unlock only after affirmation and payment succeed.",
   },
   {
     icon: RefreshCw,
     title: "Post-unlock quarantine",
-    body: "If a conflict surfaces after reveal, firms can report within 24 hours — access is revoked, credits issued, and the matter rematches to the next clear firm.",
+    body: "If a conflict surfaces later, access is revoked and the matter rematches.",
   },
 ];
 
-const PILLARS = [
-  {
-    icon: EyeOff,
-    title: "Anonymous directory",
-    body: "Browse and shortlist counsel on practice fit, forum experience, and fee tier. Firm names, logos, and personal brands stay hidden until mutual invitation unlocks identity.",
-  },
-  {
-    icon: PhoneCall,
-    title: "Confidential meetings",
-    body: "Book timed anonymous audio/video consults. Contact details stay platform-held until the session ends and you choose to release them — with escrow protecting both sides.",
-  },
-  {
-    icon: Globe2,
-    title: "Corridor footprint",
-    body: "One aggregator path across UAE mainland, ADGM, DIFC, GCC corridors, and the India–GCC bridge — so cross-border matters match on forum, not marketing reach.",
-  },
-];
+function FeaturePreview({ feature, index }: { feature: Feature; index: number }) {
+  return (
+    <div className="space-y-4">
+      {feature.body.map((para) => (
+        <p
+          key={para.slice(0, 48)}
+          className="text-sm md:text-base text-gray-600 leading-relaxed"
+        >
+          {para}
+        </p>
+      ))}
+
+      {index === 1 ? (
+        <div className="space-y-3 pt-2">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-700">
+                Masked matching
+              </span>
+            </div>
+            <span className="text-[11px] text-gray-500">2 candidates</span>
+          </div>
+          {[
+            {
+              id: "COUNSEL–8390",
+              match: "98%",
+              line: "Dubai arbitrator · 14 yrs · DIFC commercial",
+            },
+            {
+              id: "COUNSEL–4412",
+              match: "94%",
+              line: "Mainland counsel · lease & RDC disputes",
+            },
+          ].map((c) => (
+            <div
+              key={c.id}
+              className="rounded-xl border border-[#e8e5df] bg-[#faf9f6] p-4"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <span className="font-mono text-xs font-bold text-primary">
+                  {c.id}
+                </span>
+                <span className="rounded-md bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">
+                  {c.match} merit
+                </span>
+              </div>
+              <p className="mt-2 text-xs text-gray-600 leading-relaxed">
+                {c.line}
+              </p>
+              <p className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-medium text-gray-500">
+                <Lock className="h-3 w-3" aria-hidden />
+                Identity encrypted until unlock
+              </p>
+            </div>
+          ))}
+        </div>
+      ) : null}
+
+      {index === 3 ? (
+        <div className="grid grid-cols-2 gap-3 pt-2">
+          {[
+            { from: "India / Pakistan", to: "UAE counsel" },
+            { from: "UAE clients", to: "Worldwide" },
+          ].map((row) => (
+            <div
+              key={row.from}
+              className="rounded-xl border border-[#e8e5df] bg-[#faf9f6] p-4"
+            >
+              <p className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-primary">
+                <Plane className="h-3 w-3" aria-hidden />
+                {row.from}
+              </p>
+              <p className="mt-2 font-serif text-xl text-ink tracking-tight leading-tight">
+                {row.to}
+              </p>
+              <p className="mt-2 text-xs text-gray-600">
+                Evaluate · meet · hire — no flight
+              </p>
+            </div>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
 
 export default function FeatureDepth() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const [windowWidth, setWindowWidth] = useState(1200);
-  const [activeGate, setActiveGate] = useState(0);
+  const [active, setActive] = useState(3);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    setWindowWidth(window.innerWidth);
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    if (paused || !isInView) return;
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % FEATURES.length);
+    }, 7000);
+    return () => clearInterval(interval);
+  }, [paused, isInView]);
 
-  useEffect(() => {
-    if (!isInView) return;
-    const id = window.setInterval(() => {
-      setActiveGate((g) => (g + 1) % COI_GATES.length);
-    }, 3800);
-    return () => window.clearInterval(id);
-  }, [isInView]);
-
-  const cardWidth = Math.min(560, windowWidth * 0.72);
-  const cardHeight = Math.min(320, cardWidth * 0.58);
+  const current = FEATURES[active];
+  const Icon = current.icon;
 
   return (
     <section
       id="why-features"
       ref={ref}
       className="relative overflow-hidden light-section py-24 md:py-28 lg:py-32"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
     >
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           background:
-            "linear-gradient(165deg, #f7f5f1 0%, #faf9f6 35%, #ffffff 70%, #faf9f6 100%)",
+            "linear-gradient(165deg, #f7f5f1 0%, #faf9f6 40%, #ffffff 100%)",
         }}
       />
       <div
@@ -151,242 +246,225 @@ export default function FeatureDepth() {
         aria-hidden
         style={{
           background:
-            "radial-gradient(ellipse 55% 40% at 80% 8%, rgba(232,93,4,0.14), transparent 55%), radial-gradient(ellipse 40% 35% at 10% 55%, rgba(232,93,4,0.07), transparent 50%)",
+            "radial-gradient(ellipse 55% 40% at 80% 8%, rgba(232,93,4,0.12), transparent 55%), radial-gradient(ellipse 40% 35% at 10% 70%, rgba(232,93,4,0.06), transparent 50%)",
         }}
       />
 
       <div className="container-wide relative z-10">
-        {/* Centered intro */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="mx-auto max-w-2xl text-center"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-4">
+        <div className="max-w-3xl mb-12 md:mb-16">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-4"
+          >
             Why it matters
-          </p>
-          <h2 className="font-serif text-[clamp(2.1rem,4vw,3.4rem)] text-ink tracking-tight leading-[1.06]">
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.05 }}
+            className="font-serif text-[clamp(2.25rem,5vw,4rem)] text-ink tracking-tight leading-[1.05]"
+          >
             Core protections,{" "}
             <span className="text-primary">global reach</span>
-          </h2>
-          <p className="mt-5 text-lg md:text-xl text-gray-600 leading-relaxed">
-            Short explainers for COI, anonymous directory, confidential
-            meetings, and Barristrly’s corridor footprint — swipe the stack
-            to explore each layer.
-          </p>
-        </motion.div>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.1 }}
+            className="mt-5 text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl"
+          >
+            COI, anonymous directory, confidential meetings, escrow, and a
+            corridor that lets India, Pakistan, the UAE, and the rest of the
+            world evaluate, meet, and hire without flying in.
+          </motion.p>
+        </div>
 
-        {/* Centered, smaller video stack */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
+          <div className="lg:col-span-5">
+            <ol className="flex flex-col list-none p-0 m-0 border-t border-[#e5e3dc]">
+              {FEATURES.map((item, i) => {
+                const StepIcon = item.icon;
+                const isActive = i === active;
+                return (
+                  <li key={item.title} className="border-b border-[#e5e3dc]">
+                    <button
+                      type="button"
+                      onClick={() => setActive(i)}
+                      onMouseEnter={() => setActive(i)}
+                      onFocus={() => setActive(i)}
+                      className="group w-full flex gap-4 py-5 md:py-6 text-left"
+                      aria-current={isActive ? "true" : undefined}
+                    >
+                      <span
+                        className={`mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl transition-all duration-300 ${
+                          isActive
+                            ? "bg-primary text-on-primary"
+                            : "bg-primary/10 text-primary"
+                        }`}
+                      >
+                        <StepIcon className="h-5 w-5" aria-hidden />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/80 mb-1">
+                          {String(i + 1).padStart(2, "0")} · {item.label}
+                        </span>
+                        <span
+                          className={`block font-serif text-[1.45rem] md:text-[1.75rem] tracking-tight leading-tight transition-colors ${
+                            isActive ? "text-ink" : "text-ink/35 group-hover:text-ink/60"
+                          }`}
+                        >
+                          {item.title}
+                        </span>
+                        <AnimatePresence initial={false}>
+                          {isActive ? (
+                            <motion.span
+                              key="lead"
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="mt-2 block text-base text-gray-600 leading-relaxed overflow-hidden"
+                            >
+                              {item.lead}
+                            </motion.span>
+                          ) : null}
+                        </AnimatePresence>
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+
+          <div className="lg:col-span-7 relative min-h-[520px]">
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-[#e5e3dc] bg-[#faf9f6] min-h-[520px] h-full">
+              <div
+                className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-primary/10 blur-3xl"
+                aria-hidden
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={current.photo}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover opacity-[0.12] grayscale"
+                aria-hidden
+              />
+
+              <div className="relative z-10 flex h-full flex-col p-6 md:p-8 lg:p-10">
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-on-primary shadow-[0_10px_28px_rgba(232,93,4,0.28)]">
+                    <Icon className="h-5 w-5" aria-hidden />
+                  </div>
+                  <span className="font-serif text-[clamp(3.5rem,8vw,6rem)] leading-none tracking-tighter text-ink/[0.07] select-none">
+                    {String(active + 1).padStart(2, "0")}
+                  </span>
+                </div>
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={active}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex-1 flex flex-col"
+                  >
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary mb-2">
+                      Feature {active + 1} · {current.label}
+                    </p>
+                    <h3 className="font-serif text-[clamp(1.85rem,3.4vw,2.75rem)] text-ink tracking-tight leading-[1.08] mb-4">
+                      {current.title}
+                    </h3>
+                    <p className="text-lg md:text-xl text-ink/80 leading-relaxed mb-6 max-w-xl">
+                      {current.lead}
+                    </p>
+                    <div className="rounded-2xl border border-[#e5e3dc] bg-white/92 p-5 md:p-6 shadow-[0_20px_50px_-30px_rgba(15,14,13,0.35)] mt-auto">
+                      <FeaturePreview feature={current} index={active} />
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Corridor emphasis band */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.55, delay: 0.08 }}
-          className="relative mx-auto mt-10 md:mt-12 w-full max-w-3xl flex justify-center pb-6 md:pb-10"
+          transition={{ delay: 0.15 }}
+          className="mt-16 md:mt-20 rounded-[2rem] border border-[#e5e3dc] bg-[#faf9f6] p-8 md:p-12"
         >
-          {isInView && (
-            <CardStack
-              items={VIDEO_BLOCKS}
-              initialIndex={0}
-              autoAdvance
-              intervalMs={3200}
-              pauseOnHover
-              showDots={false}
-              maxVisible={5}
-              cardWidth={cardWidth}
-              cardHeight={cardHeight}
-            />
-          )}
-        </motion.div>
-
-        {/* Innovative COI rail — clear gap from slider */}
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.55, delay: 0.16 }}
-          className="mt-16 md:mt-24 lg:mt-28 relative overflow-hidden rounded-[2rem] border border-[#e5e3dc] bg-[#0f0e0d] text-white"
-        >
-          <div
-            className="pointer-events-none absolute inset-0"
-            aria-hidden
-            style={{
-              background:
-                "radial-gradient(ellipse 55% 70% at 0% 50%, rgba(232,93,4,0.28), transparent 55%), radial-gradient(ellipse 40% 50% at 100% 0%, rgba(232,93,4,0.12), transparent 50%)",
-            }}
-          />
-
-          <div className="relative z-10 p-7 md:p-10 lg:p-12">
-            <div className="flex flex-wrap items-end justify-between gap-6 mb-8 md:mb-10">
-              <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 rounded-full bg-primary/20 border border-primary/35 px-3.5 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-primary-light mb-4">
-                  <ShieldCheck className="h-3.5 w-3.5" aria-hidden />
-                  Conflict of Interest (COI)
-                </div>
-                <h3 className="font-serif text-[clamp(1.85rem,3.2vw,2.75rem)] tracking-tight leading-[1.08]">
-                  Two-gate COI before anyone sees your story
-                </h3>
-                <p className="mt-4 text-base md:text-lg text-white/70 leading-relaxed">
-                  Not a static directory dump — a conflict workflow that keeps
-                  privileged narrative locked until firms clear adverse parties
-                  blind, then unlocks identity only after affirmation and
-                  payment.
-                </p>
-              </div>
-              <Link
-                href="/security"
-                className="inline-flex items-center justify-center rounded-full bg-[#f5f3ef] px-5 py-2.5 text-sm font-semibold !text-ink hover:bg-[#ebe7df] hover:!text-ink transition-colors"
-              >
-                How COI security works
-              </Link>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-4">
+            India · Pakistan · UAE · Worldwide
+          </p>
+          <h3 className="font-serif text-[clamp(1.85rem,3.6vw,3rem)] text-ink tracking-tight leading-[1.08] max-w-4xl">
+            Hire across borders without the flight, the hotel, or the wasted week.
+          </h3>
+          <div className="mt-8 grid md:grid-cols-2 gap-8 md:gap-12">
+            <div>
+              <h4 className="font-serif text-2xl text-ink tracking-tight mb-3">
+                From India, Pakistan, and beyond
+              </h4>
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                Find UAE lawyers and legal service providers without travelling
+                to be present in the Emirates. Evaluate on merit, meet in a
+                confidential session, and hire on-platform — avoiding heavy
+                travel expense, lost working days, and the friction of
+                in-person retainers.
+              </p>
             </div>
-
-            {/* Two-gate COI + cryptographic hashing callout */}
-            <div className="mb-8 md:mb-10 grid md:grid-cols-2 gap-4">
-              <div className="rounded-2xl border border-white/15 bg-white/[0.06] p-5 md:p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-on-primary">
-                    <ShieldCheck className="h-5 w-5" aria-hidden />
-                  </span>
-                  <h4 className="font-serif text-xl md:text-[1.35rem] text-white tracking-tight">
-                    Two-gate COI
-                  </h4>
-                </div>
-                <p className="text-sm md:text-base text-white/70 leading-relaxed">
-                  Parties first — narrative locked until clearance
-                </p>
-              </div>
-              <div className="rounded-2xl border border-primary/35 bg-primary/15 p-5 md:p-6">
-                <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-primary-light mb-2">
-                  Cryptographic hashing
-                </p>
-                <p className="text-sm md:text-base text-white/80 leading-relaxed">
-                  Conflict checks are verified and protected with cryptographic
-                  hashing — so clearance can’t be spoofed or quietly altered.
-                </p>
-              </div>
-            </div>
-
-            {/* Progress rail */}
-            <div className="mb-6 flex gap-2" aria-hidden>
-              {COI_GATES.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setActiveGate(i)}
-                  className="h-1.5 flex-1 rounded-full overflow-hidden bg-white/15"
-                  aria-label={`Show COI gate ${i + 1}`}
-                >
-                  <span
-                    className={`block h-full rounded-full bg-primary transition-all duration-500 ${
-                      i === activeGate ? "w-full" : i < activeGate ? "w-full opacity-50" : "w-0"
-                    }`}
-                  />
-                </button>
-              ))}
-            </div>
-
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-              <div className="lg:col-span-5 flex flex-col justify-center min-h-[180px]">
-                {COI_GATES.map((gate, i) => {
-                  const Icon = gate.icon;
-                  if (i !== activeGate) return null;
-                  return (
-                    <motion.div
-                      key={gate.title}
-                      initial={{ opacity: 0, x: -12 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.35 }}
-                    >
-                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-on-primary mb-5">
-                        <Icon className="h-5 w-5" aria-hidden />
-                      </span>
-                      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-primary-light mb-2">
-                        Gate {String(i + 1).padStart(2, "0")} of 04
-                      </p>
-                      <h4 className="font-serif text-[1.75rem] md:text-[2rem] tracking-tight">
-                        {gate.title}
-                      </h4>
-                      <p className="mt-3 text-base md:text-lg text-white/70 leading-relaxed">
-                        {gate.body}
-                      </p>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              <ol className="lg:col-span-7 grid sm:grid-cols-2 gap-3 list-none p-0 m-0">
-                {COI_GATES.map((gate, i) => {
-                  const Icon = gate.icon;
-                  const active = i === activeGate;
-                  return (
-                    <li key={gate.title}>
-                      <button
-                        type="button"
-                        onClick={() => setActiveGate(i)}
-                        className={`w-full text-left rounded-2xl border p-4 md:p-5 transition-all duration-300 ${
-                          active
-                            ? "border-primary/50 bg-primary/15 shadow-[0_0_0_1px_rgba(232,93,4,0.25)]"
-                            : "border-white/10 bg-white/[0.04] hover:border-white/20 hover:bg-white/[0.07]"
-                        }`}
-                      >
-                        <div className="flex items-center gap-3 mb-2">
-                          <span
-                            className={`flex h-9 w-9 items-center justify-center rounded-full ${
-                              active
-                                ? "bg-primary text-on-primary"
-                                : "bg-white/10 text-white/80"
-                            }`}
-                          >
-                            <Icon className="h-4 w-4" aria-hidden />
-                          </span>
-                          <span className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white/45">
-                            0{i + 1}
-                          </span>
-                        </div>
-                        <p className="font-serif text-lg text-white tracking-tight">
-                          {gate.title}
-                        </p>
-                        <p className="mt-1.5 text-sm text-white/55 leading-relaxed line-clamp-2">
-                          {gate.body}
-                        </p>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ol>
+            <div>
+              <h4 className="font-serif text-2xl text-ink tracking-tight mb-3">
+                From the UAE to any region
+              </h4>
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                UAE clients can do the same worldwide. Browse forum-aligned
+                counsel in the GCC, India, Pakistan, the UK, and other
+                corridors. Clear conflicts, meet anonymously, and retain
+                without leaving your market — the same privacy and escrow
+                controls in every direction.
+              </p>
             </div>
           </div>
+          <Link
+            href="/find-lawyers"
+            className="mt-8 inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-on-primary hover:bg-primary-hover transition-colors"
+          >
+            Browse the global directory
+          </Link>
         </motion.div>
 
-        {/* Supporting pillars */}
+        {/* Compact COI gates */}
         <div className="mt-14 md:mt-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500 mb-7">
-            Also protecting every match
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500 mb-6">
+            Two-gate COI in four moves
           </p>
-          <ul className="grid md:grid-cols-3 gap-0 md:gap-0 list-none p-0 m-0 md:divide-x divide-[#e5e3dc] border-y border-[#e5e3dc]">
-            {PILLARS.map((item, i) => {
-              const Icon = item.icon;
+          <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 list-none p-0 m-0">
+            {COI_GATES.map((gate, i) => {
+              const GateIcon = gate.icon;
               return (
-                <motion.li
-                  key={item.title}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.45, delay: 0.28 + i * 0.07 }}
-                  className="py-8 md:px-8 first:md:pl-0 last:md:pr-0 border-b border-[#e5e3dc] md:border-b-0 last:border-b-0"
+                <li
+                  key={gate.title}
+                  className="rounded-2xl border border-[#e5e3dc] bg-white p-5"
                 >
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                    <Icon className="h-5 w-5" aria-hidden />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary mb-3">
+                    <GateIcon className="h-4 w-4" aria-hidden />
                   </span>
-                  <h3 className="font-serif text-2xl text-ink tracking-tight">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-base text-gray-600 leading-relaxed">
-                    {item.body}
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-primary mb-1">
+                    Gate {String(i + 1).padStart(2, "0")}
                   </p>
-                </motion.li>
+                  <h4 className="font-serif text-xl text-ink tracking-tight">
+                    {gate.title}
+                  </h4>
+                  <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+                    {gate.body}
+                  </p>
+                </li>
               );
             })}
-          </ul>
+          </ol>
         </div>
       </div>
     </section>

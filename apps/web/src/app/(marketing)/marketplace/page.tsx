@@ -36,7 +36,7 @@ export default function MarketplacePage() {
         }
       >
         <GradientButton href="/find-lawyers" size="lg">
-          Legal Direction
+          Legal Directory
         </GradientButton>
         <GradientButton href="/request-demo" size="lg" variant="outline">
           Schedule Meeting
@@ -81,12 +81,47 @@ export default function MarketplacePage() {
         />
       </MarketingSection>
 
+      <MarketingSection tone="soft">
+        <SectionIntro
+          title="Marketplace features"
+          description="The capabilities behind Legal Marketplace — also listed under Solutions in the menu."
+        />
+        <FeatureList
+          items={[
+            {
+              title: "Anonymous directory",
+              body: "Evaluate credentials on merit. Personal data stays hidden until both sides opt in. Practitioners judge facts and fit — not financial capability.",
+            },
+            {
+              title: "Anonymous meetings",
+              body: "Timed, escrow-protected audio/video. Contacts stay on the platform. Unmask only after you accept counsel.",
+            },
+            {
+              title: "Two-gate COI",
+              body: "Parties first. Narrative and documents locked until clearance. Conflict checks protected with cryptographic hashing.",
+            },
+            {
+              title: "Global corridor",
+              body: "Clients in India, Pakistan, and other countries hire UAE counsel without travelling. UAE clients do the same worldwide — evaluate, meet, and retain on-platform.",
+            },
+            {
+              title: "Milestone escrow",
+              body: "Session and engagement funds held until the meeting or milestone is verified — so cross-border hires are not blocked by informal wires.",
+            },
+            {
+              title: "BARRI intake",
+              body: "Classify practice area, forum, and urgency in minutes, then route into matching without exposing identity.",
+            },
+          ]}
+        />
+      </MarketingSection>
+
       <MarketingCtaBand
         dark
         title="Built for clients and providers"
-        description="Clients get directory clarity, COI, and protected spend. Providers get qualified leads into PracticeOS."
+        description="Clients get directory clarity, COI, and protected spend. Providers get qualified leads into the practice stack."
         primaryHref="/find-lawyers"
-        primaryLabel="Legal Direction"
+        primaryLabel="Legal Directory"
         secondaryHref="/request-demo"
         secondaryLabel="Schedule Meeting"
       />

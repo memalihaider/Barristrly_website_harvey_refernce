@@ -3,6 +3,7 @@ import PlatformOverview from "@/components/sections/platform-overview";
 import FeatureScroll from "@/components/sections/feature-scroll";
 import VettedProviders from "@/components/sections/vetted-providers";
 import AnonymousWhy from "@/components/sections/anonymous-why";
+import AnonymousMeeting from "@/components/sections/anonymous-meeting";
 import FeaturesProcess from "@/components/sections/features-process";
 import DirectoryMarquee from "@/components/sections/directory-marquee";
 import FeatureDepth from "@/components/sections/feature-depth";
@@ -20,6 +21,7 @@ export default function Home() {
       <FeatureScroll />
       <VettedProviders />
       <AnonymousWhy />
+      <AnonymousMeeting />
       <FeaturesProcess />
       <DirectoryMarquee />
       <FeatureDepth />

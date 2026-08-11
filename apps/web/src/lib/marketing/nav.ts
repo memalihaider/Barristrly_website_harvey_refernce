@@ -1,4 +1,4 @@
-import { PRODUCTS } from "./products";
+import { MARKETPLACE_FEATURES, PRODUCTS } from "./products";
 
 export type NavLink = { name: string; href: string; description?: string };
 
@@ -21,74 +21,25 @@ export type NavGroup = {
   featured?: NavFeatured;
 };
 
-const PRODUCT_LINKS: NavLink[] = [
-  {
-    name: "Overview",
-    href: "/marketplace",
-    description:
-      "Legal tech marketplace — directory, COI, anonymous meetings, escrow.",
-  },
-  {
-    name: "Marketplace",
-    href: "/marketplace",
-    description: "Match clients to counsel, experts, and arbitrators globally.",
-  },
-  {
-    name: "BARRI Intake",
-    href: "/ai/intake",
-    description: "AI assistant that classifies your matter and starts matching.",
-  },
-  {
-    name: "BARRI Assist",
-    href: "/ai",
-    description: "Intake-led AI helpers for research and brief structuring.",
-  },
-  {
-    name: "PracticeOS",
-    href: "/practice",
-    description:
-      "Zero listing fees — pre-vetted leads, 12-hour COI SLA, escrow payouts.",
-  },
-  {
-    name: "Enterprise",
-    href: "/enterprise",
-    description: "Corporate panels, capped subscriptions, and compliance ops.",
-  },
-  {
-    name: "Legal Research",
-    href: "/ai/research",
-    description: "Grounded questions to support intake and matter briefs.",
-  },
-  {
-    name: "Contract Review",
-    href: "/ai/review",
-    description: "Flag risk themes before you schedule counsel.",
-  },
-  {
-    name: "Drafting",
-    href: "/ai/draft",
-    description: "First-pass notices and briefs for marketplace handoff.",
-  },
-  {
-    name: "Agents",
-    href: "/ai/agents",
-    description: "Multi-step triage workflows that feed matching.",
-  },
-];
+const PRODUCT_LINKS: NavLink[] = PRODUCTS.map((p) => ({
+  name: p.name,
+  href: p.href,
+  description: p.navDescription,
+}));
 
 export const PRIMARY_NAV: NavGroup[] = [
   {
     name: "Products",
     columns: [
-      { items: PRODUCT_LINKS.slice(0, 5) },
-      { items: PRODUCT_LINKS.slice(5) },
+      { title: "Match & hire", items: PRODUCT_LINKS.slice(0, 4) },
+      { title: "Run the practice", items: PRODUCT_LINKS.slice(4) },
     ],
     featured: {
-      href: "/ai/intake",
-      badge: "BARRI",
-      title: "BARRI Intake",
+      href: "/marketplace",
+      badge: "Marketplace",
+      title: "Legal Marketplace",
       description:
-        "Our AI intake assistant classifies your matter, runs privacy-safe triage, and routes you toward matched providers — directory, COI, and scheduled meetings.",
+        "Anonymous directory, two-gate COI, confidential meetings, and a corridor so India, Pakistan, the UAE, and the world can evaluate, meet, and hire without travelling.",
       media: "/bg-video.mp4",
     },
   },
@@ -96,6 +47,7 @@ export const PRIMARY_NAV: NavGroup[] = [
     name: "Solutions",
     columns: [
       {
+        title: "Who it’s for",
         items: [
           {
             name: "Clients",
@@ -104,44 +56,29 @@ export const PRIMARY_NAV: NavGroup[] = [
               "Anonymous directory, BARRI triage, COI, and escrow-backed meetings.",
           },
           {
-            name: "In-House",
-            href: "/enterprise",
-            description: "Corporate panels, capped meetings, and conflict cycles.",
-          },
-          {
-            name: "Transactional",
-            href: "/legal-services/corporate",
-            description: "Corporate, commercial, and contract work with precision.",
-          },
-        ],
-      },
-      {
-        items: [
-          {
-            name: "Litigation",
-            href: "/legal-services/litigation",
-            description: "Dispute strategy, filings, and hearing preparation.",
-          },
-          {
             name: "Lawyers & Firms",
             href: "/practice",
             description:
               "Zero listing fees, 12-hour COI SLA, and escrow consult payouts.",
           },
           {
-            name: "Find Lawyers",
-            href: "/find-lawyers",
-            description: "Browse by practice area and city across the corridor.",
+            name: "In-House / Enterprise",
+            href: "/enterprise",
+            description: "Corporate panels, capped meetings, and conflict cycles.",
           },
         ],
       },
+      {
+        title: "Marketplace features",
+        items: MARKETPLACE_FEATURES,
+      },
     ],
     featured: {
-      href: "/marketplace",
-      badge: "Marketplace",
-      title: "Marketplace matching",
+      href: "/#why-features",
+      badge: "Corridor",
+      title: "Hire without the flight",
       description:
-        "From party registration to ranked counsel with two-gate COI — built for clients and the lawyers who serve them.",
+        "Clients in India, Pakistan, and elsewhere find UAE counsel on-platform. UAE clients do the same worldwide — evaluate, meet, hire. No wasted travel.",
       media: "/bg-video.mp4",
     },
   },
@@ -265,8 +202,8 @@ export const FOOTER_COLUMNS: { title: string; links: NavLink[] }[] = [
   {
     title: "Products",
     links: [
+      { name: "All products", href: "/products" },
       ...PRODUCTS.map((p) => ({ name: p.name, href: p.href })),
-      { name: "BARRI Intake", href: "/ai/intake" },
     ],
   },
   {
