@@ -59,10 +59,10 @@ export default function SecuritySection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             className="lg:col-span-6"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/80 mb-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary mb-4">
               Security
             </p>
-            <h2 className="font-serif text-[clamp(1.75rem,3vw,2.75rem)] text-white leading-tight tracking-tight">
+            <h2 className="font-serif text-[clamp(1.75rem,3vw,2.75rem)] text-ink leading-tight tracking-tight">
               Enterprise-grade security and controls
             </h2>
           </motion.div>
@@ -72,7 +72,7 @@ export default function SecuritySection() {
             transition={{ delay: 0.08 }}
             className="lg:col-span-6 space-y-5"
           >
-            <p className="text-white/85 text-base md:text-lg leading-relaxed">
+            <p className="text-gray-600 text-base md:text-lg leading-relaxed">
               Barristrly isolates matching parameters before privileged facts
               enter the system, then unblinds counsel only after mandatory COI
               affirmation and payment — with escrow, audit logs, and a 24-hour
@@ -80,7 +80,7 @@ export default function SecuritySection() {
             </p>
             <Link
               href="/security"
-              className="inline-flex items-center justify-center rounded-full bg-[#f5f3ef] px-5 py-2.5 text-sm font-semibold !text-ink hover:bg-[#ebe7df] hover:!text-ink transition-colors"
+              className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-on-primary hover:bg-primary-hover transition-colors"
             >
               More About Security
             </Link>
@@ -96,17 +96,17 @@ export default function SecuritySection() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.45, delay: index * 0.05 }}
-                className="group relative flex flex-col items-center text-center rounded-2xl border border-[#e8e4db]/80 bg-[#faf9f6] p-7 md:p-8 transition-all duration-300 hover:bg-[#f5f3ef] hover:border-[#ddd8cd]"
+                className="group relative flex flex-col items-center text-center rounded-2xl border border-[#e5e3dc] bg-white p-7 md:p-8 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_16px_36px_-22px_rgba(15,14,13,0.2)]"
               >
                 <Icon
                   className="h-14 w-14 md:h-16 md:w-16 text-primary transition-transform duration-300 group-hover:scale-105"
                   strokeWidth={1}
                   aria-hidden
                 />
-                <p className="mt-5 text-base font-semibold tracking-tight !text-ink">
+                <p className="mt-5 text-base font-semibold tracking-tight text-ink">
                   {item.name}
                 </p>
-                <p className="mt-2 text-sm max-w-[240px] leading-relaxed !text-gray-600">
+                <p className="mt-2 text-sm max-w-[240px] leading-relaxed text-gray-600">
                   {item.detail}
                 </p>
 

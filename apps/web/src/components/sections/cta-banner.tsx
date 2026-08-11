@@ -52,13 +52,13 @@ export default function CtaBanner() {
             transition={{ duration: 0.7 }}
             className="max-w-2xl"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/80 mb-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary mb-4">
               Resources
             </p>
-            <h2 className="font-serif text-[clamp(2rem,4vw,3.25rem)] text-white leading-[1.1] tracking-tight">
+            <h2 className="font-serif text-[clamp(2rem,4vw,3.25rem)] text-ink leading-[1.1] tracking-tight">
               Explore the Barristrly resource hub
             </h2>
-            <p className="mt-4 text-white/85 leading-relaxed max-w-lg text-base md:text-lg">
+            <p className="mt-4 text-gray-600 leading-relaxed max-w-lg text-base md:text-lg">
               Newsletters, articles, UAE and international law references — plus
               media and podcasts with the founder.
             </p>
@@ -71,10 +71,10 @@ export default function CtaBanner() {
           >
             <Link
               href="/resources"
-              className="inline-flex items-center gap-2 rounded-full bg-[#f5f3ef] px-6 py-3 text-sm font-semibold !text-ink hover:bg-[#ebe7df] hover:!text-ink transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-on-primary hover:bg-primary-hover transition-colors"
             >
               Open Resources Hub
-              <ArrowUpRight className="h-4 w-4 !text-primary" aria-hidden />
+              <ArrowUpRight className="h-4 w-4" aria-hidden />
             </Link>
           </motion.div>
         </div>
@@ -87,21 +87,21 @@ export default function CtaBanner() {
         >
           <Link
             href="/resources#media-podcasts"
-            className="group block rounded-[1.75rem] border border-[#e8e4db] bg-[#f5f3ef] p-8 md:p-10 lg:p-12 hover:bg-[#ebe7df] hover:border-[#ddd8cd] transition-all"
+            className="group block rounded-[1.75rem] border border-[#e5e3dc] bg-white p-8 md:p-10 lg:p-12 hover:border-primary/30 hover:shadow-[0_20px_48px_-28px_rgba(15,14,13,0.2)] transition-all"
           >
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <div className="flex items-start gap-5 md:gap-6">
-                <span className="flex h-14 w-14 md:h-16 md:w-16 shrink-0 items-center justify-center rounded-2xl bg-primary text-on-primary shadow-[0_12px_40px_rgba(15,14,13,0.15)]">
+                <span className="flex h-14 w-14 md:h-16 md:w-16 shrink-0 items-center justify-center rounded-2xl bg-primary text-on-primary">
                   <Mic2 className="h-7 w-7 md:h-8 md:w-8" aria-hidden />
                 </span>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary mb-3">
                     Featured
                   </p>
-                  <h3 className="font-serif text-[clamp(1.75rem,4vw,3rem)] !text-ink tracking-tight leading-[1.1] group-hover:!text-primary transition-colors">
+                  <h3 className="font-serif text-[clamp(1.75rem,4vw,3rem)] text-ink tracking-tight leading-[1.1] group-hover:text-primary transition-colors">
                     Media &amp; Podcasts with the Founder
                   </h3>
-                  <p className="mt-3 text-base md:text-lg !text-gray-600 leading-relaxed max-w-xl">
+                  <p className="mt-3 text-base md:text-lg text-gray-600 leading-relaxed max-w-xl">
                     Watch and listen to Heena Mohammed on legal matchmaking,
                     anonymity, and the India–GCC corridor.
                   </p>
@@ -118,7 +118,7 @@ export default function CtaBanner() {
           </Link>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2 border-t border-white/25">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2 border-t border-[#e5e3dc]">
           {RESOURCES.map((item, i) => {
             const Icon = item.icon;
             return (
@@ -130,22 +130,22 @@ export default function CtaBanner() {
               >
                 <Link
                   href={item.href}
-                  className="group flex items-start gap-4 border-b border-white/25 py-6 hover:border-white/50 transition-colors"
+                  className="group flex items-start gap-4 border-b border-[#e5e3dc] py-6 hover:border-primary/30 transition-colors"
                 >
-                  <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f5f3ef] text-primary group-hover:bg-[#ebe7df] transition-colors">
+                  <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="flex items-center justify-between gap-2">
-                      <span className="font-serif text-xl md:text-2xl text-white tracking-tight group-hover:text-[#f5f3ef] transition-colors">
+                      <span className="font-serif text-xl md:text-2xl text-ink tracking-tight group-hover:text-primary transition-colors">
                         {item.label}
                       </span>
                       <ArrowUpRight
-                        className="h-4 w-4 text-[#f5f3ef]/80 group-hover:text-[#f5f3ef] shrink-0"
+                        className="h-4 w-4 text-gray-400 group-hover:text-primary shrink-0"
                         aria-hidden
                       />
                     </span>
-                    <span className="mt-1.5 block text-sm text-white/80 leading-relaxed">
+                    <span className="mt-1.5 block text-sm text-gray-600 leading-relaxed">
                       {item.detail}
                     </span>
                   </span>

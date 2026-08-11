@@ -12,12 +12,15 @@ interface LogoTickerProps {
   speed?: number;
   /** CSS color for edge fade (match section background) */
   edgeFrom?: string;
+  /** Dark type for cream / light surfaces */
+  ink?: boolean;
 }
 
 export default function LogoTicker({
   partners,
   speed = 38,
   edgeFrom = "#000000",
+  ink = false,
 }: LogoTickerProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-40px" });
@@ -52,7 +55,11 @@ export default function LogoTicker({
           {items.map((partner, i) => (
             <span
               key={`${partner.name}-${i}`}
-              className="whitespace-nowrap text-sm sm:text-base font-semibold tracking-wide text-white/90 hover:text-white transition-colors duration-300"
+              className={`whitespace-nowrap text-sm sm:text-base font-semibold tracking-wide transition-colors duration-300 ${
+                ink
+                  ? "text-ink/55 hover:text-ink"
+                  : "text-white/90 hover:text-white"
+              }`}
             >
               {partner.name}
             </span>

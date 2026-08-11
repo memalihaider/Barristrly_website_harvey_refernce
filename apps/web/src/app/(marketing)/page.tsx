@@ -27,7 +27,7 @@ export default function Home() {
       <FeatureDepth />
       <TestimonialsSlider />
       <HomePricing />
-      <div className="bg-primary text-white">
+      <div className="bg-[#f5f3ef] text-ink">
         <TrustBar />
         <SecuritySection />
         <CtaBanner />
