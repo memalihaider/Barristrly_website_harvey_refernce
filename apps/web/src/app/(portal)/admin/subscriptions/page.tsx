@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import AppShell from "@/components/app/app-shell";
 
 type SubRequest = {
   id: string;
@@ -57,7 +56,7 @@ export default function AdminSubscriptionsPage() {
   const pending = requests.filter((r) => r.status === "pending_approval");
 
   return (
-    <AppShell role="admin" title="Subscription requests">
+    <>
       <p className="text-sm text-text-on-light-muted mb-6">
         Approve bank transfer and PayPal onboarding payments after invoice
         clearance. Approving unlocks the user&apos;s portal.
@@ -152,6 +151,6 @@ export default function AdminSubscriptionsPage() {
           </tbody>
         </table>
       </div>
-    </AppShell>
+    </>
   );
 }

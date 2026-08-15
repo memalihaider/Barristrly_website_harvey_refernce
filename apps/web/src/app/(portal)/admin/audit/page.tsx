@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import AppShell from "@/components/app/app-shell";
 
 type Log = {
   id: string;
@@ -35,7 +34,7 @@ export default function AdminAuditPage() {
   }, []);
 
   return (
-    <AppShell role="admin" title="Audit center">
+    <>
       <p className="text-sm text-text-on-light-muted mb-6">
         Chronological <code>audit_logs</code> across escrow, pipeline, and ads.
       </p>
@@ -78,6 +77,6 @@ export default function AdminAuditPage() {
           </tbody>
         </table>
       </div>
-    </AppShell>
+    </>
   );
 }

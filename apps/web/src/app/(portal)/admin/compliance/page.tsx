@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import AppShell from "@/components/app/app-shell";
 import type { ComplianceCheck } from "@/features/enterprise";
 
 export default function AdminCompliancePage() {
@@ -32,7 +31,7 @@ export default function AdminCompliancePage() {
   }, []);
 
   return (
-    <AppShell role="admin" title="Compliance">
+    <>
       <p className="text-sm text-text-on-light-muted mb-6">
         Control checklist plus live counts for escrow, approvals, COI, and audit.
       </p>
@@ -65,7 +64,7 @@ export default function AdminCompliancePage() {
           </li>
         ))}
       </ul>
-    </AppShell>
+    </>
   );
 }
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import AppShell from "@/components/app/app-shell";
 
 type Approval = {
   id: string;
@@ -53,7 +52,7 @@ export default function AdminLawyersPage() {
   }
 
   return (
-    <AppShell role="admin" title="Lawyer approvals">
+    <>
       <p className="text-sm text-text-on-light-muted mb-6">
         Approve lawyers to set <code>is_verified</code> and <code>is_public</code> so
         they enter the match pool.
@@ -103,6 +102,6 @@ export default function AdminLawyersPage() {
           ))}
         </ul>
       )}
-    </AppShell>
+    </>
   );
 }

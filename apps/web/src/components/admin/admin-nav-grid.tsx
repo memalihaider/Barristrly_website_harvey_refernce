@@ -11,6 +11,7 @@ import {
   Scale,
   ShieldCheck,
   ArrowUpRight,
+  FileText,
 } from "lucide-react";
 import type { PlatformKpis } from "@/features/enterprise";
 
@@ -55,6 +56,14 @@ export default function AdminNavGrid({ kpis }: AdminNavGridProps) {
       icon: UserCheck,
       badge: `${kpis.pendingLawyerApprovals || 3} Pending`,
       highlight: kpis.pendingLawyerApprovals > 0,
+    },
+    {
+      href: "/admin/subscriptions",
+      label: "Subscription Requests",
+      description: "Approve bank transfer and PayPal plan onboarding for firms and lawyers.",
+      icon: FileText,
+      badge: "Super Admin",
+      highlight: true,
     },
     {
       href: "/admin/ads",

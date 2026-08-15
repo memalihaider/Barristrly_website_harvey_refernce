@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import AppShell from "@/components/app/app-shell";
 
 type Screen = {
   id: string;
@@ -35,7 +34,7 @@ export default function AdminCoiPage() {
   }, []);
 
   return (
-    <AppShell role="admin" title="COI flags">
+    <>
       <p className="text-sm text-text-on-light-muted mb-6">
         Double-blind screens from <code>coi_screens</code> — conflicted results
         surface here.
@@ -79,6 +78,6 @@ export default function AdminCoiPage() {
           </tbody>
         </table>
       </div>
-    </AppShell>
+    </>
   );
 }

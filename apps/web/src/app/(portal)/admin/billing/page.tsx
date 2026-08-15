@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import AppShell from "@/components/app/app-shell";
 
 type Payment = {
   id: string;
@@ -53,7 +52,7 @@ export default function AdminBillingPage() {
   }, []);
 
   return (
-    <AppShell role="admin" title="Billing">
+    <>
       <p className="text-sm text-text-on-light-muted mb-6">
         Payments and escrow holds across the marketplace.
       </p>
@@ -155,6 +154,6 @@ export default function AdminBillingPage() {
           </tbody>
         </table>
       </div>
-    </AppShell>
+    </>
   );
 }

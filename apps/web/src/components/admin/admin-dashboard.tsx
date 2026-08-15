@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import AppShell from "@/components/app/app-shell";
 import type {
   PlatformKpis,
   PlatformTimeSeriesPoint,
@@ -13,14 +12,7 @@ import AdminChartsSection from "@/components/admin/admin-charts-section";
 import AdminActionCenter from "@/components/admin/admin-action-center";
 import AdminNavGrid from "@/components/admin/admin-nav-grid";
 import AdminRecentActivity from "@/components/admin/admin-recent-activity";
-import {
-  RefreshCw,
-  Sparkles,
-  Shield,
-  Clock,
-  CheckCircle2,
-  AlertCircle,
-} from "lucide-react";
+import { RefreshCw, Clock, AlertCircle } from "lucide-react";
 
 type EventRow = {
   id: string;
@@ -90,7 +82,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <AppShell role="admin" title="Super Admin Control Tower">
+    <div>
       {/* Top Banner & Control Actions */}
       <div className="bg-white border border-black/10 rounded-lg p-6 mb-8 shadow-2xs flex flex-wrap items-center justify-between gap-4">
         <div>
@@ -161,6 +153,6 @@ export default function AdminDashboard() {
 
       {/* Real-time System Telemetry & Event Stream */}
       <AdminRecentActivity events={events} />
-    </AppShell>
+    </div>
   );
 }

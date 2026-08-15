@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import AppShell from "@/components/app/app-shell";
 import type { AdminInsightTip } from "@/features/intelligence";
 import type { PlatformKpis } from "@/features/enterprise";
 
@@ -57,7 +56,7 @@ export default function AdminInsightsPage() {
   }
 
   return (
-    <AppShell role="admin" title="Insights">
+    <>
       <p className="text-sm text-text-on-light-muted mb-6">
         Marketplace optimization tips and executive briefing from live KPIs.
       </p>
@@ -115,7 +114,7 @@ export default function AdminInsightsPage() {
           <p className="text-sm whitespace-pre-wrap">{brief}</p>
         </div>
       )}
-    </AppShell>
+    </>
   );
 }
 

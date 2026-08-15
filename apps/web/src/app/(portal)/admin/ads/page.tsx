@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import AppShell from "@/components/app/app-shell";
 
 type Ad = {
   id: string;
@@ -63,7 +62,7 @@ export default function AdminAdsPage() {
   }
 
   return (
-    <AppShell role="admin" title="Ads moderation">
+    <>
       <p className="text-sm text-text-on-light-muted mb-6">
         Review lawyer promotional ads before they go live.
       </p>
@@ -115,6 +114,6 @@ export default function AdminAdsPage() {
           </li>
         ))}
       </ul>
-    </AppShell>
+    </>
   );
 }

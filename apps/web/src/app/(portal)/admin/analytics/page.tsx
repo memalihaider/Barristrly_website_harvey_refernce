@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import AppShell from "@/components/app/app-shell";
 import type { PlatformKpis } from "@/features/enterprise";
 
 type EventRow = {
@@ -39,7 +38,7 @@ export default function AdminAnalyticsPage() {
   }, []);
 
   return (
-    <AppShell role="admin" title="Analytics">
+    <>
       <p className="text-sm text-text-on-light-muted mb-6">
         Platform KPIs from live marketplace tables plus recent analytics events.
       </p>
@@ -107,6 +106,6 @@ export default function AdminAnalyticsPage() {
           </tbody>
         </table>
       </div>
-    </AppShell>
+    </>
   );
 }
