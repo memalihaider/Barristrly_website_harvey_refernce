@@ -2,31 +2,39 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import Link from "next/link";
 import GradientButton from "@/components/ui/gradient-button";
-import { Clock, Users, Scale } from "lucide-react";
+import { Check } from "lucide-react";
 
-const SESSIONS = [
-  { minutes: "30", price: "400", detail: "Quick scope & direction" },
-  { minutes: "45", price: "600", detail: "Extended anonymous consult" },
-  { minutes: "60", price: "800", detail: "Full-hour matter deep dive" },
-];
-
-const VALUE_POINTS = [
+const OPTIONS = [
   {
-    icon: Users,
-    title: "Consult more than one lawyer",
-    body: "At a fraction of traditional rates, you can meet multiple specialists before you commit.",
+    eyebrow: "Option 1",
+    title: "Free Lawyer Sourcing & Matching",
+    price: "FREE",
+    priceDetail: "0 AED",
+    need: "Clients seeking fee comparisons or hiring representation for lawsuits/transactions.",
+    deliverables: [
+      "Up to 3 curated fee proposals from vetted advocates",
+      "24-hour SLA response",
+      "Zero platform charge for clients",
+    ],
+    ctaLabel: "Submit Brief — Get Matched",
+    ctaHref: "/ai/intake",
+    variant: "outline" as const,
   },
   {
-    icon: Scale,
-    title: "Compare expertise, then choose",
-    body: "Weigh fit, forum experience, and advice quality — then pick the counsel best suited to your matter.",
-  },
-  {
-    icon: Clock,
-    title: "No long-term lock-in upfront",
-    body: "Pay for timed consults only. Engage retainers when you’re confident — not before.",
+    eyebrow: "Option 2",
+    title: "Dedicated Legal Strategy Session",
+    price: "AED 1,000",
+    priceDetail: "+ 5% VAT (AED 1,050 total)",
+    need: "Clients requiring immediate, expert advice or document strategy before taking action.",
+    deliverables: [
+      "Private 45–60 min 1-on-1 meeting (video/in-person)",
+      "Pre-meeting document audit",
+      "Post-meeting summary roadmap",
+    ],
+    ctaLabel: "Book Consultation Now",
+    ctaHref: "/pricing",
+    variant: "primary" as const,
   },
 ];
 
@@ -37,111 +45,67 @@ export default function HomePricing() {
   return (
     <section id="pricing" ref={ref} className="section-padding soft-section">
       <div className="container-wide">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-5"
-          >
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary mb-4">
-              Accessible legal advice
-            </p>
-            <h2 className="font-serif text-[clamp(1.85rem,3.5vw,3rem)] text-ink tracking-tight leading-[1.08]">
-              Quality legal advice at a fair session rate
-            </h2>
-            <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed">
-              A detailed legal consultation often costs{" "}
-              <span className="font-semibold text-ink">AED 1,000 or more per hour</span>.
-              Barristrly makes verified, conflict-cleared advice far more
-              accessible — so you can explore options before a long-term
-              engagement.
-            </p>
-            <p className="mt-4 text-sm text-gray-600 leading-relaxed">
-              Talk to multiple lawyers at a minimal session cost, compare their
-              expertise, and choose the one best suited for your matter with
-              confidence.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <GradientButton href="/pricing" size="md" variant="primary">
-                View full pricing
-              </GradientButton>
-              <Link
-                href="/find-lawyers"
-                className="inline-flex items-center justify-center rounded-full border border-ink/15 px-5 py-2.5 text-sm font-semibold text-ink hover:border-primary hover:text-primary transition-colors"
-              >
-                Browse directory
-              </Link>
-            </div>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="max-w-2xl mb-12 md:mb-14"
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary mb-4">
+            Two ways to get started
+          </p>
+          <h2 className="font-serif text-[clamp(1.85rem,3.5vw,3rem)] text-ink tracking-tight leading-[1.08]">
+            Choose free matching or a dedicated consultation
+          </h2>
+          <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed">
+            Submit a brief and get matched with vetted UAE-licensed providers
+            at no cost, or book a fixed-fee strategy session with a senior
+            practitioner.
+          </p>
+        </motion.div>
 
-          <div className="lg:col-span-7 space-y-8">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+          {OPTIONS.map((option, i) => (
             <motion.div
+              key={option.title}
               initial={{ opacity: 0, y: 16 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.45, delay: 0.08 }}
-              className="rounded-[1.5rem] border border-[#e5e3dc] bg-[#faf9f6] p-6 md:p-8"
+              transition={{ duration: 0.45, delay: 0.1 + i * 0.08 }}
+              className="rounded-[1.5rem] border border-[#e5e3dc] bg-[#faf9f6] p-6 md:p-8 flex flex-col"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary mb-6">
-                Timed anonymous sessions
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary mb-3">
+                {option.eyebrow}
               </p>
-              <div className="grid sm:grid-cols-3 gap-4 md:gap-5">
-                {SESSIONS.map((s, i) => (
-                  <motion.div
-                    key={s.minutes}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.12 + i * 0.06 }}
-                    className="rounded-2xl border border-[#e5e3dc] bg-white p-5 text-center transition-all duration-300 hover:border-primary/35 hover:shadow-[0_16px_36px_-20px_rgba(232,93,4,0.3)]"
-                  >
-                    <p className="font-serif text-2xl md:text-3xl text-ink tracking-tight">
-                      {s.minutes}{" "}
-                      <span className="text-base font-sans font-medium text-gray-500">
-                        min
-                      </span>
-                    </p>
-                    <p className="mt-3 font-serif text-xl md:text-2xl font-semibold text-primary tracking-tight">
-                      AED {s.price}
-                    </p>
-                    <p className="mt-1 text-[10px] uppercase tracking-wider font-semibold text-gray-400">
-                      Per session
-                    </p>
-                    <p className="mt-3 text-xs text-gray-500 leading-relaxed">
-                      {s.detail}
-                    </p>
-                  </motion.div>
-                ))}
+              <h3 className="font-serif text-xl md:text-2xl text-ink tracking-tight">
+                {option.title}
+              </h3>
+              <div className="mt-4">
+                <p className="font-serif text-3xl md:text-4xl text-primary tracking-tight">
+                  {option.price}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">{option.priceDetail}</p>
               </div>
-              <p className="mt-5 text-center text-xs text-gray-500">
-                Fees held in escrow until the consult is complete.
+              <p className="mt-4 text-sm text-gray-600 leading-relaxed">
+                {option.need}
               </p>
-            </motion.div>
-
-            <div className="grid sm:grid-cols-3 gap-5">
-              {VALUE_POINTS.map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.2 + i * 0.06 }}
-                    className="border-t border-[#e5e3dc] pt-4"
+              <ul className="mt-5 space-y-2.5 list-none p-0 m-0">
+                {option.deliverables.map((d) => (
+                  <li
+                    key={d}
+                    className="flex items-start gap-2.5 text-sm text-gray-700"
                   >
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary mb-3">
-                      <Icon className="h-3.5 w-3.5" aria-hidden />
-                    </span>
-                    <h3 className="text-sm font-semibold text-ink tracking-tight">
-                      {item.title}
-                    </h3>
-                    <p className="mt-1.5 text-xs text-gray-600 leading-relaxed">
-                      {item.body}
-                    </p>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
+                    <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" aria-hidden />
+                    <span>{d}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6">
+                <GradientButton href={option.ctaHref} size="md" variant={option.variant}>
+                  {option.ctaLabel}
+                </GradientButton>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

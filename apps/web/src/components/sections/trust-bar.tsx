@@ -1,15 +1,9 @@
-"use client";
-
-import LogoTicker from "@/components/ui/logo-ticker";
-
-const partners = [
-  { name: "ADGM Registry" },
-  { name: "DIFC Courts" },
-  { name: "Dubai Land Dept" },
-  { name: "UAE Laws Applied" },
-  { name: "GCC Arbitration" },
-  { name: "Abu Dhabi Courts" },
-  { name: "London Commercial Court" },
+const BADGES = [
+  "Verified MOJ Advocates",
+  "DIFC / ADGM Practitioners",
+  "FTA-Registered Tax Agents",
+  "24-Hour SLA",
+  "UAE PDPL Data Protection",
 ];
 
 export default function TrustBar() {
@@ -17,13 +11,22 @@ export default function TrustBar() {
     <section
       id="customers"
       className="border-y border-[#e5e3dc] py-12 md:py-14"
-      aria-label="Trusted partners"
+      aria-label="Trust and regulatory compliance"
     >
       <div className="container-wide">
         <p className="mb-6 text-center text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-gray-500">
-          Trusted across forums &amp; corridors
+          Trust & regulatory compliance
         </p>
-        <LogoTicker partners={partners} edgeFrom="#f5f3ef" ink />
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          {BADGES.map((badge) => (
+            <span
+              key={badge}
+              className="rounded-full border border-[#e5e3dc] bg-white px-4 py-2 text-xs font-semibold text-ink"
+            >
+              {badge}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );

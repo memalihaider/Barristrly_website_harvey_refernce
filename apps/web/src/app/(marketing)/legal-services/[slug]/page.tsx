@@ -35,27 +35,24 @@ export default async function LegalServicePage({ params }: Props) {
   return (
     <>
       <PageHero
-        eyebrow="Legal services"
+        eyebrow={`Legal services · ${service.forum}`}
         title={service.label}
         description={service.summary}
       >
         <GradientButton href="/ai/intake" size="lg">
-          Get matched
+          Submit Your Legal Brief — Free Match
         </GradientButton>
-        <GradientButton
-          href="/request-demo"
-          size="lg"
-          variant="outline"
-        >
-          Request a demo
+        <GradientButton href="/pricing" size="lg" variant="outline">
+          Book a Consultation
         </GradientButton>
       </PageHero>
 
       <MarketingSection>
         <p className="text-gray-700 leading-relaxed max-w-2xl text-lg">
-          Barristrly routes {service.label.toLowerCase()} matters through AI
-          intake and Marketplace matching, then keeps the engagement in
-          PracticeOS with documents, billing, and next actions.
+          Submit your brief and we curate and transmit it to up to three (3)
+          vetted UAE-licensed Service Providers matching your jurisdiction and{" "}
+          {service.label.toLowerCase()} practice area — with proposals back
+          within a 24-hour SLA.
         </p>
         <div className="mt-10 flex flex-wrap gap-6">
           {LEGAL_SERVICES.filter((s) => s.slug !== slug).map((s) => (

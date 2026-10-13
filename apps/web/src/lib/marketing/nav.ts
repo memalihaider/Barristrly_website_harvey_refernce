@@ -1,4 +1,4 @@
-import { MARKETPLACE_FEATURES, PRODUCTS } from "./products";
+import { LEGAL_SERVICES } from "./seo-slugs";
 
 export type NavLink = { name: string; href: string; description?: string };
 
@@ -21,177 +21,39 @@ export type NavGroup = {
   featured?: NavFeatured;
 };
 
-const PRODUCT_LINKS: NavLink[] = PRODUCTS.map((p) => ({
-  name: p.name,
-  href: p.href,
-  description: p.navDescription,
+const PRACTICE_LINKS: NavLink[] = LEGAL_SERVICES.map((s) => ({
+  name: s.label,
+  href: `/legal-services/${s.slug}`,
+  description: s.summary,
 }));
 
 export const PRIMARY_NAV: NavGroup[] = [
   {
-    name: "Products",
+    name: "Services & Practice Areas",
     columns: [
-      { title: "Match & hire", items: PRODUCT_LINKS.slice(0, 4) },
-      { title: "Run the practice", items: PRODUCT_LINKS.slice(4) },
+      { title: "Practice pillars", items: PRACTICE_LINKS.slice(0, 4) },
+      { title: "More practice pillars", items: PRACTICE_LINKS.slice(4) },
     ],
     featured: {
-      href: "/marketplace",
-      badge: "Marketplace",
-      title: "Legal Marketplace",
+      href: "/services",
+      badge: "All services",
+      title: "Find & hire the right UAE-licensed lawyer",
       description:
-        "Anonymous directory, two-gate COI, confidential meetings, and a corridor so India, Pakistan, the UAE, and the world can evaluate, meet, and hire without travelling.",
+        "Browse all 7 dedicated practice pillars, then submit a brief for a free match or book a dedicated consultation.",
       media: "/bg-video.mp4",
     },
   },
   {
-    name: "Solutions",
-    columns: [
-      {
-        title: "Who it’s for",
-        items: [
-          {
-            name: "Clients",
-            href: "/ai/intake",
-            description:
-              "Anonymous directory, BARRI triage, COI, and escrow-backed meetings.",
-          },
-          {
-            name: "Lawyers & Firms",
-            href: "/practice",
-            description:
-              "Zero listing fees, 12-hour COI SLA, and escrow consult payouts.",
-          },
-          {
-            name: "In-House / Enterprise",
-            href: "/enterprise",
-            description: "Corporate panels, capped meetings, and conflict cycles.",
-          },
-        ],
-      },
-      {
-        title: "Marketplace features",
-        items: MARKETPLACE_FEATURES,
-      },
-    ],
-    featured: {
-      href: "/#why-features",
-      badge: "Corridor",
-      title: "Hire without the flight",
-      description:
-        "Clients in India, Pakistan, and elsewhere find UAE counsel on-platform. UAE clients do the same worldwide — evaluate, meet, hire. No wasted travel.",
-      media: "/bg-video.mp4",
-    },
+    name: "How It Works",
+    href: "/how-it-works",
   },
   {
-    name: "Security",
-    href: "/security",
+    name: "For Legal Providers",
+    href: "/practice",
   },
   {
-    name: "Resources",
-    columns: [
-      {
-        items: [
-          {
-            name: "Resources hub",
-            href: "/resources",
-            description: "Product guides, service pages, and AI tool overviews.",
-          },
-          {
-            name: "Pricing",
-            href: "/pricing",
-            description:
-              "Consult rates, corporate caps, and digital escrow routing.",
-          },
-          {
-            name: "Request a demo",
-            href: "/request-demo",
-            description: "Walk through the full Barristrly system with our team.",
-          },
-        ],
-      },
-      {
-        items: [
-          {
-            name: "Security",
-            href: "/security",
-            description: "Trust center — two-gate COI, escrow, and audit.",
-          },
-          {
-            name: "Legal services",
-            href: "/legal-services/corporate",
-            description: "Service guides across corporate, litigation, and more.",
-          },
-        ],
-      },
-    ],
-    featured: {
-      href: "/ai",
-      badge: "Barristrly AI",
-      title: "Barristrly AI",
-      description:
-        "Professional-class legal AI inside the work — intake, research, draft, and review where matters already live.",
-      media: "/bg-video.mp4",
-    },
-  },
-  {
-    name: "Company",
-    columns: [
-      {
-        items: [
-          {
-            name: "About",
-            href: "/about",
-            description:
-              "Founder Heena Mohammed — vision for precise, anonymous legal matchmaking.",
-          },
-          {
-            name: "Terms",
-            href: "/terms",
-            description:
-              "Master User Agreement — tech-only aggregator status and liability shield.",
-          },
-          {
-            name: "Privacy",
-            href: "/privacy",
-            description:
-              "Data protection master agreement — anonymity, COI data, and retention.",
-          },
-          {
-            name: "Pricing",
-            href: "/pricing",
-            description:
-              "Consult rates, corporate caps, and digital escrow routing.",
-          },
-          {
-            name: "Request a demo",
-            href: "/request-demo",
-            description: "Talk to us about rollout for your firm or team.",
-          },
-        ],
-      },
-      {
-        items: [
-          {
-            name: "Log In",
-            href: "/login",
-            description: "Client, lawyer, or admin portals.",
-          },
-          {
-            name: "Register",
-            href: "/register",
-            description: "Create an account and start intake or PracticeOS.",
-          },
-        ],
-      },
-    ],
-    featured: {
-      href: "/about",
-      badge: "Barristrly",
-      title: "The mediating bridge of trust",
-      description:
-        "Strip inefficiency from legal procurement — match clients to exact counsel by specialty, jurisdiction, and budget.",
-      media: "/bg-video.mp4",
-    },
+    name: "Resources / Journal",
+    href: "/resources",
   },
 ];
 
@@ -200,40 +62,28 @@ export const HOME_ANCHORS: NavLink[] = [];
 
 export const FOOTER_COLUMNS: { title: string; links: NavLink[] }[] = [
   {
-    title: "Products",
+    title: "For Clients",
     links: [
-      { name: "All products", href: "/products" },
-      ...PRODUCTS.map((p) => ({ name: p.name, href: p.href })),
+      { name: "Submit Brief", href: "/ai/intake" },
+      { name: "Book Consultation", href: "/pricing" },
+      { name: "Pricing Overview", href: "/pricing" },
+      { name: "FAQs", href: "/resources" },
     ],
   },
   {
-    title: "Solutions",
+    title: "For Providers",
     links: [
-      { name: "Find Lawyers", href: "/find-lawyers" },
-      { name: "Legal Services", href: "/legal-services/corporate" },
-      { name: "For Lawyers", href: "/practice" },
-      { name: "Enterprise", href: "/enterprise" },
+      { name: "Join Provider Network", href: "/practice/apply" },
+      { name: "SLA Requirements", href: "/practice#sla" },
+      { name: "Partner Verification Portal", href: "/login" },
     ],
   },
   {
-    title: "Resources",
+    title: "Legal & Compliance",
     links: [
-      { name: "Resources", href: "/resources" },
-      { name: "Security", href: "/security" },
-      { name: "Pricing", href: "/pricing" },
-      { name: "Support", href: "/request-demo" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { name: "About", href: "/about" },
-      { name: "Pricing", href: "/pricing" },
-      { name: "Terms", href: "/terms" },
-      { name: "Privacy", href: "/privacy" },
-      { name: "Request Demo", href: "/request-demo" },
-      { name: "Log In", href: "/login" },
-      { name: "Register", href: "/register" },
+      { name: "Terms & Conditions", href: "/terms" },
+      { name: "Privacy Policy", href: "/privacy" },
+      { name: "Regulatory Disclaimer", href: "/terms#section-2" },
     ],
   },
 ];

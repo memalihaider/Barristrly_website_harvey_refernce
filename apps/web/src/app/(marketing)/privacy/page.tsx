@@ -8,7 +8,7 @@ import {
 export const metadata: Metadata = {
   title: "Privacy Policy | Barristrly",
   description:
-    "Privacy Policy & Data Protection Master Agreement for the Barristrly anonymous consulting marketplace — data categories, conflict checks, ads, retention, and liability limits.",
+    "Privacy Policy for Barristrly's legal technology aggregator and client intake concierge platform — how we collect, use, disclose, and protect your data under UAE PDPL.",
 };
 
 type Clause = {
@@ -19,81 +19,111 @@ type Clause = {
   note?: string;
 };
 
+const EFFECTIVE_DATE = "October 9, 2026";
+
 const SECTIONS: Clause[] = [
   {
     id: "1",
-    title: "1. Categories of privacy data ingested",
+    title: "1. Introduction and Scope",
     paragraphs: [
-      "1.1 Segregation of Data Stores. The Company processes separate sets of user information to keep the tech directory functional. We handle account details differently from match processing info.",
-    ],
-    bullets: [
-      "1.1.1 Expert Regulatory Metadata — real name, corporate registration, professional legal license credentials, verified email addresses, telephone numbers, and corporate bank routing profiles used strictly for identity verification, compliance checks, and access subscription processing.",
-      "1.1.2 Client User Account Parameters — unique sign-in credentials, email handles (which may be masked/aliased via platform relays), and credit card/digital payment authorization tokens processed via independent PCI-DSS third-party clearing pipelines.",
-      "1.1.3 Conflict Filtering Log Arrays — adverse party names, targeted corporate subsidiaries, transactional counterparty identifiers, and generalized legal classification parameters supplied manually by a Client.",
-      "1.1.4 Tracking and Ad Delivery Telemetry — device IP footprints, browser technical profiles, geo-location data points, tracking cookie strings, and mobile device identifiers captured via native software kits to serve programmatic third-party ads.",
+      "1.1 Applicability. This Privacy Policy (\"Policy\") describes how Barristrly (\"Company\", \"we\", \"us\", or \"our\") collects, uses, discloses, and protects information when you access our website, mobile applications, intake wizards, and concierge services (collectively, the \"Platform\"). This Policy operates alongside, and should be read together with, our Terms and Conditions.",
+      "1.2 Consent. By submitting a legal intake brief, booking a Dedicated Consultation, or otherwise using the Platform, you consent to the collection and processing of your information as described in this Policy.",
+      "1.3 Regulatory Framework. We process personal data in accordance with UAE Federal Decree-Law No. 45 of 2021 on the Protection of Personal Data (PDPL), and, where applicable to a given matter or Service Provider, the DIFC Data Protection Law and the ADGM Data Protection Regulations.",
     ],
   },
   {
     id: "2",
-    title: "2. The anonymous routing interface and session transfers",
+    title: "2. Information We Collect",
     paragraphs: [
-      "2.1 Architecture and Purpose. The primary technological offering of the Platform consists of a double-blind, metadata-stripped communications framework. The software routing layer is explicitly built to block the transmission of identity markers (such as specific account IDs or source email profiles) between the Client and the Expert during a scheduled online meeting.",
-      "2.2 Absolute Exclusion for User-Driven Identity Leaks. Users recognize that video streams, audio lines, and real-time text logs are live transmissions. Barristrly does not actively monitor or scan live conversations for identity leaks. If a Client or Expert explicitly mentions their identity, screen-shares a corporate file with identifiable logos, or states an unmasked phone number, the Platform’s anonymity layer is instantly bypassed. The User and Service Providers waive all claims against Barristrly and the Company for any resulting loss of confidentiality, case compromise, or violation of professional secrecy laws.",
-      "2.3 Permanent Session Erasure. Unless strictly compelled by local regulatory bodies, anti-money laundering authorities, or a final order from a court of competent jurisdiction, the Company will not archive, log, or record video/audio consultation streams. Neither party has a right to demand session recordings from the Platform or the Company. Video and audio consultation will only be recorded with the permission of both parties involved and will only be saved with express permission for the same.",
+      "We collect only the information reasonably necessary to operate the Platform, match Clients with Service Providers, and process payments:",
+    ],
+    bullets: [
+      "2.1 Client Account & Contact Information — name, email address, phone number, and sign-in credentials.",
+      "2.2 Legal Intake Brief Content — jurisdiction, practice area, matter description, supporting documents, and any other information you voluntarily submit through our guided wizard.",
+      "2.3 Consultation & Payment Information — booking details for Dedicated Consultations and payment card or digital wallet authorization tokens, processed via our PCI-DSS-compliant third-party payment gateway. Barristrly does not store full card numbers.",
+      "2.4 Service Provider Credentials — for Advocates, Law Firms, Legal Consultants, Tax Agents, AML Consultants, Notaries, and Sworn Translators: trade license details, practicing certificates (MOJ, Dubai Legal Affairs Department, ADJD, DIFC Courts, ADGM Courts, or FTA), and related onboarding documentation.",
+      "2.5 Technical & Usage Data — IP address, browser type, device identifiers, and cookies used to operate and improve the Platform (see Section 5).",
     ],
   },
   {
     id: "3",
-    title: "3. Data mechanics of automated conflict of interest checks",
+    title: "3. How We Use Your Information",
     paragraphs: [
-      "3.1 Processing Foundations. To run the conflict of interest algorithm, the Client submits Conflict Filtering Log Arrays. This processing happens automatically through specialized software matching scripts before a referral is finalized.",
-      "3.2 System Processing Limits. Conflict data provided by a Client is stripped of narrative case details and cross-referenced against data strings submitted by registered Experts. This processing occurs entirely inside an automated pipeline. This automated check does not guarantee compliance with local bar association regulations. The platform functions as a general tech tool; the comprehensive manual conflict search remains the sole ethical and legal duty of the Lawyer / Expert / Service Provider.",
-      "3.3 Shielding of Conflict Data. The Company handles conflict lookup data through isolated databases, kept strictly separate from marketing platforms. If a Client inputs flawed information, Barristrly and the Company accept zero liability if an Expert accidentally reviews a case involving an adverse party due to a misspelled input string.",
+      "We use the information collected to:",
+    ],
+    bullets: [
+      "3.1 Curate and transmit legal intake briefs to up to three (3) vetted, jurisdiction- and practice-area-matched Service Providers under the Free Lawyer Sourcing & Matching option.",
+      "3.2 Schedule, confirm, and process payment for Dedicated Consultations.",
+      "3.3 Vet and onboard Service Providers, including verifying licensing and credentials.",
+      "3.4 Comply with UAE legal, tax (VAT), and anti-money-laundering obligations.",
+      "3.5 Operate, secure, and improve the Platform, including fraud prevention and customer support.",
     ],
   },
   {
     id: "4",
-    title: "4. Programmatic third-party advertising integrations",
+    title: "4. Confidentiality of Intake Briefs & Disclosure to Service Providers",
     paragraphs: [
-      "4.1 Tracking Scripts and Ad Frameworks. The Platform integrates ad delivery code blocks provided by third-party ad networks, tailored for entities such as commercial retail banks, investment providers, corporate services platforms, and licensed real estate brokerages, among others.",
-      "4.2 Target Audience Trapping. These tracking systems use cookies, web beacons, and mobile device advertising IDs (such as IDFA or AAID) to serve contextually relevant advertisements within the user experience. By using this platform, you grant explicit consent for these data-sharing practices.",
-      "4.3 Isolation from Third-Party Ad Networks. Third-Party Advertisers process data under their own independent privacy terms. Barristrly and the Company exercise no operational control over how banks or real estate networks handle data if a User clicks an external ad banner. The Platform and the Company are completely insulated from any data misuse or fraudulent privacy actions carried out by third-party corporate advertisers.",
+      "4.1 Confidential Treatment. As stated in our Terms, information submitted through the client intake form is treated as confidential.",
+      "4.2 Limited Disclosure. Barristrly discloses intake briefs only to vetted Service Providers who have signed confidentiality obligations with Barristrly, and only to the extent necessary for them to evaluate and respond to the request. Barristrly does not sell intake brief content to third parties.",
+      "4.3 No Attorney-Client Privilege with Barristrly. Submitting a brief to Barristrly does not create an attorney-client relationship or privilege with Barristrly. Any privilege applicable to your matter arises only once you engage a Service Provider directly.",
+      "4.4 Third-Party Handling. Once a Service Provider receives your brief, that Service Provider's own confidentiality and data-handling practices govern their use of your information; Barristrly is not responsible for a Service Provider's independent data practices.",
     ],
   },
   {
     id: "5",
-    title: "5. Information expulsion, retention, and data rights",
+    title: "5. Cookies and Analytics",
     paragraphs: [
-      "5.1 Operational Data Longevity. Barristrly and the Company retain personal data only as long as necessary to support active accounts, fulfill explicit corporate administrative tracking requirements, or satisfy statutory tax and security preservation laws.",
-      "5.2 Purging Limitations. Users can request the deletion of their core account records at any time. However, certain transaction hashes, billing confirmation logs, and conflict metadata fields cannot be completely purged from active data systems. We retain these records to prevent platform policy circumvention, defend against litigation, or comply with local financial audit rules.",
+      "5.1 We use cookies and similar technologies to operate the Platform, remember preferences, and understand how the Platform is used through analytics tools.",
+      "5.2 You can control or disable cookies through your browser settings; disabling certain cookies may limit some Platform features.",
     ],
   },
   {
     id: "6",
-    title: "6. The privacy indemnification protocol",
+    title: "6. Data Retention",
     paragraphs: [
-      "6.1 Indemnity Responsibilities. Clients and Lawyers / Experts / Service Providers agree to defend, protect, and hold harmless Barristrly and the Company, its founders, and technical operators from any financial penalties, regulatory investigations, or data litigation claims arising from:",
-    ],
-    bullets: [
-      "Any intentional upload of malicious software or tracking blocks disguised as text or file shares during anonymous online meetings.",
-      "A breach of professional confidentiality or attorney-client privilege caused by a Service Provider / Expert unmasking a Client or storing unauthorized data outside the platform environment.",
-      "Any data protection complaints filed by adverse parties due to inaccurate or misleading data inputs provided during the conflict check process.",
+      "6.1 We retain personal data only for as long as necessary to provide the Platform, fulfill the purposes described in this Policy, and comply with UAE tax, financial, and legal record-keeping obligations.",
+      "6.2 Billing records and transaction logs required for VAT and audit compliance may be retained beyond account closure as required by law.",
     ],
   },
   {
     id: "7",
-    title: "7. Global transfers and platform security limitations",
+    title: "7. Your Rights",
     paragraphs: [
-      "7.1 Cross-Border Delivery Systems. The Company operates utilizing decentralized cloud-hosted infrastructure nodes. Information collected via the platform may be transferred across international borders for processing, backup redundancy, and automated routing purposes.",
-      "7.2 Acknowledgment of Digital Vulnerabilities. The Company implements industry-standard transport security layers (TLS) and encryption for data at rest. However, no digital transmission channel is completely safe. The User explicitly acknowledges that data submission occurs at their own risk. The Company is completely insulated from liability for third-party cloud data leaks, national security wiretaps, or sophisticated server-side cyberattacks.",
+      "Subject to applicable UAE PDPL (and DIFC/ADGM rules where relevant), you may request to:",
     ],
+    bullets: [
+      "7.1 Access the personal data we hold about you.",
+      "7.2 Request correction of inaccurate data.",
+      "7.3 Request deletion of your account data, subject to our legal retention obligations under Section 6.",
+      "7.4 Withdraw consent to non-essential processing, such as marketing communications.",
+    ],
+    note: "To exercise any of these rights, contact us using the details in Section 10.",
   },
   {
     id: "8",
-    title: "8. Jurisdiction and future adjustments",
+    title: "8. Data Security and Cross-Border Transfers",
     paragraphs: [
-      "8.1 Legal Venues. This data policy is governed by and construed in accordance with the laws of the jurisdiction where the Company’s principal business office is incorporated. Any privacy claims or regulatory complaints against the platform must be brought exclusively before the competent courts of that localized city.",
-      "8.2 Modifications. The Company reserves the right to update this document at its sole discretion. Continued use of the platform following an update constitutes explicit acceptance of the revised data management framework.",
+      "8.1 Security Measures. We apply industry-standard safeguards, including encryption in transit (TLS) and access controls, to protect your information. No system is completely secure, and we cannot guarantee absolute security of data transmitted to or stored on the Platform.",
+      "8.2 Cross-Border Processing. Data may be processed or stored on cloud infrastructure located outside the UAE. Where this occurs, we require appropriate contractual and technical safeguards consistent with PDPL requirements.",
+    ],
+  },
+  {
+    id: "9",
+    title: "9. Changes to this Policy",
+    paragraphs: [
+      "We may update this Policy from time to time to reflect changes in our practices or legal requirements. Material changes will be indicated by updating the Effective Date above, and continued use of the Platform after such changes constitutes acceptance of the revised Policy.",
+    ],
+  },
+  {
+    id: "10",
+    title: "10. Contact Information",
+    paragraphs: [
+      "For questions regarding this Privacy Policy, or to exercise your data rights, please contact:",
+    ],
+    bullets: [
+      "Legal & Operations Team: Barristrly",
+      "Email: support@barristrly.com",
+      "Location: Dubai, United Arab Emirates",
     ],
   },
 ];
@@ -103,8 +133,8 @@ export default function PrivacyPage() {
     <>
       <PageHero
         eyebrow="Legal"
-        title="Privacy Policy & Data Protection"
-        description="Master agreement governing collection, processing, storage, and cross-border transmission of data on the Barristrly Platform. This document operates concurrently with our Master Terms and Conditions."
+        title="Privacy Policy"
+        description="How Barristrly collects, uses, discloses, and protects your data across our website and MVP matchmaking services."
       >
         <Link
           href="/terms"
@@ -117,21 +147,18 @@ export default function PrivacyPage() {
       <MarketingSection tight>
         <div className="max-w-3xl rounded-2xl border border-primary/25 bg-primary/5 px-6 py-5 space-y-3">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-            Limitation of corporate data compliance liability
+            Document summary
           </p>
           <p className="text-sm text-ink leading-relaxed">
-            Because this platform operates an anonymous preliminary consulting
-            marketplace, data processing is restricted by automated software
-            protocols. The ultimate legal burden to refrain from inputting
-            unencrypted identity markers rests on the User. The Company
-            explicitly disclaims liability under global data protection laws for
-            files, messages, and speech contents voluntarily shared between
-            Users.
+            Effective Date: {EFFECTIVE_DATE}. Operating Entity: Barristrly
+            Platform (United Arab Emirates).
           </p>
           <p className="text-sm text-gray-600 leading-relaxed">
-            By interacting with, submitting information to, or scheduling
-            consultations via the Platform, both Clients and Experts explicitly
-            release Barristrly from data liabilities as specified in this Policy.
+            Barristrly is a legal technology aggregator and client intake
+            concierge platform. This Policy explains what information we
+            collect through our intake wizard and consultation booking flow,
+            how it is shared with independent Service Providers, and your
+            rights under UAE data protection law.
           </p>
         </div>
       </MarketingSection>

@@ -21,7 +21,7 @@ const RESOURCES = [
   {
     href: "/resources#articles",
     label: "Articles & Blogs",
-    detail: "Insights on matching, COI, and marketplace law",
+    detail: "Insights on matching, UAE practice areas, and legal process",
     icon: BookOpen,
   },
   {
@@ -102,8 +102,8 @@ export default function CtaBanner() {
                     Media &amp; Podcasts with the Founder
                   </h3>
                   <p className="mt-3 text-base md:text-lg text-gray-600 leading-relaxed max-w-xl">
-                    Watch and listen to Heena Mohammed on legal matchmaking,
-                    anonymity, and the India–GCC corridor.
+                    Watch and listen to the Barristrly team on UAE legal
+                    matchmaking and the client intake process.
                   </p>
                 </div>
               </div>

@@ -6,13 +6,12 @@ import GradientButton from "@/components/ui/gradient-button";
 import LogoTicker from "@/components/ui/logo-ticker";
 
 const partners = [
-  { name: "ADGM Registry" },
+  { name: "Ministry of Justice (MOJ)" },
   { name: "DIFC Courts" },
-  { name: "Dubai Land Dept" },
-  { name: "UAE Laws Applied" },
-  { name: "GCC Arbitration" },
-  { name: "Abu Dhabi Courts" },
-  { name: "London Commercial Court" },
+  { name: "ADGM Courts" },
+  { name: "Federal Tax Authority (FTA)" },
+  { name: "Dubai Legal Affairs Department" },
+  { name: "ADJD" },
 ];
 
 export default function Hero() {
@@ -50,7 +49,7 @@ export default function Hero() {
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-[clamp(2.75rem,7vw,5.5rem)] text-white leading-[1.02] tracking-[-0.03em] mb-6"
           >
-            Lawyer Match, Redefined
+            Find & Hire the Right UAE-Licensed Lawyer in 24 Hours
           </motion.h1>
 
           <motion.p
@@ -59,8 +58,9 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-2xl text-base md:text-lg text-white leading-relaxed mb-10"
           >
-            Anonymous legal directory. Automated conflict checks before every
-            consult. Confidential meeting scheduling with escrow-backed matches.
+            Navigating mainland court disputes, DIFC/ADGM contracts, or
+            corporate setup? Barristrly matches your precise legal need with
+            vetted, top-tier advocates across the UAE.
           </motion.p>
 
           <motion.div
@@ -71,21 +71,21 @@ export default function Hero() {
           >
             <GradientButton
               size="lg"
-              href="/find-lawyers"
+              href="/ai/intake"
               variant="primary"
               className="inline-flex items-center gap-2"
             >
               <Scale className="h-5 w-5" aria-hidden />
-              Legal Directory
+              Submit Your Legal Brief — Free Match
             </GradientButton>
             <GradientButton
               size="lg"
-              href="/find-lawyers"
+              href="/pricing"
               variant="white"
               className="inline-flex items-center gap-2"
             >
               <Compass className="h-5 w-5" aria-hidden />
-              Match my Lawyer
+              Book a 45-Min Fixed-Fee Consultation
             </GradientButton>
           </motion.div>
         </div>
@@ -99,7 +99,7 @@ export default function Hero() {
           </div>
           <div className="shrink-0 hidden md:block">
             <span className="text-[9px] uppercase font-bold tracking-widest text-white/60 border border-white/15 px-3.5 py-1.5 rounded bg-white/5 whitespace-nowrap">
-              Vetted Forums
+              Verified Licensing Authorities
             </span>
           </div>
         </div>

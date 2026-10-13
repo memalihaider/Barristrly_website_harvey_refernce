@@ -11,98 +11,98 @@ import {
 } from "@/components/marketing/section";
 
 export const metadata: Metadata = {
-  title: "PracticeOS | Barristrly",
+  title: "For Legal Providers | Barristrly",
   description:
-    "Provider panel for Barristrly’s legal marketplace — zero listing fees, pre-vetted leads, 12-hour COI SLA, and escrow consult payouts.",
+    "Join the Barristrly network — Advocates, Law Firms, Arbitrators, Tax Agents, AML Consultants, Notaries, and Sworn Translators. Vetted leads, 24-hour SLA, zero listing cost.",
 };
 
 export default function PracticePage() {
   return (
     <>
       <PageHero
-        eyebrow="PracticeOS · Provider panel"
-        title="Join the marketplace panel at zero listing cost"
-        description="List on Barristrly’s aggregator with no subscription overhead. Receive structured, conflict-ready intent briefs — clear opponents in 12 hours, consult on masked VoIP, and get paid from escrow when the session completes."
+        eyebrow="Service Provider Onboarding Hub"
+        title="Join the Barristrly network at zero listing cost"
+        description="A dedicated portal for Advocates, Law Firms, Arbitrators, Tax Agents, AML Consultants, Notaries, and Sworn Translators to receive vetted, jurisdiction-matched client briefs."
         aside={
           <ProductMock
-            title="PracticeOS"
+            title="Provider onboarding"
             lines={[
-              "Marketplace lead · adverse parties · 12h COI SLA",
-              "Conflict clear · anonymous meeting session",
-              "Escrow delivered · payout to registry",
+              "Upload trade license & practicing certificate",
+              "Get matched by jurisdiction & practice area",
+              "Respond within the 24-hour SLA",
             ]}
           />
         }
       >
-        <GradientButton href="/register?role=lawyer" size="lg">
-          Join as a provider
+        <GradientButton href="/practice/apply" size="lg">
+          Join the Provider Network
         </GradientButton>
         <GradientButton href="/request-demo" size="lg" variant="outline">
-          Schedule Meeting
+          Schedule a Call
         </GradientButton>
       </PageHero>
 
       <MarketingSection tone="soft" tight>
         <StatRow
           stats={[
-            { value: "AED 0", label: "Listing / subscription fee" },
-            { value: "12h", label: "Conflict clearance SLA" },
-            { value: "Escrow", label: "Consult fees secured upfront" },
-            { value: "VoIP", label: "Tokenized anonymous sessions" },
+            { value: "AED 0", label: "Listing fee" },
+            { value: "24h", label: "SLA to acknowledge a lead & send a proposal" },
+            { value: "3", label: "Max providers a brief is sent to" },
+            { value: "PDPL", label: "UAE data protection compliant" },
           ]}
         />
       </MarketingSection>
 
       <MarketingSection>
         <SectionIntro
-          eyebrow="Supply-side"
-          title="The provider value proposition"
-          description="Build an elite, responsive panel by removing entry friction while enforcing platform-mediated conflict clearing and intake loops."
+          eyebrow="Onboarding"
+          title="Vetting & licensing"
+          description="All Advocates, Law Firms, Legal Consultants, Tax Agents, AML Consultants, Notaries, and Sworn Translators seeking to join the network must complete our Provider Onboarding Form and upload valid credentials."
         />
         <FeatureList
           items={[
             {
-              title: "Zero listing fees",
-              body: "Lawyers, arbitrators, and experts register and list profiles with zero subscription overhead — eliminating initial supply-side friction so the panel can scale.",
+              title: "Active UAE Trade License",
+              body: "Upload a current trade license for your firm or practice.",
             },
             {
-              title: "Pre-vetted lead routing",
-              body: "Instead of sorting raw inquiries, providers receive structured intent briefs that already cleared baseline parameter matching.",
+              title: "Practicing certificate",
+              body: "From the Ministry of Justice (MOJ), Dubai Legal Affairs Department, ADJD, DIFC Courts, ADGM Courts, or the Federal Tax Authority (FTA), as applicable to your practice.",
             },
             {
-              title: "Systemized conflict clearing",
-              body: "The platform pushes target adverse-party names into your internal conflict workspace so compliance can check records instantly — without revealing client identity prematurely.",
+              title: "Jurisdiction & practice area tagging",
+              body: "Tell us the forums you cover — Mainland Dubai/Abu Dhabi Courts, DIFC, ADGM, RDC, MOHRE — and the practice areas you take, so briefs reach the right providers.",
             },
             {
-              title: "PracticeOS workspace",
-              body: "Marketplace leads land in your pipeline with matter workspace, documents, calendar, and ledger views for the full engagement.",
+              title: "Confidentiality obligations",
+              body: "Providers sign confidentiality obligations before receiving client intake briefs, consistent with our Privacy Policy.",
             },
           ]}
         />
       </MarketingSection>
 
-      <MarketingSection tone="soft">
+      <MarketingSection tone="soft" id="sla">
         <SectionIntro
-          title="Provider SLA & engagement mandates"
-          description="Strict rules that protect responsiveness, anonymity, and fee capture."
+          title="Your obligations once onboarded"
+          description="Clear, predictable rules that keep response times fast and fees transparent."
         />
         <FeatureList
           items={[
             {
-              title: "12-hour conflict window",
-              body: "When a client targets you in their top 2–3 selection, you have 12 hours to review opponent names and submit conflict clearance. Failure to respond auto-reverts the lead to the available pool.",
+              title: "24-hour SLA commitment",
+              body: "Acknowledge incoming lead briefs and provide a transparent, itemized fee proposal to the Client within 24 business hours.",
             },
             {
-              title: "Tokenized identity compliance",
-              body: "Initial consultations run in the metadata-masked anonymous VoIP chamber using rotating session token IDs. Harvesting client data off-platform before an executed retainer triggers algorithmic penalization.",
+              title: "Administrative fee structure",
+              body: "Marketing, origination, and administrative platform fees payable to Barristrly are structured strictly in compliance with UAE legal practice frameworks — as administrative technology, marketing, and lead generation charges, not fee-splitting.",
             },
             {
-              title: "Fee structures & escrow payout",
-              body: "Primary consultation fees (400 / 600 / 800 AED tiers) are secured in platform escrow upfront. Payouts clear to your registry balance on successful completion of the timed session, minus standard platform processing overhead.",
+              title: "Direct client engagement",
+              body: "Once matched, the attorney-client relationship and fee arrangement are formed directly between you and the Client — Barristrly is not a party to that engagement.",
             },
             {
-              title: "Lead to matter",
-              body: "After consult, convert into a living matter with notes, documents, milestone invoices, and PracticeOS accounting — without switching tools.",
+              title: "Dedicated Consultation bookings",
+              body: "For AED 1,000 + 5% VAT Dedicated Consultations, Barristrly handles scheduling and payment; you deliver the 45–60 minute session, pre-meeting document review, and post-meeting roadmap.",
             },
           ]}
         />
@@ -111,11 +111,11 @@ export default function PracticePage() {
       <MarketingCtaBand
         dark
         title="Built for solos and growing firms"
-        description="List free. Clear conflicts fast. Get paid from escrow. Scale into PracticeOS when the firm needs structure."
-        primaryHref="/register?role=lawyer"
-        primaryLabel="Join as a lawyer"
+        description="List free. Get vetted, jurisdiction-matched briefs. Respond within 24 hours. Grow your practice through Barristrly."
+        primaryHref="/practice/apply"
+        primaryLabel="Join the Provider Network"
         secondaryHref="/pricing"
-        secondaryLabel="See escrow & pricing"
+        secondaryLabel="See client pricing"
       />
     </>
   );

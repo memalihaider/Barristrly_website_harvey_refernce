@@ -5,7 +5,7 @@ export default function SiteFooter() {
   return (
     <footer className="bg-[#f5f3ef] border-t border-[#e5e3dc] pt-16 pb-10 text-ink">
       <div className="container-wide">
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-10 md:gap-8 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-10 md:gap-8 mb-16">
           <div className="col-span-2 space-y-5">
             <Link
               href="/"
@@ -14,8 +14,13 @@ export default function SiteFooter() {
               BARRISTRLY
             </Link>
             <p className="text-sm text-gray-600 leading-relaxed max-w-xs">
-              Global legal technology marketplace — anonymous directory, COI
-              clearance, and confidential meetings with vetted providers.
+              Legal technology aggregator and client intake concierge platform —
+              find and hire the right UAE-licensed lawyer, fast.
+            </p>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              support@barristrly.com
+              <br />
+              Dubai, United Arab Emirates
             </p>
           </div>
 

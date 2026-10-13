@@ -7,94 +7,79 @@ import {
   PageHero,
   SectionIntro,
 } from "@/components/marketing/section";
-import {
-  INDIVIDUAL_HOOK,
-  INDIVIDUAL_SESSIONS,
-  PRICING_RULES,
-  SUBSCRIPTION_PLANS,
-} from "@/lib/marketing/pricing";
 
 export const metadata: Metadata = {
   title: "Pricing | Barristrly",
   description:
-    "Anonymous consult rates, corporate subscriptions, and digital escrow — fund capture, session validation, and anti-leakage disbursement in AED.",
+    "Free Lawyer Sourcing & Matching, or a Dedicated Legal Consultation at AED 1,000 + 5% VAT. Clear, fixed pricing — no subscriptions.",
 };
+
+const OPTIONS = [
+  {
+    eyebrow: "Option 1",
+    title: "Free Lawyer Sourcing & Matching",
+    price: "FREE",
+    priceDetail: "0 AED",
+    body: "Submit a legal intake brief via our guided wizard. We curate and transmit it to up to three (3) vetted UAE-licensed Service Providers matching your jurisdiction (Mainland Dubai/Abu Dhabi Courts, DIFC, ADGM, RDC, MOHRE) and practice area.",
+    deliverables: [
+      "Up to 3 curated fee proposals from vetted advocates",
+      "24-hour SLA response from Service Providers",
+      "Zero platform charge for Clients",
+    ],
+    ctaLabel: "Submit Brief — Get Matched",
+    ctaHref: "/ai/intake",
+    variant: "outline" as const,
+  },
+  {
+    eyebrow: "Option 2",
+    title: "Dedicated 45–60 Minute Legal Consultation",
+    price: "AED 1,000",
+    priceDetail: "+ 5% VAT = AED 1,050 total",
+    body: "Book a 1-on-1 legal strategy session with a specialized senior practitioner. Payment is completed in full via our secure payment gateway prior to meeting confirmation.",
+    deliverables: [
+      "Private 45–60 min meeting (video/in-person)",
+      "Pre-meeting document review",
+      "Post-meeting summary roadmap",
+    ],
+    ctaLabel: "Book Consultation Now",
+    ctaHref: "/ai/intake",
+    variant: "primary" as const,
+  },
+];
 
 export default function PricingPage() {
   return (
     <>
       <PageHero
         eyebrow="Pricing"
-        title="Matching workflow, capped subscriptions"
-        description="Every unlocked booking runs the 5-node intake and conflict clearance loop. Consult fees lock in escrow before identity release — corporate plans use explicit meeting limits, not unlimited overhead."
+        title="Two clear pricing options — no subscriptions"
+        description="All prices are stated in AED. A 5% VAT applies to taxable services and is itemized at checkout, in compliance with UAE Federal Decree-Law No. 8 of 2017."
       />
 
       <MarketingSection>
-        <SectionIntro
-          title="Individual booking rates"
-          description={`${INDIVIDUAL_HOOK} On-demand anonymous VoIP sessions with capped time boxes — secured in escrow before the match loop finalizes.`}
-        />
-        <div className="mt-10 grid md:grid-cols-3 gap-x-10 gap-y-10">
-          {INDIVIDUAL_SESSIONS.map((session) => (
-            <div key={session.name} className="border-t-2 border-gray-200 pt-6">
-              <h3 className="font-serif text-xl text-ink tracking-tight">
-                {session.name}
-              </h3>
-              <div className="mt-3 flex items-baseline gap-1.5">
-                <span className="text-lg font-semibold text-primary">
-                  {session.price}
-                </span>
-                <span className="text-sm text-gray-500">{session.period}</span>
-              </div>
-              <p className="mt-3 text-sm text-gray-600 leading-relaxed">
-                {session.detail}
-              </p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-10">
-          <GradientButton href="/ai/intake" size="sm">
-            Start AI Intake
-          </GradientButton>
-        </div>
-      </MarketingSection>
-
-      <MarketingSection tone="soft">
-        <SectionIntro
-          title="Corporate & SME subscriptions"
-          description="Anchored to explicit meeting thresholds and conflict-check cycle limits."
-        />
-        <div className="mt-12 grid md:grid-cols-3 gap-6 md:gap-8">
-          {SUBSCRIPTION_PLANS.map((plan) => (
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+          {OPTIONS.map((option) => (
             <div
-              key={plan.name}
-              className={`rounded-2xl border bg-[#fafaf9] p-7 md:p-8 flex flex-col ${
-                "highlight" in plan && plan.highlight
-                  ? "border-primary shadow-[0_0_0_1px_var(--color-primary)]"
-                  : "border-gray-200"
-              }`}
+              key={option.title}
+              className="rounded-2xl border border-gray-200 bg-[#fafaf9] p-7 md:p-8 flex flex-col"
             >
-              {"highlight" in plan && plan.highlight ? (
-                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary mb-3">
-                  Most popular
-                </span>
-              ) : (
-                <span className="h-4 mb-3" aria-hidden />
-              )}
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary mb-3">
+                {option.eyebrow}
+              </span>
               <h2 className="font-serif text-2xl text-ink tracking-tight">
-                {plan.name}
+                {option.title}
               </h2>
               <div className="mt-3 flex items-baseline gap-1.5">
                 <span className="font-serif text-3xl text-ink tracking-tight">
-                  {plan.price}
+                  {option.price}
                 </span>
-                <span className="text-sm text-gray-500">{plan.period}</span>
+                <span className="text-sm text-gray-500">{option.priceDetail}</span>
               </div>
-              <p className="mt-3 text-sm text-gray-600 leading-relaxed flex-1">
-                {plan.detail}
+              <p className="mt-4 text-sm text-gray-600 leading-relaxed">
+                {option.body}
               </p>
               <ul className="mt-6 space-y-2.5 list-none p-0 m-0">
-                {plan.features.map((f) => (
+                {option.deliverables.map((f) => (
                   <li key={f} className="text-sm text-ink/80 flex gap-2.5">
                     <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
                     {f}
@@ -103,11 +88,12 @@ export default function PricingPage() {
               </ul>
               <div className="mt-8">
                 <GradientButton
-                  href={plan.cta.href}
+                  href={option.ctaHref}
                   size="sm"
+                  variant={option.variant}
                   className="w-full justify-center"
                 >
-                  {plan.cta.label}
+                  {option.ctaLabel}
                 </GradientButton>
               </div>
             </div>
@@ -115,79 +101,40 @@ export default function PricingPage() {
         </div>
       </MarketingSection>
 
-      <MarketingSection>
-        <SectionIntro
-          title="Digital escrow & transaction routing"
-          description="Anti-leakage settlement — all initial bookings and milestone retainers anchor in an automated escrow vault."
-        />
-        <FeatureList
-          items={[
-            {
-              title: "Phase 1 — Upfront fund capture",
-              body: "Before the matching and conflict workflow finalizes with selected professionals, the user funds the session via the platform payment gateway. Funds lock in an immutable milestone escrow vault.",
-            },
-            {
-              title: "Phase 2 — Automated session validation",
-              body: "The internal VoIP room monitors connection duration. When a 30-, 45-, or 60-minute session completes successfully, telemetry marks the milestone as Delivered.",
-            },
-            {
-              title: "Phase 3 — Disbursement split & remittance",
-              body: "On milestone confirmation, escrow deducts platform commissions or validates the subscription ledger, then remits the net payout to the provider’s corporate bank routing network.",
-            },
-            {
-              title: "Session tiers in escrow",
-              body: "Primary consults at 400 / 600 / 800 AED are secured upfront. Providers receive registry payout after successful timed completion, minus platform processing overhead.",
-            },
-          ]}
-        />
-      </MarketingSection>
-
       <MarketingSection tone="soft">
         <SectionIntro
-          title="Anti-leakage retention controls"
-          description="Keep high-value fees and identity release inside the platform transaction layer."
+          title="Billing & refunds"
+          description="Rescheduling, cancellations, and refund policy for Dedicated Consultations."
         />
         <FeatureList
           items={[
             {
-              title: "Identity release lock",
-              body: "Full legal names and corporate credentials stay behind platform encryption during conflict clearing. Records unmask between parties only once the escrow deposit is secured in the system ledger.",
+              title: "Rescheduling & cancellation",
+              body: "You may reschedule a confirmed consultation with at least 24 hours' prior written notice. Cancellations made less than 24 hours before the scheduled meeting, or no-shows, are non-refundable.",
             },
             {
-              title: "Milestone escrow for full retainers",
-              body: "After an anonymous call, counsel can generate a structured Platform Milestone Invoice in-app — keeping long-term processing fees inside the ecosystem.",
+              title: "Failure to match within 48 hours",
+              body: "If we fail to match or schedule you for a Dedicated Consultation within 48 business hours of payment, you receive a 100% full refund to your original payment method.",
             },
             {
-              title: "Automated arbitration for disputes",
-              body: "If a call fails due to verified technical drops or a clear provider no-show, escrow routes funds to an internal review pool for friction-free client charge reversals or professional reapportionment.",
+              title: "Once the consultation is held",
+              body: "After a 45–60 minute consultation has been conducted by a Service Provider, the service is deemed rendered in full, and no refunds will be issued.",
             },
             {
-              title: "Corporate retention rules",
-              body: "Top-up sessions after monthly caps, no unused balance rollover, and prepaid 6+2 hour blocks with 12-month expiry keep usage predictable.",
+              title: "VAT compliance",
+              body: "A 5% VAT applies to all taxable services rendered by Barristrly and is clearly itemized at checkout, per UAE Federal Decree-Law No. 8 of 2017.",
             },
           ]}
         />
-        <div className="mt-12 grid md:grid-cols-3 gap-x-10 gap-y-10">
-          {PRICING_RULES.map((rule) => (
-            <div key={rule.title} className="border-t border-gray-200 pt-5">
-              <h3 className="font-semibold text-ink tracking-tight">
-                {rule.title}
-              </h3>
-              <p className="mt-2 text-sm text-gray-600 leading-relaxed">
-                {rule.detail}
-              </p>
-            </div>
-          ))}
-        </div>
       </MarketingSection>
 
       <MarketingCtaBand
-        title="Not sure which allocation fits?"
-        description="Tell us your monthly matter volume and we will recommend SME Shield, Corporate General, or Enterprise Max — with escrow-backed consults on every path."
-        primaryHref="/request-demo"
-        primaryLabel="Request a demo"
-        secondaryHref="/ai/intake"
-        secondaryLabel="Try AI Intake"
+        title="Not sure which option fits?"
+        description="Submit your brief for a free match, or go straight to booking a dedicated consultation."
+        primaryHref="/ai/intake"
+        primaryLabel="Submit Your Legal Brief — Free Match"
+        secondaryHref="/request-demo"
+        secondaryLabel="Talk to us"
       />
     </>
   );

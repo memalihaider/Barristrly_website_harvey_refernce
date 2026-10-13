@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import IntakeChat from "@/components/intake/intake-chat";
+import ClientIntakeForm from "@/components/intake/client-intake-form";
 import {
   MarketingSection,
   PageHero,
 } from "@/components/marketing/section";
 
 export const metadata: Metadata = {
-  title: "BARRI Intake | Barristrly",
+  title: "Submit Your Legal Brief | Barristrly",
   description:
-    "BARRI classifies your matter for Barristrly’s legal marketplace — then routes you toward matched providers with COI-aware matching.",
+    "Submit a free legal intake brief for matching with up to three vetted UAE-licensed providers, or book a Dedicated 45–60 Minute Legal Consultation.",
 };
 
 export default function AiIntakePage() {
   return (
     <>
       <PageHero
-        eyebrow="BARRI"
-        title="Classify your matter. Match the right provider."
-        description="Describe what happened in your own words. BARRI structures practice area, jurisdiction, and urgency — then suggests counsel through marketplace matching, with COI before consult."
+        eyebrow="Client intake"
+        title="Submit Your Legal Brief"
+        description="For individual litigants, expats, startups, and corporate clients seeking legal assistance. Free Match proposals within 24 business hours; Paid Strategy Sessions scheduled within 24–48 hours upon payment confirmation."
       />
 
       <MarketingSection tight>
@@ -28,18 +28,18 @@ export default function AiIntakePage() {
               {[
                 {
                   step: "01",
-                  title: "Tell your story",
-                  body: "Facts in plain language — no legal jargon required.",
+                  title: "Your details",
+                  body: "Tell us who you are and how to reach you.",
                 },
                 {
                   step: "02",
-                  title: "We structure the matter",
-                  body: "Practice area, jurisdiction, urgency, and a clear summary.",
+                  title: "Service & matter",
+                  body: "Free matching or a Dedicated Consultation, plus practice area and jurisdiction.",
                 },
                 {
                   step: "03",
-                  title: "See matched lawyers",
-                  body: "Sign in to save the lead and view ranked counsel with COI-aware matching.",
+                  title: "Issue & documents",
+                  body: "Describe the matter and flag what supporting documents you have.",
                 },
               ].map((item) => (
                 <li key={item.step} className="border-t border-gray-200 pt-5">
@@ -61,7 +61,7 @@ export default function AiIntakePage() {
               </Link>
             </p>
           </div>
-          <IntakeChat mode="public" showVoiceToggle />
+          <ClientIntakeForm />
         </div>
       </MarketingSection>
     </>

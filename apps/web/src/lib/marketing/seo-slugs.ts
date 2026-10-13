@@ -16,34 +16,46 @@ export type SeoCitySlug = (typeof SEO_CITIES)[number]["slug"];
 
 export const LEGAL_SERVICES = [
   {
-    slug: "corporate",
-    label: "Corporate counsel",
-    summary: "Entity setup, governance, and commercial contracting.",
+    slug: "mainland-litigation",
+    label: "Mainland Litigation & Court Advocacy",
+    summary: "Criminal defense, commercial lawsuits, debt recovery litigation, bounced cheques, and Rental Dispute Center (RDC) filings.",
+    forum: "Dubai Courts, Abu Dhabi Judicial Dept, MOJ Advocates",
   },
   {
-    slug: "litigation",
-    label: "Litigation support",
-    summary: "Dispute strategy, filings, and hearing preparation.",
-  },
-  {
-    slug: "employment",
-    label: "Employment law",
-    summary: "Contracts, disputes, and workforce compliance.",
+    slug: "corporate-structuring",
+    label: "Corporate, Commercial & Business Structuring",
+    summary: "Drafting commercial agreements, JV structures, founder vesting, corporate governance, and UAE Corporate Tax compliance.",
+    forum: "Mainland DED, Free Zone Setup (DIFC, ADGM, DMCC), M&A",
   },
   {
     slug: "real-estate",
-    label: "Real estate",
-    summary: "Transactions, leases, and property disputes.",
+    label: "Real Estate, Construction & Property Law",
+    summary: "Developer delay claims, SPA legal audits, cancellation of purchase agreements, lease drafting, and contractor arbitrations.",
+    forum: "Property Transactions, Developer Disputes, Off-Plan",
   },
   {
-    slug: "immigration",
-    label: "Immigration",
-    summary: "Visas, residency, and mobility advice.",
+    slug: "labor-employment",
+    label: "Employment, Labor & Executive Mobility",
+    summary: "Unfair dismissal disputes, end-of-service gratuity calculation, non-compete enforcement, and executive employment contract vetting.",
+    forum: "UAE Labor Law (Law No. 33/2021), MOHRE, Free Zones",
   },
   {
-    slug: "ip",
-    label: "Intellectual property",
-    summary: "Trademarks, copyrights, and brand protection.",
+    slug: "tech-ip-digital-assets",
+    label: "Tech, IP, E-Commerce & Digital Assets",
+    summary: "Trademark filings, software licensing, website terms & privacy policies, DIFC/ADGM Data Protection, and Web3 regulatory guidance.",
+    forum: "Startups, Intellectual Property, Fintech, Data Privacy",
+  },
+  {
+    slug: "arbitration-debt-collection",
+    label: "Cross-Border Debt Recovery & Arbitration",
+    summary: "International commercial arbitration, enforcement of foreign judgments, corporate asset tracing, and out-of-court settlements.",
+    forum: "DIAC, ICC, DIFC-LCIA, ADGM Arbitration Centre",
+  },
+  {
+    slug: "private-client-estate",
+    label: "Private Client, Family Law & Estate Planning",
+    summary: "Non-Muslim wills registration, probate proceedings, asset protection, guardianship, and family trust structuring.",
+    forum: "Expat Personal Status, DIFC/ADGM Wills, HNW Assets",
   },
 ] as const;
 
