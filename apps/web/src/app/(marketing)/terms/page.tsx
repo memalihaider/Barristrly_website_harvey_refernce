@@ -136,10 +136,10 @@ export default function TermsPage() {
 
       <MarketingSection>
         <p className="max-w-3xl text-gray-600 leading-relaxed mb-12">
-          These Terms and Conditions ("Terms") govern your access to and use of
+          These Terms and Conditions (&quot;Terms&quot;) govern your access to and use of
           the website, mobile applications, intake wizards, and concierge
-          services (collectively, the "Platform") provided by Barristrly
-          ("Company", "we", "us", or "our").
+          services (collectively, the &quot;Platform&quot;) provided by Barristrly
+          (&quot;Company&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;).
         </p>
 
         <div className="max-w-3xl space-y-14">

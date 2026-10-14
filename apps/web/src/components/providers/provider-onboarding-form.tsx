@@ -114,7 +114,7 @@ export default function ProviderOnboardingForm() {
           Application received
         </h3>
         <p className="mt-3 text-gray-600 leading-relaxed max-w-md mx-auto">
-          Thank you for applying to the Barristrly network. We'll review your
+          Thank you for applying to the Barristrly network. We&apos;ll review your
           credentials and verification uploads and follow up at the email
           provided once your profile is activated.
         </p>

@@ -137,11 +137,12 @@ export default function MegaMenu({
       if (e.key === "Escape") close();
     };
     document.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const bodyStyle = document.body.style;
+    const prev = bodyStyle.getPropertyValue("overflow");
+    bodyStyle.setProperty("overflow", "hidden");
     return () => {
       document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
+      bodyStyle.setProperty("overflow", prev);
     };
   }, [open]);
 
