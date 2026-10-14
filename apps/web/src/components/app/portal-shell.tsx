@@ -16,6 +16,7 @@ import {
   Search,
   Command,
 } from "lucide-react";
+import { usePolling } from "@/lib/hooks/use-polling";
 import {
   PORTAL_META,
   railForPath,
@@ -67,6 +68,20 @@ export default function PortalShell({
   const [contextOpen, setContextOpen] = useState(true);
   const [activeRailId, setActiveRailId] = useState(pathRail.id);
   const [mobileNav, setMobileNav] = useState(false);
+  const [liveCounts, setLiveCounts] = useState<{ inquiries?: number }>({});
+
+  const hasLiveBadges = useMemo(
+    () => meta.rails.some((r) => r.items.some((i) => i.liveBadge)),
+    [meta.rails],
+  );
+  const loadLiveCounts = useCallback(async () => {
+    if (!hasLiveBadges) return;
+    const res = await fetch("/api/v1/admin/inquiries/stats", { cache: "no-store" });
+    if (!res.ok) return; // e.g. firm admins without Super Admin access
+    const json = await res.json().catch(() => null);
+    if (json?.ok) setLiveCounts({ inquiries: json.data.new });
+  }, [hasLiveBadges]);
+  usePolling(loadLiveCounts, 30_000);
 
   useEffect(() => {
     const s = loadState(meta.storageKey);
@@ -141,6 +156,9 @@ export default function PortalShell({
           {meta.rails.map((rail) => {
             const Icon = rail.icon;
             const active = activeRailId === rail.id;
+            const railLive = rail.items.some(
+              (i) => i.liveBadge && (liveCounts[i.liveBadge] ?? 0) > 0,
+            );
             return (
               <button
                 key={rail.id}
@@ -161,6 +179,9 @@ export default function PortalShell({
                   <span className="absolute left-0 top-1/2 h-5 w-0.5 -translate-y-1/2 rounded-r bg-primary" />
                 ) : null}
                 <Icon className="h-[18px] w-[18px]" strokeWidth={1.75} />
+                {railLive ? (
+                  <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-primary ring-2 ring-ink" aria-label="New items" />
+                ) : null}
               </button>
             );
           })}
@@ -241,6 +262,11 @@ export default function PortalShell({
                         <span className="truncate text-sm font-semibold">
                           {item.label}
                         </span>
+                        {item.liveBadge && (liveCounts[item.liveBadge] ?? 0) > 0 ? (
+                          <span className="rounded-full bg-primary px-1.5 py-0.5 text-[10px] font-bold text-on-primary">
+                            {liveCounts[item.liveBadge]} new
+                          </span>
+                        ) : null}
                         {item.badge ? (
                           <span className="rounded-full bg-primary/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-primary">
                             {item.badge}

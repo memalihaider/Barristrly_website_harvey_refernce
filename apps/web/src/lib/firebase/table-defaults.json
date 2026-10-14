@@ -18,6 +18,11 @@
   "audit_logs": {
     "metadata": {}
   },
+  "blog_posts": {
+    "reading_minutes": 1,
+    "status": "draft",
+    "tags": []
+  },
   "bookings": {
     "status": "requested",
     "timezone": "Asia/Dubai"
@@ -60,8 +65,12 @@
   },
   "inquiries": {
     "metadata": {},
+    "priority": "normal",
     "source": "request_demo",
     "status": "new"
+  },
+  "inquiry_events": {
+    "type": "note"
   },
   "kg_edges": {
     "properties": {}

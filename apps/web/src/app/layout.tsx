@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "@/styles/globals.css";
+import "@/styles/rich-content.css";
 import FirebaseAnalytics from "@/components/providers/firebase-analytics";
 
 const harveySans = localFont({

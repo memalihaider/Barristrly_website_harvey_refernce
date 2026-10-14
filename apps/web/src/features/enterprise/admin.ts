@@ -59,3 +59,28 @@ export async function requireAdminService(): Promise<AdminOk | AdminErr> {
     admin: createServiceClient(),
   };
 }
+
+export const SUPER_ADMIN_ROLES: AppRole[] = ["platform_admin", "mediator"];
+
+/** Like requireAdminService, but only for Super Admin roles. */
+export async function requireSuperAdminService(): Promise<AdminOk | AdminErr> {
+  const gate = await requireAdminService();
+  if (!gate.ok) return gate;
+  if (!SUPER_ADMIN_ROLES.includes(gate.session.profile.role as AppRole)) {
+    return {
+      ok: false,
+      response: apiError("forbidden", "Super Admin required", 403),
+    };
+  }
+  return gate;
+}
+
+/** Display name for audit trails ("Heena", falls back to email). */
+export function actorName(session: AdminOk["session"]): string {
+  return (
+    session.profile.display_name ||
+    session.profile.email ||
+    session.auth.email ||
+    "Admin"
+  );
+}

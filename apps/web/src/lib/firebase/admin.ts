@@ -66,7 +66,12 @@ export function getAdminAuth() {
 export function getAdminFirestore(): Firestore {
   if (firestore) return firestore;
   firestore = getFirestore(getAdminApp());
-  firestore.settings({ ignoreUndefinedProperties: true });
+  try {
+    firestore.settings({ ignoreUndefinedProperties: true });
+  } catch {
+    // Another bundle (e.g. the proxy) already configured this shared
+    // instance with the same settings.
+  }
   return firestore;
 }
 

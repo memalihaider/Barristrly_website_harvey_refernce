@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import PostCard from "@/components/content/post-card";
+import { listPublishedPosts } from "@/lib/content/blog";
 import Link from "next/link";
 import GradientButton from "@/components/ui/gradient-button";
 import {
@@ -70,7 +72,11 @@ const MEDIA = [
   },
 ];
 
-export default function ResourcesPage() {
+export const revalidate = 300;
+
+export default async function ResourcesPage() {
+  const posts = await listPublishedPosts(3);
+
   return (
     <>
       <PageHero
@@ -128,16 +134,32 @@ export default function ResourcesPage() {
 
       <MarketingSection id="articles">
         <SectionIntro title="Articles & Blogs" />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
-          {ARTICLES.map((item) => (
-            <div key={item.title} className="border-t border-gray-200 pt-5">
-              <h3 className="font-serif text-xl text-ink tracking-tight">
-                {item.title}
-              </h3>
-              <p className="mt-2 text-sm text-gray-600">{item.summary}</p>
+        {posts.length ? (
+          <>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {posts.map((p) => (
+                <PostCard key={p.id} post={p} />
+              ))}
             </div>
-          ))}
-        </div>
+            <Link
+              href="/blog"
+              className="mt-8 inline-block text-sm font-semibold text-primary hover:text-primary-hover"
+            >
+              View all articles →
+            </Link>
+          </>
+        ) : (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
+            {ARTICLES.map((item) => (
+              <div key={item.title} className="border-t border-gray-200 pt-5">
+                <h3 className="font-serif text-xl text-ink tracking-tight">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm text-gray-600">{item.summary}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </MarketingSection>
 
       <MarketingSection id="uae-laws" tone="soft">

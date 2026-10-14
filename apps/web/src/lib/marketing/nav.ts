@@ -75,6 +75,7 @@ export const FOOTER_COLUMNS: { title: string; links: NavLink[] }[] = [
       { name: "Book Consultation", href: "/pricing" },
       { name: "Pricing Overview", href: "/pricing" },
       { name: "FAQs", href: "/resources" },
+      { name: "Blog", href: "/blog" },
     ],
   },
   {

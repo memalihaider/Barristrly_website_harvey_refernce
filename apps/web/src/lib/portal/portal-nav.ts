@@ -21,6 +21,9 @@ import {
   ClipboardList,
   UserCircle,
   Inbox,
+  Newspaper,
+  FilePlus2,
+  ExternalLink,
 } from "lucide-react";
 
 export type PortalRole = "client" | "lawyer" | "admin";
@@ -31,6 +34,8 @@ export type ContextNavItem = {
   description?: string;
   icon: LucideIcon;
   badge?: string;
+  /** Live count fetched by the shell (e.g. new inquiries). */
+  liveBadge?: "inquiries";
 };
 
 export type RailItem = {
@@ -257,25 +262,77 @@ export const ADMIN_RAILS: RailItem[] = [
     icon: Home,
     href: "/admin",
     sidebarTitle: "Control Tower",
-    sidebarSubtitle: "Platform overview & shortcuts",
+    sidebarSubtitle: "Live platform overview",
     items: [
       {
         href: "/admin",
         label: "Overview",
-        description: "KPIs, charts, and live queues",
+        description: "Live KPIs and queues",
         icon: LayoutDashboard,
       },
       {
-        href: "/admin/analytics",
-        label: "Analytics",
-        description: "Events and growth telemetry",
-        icon: BarChart3,
+        href: "/admin/inquiries",
+        label: "Inquiries",
+        description: "Website form submissions",
+        icon: Inbox,
+        liveBadge: "inquiries",
       },
       {
-        href: "/admin/insights",
-        label: "AI Insights",
-        description: "Executive briefs and tips",
-        icon: Sparkles,
+        href: "/admin/users",
+        label: "Users",
+        description: "All registered accounts",
+        icon: Users,
+      },
+    ],
+  },
+  {
+    id: "inquiries",
+    label: "Inquiries",
+    icon: Inbox,
+    href: "/admin/inquiries",
+    sidebarTitle: "Inquiries",
+    sidebarSubtitle: "Respond, assign and track",
+    items: [
+      {
+        href: "/admin/inquiries",
+        label: "All inquiries",
+        description: "Filter, search and export",
+        icon: Inbox,
+        liveBadge: "inquiries",
+      },
+      {
+        href: "/request-demo",
+        label: "Inquiry form",
+        description: "The public form visitors use",
+        icon: ExternalLink,
+      },
+    ],
+  },
+  {
+    id: "content",
+    label: "Content",
+    icon: Newspaper,
+    href: "/admin/blog",
+    sidebarTitle: "Website content",
+    sidebarSubtitle: "Blog and legal pages",
+    items: [
+      {
+        href: "/admin/blog/new",
+        label: "Write article",
+        description: "Open the rich editor",
+        icon: FilePlus2,
+      },
+      {
+        href: "/admin/blog",
+        label: "Blog articles",
+        description: "Drafts and published posts",
+        icon: Newspaper,
+      },
+      {
+        href: "/admin/content",
+        label: "Legal pages",
+        description: "Terms and Privacy Policy",
+        icon: FileText,
       },
     ],
   },
@@ -285,14 +342,19 @@ export const ADMIN_RAILS: RailItem[] = [
     icon: Briefcase,
     href: "/admin/lawyers",
     sidebarTitle: "Operations",
-    sidebarSubtitle: "Approvals, ads & onboarding",
+    sidebarSubtitle: "Approvals and onboarding",
     items: [
       {
         href: "/admin/lawyers",
         label: "Lawyer Approvals",
         description: "Verify provider applications",
         icon: UserCheck,
-        badge: "Queue",
+      },
+      {
+        href: "/admin/subscriptions",
+        label: "Plan requests",
+        description: "Bank & PayPal onboarding",
+        icon: CreditCard,
       },
       {
         href: "/admin/ads",
@@ -301,40 +363,10 @@ export const ADMIN_RAILS: RailItem[] = [
         icon: Megaphone,
       },
       {
-        href: "/admin/inquiries",
-        label: "Inquiries",
-        description: "Form submissions from the site",
-        icon: Inbox,
-        badge: "Inbox",
-      },
-      {
-        href: "/admin/subscriptions",
-        label: "Subscriptions",
-        description: "Bank & PayPal onboarding",
-        icon: FileText,
-        badge: "Super",
-      },
-    ],
-  },
-  {
-    id: "finance",
-    label: "Finance",
-    icon: Landmark,
-    href: "/admin/billing",
-    sidebarTitle: "Finance",
-    sidebarSubtitle: "GMV, escrow & payouts",
-    items: [
-      {
         href: "/admin/billing",
         label: "Billing",
-        description: "Payments and escrow accounts",
-        icon: CreditCard,
-      },
-      {
-        href: "/admin/subscriptions",
-        label: "Plan requests",
-        description: "Approve pending subscriptions",
-        icon: FileText,
+        description: "Payments and escrow",
+        icon: Landmark,
       },
     ],
   },
@@ -354,7 +386,7 @@ export const ADMIN_RAILS: RailItem[] = [
       },
       {
         href: "/admin/insights",
-        label: "Insights",
+        label: "AI Insights",
         description: "Optimization and briefs",
         icon: Sparkles,
       },
@@ -394,7 +426,7 @@ export const ADMIN_RAILS: RailItem[] = [
     icon: Settings,
     href: "/admin",
     sidebarTitle: "Workspace",
-    sidebarSubtitle: "Shortcuts & account",
+    sidebarSubtitle: "Shortcuts",
     items: [
       {
         href: "/admin",
@@ -403,16 +435,16 @@ export const ADMIN_RAILS: RailItem[] = [
         icon: LayoutDashboard,
       },
       {
-        href: "/request-demo",
-        label: "Request demo page",
-        description: "Marketing demo funnel",
-        icon: Users,
+        href: "/",
+        label: "View website",
+        description: "Open the public site",
+        icon: ExternalLink,
       },
       {
-        href: "/",
-        label: "Marketing site",
-        description: "Public Barristrly homepage",
-        icon: Search,
+        href: "/blog",
+        label: "Public blog",
+        description: "See published articles",
+        icon: Newspaper,
       },
     ],
   },

@@ -1,12 +1,7 @@
 import { NextRequest } from "next/server";
 import { apiOk, apiError } from "@/lib/api/response";
 import { requireAdminService } from "@/features/enterprise/admin";
-import { 
-  buildPlatformKpis, 
-  generateTimeSeriesData, 
-  generatePracticeAreaBreakdown, 
-  generateConversionFunnel 
-} from "@/features/enterprise";
+import { buildPlatformKpis } from "@/features/enterprise";
 
 export async function GET(_req: NextRequest) {
   const gate = await requireAdminService();
@@ -60,15 +55,8 @@ export async function GET(_req: NextRequest) {
     return apiError("internal", eventsRes.error.message, 500);
   }
 
-  const timeSeries = generateTimeSeriesData(kpis);
-  const practiceAreas = generatePracticeAreaBreakdown();
-  const conversionFunnel = generateConversionFunnel(kpis);
-
   return apiOk({
     kpis,
-    timeSeries,
-    practiceAreas,
-    conversionFunnel,
     recentEvents: eventsRes.data ?? [],
   });
 }
