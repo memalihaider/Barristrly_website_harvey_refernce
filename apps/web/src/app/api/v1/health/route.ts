@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { apiOk } from "@/lib/api/response";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { isDbConfigured } from "@/lib/db/client";
 import { logger } from "@/lib/observability/logger";
 import { JURISDICTIONS, PRACTICE_AREAS, APP_ROLES } from "@/lib/ontology";
 
@@ -10,7 +10,7 @@ export async function GET(_req: NextRequest) {
     service: "barristrly-api",
     version: "v1",
     status: "ok",
-    supabaseConfigured: isSupabaseConfigured(),
+    firebaseConfigured: isDbConfigured(),
     redisConfigured: Boolean(process.env.REDIS_URL),
     stripeConfigured: Boolean(process.env.STRIPE_SECRET_KEY),
     ontology: {

@@ -1,5 +1,5 @@
-import type { User } from "@supabase/supabase-js";
-import { createClient } from "@/lib/supabase/server";
+import type { AuthUser } from "@/lib/firebase/db";
+import { createClient } from "@/lib/db/server";
 
 export type AppRole =
   | "client"
@@ -70,35 +70,55 @@ async function provisionRoleProfiles(
   }
 }
 
-/** Ensures a row exists in public.users for the authenticated Supabase user. */
+/**
+ * Emails that are always Super Admin (platform_admin). Extend with the
+ * SUPER_ADMIN_EMAILS env var (comma separated).
+ */
+const BOOTSTRAP_SUPER_ADMINS = ["heena@barristrly.com"];
+
+export function isBootstrapSuperAdmin(email: string | null | undefined) {
+  if (!email) return false;
+  const list = [
+    ...BOOTSTRAP_SUPER_ADMINS,
+    ...(process.env.SUPER_ADMIN_EMAILS ?? "").split(","),
+  ]
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean);
+  return list.includes(email.toLowerCase());
+}
+
+const USER_COLUMNS =
+  "id, role, email, display_name, onboarding_completed, organization_id";
+
+/** Ensures a `users` row exists for the authenticated Firebase user. */
 export async function ensurePublicUser(
-  authUser: User,
+  authUser: AuthUser,
   role: AppRole = "client"
 ): Promise<PublicUser> {
   const supabase = await createClient();
-  const { data: existing, error: existingError } = await supabase
+  const superAdmin = isBootstrapSuperAdmin(authUser.email);
+
+  const { data: existing } = await supabase
     .from("users")
-    .select("id, role, email, display_name, onboarding_completed, organization_id")
+    .select(USER_COLUMNS)
     .eq("id", authUser.id)
     .maybeSingle();
 
-  if (existingError) {
-    // Fallback if onboarding columns are not migrated yet
-    const { data: legacy } = await supabase
-      .from("users")
-      .select("id, role, email, display_name")
-      .eq("id", authUser.id)
-      .maybeSingle();
-    if (legacy) {
-      return {
-        ...legacy,
-        onboarding_completed: false,
-        organization_id: null,
-      } as PublicUser;
+  if (existing) {
+    if (
+      superAdmin &&
+      (existing.role !== "platform_admin" || !existing.onboarding_completed)
+    ) {
+      const { data: promoted } = await supabase
+        .from("users")
+        .update({ role: "platform_admin", onboarding_completed: true })
+        .eq("id", authUser.id)
+        .select(USER_COLUMNS)
+        .single();
+      if (promoted) return promoted as PublicUser;
     }
+    return existing as PublicUser;
   }
-
-  if (existing) return existing as PublicUser;
 
   const displayName =
     (authUser.user_metadata?.full_name as string | undefined) ||
@@ -106,51 +126,37 @@ export async function ensurePublicUser(
     "User";
 
   const onboardingPending =
-    authUser.user_metadata?.onboarding_pending === true;
+    !superAdmin && authUser.user_metadata?.onboarding_pending === true;
   const metaRole = authUser.user_metadata?.role as AppRole | undefined;
   // Provisional client role when onboarding has not chosen a role yet
-  const resolvedRole = onboardingPending ? "client" : metaRole || role;
-
-  const insertPayload: Record<string, unknown> = {
-    id: authUser.id,
-    email: authUser.email,
-    role: resolvedRole,
-    status: "active",
-    display_name: displayName,
-    onboarding_completed: false,
-  };
-
-  let result: PublicUser | null = null;
+  const resolvedRole: AppRole = superAdmin
+    ? "platform_admin"
+    : onboardingPending
+      ? "client"
+      : metaRole || role;
 
   const insertAttempt = await supabase
     .from("users")
-    .insert(insertPayload)
-    .select("id, role, email, display_name, onboarding_completed, organization_id")
+    .insert({
+      id: authUser.id,
+      email: authUser.email,
+      role: resolvedRole,
+      status: "active",
+      display_name: displayName,
+      onboarding_completed: superAdmin,
+    })
+    .select(USER_COLUMNS)
     .single();
 
   if (insertAttempt.error || !insertAttempt.data) {
-    const retry = await supabase
+    // A concurrent request may have created the row first.
+    const { data: raced } = await supabase
       .from("users")
-      .insert({
-        id: authUser.id,
-        email: authUser.email,
-        role: resolvedRole,
-        status: "active",
-        display_name: displayName,
-      })
-      .select("id, role, email, display_name")
-      .single();
-    if (retry.error || !retry.data) throw retry.error ?? new Error("Failed to create user");
-    result = {
-      id: retry.data.id,
-      role: retry.data.role,
-      email: retry.data.email,
-      display_name: retry.data.display_name,
-      onboarding_completed: false,
-      organization_id: null,
-    };
-  } else {
-    result = insertAttempt.data as PublicUser;
+      .select(USER_COLUMNS)
+      .eq("id", authUser.id)
+      .maybeSingle();
+    if (raced) return raced as PublicUser;
+    throw insertAttempt.error ?? new Error("Failed to create user");
   }
 
   // Defer profile side-effects until onboarding role is chosen
@@ -164,7 +170,7 @@ export async function ensurePublicUser(
     );
   }
 
-  return result;
+  return insertAttempt.data as PublicUser;
 }
 
 export async function assignOnboardingRole(

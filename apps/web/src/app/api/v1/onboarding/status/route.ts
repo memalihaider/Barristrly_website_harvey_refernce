@@ -1,12 +1,12 @@
 import { NextRequest } from "next/server";
 import { apiOk, apiError, notConfigured } from "@/lib/api/response";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/db/server";
 import { homeForRole } from "@/lib/auth/portal";
 
 export async function GET(_req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("Onboarding");
+  if (!isDbConfigured()) return notConfigured("Onboarding");
 
   try {
     const session = await getSessionUser();

@@ -28,6 +28,3 @@ jobs:
         working-directory: .
         env:
           NEXT_TELEMETRY_DISABLED: "1"
-          NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
-          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: public-anon-key
-          SUPABASE_SERVICE_ROLE_KEY: service-role-ci-placeholder

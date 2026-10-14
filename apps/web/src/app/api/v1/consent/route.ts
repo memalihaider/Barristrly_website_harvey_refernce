@@ -6,8 +6,8 @@ import {
   isIdentityRevealed,
 } from "@/features/marketplace/consent";
 import { recordLeadActivity } from "@/features/portal/access";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
 import { notConfigured } from "@/lib/api/response";
 
@@ -18,7 +18,7 @@ const schema = z.object({
 });
 
 export async function GET(req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("Consent");
+  if (!isDbConfigured()) return notConfigured("Consent");
 
   const leadId = req.nextUrl.searchParams.get("leadId");
   const lawyerId = req.nextUrl.searchParams.get("lawyerId");
@@ -52,7 +52,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("Consent");
+  if (!isDbConfigured()) return notConfigured("Consent");
 
   const body = await req.json().catch(() => null);
   const parsed = schema.safeParse(body);

@@ -1,8 +1,8 @@
 /** Phase 7 — Analytics event emit (persists when Supabase configured) */
 import {
-  createServerSupabase,
-  isSupabaseConfigured,
-} from "@/lib/supabase/client";
+  createServiceClient,
+  isDbConfigured,
+} from "@/lib/db/client";
 
 export async function trackEvent(
   eventName: string,
@@ -14,12 +14,12 @@ export async function trackEvent(
     console.debug("[analytics]", eventName, properties);
   }
 
-  if (!isSupabaseConfigured() || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  if (!isDbConfigured()) {
     return;
   }
 
   try {
-    const admin = createServerSupabase({ serviceRole: true });
+    const admin = createServiceClient();
     await admin.from("analytics_events").insert({
       event_name: eventName,
       user_id: userId ?? null,

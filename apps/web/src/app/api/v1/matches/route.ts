@@ -4,8 +4,8 @@ import { apiOk, apiError } from "@/lib/api/response";
 import { rankLawyerMatches } from "@/features/marketplace/matching";
 import { maskDisplayName } from "@/features/marketplace/consent";
 import { PRACTICE_AREAS, JURISDICTIONS } from "@/lib/ontology";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
 import { trackEvent } from "@/features/analytics";
 import { buildOutcomeStatsMap } from "@/features/intelligence";
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
   let fromDatabase = false;
   let outcomeMap = buildOutcomeStatsMap([], []);
 
-  if (isSupabaseConfigured()) {
+  if (isDbConfigured()) {
     const supabase = await createClient();
     const session = await getSessionUser();
 
@@ -144,7 +144,7 @@ export async function POST(req: NextRequest) {
 
   const consentByLawyer = new Map<string, boolean>();
 
-  if (isSupabaseConfigured() && parsed.data.leadId && fromDatabase) {
+  if (isDbConfigured() && parsed.data.leadId && fromDatabase) {
     const supabase = await createClient();
     const session = await getSessionUser();
     const resolvedClientId = clientId ?? session?.auth.id;

@@ -1,0 +1,155 @@
+{
+  "accounting_entries": {
+    "currency": "AED"
+  },
+  "ai_messages": {
+    "citations": []
+  },
+  "ai_prompt_versions": {
+    "is_active": false
+  },
+  "ai_sessions": {
+    "metadata": {},
+    "status": "active"
+  },
+  "analytics_events": {
+    "properties": {}
+  },
+  "audit_logs": {
+    "metadata": {}
+  },
+  "bookings": {
+    "status": "requested",
+    "timezone": "Asia/Dubai"
+  },
+  "client_profiles": {
+    "contact_preference": "platform",
+    "preferred_language": "en"
+  },
+  "coi_screens": {
+    "details": {}
+  },
+  "contract_obligations": {
+    "status": "open"
+  },
+  "contracts": {
+    "counterparty": "",
+    "status": "draft"
+  },
+  "court_cases": {
+    "status": "open"
+  },
+  "documents": {
+    "byte_size": 0,
+    "doc_type": "other",
+    "mime_type": "application/octet-stream",
+    "status": "active",
+    "version": 1
+  },
+  "dual_consent": {
+    "client_status": "pending",
+    "lawyer_status": "pending"
+  },
+  "escrow_accounts": {
+    "client_confirmed": false,
+    "lawyer_confirmed": false
+  },
+  "esign_requests": {
+    "signers": [],
+    "status": "pending"
+  },
+  "inquiries": {
+    "metadata": {},
+    "source": "request_demo",
+    "status": "new"
+  },
+  "kg_edges": {
+    "properties": {}
+  },
+  "kg_entities": {
+    "properties": {}
+  },
+  "lawyer_approvals": {
+    "status": "pending"
+  },
+  "lawyer_matches": {
+    "explanation": {},
+    "is_primary": false
+  },
+  "lawyer_profiles": {
+    "currency": "AED",
+    "is_accepting_leads": true,
+    "jurisdictions": [],
+    "languages": [
+      "en"
+    ],
+    "practice_areas": [],
+    "rating": 0,
+    "subscription_tier": "starter",
+    "verification_status": "pending",
+    "years_experience": 0
+  },
+  "leads": {
+    "is_anonymous": true,
+    "status": "open",
+    "structured_facts": {}
+  },
+  "matter_deadlines": {
+    "kind": "general",
+    "status": "open"
+  },
+  "matter_timeline": {
+    "metadata": {}
+  },
+  "matters": {
+    "status": "intake"
+  },
+  "meetings": {
+    "status": "scheduled"
+  },
+  "notifications": {
+    "channel": "email",
+    "payload": {},
+    "status": "pending"
+  },
+  "organizations": {
+    "jurisdiction_codes": [],
+    "metadata": {},
+    "type": "law_firm"
+  },
+  "payments": {
+    "currency": "AED",
+    "kind": "consultation",
+    "metadata": {},
+    "status": "pending"
+  },
+  "profiles": {
+    "is_anonymous_default": true,
+    "locale": "en"
+  },
+  "settings": {
+    "value": {}
+  },
+  "storage_objects": {
+    "metadata": {}
+  },
+  "subscription_requests": {
+    "plan_snapshot": {},
+    "profile_snapshot": {},
+    "status": "pending_payment"
+  },
+  "subscriptions": {
+    "status": "active"
+  },
+  "users": {
+    "onboarding_completed": false
+  },
+  "webhook_deliveries": {
+    "attempts": 0,
+    "status": "pending"
+  },
+  "webhook_endpoints": {
+    "event_types": [],
+    "is_active": true
+  }
+}

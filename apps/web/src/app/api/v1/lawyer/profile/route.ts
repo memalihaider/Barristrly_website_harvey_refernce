@@ -4,12 +4,12 @@ import { apiOk, apiError, notConfigured } from "@/lib/api/response";
 import { initialsFromName } from "@/features/crm";
 import { writeAuditLog } from "@/features/crm/access";
 import { PRACTICE_AREAS, JURISDICTIONS } from "@/lib/ontology";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
 
 export async function GET(_req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("Lawyer profile");
+  if (!isDbConfigured()) return notConfigured("Lawyer profile");
 
   const session = await getSessionUser();
   if (!session) return apiError("unauthorized", "Sign in required", 401);
@@ -50,7 +50,7 @@ const patchSchema = z.object({
 });
 
 export async function PATCH(req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("Lawyer profile");
+  if (!isDbConfigured()) return notConfigured("Lawyer profile");
 
   const body = await req.json().catch(() => null);
   const parsed = patchSchema.safeParse(body);

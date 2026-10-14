@@ -4,7 +4,12 @@ import { Suspense, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Eye, EyeOff, Lock } from "lucide-react";
-import { createClient } from "@/lib/supabase/browser";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+  authErrorMessage,
+  createServerSession,
+  getClientAuth,
+} from "@/lib/firebase/browser";
 import { resolvePostAuthRedirect } from "@/lib/auth/portal";
 
 function LoginForm() {
@@ -23,45 +28,22 @@ function LoginForm() {
     setLoading(true);
     setError(null);
     try {
-      const supabase = createClient();
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      if (signInError) {
-        setError(
-          /fetch/i.test(signInError.message)
-            ? "Cannot reach the authentication server. Please try again later."
-            : signInError.message
-        );
-        return;
-      }
+      const auth = await getClientAuth();
+      const cred = await signInWithEmailAndPassword(auth, email.trim(), password);
+      const user = await createServerSession(await cred.user.getIdToken());
+      await signOut(auth);
 
-      const meRes = await fetch("/api/v1/auth/me");
-      const meJson = await meRes.json();
-      const role = meJson.ok
-        ? (meJson.data.user?.role as string | undefined)
-        : undefined;
-      const onboardingCompleted = meJson.ok
-        ? Boolean(meJson.data.user?.onboardingCompleted)
-        : true;
-
-      if (!onboardingCompleted) {
+      if (!user.onboardingCompleted) {
         router.push("/onboarding/welcome");
         router.refresh();
         return;
       }
 
-      const dest = resolvePostAuthRedirect(role, nextParam);
+      const dest = resolvePostAuthRedirect(user.role, nextParam);
       router.push(dest);
       router.refresh();
     } catch (err) {
-      const msg = err instanceof Error ? err.message : "";
-      setError(
-        /fetch/i.test(msg)
-          ? "Cannot reach the authentication server. Please try again later."
-          : msg || "Sign-in failed"
-      );
+      setError(authErrorMessage(err, "Sign-in failed"));
     } finally {
       setLoading(false);
     }

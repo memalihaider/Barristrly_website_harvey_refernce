@@ -4,8 +4,8 @@ import { apiCreated, apiError, apiOk, notConfigured } from "@/lib/api/response";
 import { canReleaseEscrow, createCheckoutStub } from "@/features/payments/escrow";
 import { recordLeadActivity } from "@/features/portal/access";
 import { writeAuditLog } from "@/features/crm/access";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
 import { trackEvent } from "@/features/analytics";
 
@@ -26,7 +26,7 @@ const releaseSchema = z.object({
 });
 
 export async function POST(req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("Payments");
+  if (!isDbConfigured()) return notConfigured("Payments");
 
   const body = await req.json().catch(() => null);
   if (body?.action === "release") {

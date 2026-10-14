@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "@/styles/globals.css";
+import FirebaseAnalytics from "@/components/providers/firebase-analytics";
 
 const harveySans = localFont({
   src: "../../public/fonts/HarveySans.woff2",
@@ -45,6 +46,7 @@ export default function RootLayout({
       className={`${harveySans.variable} ${harveySerif.variable} antialiased`}
     >
       <body className="min-h-dvh flex flex-col bg-ivory text-ink font-sans">
+        <FirebaseAnalytics />
         {children}
       </body>
     </html>

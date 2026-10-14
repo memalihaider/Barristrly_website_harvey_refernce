@@ -1,8 +1,8 @@
-import type { SupabaseClient } from "@supabase/supabase-js";
+import type { DbClient } from "@/lib/firebase/db";
 import { isMatterStatus, type LeadRow } from "@/features/portal";
 
 export async function recordLeadActivity(
-  supabase: SupabaseClient,
+  supabase: DbClient,
   leadId: string,
   activity: string
 ) {
@@ -14,7 +14,7 @@ export async function recordLeadActivity(
 
 /** Load a lead and verify the session user is client or assigned/matched lawyer. */
 export async function getAccessibleLead(
-  supabase: SupabaseClient,
+  supabase: DbClient,
   leadId: string,
   userId: string,
   role: string
@@ -53,7 +53,7 @@ export async function getAccessibleLead(
 }
 
 export async function listMattersForUser(
-  supabase: SupabaseClient,
+  supabase: DbClient,
   userId: string,
   role: string
 ): Promise<{ leads: LeadRow[]; error?: string }> {
@@ -113,7 +113,7 @@ export async function listMattersForUser(
 }
 
 export async function getContactRevealed(
-  supabase: SupabaseClient,
+  supabase: DbClient,
   leadId: string,
   lawyerId: string | null
 ): Promise<boolean> {
@@ -128,7 +128,7 @@ export async function getContactRevealed(
 }
 
 export async function getDisplayName(
-  supabase: SupabaseClient,
+  supabase: DbClient,
   userId: string
 ): Promise<string | null> {
   const { data: lawyer } = await supabase
@@ -147,7 +147,7 @@ export async function getDisplayName(
 }
 
 export async function ensureMatterOpenedActivity(
-  supabase: SupabaseClient,
+  supabase: DbClient,
   leadId: string
 ) {
   const { count } = await supabase

@@ -52,7 +52,7 @@ if [[ ! -f "$WEB_ENV" ]]; then
     echo "==> Copying root .env.local → apps/web/.env.local"
     cp "$ROOT_ENV" "$WEB_ENV"
   elif [[ -f "$EXAMPLE" ]]; then
-    echo "==> Creating apps/web/.env.local from .env.example (fill in Supabase keys)"
+    echo "==> Creating apps/web/.env.local from .env.example (fill in Firebase service account)"
     cp "$EXAMPLE" "$WEB_ENV"
   else
     echo "ERROR: No .env.local found. Copy .env.example to apps/web/.env.local"
@@ -76,14 +76,12 @@ require_var() {
 }
 
 echo "==> Checking required env"
-require_var NEXT_PUBLIC_SUPABASE_URL
-require_var NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
-if [[ -z "${SUPABASE_SERVICE_ROLE_KEY:-}" ]]; then
-  echo "WARN: SUPABASE_SERVICE_ROLE_KEY empty — admin console / analytics persist need it"
+if [[ -z "${FIREBASE_SERVICE_ACCOUNT_KEY:-}" ]]; then
+  echo "WARN: FIREBASE_SERVICE_ACCOUNT_KEY empty — auth and all data features need it"
 fi
 
 if [[ "$missing" -eq 1 ]]; then
-  echo "HINT: Get keys from Supabase → Project Settings → API"
+  echo "HINT: Firebase console → Project settings → Service accounts → Generate new private key"
   echo "      Then: open apps/web/.env.local and fill values (see .env.example)"
 fi
 

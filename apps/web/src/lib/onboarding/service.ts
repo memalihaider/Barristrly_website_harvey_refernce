@@ -1,5 +1,5 @@
-import type { SupabaseClient } from "@supabase/supabase-js";
-import { createClient } from "@/lib/supabase/server";
+import type { DbClient } from "@/lib/firebase/db";
+import { createClient } from "@/lib/db/server";
 import {
   findPlan,
   type OnboardingPlan,
@@ -8,7 +8,7 @@ import {
 import { homeForRole } from "@/lib/auth/portal";
 import type { PublicUser } from "@/lib/auth/session";
 
-async function db(client?: SupabaseClient) {
+async function db(client?: DbClient) {
   return client ?? (await createClient());
 }
 
@@ -170,7 +170,7 @@ export async function activateSubscriptionRequest(
     stripeSessionId?: string;
     reviewedBy?: string;
     adminNotes?: string;
-    client?: SupabaseClient;
+    client?: DbClient;
   }
 ) {
   const supabase = await db(opts?.client);
@@ -222,7 +222,7 @@ export async function rejectSubscriptionRequest(
   requestId: string,
   reviewedBy: string,
   adminNotes?: string,
-  client?: SupabaseClient
+  client?: DbClient
 ) {
   const supabase = await db(client);
   const { error } = await supabase

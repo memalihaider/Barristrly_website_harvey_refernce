@@ -3,8 +3,8 @@ import { z } from "zod";
 import { apiCreated, apiError, apiOk, notConfigured } from "@/lib/api/response";
 import { createMeetingSessionStub } from "@/features/meetings/mediasoup";
 import { recordLeadActivity } from "@/features/portal/access";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
 
 const bookingSchema = z.object({
@@ -16,7 +16,7 @@ const bookingSchema = z.object({
 });
 
 export async function GET() {
-  if (!isSupabaseConfigured()) return notConfigured("Bookings");
+  if (!isDbConfigured()) return notConfigured("Bookings");
 
   const session = await getSessionUser();
   if (!session) return apiError("unauthorized", "Sign in required", 401);
@@ -54,7 +54,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("Bookings");
+  if (!isDbConfigured()) return notConfigured("Bookings");
 
   const body = await req.json().catch(() => null);
   const parsed = bookingSchema.safeParse(body);

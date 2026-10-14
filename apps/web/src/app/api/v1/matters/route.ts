@@ -6,12 +6,12 @@ import {
   getDisplayName,
   listMattersForUser,
 } from "@/features/portal/access";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
 
 export async function GET(_req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("Matters");
+  if (!isDbConfigured()) return notConfigured("Matters");
 
   const session = await getSessionUser();
   if (!session) return apiError("unauthorized", "Sign in required", 401);

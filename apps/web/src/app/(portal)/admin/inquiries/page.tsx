@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type Inquiry = {
   id: string;
@@ -26,7 +26,7 @@ export default function AdminInquiriesPage() {
   const [loading, setLoading] = useState(true);
   const [busyId, setBusyId] = useState<string | null>(null);
 
-  async function load() {
+  const load = useCallback(async () => {
     const res = await fetch("/api/v1/admin/inquiries");
     const json = await res.json();
     setLoading(false);
@@ -35,11 +35,12 @@ export default function AdminInquiriesPage() {
       return;
     }
     setInquiries(json.data.inquiries ?? []);
-  }
+  }, []);
 
   useEffect(() => {
-    void load();
-  }, []);
+    const t = setTimeout(() => void load(), 0);
+    return () => clearTimeout(t);
+  }, [load]);
 
   async function setStatus(id: string, status: Inquiry["status"]) {
     setBusyId(id);

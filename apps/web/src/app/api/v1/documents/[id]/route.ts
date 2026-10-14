@@ -4,14 +4,14 @@ import { MATTER_DOCUMENTS_BUCKET } from "@/features/documents";
 import { getAccessibleLead, recordLeadActivity } from "@/features/portal/access";
 import { matterAccessError } from "@/features/portal/http";
 import { writeAuditLog } from "@/features/crm/access";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
 
 type Ctx = { params: Promise<{ id: string }> };
 
 export async function GET(_req: NextRequest, ctx: Ctx) {
-  if (!isSupabaseConfigured()) return notConfigured("Documents");
+  if (!isDbConfigured()) return notConfigured("Documents");
 
   const { id } = await ctx.params;
   const session = await getSessionUser();
@@ -50,7 +50,7 @@ export async function GET(_req: NextRequest, ctx: Ctx) {
 }
 
 export async function DELETE(req: NextRequest, ctx: Ctx) {
-  if (!isSupabaseConfigured()) return notConfigured("Documents");
+  if (!isDbConfigured()) return notConfigured("Documents");
 
   const { id } = await ctx.params;
   const hard = req.nextUrl.searchParams.get("hard") === "true";

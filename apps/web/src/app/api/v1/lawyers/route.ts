@@ -1,10 +1,10 @@
 import { NextRequest } from "next/server";
 import { apiOk } from "@/lib/api/response";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 
 export async function GET(_req: NextRequest) {
-  if (!isSupabaseConfigured()) {
+  if (!isDbConfigured()) {
     return apiOk({
       lawyers: [],
       message: "Configure Supabase to load directory",

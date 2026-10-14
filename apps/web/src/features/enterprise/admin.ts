@@ -1,10 +1,10 @@
-import type { SupabaseClient } from "@supabase/supabase-js";
+import type { DbClient } from "@/lib/firebase/db";
 import { apiError, notConfigured } from "@/lib/api/response";
 import { requireRole, type AppRole } from "@/lib/auth/session";
 import {
-  createServerSupabase,
-  isSupabaseConfigured,
-} from "@/lib/supabase/client";
+  createServiceClient,
+  isDbConfigured,
+} from "@/lib/db/client";
 
 export const ADMIN_ROLES: AppRole[] = [
   "platform_admin",
@@ -15,14 +15,14 @@ export const ADMIN_ROLES: AppRole[] = [
 type AdminOk = {
   ok: true;
   session: NonNullable<Awaited<ReturnType<typeof requireRole>>>;
-  admin: SupabaseClient;
+  admin: DbClient;
 };
 
 type AdminErr = { ok: false; response: Response };
 
 /** Admin session + service-role client. Strict role — no staging fallback. */
 export async function requireAdminService(): Promise<AdminOk | AdminErr> {
-  if (!isSupabaseConfigured()) {
+  if (!isDbConfigured()) {
     return { ok: false, response: notConfigured("Admin") };
   }
 
@@ -42,12 +42,12 @@ export async function requireAdminService(): Promise<AdminOk | AdminErr> {
     };
   }
 
-  if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  if (!isDbConfigured()) {
     return {
       ok: false,
       response: apiError(
         "not_configured",
-        "SUPABASE_SERVICE_ROLE_KEY required for admin console",
+        "FIREBASE_SERVICE_ACCOUNT_KEY required for admin console",
         503
       ),
     };
@@ -56,6 +56,6 @@ export async function requireAdminService(): Promise<AdminOk | AdminErr> {
   return {
     ok: true,
     session,
-    admin: createServerSupabase({ serviceRole: true }),
+    admin: createServiceClient(),
   };
 }

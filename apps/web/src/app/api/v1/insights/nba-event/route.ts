@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import { z } from "zod";
 import { apiOk, apiError, notConfigured } from "@/lib/api/response";
 import { getSessionUser } from "@/lib/auth/session";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { isDbConfigured } from "@/lib/db/client";
 import { trackEvent } from "@/features/analytics";
 
 const schema = z.object({
@@ -12,7 +12,7 @@ const schema = z.object({
 });
 
 export async function POST(req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("NBA events");
+  if (!isDbConfigured()) return notConfigured("NBA events");
 
   const session = await getSessionUser();
   if (!session) return apiError("unauthorized", "Sign in required", 401);

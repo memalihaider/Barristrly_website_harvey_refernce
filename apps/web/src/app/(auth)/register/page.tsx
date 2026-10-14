@@ -4,7 +4,16 @@ import { Suspense, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Lock } from "lucide-react";
-import { createClient } from "@/lib/supabase/browser";
+import {
+  createUserWithEmailAndPassword,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
+import {
+  authErrorMessage,
+  createServerSession,
+  getClientAuth,
+} from "@/lib/firebase/browser";
 
 function RegisterForm() {
   const router = useRouter();
@@ -22,41 +31,23 @@ function RegisterForm() {
     setError(null);
     setMessage(null);
     try {
-      const supabase = createClient();
-      const { data, error: signUpError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            full_name: fullName.trim(),
-            onboarding_pending: true,
-          },
-        },
+      const auth = await getClientAuth();
+      const name = fullName.trim();
+      const cred = await createUserWithEmailAndPassword(
+        auth,
+        email.trim(),
+        password
+      );
+      if (name) await updateProfile(cred.user, { displayName: name });
+      await createServerSession(await cred.user.getIdToken(true), {
+        fullName: name,
+        onboardingPending: true,
       });
-      if (signUpError) {
-        setError(
-          /fetch/i.test(signUpError.message)
-            ? "Cannot reach the authentication server. Please try again later."
-            : signUpError.message
-        );
-        return;
-      }
-      if (data.session) {
-        await fetch("/api/v1/auth/me");
-        router.push("/onboarding/welcome");
-        router.refresh();
-        return;
-      }
-      setMessage(
-        "Check your email to confirm your account, then log in to continue onboarding."
-      );
+      await signOut(auth);
+      router.push("/onboarding/welcome");
+      router.refresh();
     } catch (err) {
-      const msg = err instanceof Error ? err.message : "";
-      setError(
-        /fetch/i.test(msg)
-          ? "Cannot reach the authentication server. Please try again later."
-          : msg || "Sign-up failed"
-      );
+      setError(authErrorMessage(err, "Sign-up failed"));
     } finally {
       setLoading(false);
     }

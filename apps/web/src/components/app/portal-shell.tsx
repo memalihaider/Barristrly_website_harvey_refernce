@@ -327,12 +327,19 @@ export default function PortalShell({
             {meta.badgeLabel}
           </span>
 
-          <Link
-            href="/login"
+          <button
+            type="button"
+            onClick={async () => {
+              await fetch("/api/v1/auth/session", { method: "DELETE" }).catch(
+                () => undefined
+              );
+              router.push("/login");
+              router.refresh();
+            }}
             className="rounded-lg bg-ink px-3 py-1.5 text-xs font-semibold text-ivory hover:bg-black transition-colors"
           >
             Sign out
-          </Link>
+          </button>
         </header>
 
         <main className="flex-1 min-w-0 overflow-y-auto p-4 sm:p-6 md:p-8">

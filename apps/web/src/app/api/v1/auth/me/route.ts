@@ -1,10 +1,10 @@
 import { NextRequest } from "next/server";
 import { apiOk, apiError, notConfigured } from "@/lib/api/response";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
 
 export async function GET(_req: NextRequest) {
-  if (!isSupabaseConfigured()) {
+  if (!isDbConfigured()) {
     return notConfigured("Auth");
   }
 

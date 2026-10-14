@@ -5,8 +5,8 @@ import { runAiAgent, type AiAgentKey } from "@/features/ai";
 import { getAccessibleLead, recordLeadActivity } from "@/features/portal/access";
 import { matterAccessError } from "@/features/portal/http";
 import { writeAuditLog } from "@/features/crm/access";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
 
 const schema = z.object({
@@ -26,7 +26,7 @@ type ChatMessage = {
 };
 
 export async function POST(req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("AI");
+  if (!isDbConfigured()) return notConfigured("AI");
 
   const body = await req.json().catch(() => null);
   const parsed = schema.safeParse(body);
@@ -169,7 +169,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("AI");
+  if (!isDbConfigured()) return notConfigured("AI");
 
   const sessionId = req.nextUrl.searchParams.get("sessionId");
   if (!sessionId) {

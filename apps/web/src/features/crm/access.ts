@@ -1,7 +1,7 @@
-import type { SupabaseClient } from "@supabase/supabase-js";
+import type { DbClient } from "@/lib/firebase/db";
 
 export async function writeAuditLog(
-  supabase: SupabaseClient,
+  supabase: DbClient,
   opts: {
     action: string;
     performedBy: string;
@@ -17,7 +17,7 @@ export async function writeAuditLog(
 
 /** Leads visible to a lawyer: assigned or matched. */
 export async function listLawyerLeadRows(
-  supabase: SupabaseClient,
+  supabase: DbClient,
   lawyerId: string
 ) {
   const { data: assigned } = await supabase
@@ -52,7 +52,7 @@ export async function listLawyerLeadRows(
 }
 
 export async function lawyerCanAccessLead(
-  supabase: SupabaseClient,
+  supabase: DbClient,
   lawyerId: string,
   leadId: string
 ): Promise<boolean> {

@@ -9,14 +9,14 @@ import {
 import { getAccessibleLead, recordLeadActivity } from "@/features/portal/access";
 import { matterAccessError } from "@/features/portal/http";
 import { writeAuditLog } from "@/features/crm/access";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
 
 type Ctx = { params: Promise<{ id: string }> };
 
 export async function GET(_req: NextRequest, ctx: Ctx) {
-  if (!isSupabaseConfigured()) return notConfigured("Deadlines");
+  if (!isDbConfigured()) return notConfigured("Deadlines");
 
   const { id } = await ctx.params;
   const session = await getSessionUser();
@@ -57,7 +57,7 @@ const postSchema = z.object({
 });
 
 export async function POST(req: NextRequest, ctx: Ctx) {
-  if (!isSupabaseConfigured()) return notConfigured("Deadlines");
+  if (!isDbConfigured()) return notConfigured("Deadlines");
 
   const { id } = await ctx.params;
   const body = await req.json().catch(() => null);

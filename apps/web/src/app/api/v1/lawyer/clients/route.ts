@@ -3,12 +3,12 @@ import { apiOk, apiError, notConfigured } from "@/lib/api/response";
 import { maskDisplayName } from "@/features/marketplace/consent";
 import type { CrmClientSummary } from "@/features/crm";
 import { listLawyerLeadRows } from "@/features/crm/access";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
 
 export async function GET(_req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("CRM clients");
+  if (!isDbConfigured()) return notConfigured("CRM clients");
 
   const session = await getSessionUser();
   if (!session) return apiError("unauthorized", "Sign in required", 401);

@@ -1,13 +1,13 @@
 import { NextRequest } from "next/server";
 import { apiOk, apiError, notConfigured } from "@/lib/api/response";
 import { getSessionUser } from "@/lib/auth/session";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 import { listLawyerLeadRows } from "@/features/crm/access";
 import { buildLawyerInsights, toLawyerNextBestActions } from "@/features/intelligence";
 
 export async function GET(_req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("Lawyer insights");
+  if (!isDbConfigured()) return notConfigured("Lawyer insights");
 
   const session = await getSessionUser();
   if (!session) return apiError("unauthorized", "Sign in required", 401);

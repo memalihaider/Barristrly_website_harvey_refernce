@@ -9,8 +9,8 @@ import {
 import { enqueueJob } from "@/lib/jobs/queue";
 import { logger } from "@/lib/observability/logger";
 import { getSessionUser } from "@/lib/auth/session";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 import { PRACTICE_AREAS, JURISDICTIONS, URGENCY_LEVELS } from "@/lib/ontology";
 import { trackEvent } from "@/features/analytics";
 
@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
     masked: structured.facts?.masked === true,
   });
 
-  if (!isSupabaseConfigured()) {
+  if (!isDbConfigured()) {
     return apiOk({
       leadDraft: structured,
       persisted: false,

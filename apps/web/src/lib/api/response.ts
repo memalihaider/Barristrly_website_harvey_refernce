@@ -32,7 +32,7 @@ export function apiError(
 export function notConfigured(feature: string) {
   return apiError(
     "not_configured",
-    `${feature} requires Supabase/env configuration. See .env.example.`,
+    `${feature} requires Firebase configuration (FIREBASE_SERVICE_ACCOUNT_KEY). See .env.example.`,
     503
   );
 }

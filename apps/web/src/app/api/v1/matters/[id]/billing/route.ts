@@ -2,14 +2,14 @@ import { NextRequest } from "next/server";
 import { apiOk, apiError, notConfigured } from "@/lib/api/response";
 import { getAccessibleLead } from "@/features/portal/access";
 import { matterAccessError } from "@/features/portal/http";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
 
 type Ctx = { params: Promise<{ id: string }> };
 
 export async function GET(_req: NextRequest, ctx: Ctx) {
-  if (!isSupabaseConfigured()) return notConfigured("Matters");
+  if (!isDbConfigured()) return notConfigured("Matters");
 
   const { id } = await ctx.params;
   const session = await getSessionUser();

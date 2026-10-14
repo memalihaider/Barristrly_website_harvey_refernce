@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import { z } from "zod";
 import { apiOk, apiError, notConfigured } from "@/lib/api/response";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
 import { saveOnboardingDetails } from "@/lib/onboarding/service";
 
@@ -36,7 +36,7 @@ const schema = z.discriminatedUnion("role", [
 ]);
 
 export async function POST(req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("Onboarding");
+  if (!isDbConfigured()) return notConfigured("Onboarding");
 
   const body = await req.json().catch(() => null);
   const parsed = schema.safeParse(body);

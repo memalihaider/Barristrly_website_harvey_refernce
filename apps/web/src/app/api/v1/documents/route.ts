@@ -13,12 +13,12 @@ import {
 import { getAccessibleLead, recordLeadActivity } from "@/features/portal/access";
 import { matterAccessError } from "@/features/portal/http";
 import { writeAuditLog } from "@/features/crm/access";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createClient } from "@/lib/db/server";
+import { isDbConfigured } from "@/lib/db/client";
 import { getSessionUser } from "@/lib/auth/session";
 
 export async function GET(req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("Documents");
+  if (!isDbConfigured()) return notConfigured("Documents");
 
   const leadId = req.nextUrl.searchParams.get("leadId");
   const includeArchived =
@@ -70,7 +70,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  if (!isSupabaseConfigured()) return notConfigured("Documents");
+  if (!isDbConfigured()) return notConfigured("Documents");
 
   const session = await getSessionUser();
   if (!session) return apiError("unauthorized", "Sign in required", 401);

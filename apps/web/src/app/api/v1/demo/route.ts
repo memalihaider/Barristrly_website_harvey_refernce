@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import { z } from "zod";
 import { apiCreated, apiError, apiOk } from "@/lib/api/response";
 import { trackEvent } from "@/features/analytics";
-import { createServerSupabase } from "@/lib/supabase/client";
+import { createServiceClient, isDbConfigured } from "@/lib/db/client";
 
 const demoRequestSchema = z.object({
   name: z.string().trim().min(1).max(120),
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     submittedAt: new Date().toISOString(),
   };
 
-  if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  if (!isDbConfigured()) {
     return apiError(
       "not_configured",
       "Inquiries are not configured. Please try again later.",
@@ -41,9 +41,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { error: insertError } = await createServerSupabase({
-    serviceRole: true,
-  })
+  const { error: insertError } = await createServiceClient()
     .from("inquiries")
     .insert({
       source: "request_demo",

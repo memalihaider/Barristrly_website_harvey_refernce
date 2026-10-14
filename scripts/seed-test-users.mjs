@@ -1,42 +1,19 @@
 #!/usr/bin/env node
 /**
- * Seed test Auth users + public.users / profiles for all app roles.
+ * Seed test Firebase Auth users + users / profile docs for all app roles.
  * Usage (from repo root):
  *   npm run seed:test-users
  *
- * Requires apps/web/.env.local with NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY.
+ * Requires FIREBASE_SERVICE_ACCOUNT_KEY in .env.local.
  */
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { createClient } from "@supabase/supabase-js";
+import { upsertAuthUser as upsertFirebaseUser, upsertRow } from "./lib/firebase-admin.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
-const envPath = path.join(ROOT, "apps/web/.env.local");
 const outPath = path.join(ROOT, "apps/web/.test-accounts.local.md");
-
-function loadEnv(file) {
-  const env = {};
-  if (!fs.existsSync(file)) return env;
-  for (const line of fs.readFileSync(file, "utf8").split("\n")) {
-    const t = line.trim();
-    if (!t || t.startsWith("#")) continue;
-    const i = t.indexOf("=");
-    if (i < 0) continue;
-    env[t.slice(0, i)] = t.slice(i + 1);
-  }
-  return env;
-}
-
-const env = { ...loadEnv(path.join(ROOT, ".env.local")), ...loadEnv(envPath) };
-const url = env.NEXT_PUBLIC_SUPABASE_URL;
-const serviceKey = env.SUPABASE_SERVICE_ROLE_KEY;
-
-if (!url || !serviceKey) {
-  console.error("Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY");
-  process.exit(1);
-}
 
 const PASSWORD = "TestBarristrly2026!";
 
@@ -75,69 +52,31 @@ const ACCOUNTS = [
   },
 ];
 
-const admin = createClient(url, serviceKey, {
-  auth: { autoRefreshToken: false, persistSession: false },
-});
-
-async function findUserByEmail(email) {
-  const { data, error } = await admin.auth.admin.listUsers({
-    page: 1,
-    perPage: 200,
-  });
-  if (error) throw error;
-  return (data.users ?? []).find(
-    (u) => u.email?.toLowerCase() === email.toLowerCase()
-  );
-}
-
 async function upsertAuthUser(account) {
-  const existing = await findUserByEmail(account.email);
-  if (existing) {
-    const { data, error } = await admin.auth.admin.updateUserById(existing.id, {
-      password: PASSWORD,
-      email_confirm: true,
-      user_metadata: {
-        full_name: account.displayName,
-        role: account.role,
-      },
-    });
-    if (error) throw error;
-    return data.user;
-  }
-
-  const { data, error } = await admin.auth.admin.createUser({
+  const user = await upsertFirebaseUser({
     email: account.email,
     password: PASSWORD,
-    email_confirm: true,
-    user_metadata: {
-      full_name: account.displayName,
-      role: account.role,
-    },
+    displayName: account.displayName,
   });
-  if (error) throw error;
-  return data.user;
+  return { id: user.uid };
 }
 
 async function upsertPublicRows(user, account) {
-  const { error: userErr } = await admin.from("users").upsert(
-    {
-      id: user.id,
-      email: account.email,
-      role: account.role,
-      status: "active",
-      display_name: account.displayName,
-    },
-    { onConflict: "id" }
-  );
-  if (userErr) throw userErr;
+  await upsertRow("users", {
+    id: user.id,
+    email: account.email,
+    role: account.role,
+    status: "active",
+    display_name: account.displayName,
+    onboarding_completed: true,
+  });
 
   if (account.role === "client") {
-    const { error } = await admin.from("client_profiles").upsert({
+    await upsertRow("client_profiles", {
       id: user.id,
       preferred_language: "en",
       contact_preference: "platform",
     });
-    if (error) throw error;
   }
 
   if (account.lawyer) {
@@ -149,7 +88,7 @@ async function upsertPublicRows(user, account) {
         .slice(0, 3)
         .toUpperCase() || "LW";
 
-    const { error: lpErr } = await admin.from("lawyer_profiles").upsert({
+    await upsertRow("lawyer_profiles", {
       id: user.id,
       display_name: account.displayName,
       initials,
@@ -161,30 +100,25 @@ async function upsertPublicRows(user, account) {
       subscription_tier: "free",
       rating: 4.7,
     });
-    if (lpErr) throw lpErr;
 
-    const { error: apErr } = await admin.from("lawyer_approvals").upsert({
+    await upsertRow("lawyer_approvals", {
       id: user.id,
       email: account.email,
       display_name: account.displayName,
       status: "approved",
     });
-    if (apErr) throw apErr;
   }
 
   if (account.role === "mediator") {
-    const { error } = await admin.from("mediator_profiles").upsert({
+    await upsertRow("mediator_profiles", {
       id: user.id,
       display_name: account.displayName,
     });
-    if (error) {
-      console.warn("  (mediator_profiles skip:", error.message + ")");
-    }
   }
 }
 
 async function main() {
-  console.log("Seeding test users against", url);
+  console.log("Seeding test users into Firebase");
   const rows = [];
 
   for (const account of ACCOUNTS) {

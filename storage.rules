@@ -1,0 +1,11 @@
+rules_version = '2';
+
+// Matter documents are uploaded and served via the API (Admin SDK + signed
+// URLs). Browsers get no direct Storage access.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
