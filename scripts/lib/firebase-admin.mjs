@@ -5,12 +5,15 @@
  */
 import fs from "fs";
 import path from "path";
+import { createRequire } from "module";
 import { fileURLToPath } from "url";
-import { cert, initializeApp } from "firebase-admin/app";
-import { getAuth } from "firebase-admin/auth";
-import { getFirestore } from "firebase-admin/firestore";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+// firebase-admin is a dependency of the web workspace; resolve it from there.
+const require = createRequire(path.join(ROOT, "apps/web/package.json"));
+const { cert, initializeApp } = require("firebase-admin/app");
+const { getAuth } = require("firebase-admin/auth");
+const { getFirestore } = require("firebase-admin/firestore");
 const PROJECT_ID = "barristrly-77608";
 
 function loadEnv(file) {
