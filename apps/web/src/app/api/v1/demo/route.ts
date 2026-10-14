@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 import { z } from "zod";
 import { apiCreated, apiError, apiOk } from "@/lib/api/response";
 import { trackEvent } from "@/features/analytics";
+import { createServerSupabase } from "@/lib/supabase/client";
 
 const demoRequestSchema = z.object({
   name: z.string().trim().min(1).max(120),
@@ -31,6 +32,41 @@ export async function POST(req: NextRequest) {
     message: parsed.data.message || null,
     submittedAt: new Date().toISOString(),
   };
+
+  if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    return apiError(
+      "not_configured",
+      "Inquiries are not configured. Please try again later.",
+      503
+    );
+  }
+
+  const { error: insertError } = await createServerSupabase({
+    serviceRole: true,
+  })
+    .from("inquiries")
+    .insert({
+      source: "request_demo",
+      name: payload.name,
+      email: payload.email,
+      organization: payload.organization,
+      role: payload.role,
+      country: payload.country,
+      message: payload.message,
+      metadata: {
+        userAgent: req.headers.get("user-agent"),
+        referer: req.headers.get("referer"),
+      },
+    });
+
+  if (insertError) {
+    console.error("[demo] failed to store inquiry", insertError.message);
+    return apiError(
+      "internal",
+      "We could not submit your request. Please try again.",
+      500
+    );
+  }
 
   void trackEvent("demo_request_submitted", {
     role: payload.role,

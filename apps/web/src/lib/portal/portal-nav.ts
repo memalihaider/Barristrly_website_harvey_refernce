@@ -20,6 +20,7 @@ import {
   Calendar,
   ClipboardList,
   UserCircle,
+  Inbox,
 } from "lucide-react";
 
 export type PortalRole = "client" | "lawyer" | "admin";
@@ -298,6 +299,13 @@ export const ADMIN_RAILS: RailItem[] = [
         label: "Ads Moderation",
         description: "Review sponsored listings",
         icon: Megaphone,
+      },
+      {
+        href: "/admin/inquiries",
+        label: "Inquiries",
+        description: "Form submissions from the site",
+        icon: Inbox,
+        badge: "Inbox",
       },
       {
         href: "/admin/subscriptions",

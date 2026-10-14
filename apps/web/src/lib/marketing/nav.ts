@@ -18,6 +18,8 @@ export type NavGroup = {
   /** Flat list split across columns in the mega panel */
   items?: NavLink[];
   columns?: { title?: string; items: NavLink[] }[];
+  /** Overrides the column links in the mobile menu, rendered as bullets */
+  mobileItems?: NavLink[];
   featured?: NavFeatured;
 };
 
@@ -33,6 +35,11 @@ export const PRIMARY_NAV: NavGroup[] = [
     columns: [
       { title: "Practice pillars", items: PRACTICE_LINKS.slice(0, 4) },
       { title: "More practice pillars", items: PRACTICE_LINKS.slice(4) },
+    ],
+    mobileItems: [
+      { name: "Legal Matching", href: "/ai/intake" },
+      { name: "Legal Retainers", href: "/pricing#retainers" },
+      { name: "Legal Consultation", href: "/pricing" },
     ],
     featured: {
       href: "/services",

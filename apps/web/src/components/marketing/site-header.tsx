@@ -128,7 +128,10 @@ export default function SiteHeader() {
                   );
                 }
                 const links =
-                  group.columns?.flatMap((c) => c.items) ?? group.items ?? [];
+                  group.mobileItems ??
+                  group.columns?.flatMap((c) => c.items) ??
+                  group.items ??
+                  [];
                 const seen = new Set<string>();
                 const unique = links.filter((item) => {
                   const key = item.href + item.name;
@@ -141,18 +144,19 @@ export default function SiteHeader() {
                     <p className="text-[11px] uppercase tracking-[0.16em] text-white/40">
                       {group.name}
                     </p>
-                    <div className="flex flex-col gap-3">
+                    <ul className="flex flex-col gap-3 list-disc pl-5 marker:text-white/60">
                       {unique.map((item) => (
-                        <Link
-                          key={item.href + item.name}
-                          href={item.href}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="text-base font-semibold !text-white hover:text-primary"
-                        >
-                          {item.name}
-                        </Link>
+                        <li key={item.href + item.name}>
+                          <Link
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="text-base font-semibold !text-white hover:text-primary"
+                          >
+                            {item.name}
+                          </Link>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
                 );
               })}

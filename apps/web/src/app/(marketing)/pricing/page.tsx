@@ -11,7 +11,7 @@ import {
 export const metadata: Metadata = {
   title: "Pricing | Barristrly",
   description:
-    "Free Lawyer Sourcing & Matching, or a Dedicated Legal Consultation at AED 1,000 + 5% VAT. Clear, fixed pricing — no subscriptions.",
+    "Free Lawyer Sourcing & Matching, a Dedicated Legal Consultation at AED 1,000 + 5% VAT, Legal Retainers from AED 6,999/month, and Fixed-Fee Legal Solutions.",
 };
 
 const OPTIONS = [
@@ -45,6 +45,39 @@ const OPTIONS = [
     ctaHref: "/ai/intake",
     variant: "primary" as const,
   },
+  {
+    id: "retainers",
+    eyebrow: "Option 3",
+    title: "Legal Retainer Services",
+    price: "AED 6,999",
+    priceDetail: "/ month",
+    body: "Enjoy ongoing, dedicated legal support to safeguard your business operations.",
+    deliverables: [
+      "10 Hours of Monthly Legal Expertise: Dedicated consultation and advisory on demand.",
+      "Contract & Agreement Drafting: Custom drafting, review, and tailored contract solutions.",
+      "Priority Access: Streamlined legal assistance with fast turnaround times.",
+      "Custom Solutions: Contact us to learn more about tailored retainers for your business.",
+    ],
+    ctaLabel: "Enquire About Retainers",
+    ctaHref: "/request-demo",
+    variant: "primary" as const,
+  },
+  {
+    id: "fixed-fee",
+    eyebrow: "Option 4",
+    title: "Fixed-Fee Legal Solutions",
+    price: "Custom",
+    priceDetail: "Fixed Pricing",
+    body: "Predictable, transparent legal advice without hidden costs or surprises.",
+    deliverables: [
+      "Fixed-Price Legal Consultation: Expert advice tailored to your specific legal queries.",
+      "Bespoke Agreement & Document Drafting: Standard and complex legal drafting at agreed fixed rates.",
+      "Project-Based Advisory: Contact us to request a customized quote for your needs.",
+    ],
+    ctaLabel: "Request a Fixed-Fee Quote",
+    ctaHref: "/request-demo",
+    variant: "outline" as const,
+  },
 ];
 
 export default function PricingPage() {
@@ -52,7 +85,7 @@ export default function PricingPage() {
     <>
       <PageHero
         eyebrow="Pricing"
-        title="Two clear pricing options — no subscriptions"
+        title="Clear, transparent pricing options"
         description="All prices are stated in AED. A 5% VAT applies to taxable services and is itemized at checkout, in compliance with UAE Federal Decree-Law No. 8 of 2017."
       />
 
@@ -61,7 +94,8 @@ export default function PricingPage() {
           {OPTIONS.map((option) => (
             <div
               key={option.title}
-              className="rounded-2xl border border-gray-200 bg-[#fafaf9] p-7 md:p-8 flex flex-col"
+              id={"id" in option ? option.id : undefined}
+              className="scroll-mt-28 rounded-2xl border border-gray-200 bg-[#fafaf9] p-7 md:p-8 flex flex-col"
             >
               <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary mb-3">
                 {option.eyebrow}
@@ -79,12 +113,22 @@ export default function PricingPage() {
                 {option.body}
               </p>
               <ul className="mt-6 space-y-2.5 list-none p-0 m-0">
-                {option.deliverables.map((f) => (
-                  <li key={f} className="text-sm text-ink/80 flex gap-2.5">
-                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                    {f}
-                  </li>
-                ))}
+                {option.deliverables.map((f) => {
+                  const [label, detail] = f.includes(": ")
+                    ? [f.slice(0, f.indexOf(": ")), f.slice(f.indexOf(": ") + 2)]
+                    : [null, f];
+                  return (
+                    <li key={f} className="text-sm text-ink/80 flex gap-2.5">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                      <span>
+                        {label && (
+                          <span className="font-semibold text-ink">{label}: </span>
+                        )}
+                        {detail}
+                      </span>
+                    </li>
+                  );
+                })}
               </ul>
               <div className="mt-8">
                 <GradientButton

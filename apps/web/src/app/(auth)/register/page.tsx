@@ -34,7 +34,11 @@ function RegisterForm() {
         },
       });
       if (signUpError) {
-        setError(signUpError.message);
+        setError(
+          /fetch/i.test(signUpError.message)
+            ? "Cannot reach the authentication server. Please try again later."
+            : signUpError.message
+        );
         return;
       }
       if (data.session) {
@@ -47,7 +51,12 @@ function RegisterForm() {
         "Check your email to confirm your account, then log in to continue onboarding."
       );
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Sign-up failed");
+      const msg = err instanceof Error ? err.message : "";
+      setError(
+        /fetch/i.test(msg)
+          ? "Cannot reach the authentication server. Please try again later."
+          : msg || "Sign-up failed"
+      );
     } finally {
       setLoading(false);
     }

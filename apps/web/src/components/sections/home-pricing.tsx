@@ -36,6 +36,21 @@ const OPTIONS = [
     ctaHref: "/pricing",
     variant: "primary" as const,
   },
+  {
+    eyebrow: "Option 3",
+    title: "Legal Retainers",
+    price: "AED 6,999",
+    priceDetail: "/ month",
+    need: "Obtain legal drafting and consultation for a fixed price.",
+    deliverables: [
+      "Includes 10 hours of legal expertise",
+      "Drafting of agreements",
+      "Contact us to know more",
+    ],
+    ctaLabel: "Enquire About Retainers",
+    ctaHref: "/pricing#retainers",
+    variant: "outline" as const,
+  },
 ];
 
 export default function HomePricing() {
@@ -52,19 +67,19 @@ export default function HomePricing() {
           className="max-w-2xl mb-12 md:mb-14"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary mb-4">
-            Two ways to get started
+            Three ways to get started
           </p>
           <h2 className="font-serif text-[clamp(1.85rem,3.5vw,3rem)] text-ink tracking-tight leading-[1.08]">
-            Choose free matching or a dedicated consultation
+            Choose free matching, a dedicated consultation, or a retainer
           </h2>
           <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed">
             Submit a brief and get matched with vetted UAE-licensed providers
-            at no cost, or book a fixed-fee strategy session with a senior
-            practitioner.
+            at no cost, book a fixed-fee strategy session with a senior
+            practitioner, or secure ongoing support with a monthly retainer.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {OPTIONS.map((option, i) => (
             <motion.div
               key={option.title}
@@ -99,7 +114,7 @@ export default function HomePricing() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-6">
+              <div className="mt-auto pt-6">
                 <GradientButton href={option.ctaHref} size="md" variant={option.variant}>
                   {option.ctaLabel}
                 </GradientButton>

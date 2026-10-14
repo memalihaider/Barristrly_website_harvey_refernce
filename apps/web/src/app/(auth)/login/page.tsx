@@ -29,7 +29,11 @@ function LoginForm() {
         password,
       });
       if (signInError) {
-        setError(signInError.message);
+        setError(
+          /fetch/i.test(signInError.message)
+            ? "Cannot reach the authentication server. Please try again later."
+            : signInError.message
+        );
         return;
       }
 
@@ -52,7 +56,12 @@ function LoginForm() {
       router.push(dest);
       router.refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Sign-in failed");
+      const msg = err instanceof Error ? err.message : "";
+      setError(
+        /fetch/i.test(msg)
+          ? "Cannot reach the authentication server. Please try again later."
+          : msg || "Sign-in failed"
+      );
     } finally {
       setLoading(false);
     }
