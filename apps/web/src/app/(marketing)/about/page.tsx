@@ -6,11 +6,12 @@ import {
   PageHero,
   SectionIntro,
 } from "@/components/marketing/section";
+import FounderSection from "@/components/marketing/founder-section";
 
 export const metadata: Metadata = {
   title: "About | Barristrly",
   description:
-    "Barristrly is a premier legal tech marketplace — anonymous directory, COI, and confidential meetings connecting clients with counsel across India and the GCC.",
+    "Meet Heena Mohammed, Founder of Barristrly — the premier legal tech marketplace connecting clients with counsel across India and the GCC.",
 };
 
 const PILLARS = [
@@ -56,11 +57,13 @@ export default function AboutPage() {
         description="Barristrly is an aggregator connecting clients to lawyers, experts, arbitrators, and legal service providers — with an anonymous directory, confidential meeting scheduling, and automated conflict checks before every consult."
       />
 
+      <FounderSection />
+
       <MarketingSection>
         <SectionIntro
           eyebrow="Corporate vision"
           title="Bridging the regional legal gap"
-          description="A mission to redefine professional matchmaking — from Heena Mohammed, Co-Founder & Chairperson."
+          description="A mission to redefine professional matchmaking — from Heena Mohammed, Founder & Legal Tech Innovator."
         />
         <div className="max-w-3xl space-y-6 text-gray-600 leading-relaxed text-lg">
           <p>
@@ -86,38 +89,6 @@ export default function AboutPage() {
           description="The long-term trajectory of the platform rests on these mandates."
         />
         <FeatureList items={PILLARS} />
-      </MarketingSection>
-
-      <MarketingSection>
-        <SectionIntro
-          eyebrow="Founder"
-          title="Heena Mohammed"
-          description="Co-Founder & Chairperson — legal professional, multi-sector entrepreneur, and legal-tech innovator based in Dubai."
-        />
-        <div className="max-w-3xl space-y-6 text-gray-600 leading-relaxed">
-          <p>
-            With over a decade spanning the legal landscapes of India and the
-            United Arab Emirates, Heena has built a reputation as a corporate
-            strategist and high-value transactional consultant — at the
-            intersection of traditional advocacy and modern enterprise.
-          </p>
-          <p>
-            She is a registered Legal Consultant with the Dubai Legal Affairs
-            Department and an Advocate Member of the Bar Council of India. She
-            holds an LL.B. from Government Law College (GLC), Mumbai University,
-            and a B.Sc. from Mumbai University — a blend of scientific training
-            and rigorous legal scholarship that shapes her approach to corporate
-            structuring, risk mitigation, and commercial dispute resolution.
-          </p>
-          <p>
-            Across UAE practice at Abdalla Alowais Advocates and Legal
-            Consultants, Petrogulf Oil Manufacturing LLC, and FAL Oil Co. Ltd.,
-            her portfolio includes multi-million-dollar maritime arbitrations
-            across London, Paris, and the UAE, alongside DIFC Courts and DIAC
-            frameworks — from cross-border M&A and share-swap arrangements to
-            settlements in banking, labor, and construction.
-          </p>
-        </div>
       </MarketingSection>
 
       <MarketingSection tone="soft">
