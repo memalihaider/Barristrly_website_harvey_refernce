@@ -1,89 +1,93 @@
-/** Commercial plans — matching loop + capped corporate subscriptions (AED). */
+/** @deprecated Prefer SERVICE_CATALOG in service-catalog.ts — kept for legacy imports. */
 
 export const INDIVIDUAL_SESSIONS = [
   {
-    name: "30-Minute Anonymous Call",
-    price: "400 AED",
-    period: "per session",
-    detail: "On-demand encrypted consult with capped time box.",
+    name: "Express Advisory",
+    price: "599 AED",
+    period: "15–20 mins",
+    detail: "Quick legal query, single document check, urgent verbal advice.",
   },
   {
-    name: "45-Minute Anonymous Call",
-    price: "600 AED",
-    period: "per session",
-    detail: "Extended anonymous VoIP session with conflict-cleared counsel.",
+    name: "Standard Strategy",
+    price: "799 AED",
+    period: "30 mins",
+    detail: "In-depth consultation on contract disputes and corporate setup.",
   },
   {
-    name: "60-Minute Anonymous Call",
-    price: "800 AED",
-    period: "+ VAT",
-    detail: "Full-hour secure consult for complex matter scoping.",
+    name: "Comprehensive Advisory",
+    price: "999 AED",
+    period: "45 mins",
+    detail: "Multi-issue consultation and pre-litigation analysis.",
+  },
+  {
+    name: "Executive Legal Audit",
+    price: "1,299 AED",
+    period: "60 mins",
+    detail: "Complex matter review with written post-session notes.",
   },
 ] as const;
 
 export const INDIVIDUAL_HOOK =
-  "Book 3 meetings upfront, unlock the 4th free.";
+  "Book a consultation from AED 599 — Express through Executive Audit.";
 
 export const SUBSCRIPTION_PLANS = [
   {
-    name: "SME Shield",
-    price: "1,500 AED",
+    name: "Startup Retainer",
+    price: "5,999 AED",
     period: "/month",
-    detail:
-      "Capped meeting allocation for SMEs — every booking runs the 5-node matching and conflict clearance workflow.",
+    detail: "10 hours legal allocation with flexible drafting options.",
     features: [
-      "Max 4 meetings / month",
-      "Up to 4 conflict-check cycles",
-      "Top-up sessions at 350 AED",
-      "No unused balance rollover",
+      "10 hours / month",
+      "Simple to heavy contract options",
+      "Priority drafting queue",
+      "Hours tracked in Phase 2 dashboard",
     ],
-    cta: { href: "/request-demo", label: "Get SME Shield" },
+    cta: { href: "/services/retainers#request", label: "Start Startup Retainer" },
   },
   {
-    name: "Corporate General",
-    price: "3,000 AED",
+    name: "Corporate Retainer",
+    price: "7,999 AED",
     period: "/month",
     detail:
-      "Higher meeting capacity for in-house and multi-matter corporate teams with operational loop limits.",
+      "15 hours for governance, employment compliance, trademarks, and unlimited phone Q&A.",
     features: [
-      "Max 8 meetings / month",
-      "Up to 8 conflict-check cycles",
-      "Top-up sessions at 350 AED",
-      "No unused balance rollover",
+      "15 hours / month",
+      "Corporate governance",
+      "Employment compliance",
+      "Unlimited legal phone Q&A",
     ],
     highlight: true,
-    cta: { href: "/request-demo", label: "Get Corporate" },
+    cta: { href: "/services/retainers#request", label: "Start Corporate Retainer" },
   },
   {
-    name: "Enterprise Max",
-    price: "7,500 AED",
+    name: "Virtual Legal Officer",
+    price: "12,500 AED",
     period: "/month",
-    detail:
-      "Highest capped allocation for large legal ops — explicit meeting assets, not unlimited overhead.",
+    detail: "25 hours of senior fractional General Counsel coverage.",
     features: [
-      "Max 25 meetings / month",
-      "Up to 20 conflict-check cycles",
-      "Top-up sessions at 350 AED",
-      "No unused balance rollover",
+      "25 hours senior legal management",
+      "Fractional GC without FTE cost",
+      "Founder discovery call",
+      "Sample retainer available",
     ],
-    cta: { href: "/request-demo", label: "Contact sales" },
+    cta: { href: "/services/vlo-fractional-gc#request", label: "Book discovery call" },
   },
 ] as const;
 
 export const PRICING_RULES = [
   {
-    title: "Top-up after cap",
+    title: "VAT",
     detail:
-      "When monthly meetings are exhausted, unlock additional sessions at 350 AED each — stay connected without unlimited infrastructure risk.",
+      "A 5% VAT applies to taxable services and is itemized at checkout under UAE Federal Decree-Law No. 8 of 2017.",
   },
   {
-    title: "Overage expiry",
+    title: "Government fees",
     detail:
-      "Unused meeting balances do not roll over to the next billing cycle.",
+      "Court, DIFC/ADGM registry, and Ministry of Economy fees are always charged separately from Barristrly service fees.",
   },
   {
-    title: "Prepaid hour blocks",
+    title: "Phase 1 checkout",
     detail:
-      "Buy 6 standalone sessions, get 2 free. Credits expire 12 months from purchase. All sessions use the standard matching workflow.",
+      "Forms capture structured requests; founder issues Stripe/Tap payment links until Phase 2 self-serve checkout is live.",
   },
 ] as const;

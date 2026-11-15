@@ -86,11 +86,11 @@ export default function SiteHeader() {
 
             <GradientButton
               size="sm"
-              href="/ai/intake"
+              href="/services/consultation#request"
               className={`inline-flex items-center gap-1.5 ${ctaClass}`}
             >
               <CalendarDays className="h-4 w-4 shrink-0" aria-hidden />
-              <span>Find a Lawyer Now</span>
+              <span>Book Consultation</span>
             </GradientButton>
           </div>
 
@@ -172,13 +172,13 @@ export default function SiteHeader() {
               </Link>
 
               <GradientButton
-                href="/ai/intake"
+                href="/services/consultation#request"
                 size="md"
                 className="w-full text-center inline-flex items-center justify-center gap-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <CalendarDays className="h-4 w-4" aria-hidden />
-                Find a Lawyer Now
+                Book Consultation
               </GradientButton>
             </div>
           </motion.div>

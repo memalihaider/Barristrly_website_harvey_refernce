@@ -1,33 +1,84 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/marketing/section";
+import Link from "next/link";
 import GradientButton from "@/components/ui/gradient-button";
-import ServicesGrid from "@/components/sections/services-grid";
-import HomePricing from "@/components/sections/home-pricing";
+import {
+  MarketingCtaBand,
+  MarketingSection,
+  PageHero,
+  SectionIntro,
+} from "@/components/marketing/section";
+import { SERVICE_CATALOG } from "@/lib/marketing/service-catalog";
 
 export const metadata: Metadata = {
-  title: "Services & Pricing | Barristrly",
+  title: "Services | Barristrly",
   description:
-    "Find & hire the right UAE-licensed lawyer in 24 hours — free lawyer sourcing & matching, or a dedicated 45-60 minute legal consultation, across 7 dedicated practice pillars.",
+    "Barristrly Service Master Catalog — lawyer matching, consultations, retainers, drafting, wills, PRO, banking, PR, VLO, and IP protection across UAE & GCC.",
 };
 
 export default function ServicesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Services"
-        title="Find & Hire the Right UAE-Licensed Lawyer in 24 Hours"
-        description="Submit a brief for a free match with up to three vetted advocates, or book a dedicated consultation with a senior practitioner."
+        eyebrow="Service Master Catalog"
+        title="Ten services. One UAE & GCC legal operations desk."
+        description="Phase 1 forms capture structured briefs for manual founder operations. The same JSON schemas power Phase 2 automation — matching, checkout, and dashboards — without restructuring."
       >
-        <GradientButton href="/ai/intake" size="lg">
-          Submit Your Legal Brief — Free Match
+        <GradientButton href="/services/lawyer-matching#request" size="lg">
+          Free lawyer matching
         </GradientButton>
-        <GradientButton href="/pricing" size="lg" variant="outline">
-          Book a 45-Min Fixed-Fee Consultation
+        <GradientButton href="/services/consultation#request" size="lg" variant="outline">
+          Book consultation
         </GradientButton>
       </PageHero>
 
-      <HomePricing />
-      <ServicesGrid />
+      <MarketingSection>
+        <SectionIntro
+          title="Core offerings"
+          description="Exact pricing and scopes from the Barristrly platform strategy. Government fees are always itemized separately."
+        />
+        <ul className="grid md:grid-cols-2 gap-5 list-none p-0 m-0">
+          {SERVICE_CATALOG.map((s) => (
+            <li key={s.id}>
+              <Link
+                href={s.href}
+                className="group flex h-full flex-col rounded-2xl border border-[#e5e3dc] bg-[#faf9f6] p-6 transition-colors hover:border-primary/35 hover:bg-white"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
+                    Service {String(s.number).padStart(2, "0")}
+                  </span>
+                  {s.isNew ? (
+                    <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">
+                      New
+                    </span>
+                  ) : null}
+                </div>
+                <h2 className="mt-3 font-serif text-2xl text-ink tracking-tight group-hover:text-primary transition-colors">
+                  {s.shortName}
+                </h2>
+                <p className="mt-2 text-sm text-gray-600 leading-relaxed flex-1">
+                  {s.tagline}
+                </p>
+                <p className="mt-4 text-sm font-semibold text-ink">
+                  {s.pricingModel}
+                </p>
+                <span className="mt-3 text-sm font-semibold text-primary">
+                  View packages →
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </MarketingSection>
+
+      <MarketingCtaBand
+        title="For businesses & startups"
+        description="Retainers from AED 5,999/mo, VLO at AED 12,500/mo, and free matching when you only need the right counsel."
+        primaryHref="/services/retainers"
+        primaryLabel="Explore retainers"
+        secondaryHref="/services/vlo-fractional-gc"
+        secondaryLabel="Fractional GC"
+      />
     </>
   );
 }
