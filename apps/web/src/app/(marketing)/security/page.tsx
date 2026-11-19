@@ -9,9 +9,9 @@ import {
 } from "@/components/marketing/section";
 
 export const metadata: Metadata = {
-  title: "Confidentiality & Trust | Barristrly",
+  title: "Confidentiality | Barristrly",
   description:
-    "How Barristrly handles client information across matching, consultations, and legal service delivery in the UAE and GCC.",
+    "How Barristrly looks after your information when you request matching, consultations, and other legal services.",
 };
 
 export default function SecurityPage() {

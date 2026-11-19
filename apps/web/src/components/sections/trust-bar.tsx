@@ -1,9 +1,9 @@
 const BADGES = [
-  "Verified MOJ Advocates",
-  "DIFC / ADGM Practitioners",
-  "FTA-Registered Tax Agents",
-  "24-Hour SLA",
-  "UAE PDPL Data Protection",
+  "Checked UAE lawyers",
+  "Mainland, DIFC & ADGM",
+  "Reply within 24 hours",
+  "Clear AED pricing",
+  "Confidential handling",
 ];
 
 export default function TrustBar() {
@@ -11,11 +11,11 @@ export default function TrustBar() {
     <section
       id="customers"
       className="border-y border-[#e5e3dc] py-12 md:py-14"
-      aria-label="Trust and regulatory compliance"
+      aria-label="Why clients trust Barristrly"
     >
       <div className="container-wide">
         <p className="mb-6 text-center text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-gray-500">
-          Trust & regulatory compliance
+          Why people choose Barristrly
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           {BADGES.map((badge) => (

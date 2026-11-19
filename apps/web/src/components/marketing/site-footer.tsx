@@ -14,8 +14,8 @@ export default function SiteFooter() {
               BARRISTRLY
             </Link>
             <p className="text-sm text-gray-600 leading-relaxed max-w-xs">
-              Legal services company for UAE &amp; GCC — matching, consultations,
-              retainers, drafting, and specialist desks.
+              Legal services for people and businesses in the UAE and GCC —
+              clear matching, clear prices, trusted specialists.
             </p>
             <p className="text-sm text-gray-600 leading-relaxed">
               support@barristrly.com

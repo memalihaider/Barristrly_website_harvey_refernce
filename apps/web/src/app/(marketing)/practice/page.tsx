@@ -11,31 +11,31 @@ import {
 } from "@/components/marketing/section";
 
 export const metadata: Metadata = {
-  title: "For Legal Providers | Barristrly",
+  title: "For Lawyers | Barristrly",
   description:
-    "Join the Barristrly network — Advocates, Law Firms, Arbitrators, Tax Agents, AML Consultants, Notaries, and Sworn Translators. Vetted leads, 24-hour SLA, zero listing cost.",
+    "Join the Barristrly provider network. Receive carefully reviewed client requests, respond within 24 hours, and grow your practice at no listing fee.",
 };
 
 export default function PracticePage() {
   return (
     <>
       <PageHero
-        eyebrow="Service Provider Onboarding Hub"
-        title="Join the Barristrly network at zero listing cost"
-        description="A dedicated portal for Advocates, Law Firms, Arbitrators, Tax Agents, AML Consultants, Notaries, and Sworn Translators to receive vetted, jurisdiction-matched client briefs."
+        eyebrow="For lawyers & legal providers"
+        title="Join Barristrly at no listing fee"
+        description="Receive carefully reviewed client requests matched to your practice area and location. Respond within 24 hours with a clear proposal."
         aside={
           <ProductMock
-            title="Provider onboarding"
+            title="How joining works"
             lines={[
-              "Upload trade license & practicing certificate",
-              "Get matched by jurisdiction & practice area",
-              "Respond within the 24-hour SLA",
+              "Upload your licence and practising certificate",
+              "Get matched to the right client requests",
+              "Reply within 24 hours with your proposal",
             ]}
           />
         }
       >
         <GradientButton href="/practice/apply" size="lg">
-          Join the Provider Network
+          Apply to join
         </GradientButton>
         <GradientButton href="/request-demo" size="lg" variant="outline">
           Contact us
@@ -46,18 +46,18 @@ export default function PracticePage() {
         <StatRow
           stats={[
             { value: "AED 0", label: "Listing fee" },
-            { value: "24h", label: "SLA to acknowledge a lead & send a proposal" },
-            { value: "3", label: "Max providers a brief is sent to" },
-            { value: "PDPL", label: "UAE data protection compliant" },
+            { value: "24h", label: "Time to reply with a proposal" },
+            { value: "3", label: "Maximum lawyers per client request" },
+            { value: "UAE", label: "Data handled with care" },
           ]}
         />
       </MarketingSection>
 
       <MarketingSection>
         <SectionIntro
-          eyebrow="Onboarding"
-          title="Vetting & licensing"
-          description="All Advocates, Law Firms, Legal Consultants, Tax Agents, AML Consultants, Notaries, and Sworn Translators seeking to join the network must complete our Provider Onboarding Form and upload valid credentials."
+          eyebrow="Joining"
+          title="Checks before you join"
+          description="Lawyers, firms, and specialists complete a short application and upload valid credentials before receiving client requests."
         />
         <FeatureList
           items={[

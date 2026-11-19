@@ -6,12 +6,12 @@ import GradientButton from "@/components/ui/gradient-button";
 import LogoTicker from "@/components/ui/logo-ticker";
 
 const partners = [
-  { name: "Mainland UAE Courts" },
+  { name: "Mainland UAE" },
   { name: "DIFC" },
   { name: "ADGM" },
   { name: "Corporate & Tax" },
-  { name: "Private Client" },
-  { name: "Arbitration" },
+  { name: "Family & Wills" },
+  { name: "Disputes" },
 ];
 
 export default function Hero() {
@@ -46,7 +46,7 @@ export default function Hero() {
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-[clamp(2.75rem,7vw,5.5rem)] text-white leading-[1.02] tracking-[-0.03em] mb-6"
           >
-            Legal services for UAE &amp; GCC — matched, priced, delivered
+            Find the right legal help in the UAE — clearly and quickly
           </motion.h1>
 
           <motion.p
@@ -55,9 +55,9 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-2xl text-base md:text-lg text-white leading-relaxed mb-10"
           >
-            Barristrly is a service company — free lawyer matching, fixed-fee
-            consultations, retainers, drafting, wills, PRO support, and more.
-            Clear scopes. Transparent AED pricing. Vetted specialists.
+            Barristrly helps individuals and businesses get matched with vetted
+            lawyers, book fixed-fee consultations, and access retainers,
+            contracts, wills, and specialist support — with plain pricing in AED.
           </motion.p>
 
           <motion.div
@@ -73,7 +73,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2"
             >
               <Scale className="h-5 w-5" aria-hidden />
-              Free lawyer matching
+              Get matched for free
             </GradientButton>
             <GradientButton
               size="lg"
@@ -95,7 +95,7 @@ export default function Hero() {
           </div>
           <div className="shrink-0 hidden md:block">
             <span className="text-[9px] uppercase font-bold tracking-widest text-white/60 border border-white/15 px-3.5 py-1.5 rounded bg-white/5 whitespace-nowrap">
-              Service jurisdictions
+              Areas we cover
             </span>
           </div>
         </div>

@@ -31,7 +31,7 @@ const harveySerif = localFont({
 export const metadata: Metadata = {
   title: "Barristrly | Legal Services for UAE & GCC",
   description:
-    "Barristrly is a legal services company — lawyer matching, consultations, retainers, contract drafting, wills, PRO support, and more across the UAE and GCC.",
+    "Find the right legal help in the UAE and GCC. Free lawyer matching, fixed-fee consultations, retainers, contracts, wills, and more — with clear prices.",
   robots: { index: true, follow: true },
 };
 

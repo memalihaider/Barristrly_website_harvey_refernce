@@ -11,7 +11,7 @@ import { SERVICE_CATALOG } from "@/lib/marketing/service-catalog";
 export const metadata: Metadata = {
   title: "Pricing | Barristrly",
   description:
-    "Transparent AED pricing — free matching, consultations from AED 599, retainers from AED 5,999/mo, drafting, wills, VLO, and IP protection.",
+    "Clear AED pricing for Barristrly services — free matching, consultations from AED 599, retainers from AED 5,999/month, and more.",
 };
 
 export default function PricingPage() {
@@ -25,14 +25,14 @@ export default function PricingPage() {
     <>
       <PageHero
         eyebrow="Pricing"
-        title="Clear AED pricing across the Service Master Catalog"
-        description="VAT (5%) and official government/court fees are itemized separately where applicable. After you submit a request, we confirm scope and share a payment link when required."
+        title="Clear prices in AED"
+        description="See the fee before you proceed. Where government or court fees apply, they are always separate and explained upfront. VAT may apply."
       />
 
       <MarketingSection>
         <SectionIntro
           title="Most requested"
-          description="Start free, book a session, or lock a monthly legal allocation."
+          description="A free start, a paid session, monthly support, or fixed-fee drafting."
         />
         <div className="grid md:grid-cols-2 gap-6 md:gap-8">
           {featured.map((service) => (
@@ -42,7 +42,7 @@ export default function PricingPage() {
               className="scroll-mt-28 rounded-2xl border border-gray-200 bg-[#fafaf9] p-7 md:p-8 flex flex-col"
             >
               <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary mb-3">
-                Service {String(service.number).padStart(2, "0")}
+                {service.eyebrow}
               </span>
               <h2 className="font-serif text-2xl md:text-3xl text-ink tracking-tight">
                 {service.shortName}
@@ -77,8 +77,8 @@ export default function PricingPage() {
 
       <MarketingSection tone="soft">
         <SectionIntro
-          title="Full catalog pricing"
-          description="Every Barristrly service with published AED rates."
+          title="All services at a glance"
+          description="A simple overview of starting prices across the catalog."
         />
         <div className="overflow-x-auto rounded-2xl border border-[#e5e3dc] bg-white">
           <table className="w-full min-w-[640px] text-left text-sm">
@@ -86,7 +86,7 @@ export default function PricingPage() {
               <tr>
                 <th className="px-4 py-3 font-semibold">Service</th>
                 <th className="px-4 py-3 font-semibold">From</th>
-                <th className="px-4 py-3 font-semibold">Model</th>
+                <th className="px-4 py-3 font-semibold">How it is priced</th>
                 <th className="px-4 py-3 font-semibold" />
               </tr>
             </thead>
@@ -121,12 +121,12 @@ export default function PricingPage() {
       </MarketingSection>
 
       <MarketingCtaBand
-        title="Ready to start?"
-        description="Submit a free matching brief or book a paid consultation — responses within 24 hours."
+        title="Need help choosing?"
+        description="Send us a short note and we will recommend the simplest option."
         primaryHref="/services/consultation#request"
-        primaryLabel="Book consultation"
+        primaryLabel="Book a consultation"
         secondaryHref="/services/lawyer-matching#request"
-        secondaryLabel="Free matching"
+        secondaryLabel="Get matched for free"
       />
     </>
   );

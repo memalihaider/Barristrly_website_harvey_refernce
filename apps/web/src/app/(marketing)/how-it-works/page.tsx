@@ -4,24 +4,24 @@ import { PageHero, MarketingSection, MarketingCtaBand } from "@/components/marke
 export const metadata: Metadata = {
   title: "How It Works | Barristrly",
   description:
-    "A 3-step guided intake: classify your issue, choose your jurisdiction and service option, and get matched with up to three vetted UAE-licensed legal providers.",
+    "Three simple steps to get legal help with Barristrly — tell us your need, choose a service, and get a clear next step within 24 hours.",
 };
 
 const STEPS = [
   {
     step: "1",
-    title: "Classify your issue",
-    body: "Tell us what's happening — pick the practice area that fits your matter, from mainland litigation to AML compliance.",
+    title: "Tell us what you need",
+    body: "Share a short summary of your situation — for example a contract, dispute, company issue, or family matter.",
   },
   {
     step: "2",
-    title: "Choose your jurisdiction & service option",
-    body: "Select Mainland (Dubai/Abu Dhabi Courts), DIFC, ADGM, or RDC, then pick Free Lawyer Sourcing & Matching or a Dedicated Legal Consultation.",
+    title: "Choose how you want to proceed",
+    body: "Start with free lawyer matching, book a paid consultation, or pick another service such as drafting, a retainer, or a will.",
   },
   {
     step: "3",
-    title: "Upload documents & submit",
-    body: "Attach any supporting documents. We route your brief to up to three vetted Service Providers, who respond within a 24-hour SLA.",
+    title: "Get a clear next step",
+    body: "We confirm within 24 hours with introductions, a meeting time, or a quote — so you always know what happens next.",
   },
 ];
 
@@ -30,8 +30,8 @@ export default function HowItWorksPage() {
     <>
       <PageHero
         eyebrow="How it works"
-        title="A guided 3-step intake"
-        description="Classify your issue, choose your jurisdiction and service option, and get matched with the right UAE-licensed legal provider."
+        title="Three simple steps"
+        description="No complicated process. Tell us your need, choose a service, and receive a clear next step."
       />
 
       <MarketingSection>
@@ -47,10 +47,10 @@ export default function HowItWorksPage() {
       </MarketingSection>
 
       <MarketingCtaBand
-        title="Ready to get started?"
-        description="Submit your brief for a free match, or book a dedicated consultation."
+        title="Ready to begin?"
+        description="Start with a free match, or book a consultation with a clear fee."
         primaryHref="/services/lawyer-matching#request"
-        primaryLabel="Free lawyer matching"
+        primaryLabel="Get matched for free"
         secondaryHref="/services/consultation#request"
         secondaryLabel="Book a consultation"
       />

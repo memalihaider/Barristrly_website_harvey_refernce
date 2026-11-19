@@ -41,14 +41,14 @@ export default function ServiceLanding({ service }: { service: CatalogService })
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="rounded-2xl border border-[#e5e3dc] bg-white p-5">
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
-              Pricing model
+              Pricing
             </p>
             <p className="mt-2 font-serif text-xl text-ink">{service.pricingModel}</p>
-            <p className="mt-2 text-sm text-gray-600">{service.monetization}</p>
+            <p className="mt-2 text-sm text-gray-600">{service.eyebrow}</p>
           </div>
           <div className="rounded-2xl border border-[#e5e3dc] bg-white p-5">
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
-              Tagline
+              In short
             </p>
             <p className="mt-2 text-sm text-gray-700 leading-relaxed">
               {service.tagline}
@@ -61,7 +61,7 @@ export default function ServiceLanding({ service }: { service: CatalogService })
         <MarketingSection>
           <SectionIntro
             title="Packages & pricing"
-            description="All prices in AED. VAT and official government fees are itemized separately where applicable."
+            description="All prices are in AED. VAT and official government fees are listed separately when they apply."
           />
           <ul className="grid md:grid-cols-2 gap-4 list-none p-0 m-0">
             {service.tiers.map((tier) => (
@@ -104,7 +104,7 @@ export default function ServiceLanding({ service }: { service: CatalogService })
       <MarketingSection tone="soft">
         <SectionIntro
           title="What you get"
-          description="Deliverables for this service. Government and court fees are always separate where they apply."
+          description="What is included. Government and court fees stay separate when they apply."
         />
         <FeatureList
           items={service.deliverables.map((d, i) => ({
@@ -147,12 +147,12 @@ export default function ServiceLanding({ service }: { service: CatalogService })
       </MarketingSection>
 
       <MarketingCtaBand
-        title="Need help choosing a service?"
-        description="Book a consultation or start with free lawyer matching — Phase 1 requests are handled within 24 hours."
+        title="Need help choosing?"
+        description="Book a consultation or start with free lawyer matching. We reply within 24 hours."
         primaryHref="/services/consultation#request"
-        primaryLabel="Book consultation"
+        primaryLabel="Book a consultation"
         secondaryHref="/services/lawyer-matching#request"
-        secondaryLabel="Free matching"
+        secondaryLabel="Get matched for free"
       />
     </>
   );

@@ -14,7 +14,7 @@ import { SERVICE_CATALOG } from "@/lib/marketing/service-catalog";
 export const metadata: Metadata = {
   title: "Resources | Barristrly",
   description:
-    "Articles, practice-area guides, and Barristrly service resources for UAE and GCC clients.",
+    "Helpful articles and guides for Barristrly legal services in the UAE and GCC.",
 };
 
 export const revalidate = 300;
@@ -26,8 +26,8 @@ export default async function ResourcesPage() {
     <>
       <PageHero
         eyebrow="Resources"
-        title="Guides and insights for legal services"
-        description="Practical reading on UAE and GCC legal services — plus our service catalog for matching, consultations, retainers, and specialist desks."
+        title="Helpful reading for clients and businesses"
+        description="Practical articles and a clear view of our services — written so anyone can follow along."
       >
         <GradientButton href="/services" size="lg">
           Browse services
@@ -55,10 +55,10 @@ export default async function ResourcesPage() {
           </>
         ) : (
           <p className="text-sm text-gray-600">
-            Articles will appear here as they are published. Meanwhile, explore
-            our{" "}
+            New articles will appear here as they are published. In the meantime,
+            explore our{" "}
             <Link href="/services" className="font-semibold text-primary">
-              service catalog
+              services
             </Link>
             .
           </p>
@@ -68,7 +68,7 @@ export default async function ResourcesPage() {
       <MarketingSection tone="soft">
         <SectionIntro
           title="Our services"
-          description="Live offerings with transparent AED pricing."
+          description="A quick list of what you can request today."
         />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-6">
           {SERVICE_CATALOG.map((s) => (
@@ -78,7 +78,7 @@ export default async function ResourcesPage() {
               className="border-t border-gray-200 pt-4 font-medium text-ink hover:text-primary transition-colors"
             >
               <span className="block text-[11px] font-semibold uppercase tracking-wider text-primary mb-1">
-                Service {String(s.number).padStart(2, "0")}
+                {s.eyebrow}
               </span>
               {s.shortName}
             </Link>
@@ -87,7 +87,10 @@ export default async function ResourcesPage() {
       </MarketingSection>
 
       <MarketingSection>
-        <SectionIntro title="Practice areas" />
+        <SectionIntro
+          title="Practice areas"
+          description="Common legal topics we help with across the UAE."
+        />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
           {LEGAL_SERVICES.map((s) => (
             <Link

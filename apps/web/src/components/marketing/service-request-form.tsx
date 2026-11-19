@@ -90,8 +90,8 @@ export default function ServiceRequestForm({ service }: Props) {
           {service.shortName}
         </h3>
         <p className="mt-2 text-sm text-gray-600 leading-relaxed">
-          Submit this form and our team will confirm next steps within 24 hours —
-          including pricing and any payment link if required.
+          Send this short request. We will reply within 24 hours with next steps
+          and pricing if payment is needed.
         </p>
       </div>
 

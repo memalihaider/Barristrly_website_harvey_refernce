@@ -26,7 +26,7 @@ export default function ServicesGrid() {
             transition={{ duration: 0.5 }}
             className="max-w-[14rem] text-[15px] md:text-base leading-relaxed text-gray-600"
           >
-            Connect with vetted counsel through our service catalog.
+            Simple services. Clear prices. Trusted specialists.
           </motion.p>
 
           {/* Large serif service list */}

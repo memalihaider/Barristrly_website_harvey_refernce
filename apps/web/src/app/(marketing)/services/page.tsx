@@ -12,29 +12,29 @@ import { SERVICE_CATALOG } from "@/lib/marketing/service-catalog";
 export const metadata: Metadata = {
   title: "Services | Barristrly",
   description:
-    "Barristrly Service Master Catalog — lawyer matching, consultations, retainers, drafting, wills, PRO, banking, PR, VLO, and IP protection across UAE & GCC.",
+    "Browse Barristrly legal services — free lawyer matching, consultations, retainers, contracts, wills, PRO help, banking, PR, and more.",
 };
 
 export default function ServicesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Service Master Catalog"
-        title="Ten services. One UAE & GCC legal operations desk."
-        description="Barristrly is a legal services company. Browse fixed-fee and subscription offerings — matching, consultations, retainers, drafting, wills, PRO, banking, PR, fractional GC, and IP protection."
+        eyebrow="Services"
+        title="Clear legal services for people and businesses"
+        description="Every service has a plain description and AED pricing. Choose what you need, send a short request, and we reply within 24 hours."
       >
         <GradientButton href="/services/lawyer-matching#request" size="lg">
-          Free lawyer matching
+          Get matched for free
         </GradientButton>
         <GradientButton href="/services/consultation#request" size="lg" variant="outline">
-          Book consultation
+          Book a consultation
         </GradientButton>
       </PageHero>
 
       <MarketingSection>
         <SectionIntro
-          title="Core offerings"
-          description="Exact pricing and scopes from the Barristrly platform strategy. Government fees are always itemized separately."
+          title="What we offer"
+          description="Ten practical services. Government and court fees are always listed separately where they apply."
         />
         <ul className="grid md:grid-cols-2 gap-5 list-none p-0 m-0">
           {SERVICE_CATALOG.map((s) => (
@@ -63,7 +63,7 @@ export default function ServicesPage() {
                   {s.pricingModel}
                 </p>
                 <span className="mt-3 text-sm font-semibold text-primary">
-                  View packages →
+                  View details →
                 </span>
               </Link>
             </li>
@@ -72,12 +72,12 @@ export default function ServicesPage() {
       </MarketingSection>
 
       <MarketingCtaBand
-        title="For businesses & startups"
-        description="Retainers from AED 5,999/mo, VLO at AED 12,500/mo, and free matching when you only need the right counsel."
-        primaryHref="/services/retainers"
-        primaryLabel="Explore retainers"
-        secondaryHref="/services/vlo-fractional-gc"
-        secondaryLabel="Fractional GC"
+        title="Not sure which service fits?"
+        description="Tell us your situation and we will point you to the simplest next step."
+        primaryHref="/request-demo"
+        primaryLabel="Contact us"
+        secondaryHref="/services/consultation#request"
+        secondaryLabel="Book a consultation"
       />
     </>
   );

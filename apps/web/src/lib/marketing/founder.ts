@@ -4,7 +4,7 @@
 export const FOUNDER = {
   name: "Heena Mohammed",
   nameDisplay: "HEENA MOHAMMED",
-  title: "Founder & Legal Services Leader | Executive Profile",
+  title: "Founder | Legal Consultant & Services Leader",
   roleLabel: "Founder & Chairperson",
   credentials: [
     "LL.B., Government Law College, Mumbai",
@@ -13,9 +13,9 @@ export const FOUNDER = {
     "B.Sc., Mumbai University",
   ],
   paragraphs: [
-    "Heena Mohammed is a distinguished legal consultant and founder with over a decade of experience spanning the legal landscapes of India and the United Arab Emirates. Holding an LL.B. from the prestigious Government Law College, Mumbai, and registered with the Dubai Legal Affairs Department, she has established a formidable reputation in cross-border corporate structuring, mergers and acquisitions, financial restructuring, and international arbitration (including DIFC Courts and DIAC).",
-    "Throughout her career advising high-net-worth individuals and institutional clients, Heena identified a critical structural flaw in the regional legal market: the costly friction and fragmented referral processes clients endure when seeking specialized representation. This insight led her to build Barristrly as a service company that delivers transparent matching, fixed-fee consultations, retainers, drafting, and related legal operations support.",
-    "Under her strategic direction, Barristrly connects clients with highly vetted legal practitioners and specialized service providers across the UAE and GCC. The operating philosophy prioritizes clear pricing, specialty matching, confidential handling of client matters, and reliable delivery — bridging the legal corridor between India and the GCC.",
-    "Heena continues to expand Barristrly’s service catalog — from lawyer matching and consultations to wills, contract drafting, PRO support, banking facilitation, PR, fractional GC, and brand protection — so clients can procure trusted legal and business services without marketplace confusion or product lock-in.",
+    "Heena Mohammed is a legal consultant and founder with more than ten years of experience across India and the UAE. She holds an LL.B. from Government Law College, Mumbai, and is registered with the Dubai Legal Affairs Department. Her work covers company structuring, mergers, financial restructuring, and international arbitration — including DIFC Courts and DIAC.",
+    "While advising families and businesses, she saw a common problem: people often struggle to find the right lawyer, pay for several introductions, and still leave without a clear answer. That experience led her to build Barristrly — a service company focused on clear matching, fair pricing, and trusted specialists.",
+    "Under her leadership, Barristrly helps clients get matched with carefully checked lawyers and access practical services such as consultations, retainers, contract drafting, wills, PRO support, banking introductions, PR, senior legal support for companies, and brand protection — across the UAE and the wider GCC.",
+    "Heena’s focus remains simple: make legal help easier to understand, easier to buy, and easier to trust — without unnecessary complexity.",
   ],
 } as const;

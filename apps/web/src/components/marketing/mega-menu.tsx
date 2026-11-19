@@ -247,8 +247,8 @@ export default function MegaMenu({
 
                     <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                       <p className="text-sm text-white/45">
-                        Need help choosing a service? Book a consultation or
-                        contact our team.
+                        Not sure where to start? Book a short consultation or
+                        message our team.
                       </p>
                       <Link
                         href="/services/consultation#request"

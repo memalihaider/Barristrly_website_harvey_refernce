@@ -41,10 +41,10 @@ export const PRIMARY_NAV: NavGroup[] = [
     mobileItems: SERVICE_LINKS,
     featured: {
       href: "/services",
-      badge: "Service catalog",
-      title: "Ten services. One legal operations desk.",
+      badge: "Our services",
+      title: "Ten clear services. One trusted desk.",
       description:
-        "From free lawyer matching to VLO, IP, PRO, and banking facilitation — clear scopes and transparent AED pricing.",
+        "From free lawyer matching to retainers, contracts, wills, and brand protection — with plain AED pricing.",
       media: "/bg-video.mp4",
     },
   },
@@ -58,22 +58,22 @@ export const PRIMARY_NAV: NavGroup[] = [
           {
             name: "Startup & Corporate Retainers",
             href: "/services/retainers",
-            description: "From AED 5,999/mo · 10–15 hour allocations",
+            description: "From AED 5,999/month · 10–15 hours of support",
           },
           {
             name: "Virtual Legal Officer",
             href: "/services/vlo-fractional-gc",
-            description: "Fractional GC · AED 12,500/mo · 25 hours",
+            description: "Senior legal support · AED 12,500/month · 25 hours",
           },
           {
             name: "Contract Drafting",
             href: "/services/contract-drafting",
-            description: "Fixed-fee tiers AED 799–1,999",
+            description: "Fixed fees from AED 799 to AED 1,999",
           },
           {
-            name: "Banking & Capital Desk",
+            name: "Banking & Capital",
             href: "/services/banking-capital",
-            description: "Mortgage, working capital, equity leads",
+            description: "Mortgages, business loans, and growth capital",
           },
         ],
       },
@@ -90,9 +90,9 @@ export const PRIMARY_NAV: NavGroup[] = [
     featured: {
       href: "/services/vlo-fractional-gc",
       badge: "New",
-      title: "Fractional General Counsel for scaling companies",
+      title: "Senior legal support for growing companies",
       description:
-        "Senior legal management without full-time GC overhead — book a founder discovery call.",
+        "Get experienced legal guidance each month — without hiring a full-time in-house lawyer.",
       media: "/bg-video.mp4",
     },
   },
@@ -101,46 +101,46 @@ export const PRIMARY_NAV: NavGroup[] = [
     href: "/practice",
   },
   {
-    name: "E-Books & Resources",
+    name: "Guides & Resources",
     href: "/services/ebooks-pro",
     columns: [
       {
-        title: "Digital & PRO",
+        title: "Guides & help",
         items: [
           {
-            name: "E-Books & Bundles",
+            name: "Guides & PRO",
             href: "/services/ebooks-pro",
-            description: "Guides from AED 99 · Master package AED 199",
+            description: "Guides from AED 99 · PRO help for visas and licences",
           },
           {
-            name: "PRO Clearing Services",
+            name: "PRO Support",
             href: "/services/ebooks-pro#request",
-            description: "Visa, license, attestation, formation",
+            description: "Visas, licences, attestation, company setup",
           },
           {
-            name: "Journal & Resources",
+            name: "Resources",
             href: "/resources",
-            description: "Guides, FAQs, and market notes",
+            description: "Helpful reading and service guides",
           },
           {
             name: "Blog",
             href: "/blog",
-            description: "Legal ops insights",
+            description: "Practical notes for clients and businesses",
           },
         ],
       },
     ],
     mobileItems: [
-      { name: "E-Books & PRO", href: "/services/ebooks-pro" },
+      { name: "Guides & PRO", href: "/services/ebooks-pro" },
       { name: "Resources", href: "/resources" },
       { name: "Blog", href: "/blog" },
     ],
     featured: {
       href: "/services/ebooks-pro",
-      badge: "Digital store",
-      title: "Instant guides + boots-on-ground PRO support",
+      badge: "Guides & PRO",
+      title: "Ready guides and on-ground support",
       description:
-        "Download compliance toolkits or request visa, trade license, and attestation support.",
+        "Download a practical guide, or ask for help with visas, trade licences, and paperwork.",
       media: "/bg-video.mp4",
     },
   },
@@ -173,7 +173,7 @@ export const FOOTER_COLUMNS: { title: string; links: NavLink[] }[] = [
     links: [
       { name: "Join Provider Network", href: "/practice/apply" },
       { name: "For Lawyers", href: "/practice" },
-      { name: "SLA Requirements", href: "/practice#sla" },
+      { name: "Response standards", href: "/practice#sla" },
       { name: "Contact", href: "/request-demo" },
     ],
   },

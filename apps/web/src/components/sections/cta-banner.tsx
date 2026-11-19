@@ -62,11 +62,11 @@ export default function CtaBanner() {
               Next steps
             </p>
             <h2 className="font-serif text-[clamp(2rem,4vw,3.25rem)] text-ink leading-[1.1] tracking-tight">
-              Explore services, pricing, and how we work
+              Choose a service, check pricing, or ask us
             </h2>
             <p className="mt-4 text-gray-600 leading-relaxed max-w-lg text-base md:text-lg">
-              Barristrly is a legal services company — start with a free match,
-              book a consultation, or contact our team.
+              Start with a free match, book a consultation, or send a short
+              message — we will guide you to the simplest option.
             </p>
           </motion.div>
 

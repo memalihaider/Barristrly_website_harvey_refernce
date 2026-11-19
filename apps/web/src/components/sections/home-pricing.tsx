@@ -28,12 +28,11 @@ export default function HomePricing() {
             Three ways to get started
           </p>
           <h2 className="font-serif text-[clamp(1.85rem,3.5vw,3rem)] text-ink tracking-tight leading-[1.08]">
-            Free matching, paid consultations from AED 599, retainers from AED
-            5,999
+            Start free, book a session, or keep a lawyer on monthly support
           </h2>
           <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed">
-            Choose free matching, a paid strategy session, or a monthly retainer
-            — clear scopes and AED pricing across our service catalog.
+            Choose what fits you today. Every option has a clear scope and price
+            in AED — no jargon, no hidden steps.
           </p>
         </motion.div>
 
@@ -86,9 +85,9 @@ export default function HomePricing() {
 
         <p className="mt-8 text-center text-sm text-gray-500">
           <a href="/services" className="font-semibold text-primary hover:underline">
-            View all 10 services
+            See all services
           </a>{" "}
-          including drafting, wills, PRO, banking, PR, VLO, and IP.
+          — contracts, wills, PRO help, banking, PR, brand protection, and more.
         </p>
       </div>
     </section>
