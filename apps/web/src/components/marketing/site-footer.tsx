@@ -14,8 +14,8 @@ export default function SiteFooter() {
               BARRISTRLY
             </Link>
             <p className="text-sm text-gray-600 leading-relaxed max-w-xs">
-              Legal technology aggregator and client intake concierge platform —
-              find and hire the right UAE-licensed lawyer, fast.
+              Legal services company for UAE &amp; GCC — matching, consultations,
+              retainers, drafting, and specialist desks.
             </p>
             <p className="text-sm text-gray-600 leading-relaxed">
               support@barristrly.com
@@ -46,7 +46,7 @@ export default function SiteFooter() {
         </div>
 
         <div className="border-t border-[#e5e3dc] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-          <p>© 2026 Barristrly Technologies Inc. All rights reserved.</p>
+          <p>© 2026 Barristrly. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             <Link href="/terms" className="hover:text-primary transition-colors">
               Terms
@@ -54,13 +54,13 @@ export default function SiteFooter() {
             <Link href="/privacy" className="hover:text-primary transition-colors">
               Privacy
             </Link>
-            <Link href="/security" className="hover:text-primary transition-colors">
-              Security
-            </Link>
             <Link href="/about" className="hover:text-primary transition-colors">
               About
             </Link>
-            <Link href="/request-demo" className="hover:text-primary transition-colors">
+            <Link
+              href="/request-demo"
+              className="hover:text-primary transition-colors"
+            >
               Contact
             </Link>
           </div>

@@ -26,7 +26,7 @@ export default function PricingPage() {
       <PageHero
         eyebrow="Pricing"
         title="Clear AED pricing across the Service Master Catalog"
-        description="VAT (5%) and official government/court fees are itemized separately where applicable. Phase 1 checkouts use Stripe/Tap payment links after form submission."
+        description="VAT (5%) and official government/court fees are itemized separately where applicable. After you submit a request, we confirm scope and share a payment link when required."
       />
 
       <MarketingSection>

@@ -29,9 +29,9 @@ const harveySerif = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Barristrly | Privacy-First Legal Intelligence",
+  title: "Barristrly | Legal Services for UAE & GCC",
   description:
-    "AI-powered legal marketplace with two-gate COI isolation, blind firm affirmation, milestone escrow, and encrypted consultations across UAE, GCC, and Pakistan.",
+    "Barristrly is a legal services company — lawyer matching, consultations, retainers, contract drafting, wills, PRO support, and more across the UAE and GCC.",
   robots: { index: true, follow: true },
 };
 
@@ -45,8 +45,12 @@ export default function RootLayout({
       lang="en"
       data-scroll-behavior="smooth"
       className={`${harveySans.variable} ${harveySerif.variable} antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-dvh flex flex-col bg-ivory text-ink font-sans">
+      <body
+        className="min-h-dvh flex flex-col bg-ivory text-ink font-sans"
+        suppressHydrationWarning
+      >
         <FirebaseAnalytics />
         {children}
       </body>

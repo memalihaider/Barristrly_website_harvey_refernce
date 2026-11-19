@@ -68,30 +68,30 @@ export default async function LawyersSeoPage({ params }: Props) {
         title={title}
         description={
           city
-            ? `Browse ${label.toLowerCase()} counsel connected to ${city.label}. Post a case for AI intake and matched introductions.`
-            : `Browse ${label.toLowerCase()} counsel on Barristrly. Post a case for AI intake, COI-aware matching, and escrow-protected consults.`
+            ? `Looking for ${label.toLowerCase()} counsel in ${city.label}? Submit a free matching brief or book a consultation.`
+            : `Looking for ${label.toLowerCase()} counsel? Submit a free matching brief or book a fixed-fee consultation with Barristrly.`
         }
       >
-        <GradientButton href="/ai/intake" size="lg">
-          Start AI Intake
+        <GradientButton href="/services/lawyer-matching#request" size="lg">
+          Free lawyer matching
         </GradientButton>
         <GradientButton
-          href="/find-lawyers"
+          href="/services"
           size="lg"
           variant="outline"
         >
-          All practices
+          All services
         </GradientButton>
       </PageHero>
 
       <MarketingSection tone="soft">
         <p className="text-gray-700 leading-relaxed max-w-2xl">
-          This directory page is an SEO entry point. Live lawyer profiles and
-          ranking run through Marketplace matching once you submit intake.
+          This page helps people find the right practice area. Submit a service
+          request and our team matches you with vetted UAE-licensed providers.
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
-          <Link href="/marketplace" className="text-primary font-semibold hover:text-primary-hover">
-            How Marketplace works →
+          <Link href="/services/lawyer-matching" className="text-primary font-semibold hover:text-primary-hover">
+            How matching works →
           </Link>
           {!city
             ? SEO_CITIES.map((c) => (

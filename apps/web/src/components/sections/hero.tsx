@@ -6,18 +6,17 @@ import GradientButton from "@/components/ui/gradient-button";
 import LogoTicker from "@/components/ui/logo-ticker";
 
 const partners = [
-  { name: "Ministry of Justice (MOJ)" },
-  { name: "DIFC Courts" },
-  { name: "ADGM Courts" },
-  { name: "Federal Tax Authority (FTA)" },
-  { name: "Dubai Legal Affairs Department" },
-  { name: "ADJD" },
+  { name: "Mainland UAE Courts" },
+  { name: "DIFC" },
+  { name: "ADGM" },
+  { name: "Corporate & Tax" },
+  { name: "Private Client" },
+  { name: "Arbitration" },
 ];
 
 export default function Hero() {
   return (
     <section className="relative min-h-dvh flex flex-col justify-between overflow-hidden bg-black">
-      {/* Video Background */}
       <video
         autoPlay
         loop
@@ -30,7 +29,6 @@ export default function Hero() {
         <source src="/bg-video.mp4" type="video/mp4" />
       </video>
 
-      {/* Gradients Overlay */}
       <div
         className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20"
         aria-hidden="true"
@@ -40,7 +38,6 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* Main Hero Copy Content */}
       <div className="container-wide relative z-10 pt-40 md:pt-48 pb-10 flex-1 flex flex-col justify-center">
         <div className="max-w-3xl">
           <motion.h1
@@ -49,7 +46,7 @@ export default function Hero() {
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-[clamp(2.75rem,7vw,5.5rem)] text-white leading-[1.02] tracking-[-0.03em] mb-6"
           >
-            Find & Hire the Right UAE-Licensed Lawyer in 24 Hours
+            Legal services for UAE &amp; GCC — matched, priced, delivered
           </motion.h1>
 
           <motion.p
@@ -58,9 +55,9 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-2xl text-base md:text-lg text-white leading-relaxed mb-10"
           >
-            Navigating mainland court disputes, DIFC/ADGM contracts, or
-            corporate setup? Barristrly matches your precise legal need with
-            vetted, top-tier advocates across the UAE.
+            Barristrly is a service company — free lawyer matching, fixed-fee
+            consultations, retainers, drafting, wills, PRO support, and more.
+            Clear scopes. Transparent AED pricing. Vetted specialists.
           </motion.p>
 
           <motion.div
@@ -71,27 +68,26 @@ export default function Hero() {
           >
             <GradientButton
               size="lg"
-              href="/ai/intake"
+              href="/services/lawyer-matching#request"
               variant="primary"
               className="inline-flex items-center gap-2"
             >
               <Scale className="h-5 w-5" aria-hidden />
-              Submit Your Legal Brief — Free Match
+              Free lawyer matching
             </GradientButton>
             <GradientButton
               size="lg"
-              href="/pricing"
+              href="/services/consultation#request"
               variant="white"
               className="inline-flex items-center gap-2"
             >
               <Compass className="h-5 w-5" aria-hidden />
-              Book a 45-Min Fixed-Fee Consultation
+              Book a consultation
             </GradientButton>
           </motion.div>
         </div>
       </div>
 
-      {/* Moving Logos Bar Overlayed at the bottom (Harvey-Style) */}
       <div className="w-full bg-[#0b0a09]/50 backdrop-blur-md border-t border-white/10 py-5 relative z-10 shrink-0">
         <div className="container-wide flex items-center justify-between gap-6">
           <div className="flex-1 overflow-hidden">
@@ -99,7 +95,7 @@ export default function Hero() {
           </div>
           <div className="shrink-0 hidden md:block">
             <span className="text-[9px] uppercase font-bold tracking-widest text-white/60 border border-white/15 px-3.5 py-1.5 rounded bg-white/5 whitespace-nowrap">
-              Verified Licensing Authorities
+              Service jurisdictions
             </span>
           </div>
         </div>

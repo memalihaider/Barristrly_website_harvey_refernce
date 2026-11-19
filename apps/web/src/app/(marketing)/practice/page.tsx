@@ -38,7 +38,7 @@ export default function PracticePage() {
           Join the Provider Network
         </GradientButton>
         <GradientButton href="/request-demo" size="lg" variant="outline">
-          Schedule a Call
+          Contact us
         </GradientButton>
       </PageHero>
 

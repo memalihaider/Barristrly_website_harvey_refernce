@@ -102,7 +102,10 @@ export default function ServiceLanding({ service }: { service: CatalogService })
       ) : null}
 
       <MarketingSection tone="soft">
-        <SectionIntro title="What you get" description={service.phase1Notes} />
+        <SectionIntro
+          title="What you get"
+          description="Deliverables for this service. Government and court fees are always separate where they apply."
+        />
         <FeatureList
           items={service.deliverables.map((d, i) => ({
             title: `Deliverable ${i + 1}`,

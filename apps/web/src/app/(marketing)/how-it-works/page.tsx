@@ -48,11 +48,11 @@ export default function HowItWorksPage() {
 
       <MarketingCtaBand
         title="Ready to get started?"
-        description="Submit your brief for a free match, or book a dedicated consultation directly."
-        primaryHref="/ai/intake"
-        primaryLabel="Submit Your Legal Brief — Free Match"
-        secondaryHref="/pricing"
-        secondaryLabel="Book a Consultation"
+        description="Submit your brief for a free match, or book a dedicated consultation."
+        primaryHref="/services/lawyer-matching#request"
+        primaryLabel="Free lawyer matching"
+        secondaryHref="/services/consultation#request"
+        secondaryLabel="Book a consultation"
       />
     </>
   );

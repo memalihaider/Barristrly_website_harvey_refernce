@@ -84,14 +84,14 @@ export default function ServiceRequestForm({ service }: Props) {
     >
       <div>
         <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
-          Phase 1 request
+          Service request
         </p>
         <h3 className="mt-1 font-serif text-2xl text-ink tracking-tight">
           {service.shortName}
         </h3>
         <p className="mt-2 text-sm text-gray-600 leading-relaxed">
-          Modular form schema ready for Airtable / Make.com automation.{" "}
-          {service.phase1Notes}
+          Submit this form and our team will confirm next steps within 24 hours —
+          including pricing and any payment link if required.
         </p>
       </div>
 

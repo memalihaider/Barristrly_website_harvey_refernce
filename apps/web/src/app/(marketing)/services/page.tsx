@@ -21,7 +21,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Service Master Catalog"
         title="Ten services. One UAE & GCC legal operations desk."
-        description="Phase 1 forms capture structured briefs for manual founder operations. The same JSON schemas power Phase 2 automation — matching, checkout, and dashboards — without restructuring."
+        description="Barristrly is a legal services company. Browse fixed-fee and subscription offerings — matching, consultations, retainers, drafting, wills, PRO, banking, PR, fractional GC, and IP protection."
       >
         <GradientButton href="/services/lawyer-matching#request" size="lg">
           Free lawyer matching

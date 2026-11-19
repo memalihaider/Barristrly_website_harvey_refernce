@@ -41,10 +41,10 @@ export const PRIMARY_NAV: NavGroup[] = [
     mobileItems: SERVICE_LINKS,
     featured: {
       href: "/services",
-      badge: "Master catalog",
-      title: "Ten services. One operations desk.",
+      badge: "Service catalog",
+      title: "Ten services. One legal operations desk.",
       description:
-        "From free lawyer matching to VLO, IP, PRO, and banking facilitation — Phase 1 forms feed Phase 2 automation.",
+        "From free lawyer matching to VLO, IP, PRO, and banking facilitation — clear scopes and transparent AED pricing.",
       media: "/bg-video.mp4",
     },
   },
@@ -174,16 +174,16 @@ export const FOOTER_COLUMNS: { title: string; links: NavLink[] }[] = [
       { name: "Join Provider Network", href: "/practice/apply" },
       { name: "For Lawyers", href: "/practice" },
       { name: "SLA Requirements", href: "/practice#sla" },
-      { name: "Partner Portal", href: "/login" },
+      { name: "Contact", href: "/request-demo" },
     ],
   },
   {
-    title: "Legal & Compliance",
+    title: "Company",
     links: [
+      { name: "About Barristrly", href: "/about" },
+      { name: "How it works", href: "/how-it-works" },
       { name: "Terms & Conditions", href: "/terms" },
       { name: "Privacy Policy", href: "/privacy" },
-      { name: "About Barristrly", href: "/about" },
-      { name: "Regulatory Disclaimer", href: "/terms#section-2" },
     ],
   },
 ];

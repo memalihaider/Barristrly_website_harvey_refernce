@@ -245,17 +245,17 @@ export default function MegaMenu({
                       ) : null}
                     </div>
 
-                    {/* Mega footer — Request a Demo on every panel */}
                     <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                       <p className="text-sm text-white/45">
-                        Prefer a guided walkthrough of Marketplace and the full product stack?
+                        Need help choosing a service? Book a consultation or
+                        contact our team.
                       </p>
                       <Link
-                        href="/request-demo"
+                        href="/services/consultation#request"
                         onClick={close}
                         className="inline-flex items-center justify-center self-start rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-on-primary hover:bg-primary-hover transition-colors"
                       >
-                        Request a Demo
+                        Book Consultation
                       </Link>
                     </div>
                   </motion.div>

@@ -53,8 +53,8 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About"
-        title="Premier legal tech marketplace"
-        description="Barristrly is an aggregator connecting clients to lawyers, experts, arbitrators, and legal service providers — with an anonymous directory, confidential meeting scheduling, and automated conflict checks before every consult."
+        title="A legal services company for UAE & GCC"
+        description="Barristrly delivers lawyer matching, consultations, retainers, drafting, wills, PRO support, and specialist desks — connecting clients with vetted counsel through clear scopes and transparent pricing."
       />
 
       <FounderSection />
@@ -137,10 +137,10 @@ export default function AboutPage() {
       <MarketingCtaBand
         title="Find your exact legal match"
         description="Whether you need counsel, want to join the provider panel, or schedule a confidential meeting — start with BARRI or talk to our team."
-        primaryHref="/request-demo"
-        primaryLabel="Schedule Meeting"
-        secondaryHref="/ai/intake"
-        secondaryLabel="Ask BARRI"
+        primaryHref="/services/consultation#request"
+        primaryLabel="Book consultation"
+        secondaryHref="/services/lawyer-matching#request"
+        secondaryLabel="Free matching"
       />
     </>
   );

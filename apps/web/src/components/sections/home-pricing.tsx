@@ -32,8 +32,8 @@ export default function HomePricing() {
             5,999
           </h2>
           <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed">
-            Phase 1 captures structured requests for founder-led operations.
-            The same schemas power Phase 2 automation.
+            Choose free matching, a paid strategy session, or a monthly retainer
+            — clear scopes and AED pricing across our service catalog.
           </p>
         </motion.div>
 

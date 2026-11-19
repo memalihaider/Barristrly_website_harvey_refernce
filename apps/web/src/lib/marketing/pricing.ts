@@ -86,8 +86,8 @@ export const PRICING_RULES = [
       "Court, DIFC/ADGM registry, and Ministry of Economy fees are always charged separately from Barristrly service fees.",
   },
   {
-    title: "Phase 1 checkout",
+    title: "Checkout",
     detail:
-      "Forms capture structured requests; founder issues Stripe/Tap payment links until Phase 2 self-serve checkout is live.",
+      "After you submit a service request, our team confirms scope and shares a Stripe/Tap payment link when payment is required.",
   },
 ] as const;

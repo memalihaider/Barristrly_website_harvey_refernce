@@ -123,7 +123,7 @@ export default function DemoRequestForm() {
             name="role"
             required
             className={fieldClass}
-            defaultValue="lawyer"
+            defaultValue="client"
           >
             {ROLES.map((r) => (
               <option key={r.value} value={r.value}>
@@ -141,12 +141,13 @@ export default function DemoRequestForm() {
       </div>
       <div>
         <label htmlFor="demo-message" className="text-sm font-medium text-ink">
-          What are you looking to solve?
+          Which service do you need?
         </label>
         <textarea
           id="demo-message"
           name="message"
           rows={4}
+          placeholder="Matching, consultation, retainer, drafting, wills, PRO, banking, PR, VLO, IP…"
           className={fieldClass}
         />
       </div>
@@ -158,7 +159,7 @@ export default function DemoRequestForm() {
         disabled={status === "loading"}
         className="w-full rounded-full bg-primary px-7 py-3.5 text-[0.9375rem] font-semibold text-on-primary hover:bg-primary-hover transition-colors disabled:opacity-60"
       >
-        {status === "loading" ? "Sending…" : "Request a demo"}
+        {status === "loading" ? "Sending…" : "Send message"}
       </button>
     </form>
   );

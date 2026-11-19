@@ -26,7 +26,7 @@ export default function ServicesGrid() {
             transition={{ duration: 0.5 }}
             className="max-w-[14rem] text-[15px] md:text-base leading-relaxed text-gray-600"
           >
-            Connect with vetted providers across our service master catalog.
+            Connect with vetted counsel through our service catalog.
           </motion.p>
 
           {/* Large serif service list */}
@@ -76,7 +76,7 @@ export default function ServicesGrid() {
               href="/services"
               className="inline-flex items-center justify-center rounded-full border border-black/15 bg-white px-6 py-3 text-sm font-semibold text-ink hover:border-primary/40 hover:text-primary transition-colors"
             >
-              Explore Platform
+              Explore Services
             </Link>
           </motion.div>
         </div>
