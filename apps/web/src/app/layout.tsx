@@ -33,6 +33,14 @@ export const metadata: Metadata = {
   description:
     "Find the right legal help in the UAE and GCC. Free lawyer matching, fixed-fee consultations, retainers, contracts, wills, and more — with clear prices.",
   robots: { index: true, follow: true },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.webp", type: "image/webp" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
+  },
 };
 
 export default function RootLayout({
