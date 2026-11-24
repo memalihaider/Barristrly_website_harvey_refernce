@@ -9,9 +9,10 @@ import {
 import FounderSection from "@/components/marketing/founder-section";
 
 export const metadata: Metadata = {
-  title: "About | Barristrly",
+  title: "About Barristrly — Legal Services Platform for the UAE & GCC",
   description:
-    "Barristrly is a legal services company helping people and businesses in the UAE and GCC find the right lawyer and get clear, priced support.",
+    "Barristrly helps individuals and businesses in Dubai, Abu Dhabi and across the GCC find vetted lawyers and get clear, fairly priced legal support.",
+  alternates: { canonical: "/about" },
 };
 
 const PILLARS = [
@@ -122,11 +123,11 @@ export default function AboutPage() {
 
       <MarketingCtaBand
         title="Ready for clear next steps?"
-        description="Get matched with a lawyer for free, or book a fixed-fee consultation."
-        primaryHref="/services/consultation#request"
-        primaryLabel="Book a consultation"
-        secondaryHref="/services/lawyer-matching#request"
-        secondaryLabel="Get matched for free"
+        description="Explore our six services, or send a short note and we will point you to the simplest option."
+        primaryHref="/services"
+        primaryLabel="Explore services"
+        secondaryHref="/request-demo"
+        secondaryLabel="Contact us"
       />
     </>
   );

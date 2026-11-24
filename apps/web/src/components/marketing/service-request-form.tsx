@@ -7,7 +7,8 @@ import type {
 } from "@/lib/marketing/service-catalog";
 
 type Props = {
-  service: CatalogService;
+  /** Serializable service data (no icon component — this is a client component). */
+  service: Omit<CatalogService, "icon">;
 };
 
 export default function ServiceRequestForm({ service }: Props) {
@@ -67,7 +68,7 @@ export default function ServiceRequestForm({ service }: Props) {
       }
       setStatus("done");
       setMessage(
-        "Request received. You will get a confirmation within our 24-hour SLA via email/WhatsApp.",
+        "Request received. You will get a confirmation within our 48-hour SLA via email/WhatsApp.",
       );
       form.reset();
     } catch (err) {
@@ -90,7 +91,7 @@ export default function ServiceRequestForm({ service }: Props) {
           {service.shortName}
         </h3>
         <p className="mt-2 text-sm text-gray-600 leading-relaxed">
-          Send this short request. We will reply within 24 hours with next steps
+          Send this short request. We will reply within 48 hours with next steps
           and pricing if payment is needed.
         </p>
       </div>

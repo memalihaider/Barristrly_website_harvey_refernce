@@ -34,46 +34,47 @@ const PRACTICE_LINKS: NavLink[] = LEGAL_SERVICES.map((s) => ({
 export const PRIMARY_NAV: NavGroup[] = [
   {
     name: "Services",
+    href: "/services",
     columns: [
-      { title: "Core legal", items: SERVICE_LINKS.slice(0, 5) },
-      { title: "Business & ops", items: SERVICE_LINKS.slice(5) },
+      { title: "Dispute & documents", items: SERVICE_LINKS.slice(0, 3) },
+      { title: "Family & ongoing support", items: SERVICE_LINKS.slice(3) },
     ],
     mobileItems: SERVICE_LINKS,
     featured: {
       href: "/services",
-      badge: "Our services",
-      title: "Ten clear services. One trusted desk.",
+      badge: "Six services",
+      title: "Legal services under one roof",
       description:
-        "From free lawyer matching to retainers, contracts, wills, and brand protection — with plain AED pricing.",
+        "Arbitration connections, agreements & e-books, UAE company setup, wills, contract drafting, and flexible retainers.",
       media: "/bg-video.mp4",
     },
   },
   {
-    name: "For Businesses & Startups",
+    name: "For Businesses",
     href: "/services/retainers",
     columns: [
       {
-        title: "Business packages",
+        title: "Business services",
         items: [
           {
-            name: "Startup & Corporate Retainers",
+            name: "Flexible Legal Retainers",
             href: "/services/retainers",
-            description: "From AED 5,999/month · 10–15 hours of support",
-          },
-          {
-            name: "Virtual Legal Officer",
-            href: "/services/vlo-fractional-gc",
-            description: "Senior legal support · AED 12,500/month · 25 hours",
+            description: "Ongoing vetted support · switch anytime · pro-rata billing",
           },
           {
             name: "Contract Drafting",
             href: "/services/contract-drafting",
-            description: "Fixed fees from AED 799 to AED 1,999",
+            description: "Corporate, commercial & investment agreements",
           },
           {
-            name: "Banking & Capital",
-            href: "/services/banking-capital",
-            description: "Mortgages, business loans, and growth capital",
+            name: "UAE Company Formation & PRO",
+            href: "/services/company-formation",
+            description: "Licensing, Corporate Tax, VAT & PRO from anywhere",
+          },
+          {
+            name: "Agreements & E-Books",
+            href: "/services/agreements-ebooks",
+            description: "Templates and guides for startups & mid-size teams",
           },
         ],
       },
@@ -83,16 +84,17 @@ export const PRIMARY_NAV: NavGroup[] = [
       },
     ],
     mobileItems: [
-      { name: "Retainers", href: "/services/retainers" },
-      { name: "VLO / Fractional GC", href: "/services/vlo-fractional-gc" },
+      { name: "Legal Retainers", href: "/services/retainers" },
       { name: "Contract Drafting", href: "/services/contract-drafting" },
+      { name: "Company Formation & PRO", href: "/services/company-formation" },
+      { name: "Agreements & E-Books", href: "/services/agreements-ebooks" },
     ],
     featured: {
-      href: "/services/vlo-fractional-gc",
-      badge: "New",
-      title: "Senior legal support for growing companies",
+      href: "/services/retainers",
+      badge: "For growing teams",
+      title: "Legal continuity without rigid lock-ins",
       description:
-        "Get experienced legal guidance each month — without hiring a full-time in-house lawyer.",
+        "Matched vetted professionals, clear scopes, and fair billing — built for startups and mid-size companies.",
       media: "/bg-video.mp4",
     },
   },
@@ -101,26 +103,26 @@ export const PRIMARY_NAV: NavGroup[] = [
     href: "/practice",
   },
   {
-    name: "Guides & Resources",
-    href: "/services/ebooks-pro",
+    name: "Resources",
+    href: "/resources",
     columns: [
       {
-        title: "Guides & help",
+        title: "Learn & explore",
         items: [
           {
-            name: "Guides & PRO",
-            href: "/services/ebooks-pro",
-            description: "Guides from AED 99 · PRO help for visas and licences",
-          },
-          {
-            name: "PRO Support",
-            href: "/services/ebooks-pro#request",
-            description: "Visas, licences, attestation, company setup",
+            name: "Agreements & E-Books",
+            href: "/services/agreements-ebooks",
+            description: "Practical templates and business guides",
           },
           {
             name: "Resources",
             href: "/resources",
-            description: "Helpful reading and service guides",
+            description: "Helpful reading and service overviews",
+          },
+          {
+            name: "How it works",
+            href: "/how-it-works",
+            description: "How Barristrly connects you with professionals",
           },
           {
             name: "Blog",
@@ -131,16 +133,17 @@ export const PRIMARY_NAV: NavGroup[] = [
       },
     ],
     mobileItems: [
-      { name: "Guides & PRO", href: "/services/ebooks-pro" },
+      { name: "Agreements & E-Books", href: "/services/agreements-ebooks" },
       { name: "Resources", href: "/resources" },
+      { name: "How it works", href: "/how-it-works" },
       { name: "Blog", href: "/blog" },
     ],
     featured: {
-      href: "/services/ebooks-pro",
-      badge: "Guides & PRO",
-      title: "Ready guides and on-ground support",
+      href: "/services/agreements-ebooks",
+      badge: "Self-serve tools",
+      title: "Templates and e-books that move with you",
       description:
-        "Download a practical guide, or ask for help with visas, trade licences, and paperwork.",
+        "Start with practical documents and guides — upgrade to vetted professionals when deals get complex.",
       media: "/bg-video.mp4",
     },
   },
@@ -156,16 +159,16 @@ export const HOME_ANCHORS: NavLink[] = [];
 export const FOOTER_COLUMNS: { title: string; links: NavLink[] }[] = [
   {
     title: "Services",
-    links: SERVICE_LINKS.slice(0, 6).map(({ name, href }) => ({ name, href })),
+    links: SERVICE_LINKS.map(({ name, href }) => ({ name, href })),
   },
   {
     title: "For Clients",
     links: [
-      { name: "Free Lawyer Matching", href: "/services/lawyer-matching" },
-      { name: "Book Consultation", href: "/services/consultation" },
-      { name: "Pricing Overview", href: "/pricing" },
+      { name: "All services", href: "/services" },
       { name: "Wills & Estate", href: "/services/wills-estate" },
-      { name: "IP & Brand", href: "/services/ip-brand" },
+      { name: "Company Formation", href: "/services/company-formation" },
+      { name: "Arbitration", href: "/services/arbitration" },
+      { name: "Pricing", href: "/pricing" },
     ],
   },
   {

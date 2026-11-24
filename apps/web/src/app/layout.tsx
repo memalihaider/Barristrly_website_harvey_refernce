@@ -3,6 +3,16 @@ import localFont from "next/font/local";
 import "@/styles/globals.css";
 import "@/styles/rich-content.css";
 import FirebaseAnalytics from "@/components/providers/firebase-analytics";
+import JsonLd from "@/components/seo/json-ld";
+import {
+  DEFAULT_DESCRIPTION,
+  DEFAULT_TITLE,
+  SEO_KEYWORDS,
+  SITE_NAME,
+  SITE_URL,
+  organizationJsonLd,
+  websiteJsonLd,
+} from "@/lib/seo";
 
 const harveySans = localFont({
   src: "../../public/fonts/HarveySans.woff2",
@@ -29,10 +39,34 @@ const harveySerif = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Barristrly | Legal Services for UAE & GCC",
-  description:
-    "Find the right legal help in the UAE and GCC. Free lawyer matching, fixed-fee consultations, retainers, contracts, wills, and more — with clear prices.",
-  robots: { index: true, follow: true },
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: DEFAULT_TITLE,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: DEFAULT_DESCRIPTION,
+  keywords: SEO_KEYWORDS,
+  applicationName: SITE_NAME,
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "en_AE",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [{ url: "/icon-512.png", width: 512, height: 512, alt: SITE_NAME }],
+  },
+  twitter: {
+    card: "summary",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: ["/icon-512.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
+  category: "Legal services",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -59,6 +93,7 @@ export default function RootLayout({
         className="min-h-dvh flex flex-col bg-ivory text-ink font-sans"
         suppressHydrationWarning
       >
+        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
         <FirebaseAnalytics />
         {children}
       </body>

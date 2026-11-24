@@ -3,9 +3,10 @@ import ProviderOnboardingForm from "@/components/providers/provider-onboarding-f
 import { MarketingSection, PageHero } from "@/components/marketing/section";
 
 export const metadata: Metadata = {
-  title: "Provider Onboarding | Barristrly",
+  title: "Apply as a Lawyer or Legal Provider",
   description:
-    "Apply to join the Barristrly network — for licensed Advocates, Law Firms, Legal Consultants, Arbitrators, Tax & VAT Advisors, AML Specialists, Notaries, and Legal Translators.",
+    "Apply to join the Barristrly network — for licensed Advocates, Law Firms, Legal Consultants, Arbitrators, Tax & VAT Advisors, AML Specialists, Notaries, and Legal Translators in the UAE.",
+  alternates: { canonical: "/practice/apply" },
 };
 
 export default function ProviderApplyPage() {

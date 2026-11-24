@@ -9,14 +9,15 @@ import {
 import { SERVICE_CATALOG } from "@/lib/marketing/service-catalog";
 
 export const metadata: Metadata = {
-  title: "Pricing | Barristrly",
+  title: "Legal Services Pricing in AED — Transparent Lawyer Fees UAE",
   description:
-    "Clear AED pricing for Barristrly services — free matching, consultations from AED 599, retainers from AED 5,999/month, and more.",
+    "See clear AED prices for contract drafting, UAE company formation, will drafting, legal retainers and arbitration support. No hidden fees — get a quote from vetted UAE lawyers within 48 hours.",
+  alternates: { canonical: "/pricing" },
 };
 
 export default function PricingPage() {
   const featured = SERVICE_CATALOG.filter((s) =>
-    ["lawyer-matching", "consultation", "retainers", "contract-drafting"].includes(
+    ["contract-drafting", "company-formation", "retainers", "wills-estate"].includes(
       s.id,
     ),
   );
@@ -25,14 +26,14 @@ export default function PricingPage() {
     <>
       <PageHero
         eyebrow="Pricing"
-        title="Clear prices in AED"
-        description="See the fee before you proceed. Where government or court fees apply, they are always separate and explained upfront. VAT may apply."
+        title="Clear scopes. Fair next steps."
+        description="Most services are quoted after a short brief so fees match your matter. Where government fees apply, they are always separate. VAT may apply."
       />
 
       <MarketingSection>
         <SectionIntro
           title="Most requested"
-          description="A free start, a paid session, monthly support, or fixed-fee drafting."
+          description="Contracts, UAE setup, ongoing retainers, and wills — four clear starting points."
         />
         <div className="grid md:grid-cols-2 gap-6 md:gap-8">
           {featured.map((service) => (
@@ -77,8 +78,8 @@ export default function PricingPage() {
 
       <MarketingSection tone="soft">
         <SectionIntro
-          title="All services at a glance"
-          description="A simple overview of starting prices across the catalog."
+          title="All six services at a glance"
+          description="A simple overview of how each service is priced."
         />
         <div className="overflow-x-auto rounded-2xl border border-[#e5e3dc] bg-white">
           <table className="w-full min-w-[640px] text-left text-sm">
@@ -123,10 +124,10 @@ export default function PricingPage() {
       <MarketingCtaBand
         title="Need help choosing?"
         description="Send us a short note and we will recommend the simplest option."
-        primaryHref="/services/consultation#request"
-        primaryLabel="Book a consultation"
-        secondaryHref="/services/lawyer-matching#request"
-        secondaryLabel="Get matched for free"
+        primaryHref="/request-demo"
+        primaryLabel="Contact us"
+        secondaryHref="/services"
+        secondaryLabel="Browse services"
       />
     </>
   );

@@ -13,7 +13,7 @@ export const SERVICE_ROUTES = [
     value: "free-match",
     label: "Option 1: Free Lawyer & Provider Matching",
     detail:
-      "Submit brief & receive up to 3 vetted fee proposals within 24 hours. 100% free for clients.",
+      "Submit brief & receive up to 3 vetted fee proposals within 48 hours. 100% free for clients.",
   },
   {
     value: "dedicated-consultation",

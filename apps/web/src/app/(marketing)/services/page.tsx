@@ -10,9 +10,10 @@ import {
 import { SERVICE_CATALOG } from "@/lib/marketing/service-catalog";
 
 export const metadata: Metadata = {
-  title: "Services | Barristrly",
+  title: "Legal Services in Dubai & UAE — Contracts, Company Setup, Wills",
   description:
-    "Browse Barristrly legal services — free lawyer matching, consultations, retainers, contracts, wills, PRO help, banking, PR, and more.",
+    "Six fixed-scope legal services in Dubai and across the UAE: contract drafting, company formation & PRO, will drafting, legal retainers, arbitration support, and agreement templates. Vetted lawyers, AED pricing, reply in 48 hours.",
+  alternates: { canonical: "/services" },
 };
 
 export default function ServicesPage() {
@@ -20,21 +21,21 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="Services"
-        title="Clear legal services for people and businesses"
-        description="Every service has a plain description and AED pricing. Choose what you need, send a short request, and we reply within 24 hours."
+        title="Six clear services. One trusted desk."
+        description="Barristrly connects you with vetted professionals for arbitration support, documents, UAE company setup, wills, contracts, and ongoing retainers — with plain language and clear next steps."
       >
-        <GradientButton href="/services/lawyer-matching#request" size="lg">
-          Get matched for free
+        <GradientButton href="/request-demo" size="lg">
+          Contact us
         </GradientButton>
-        <GradientButton href="/services/consultation#request" size="lg" variant="outline">
-          Book a consultation
+        <GradientButton href="/how-it-works" size="lg" variant="outline">
+          How it works
         </GradientButton>
       </PageHero>
 
       <MarketingSection>
         <SectionIntro
           title="What we offer"
-          description="Ten practical services. Government and court fees are always listed separately where they apply."
+          description="Six practical services. We are a legal technology aggregator — not a law firm. Independent professionals deliver the work."
         />
         <ul className="grid md:grid-cols-2 gap-5 list-none p-0 m-0">
           {SERVICE_CATALOG.map((s) => (
@@ -76,8 +77,8 @@ export default function ServicesPage() {
         description="Tell us your situation and we will point you to the simplest next step."
         primaryHref="/request-demo"
         primaryLabel="Contact us"
-        secondaryHref="/services/consultation#request"
-        secondaryLabel="Book a consultation"
+        secondaryHref="/services/retainers#request"
+        secondaryLabel="Ask about a retainer"
       />
     </>
   );

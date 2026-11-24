@@ -22,15 +22,15 @@ export default function ServicesGrid() {
     >
       <div className="container-wide py-20 md:py-28 lg:py-32">
         <div className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)_auto] gap-10 lg:gap-8 items-center">
-          <motion.p
+          <motion.h2
             id="services-list-heading"
             initial={{ opacity: 0, y: 12 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="max-w-[14rem] text-[15px] md:text-base leading-relaxed text-gray-600"
+            className="max-w-[16rem] font-normal text-[15px] md:text-base leading-relaxed text-gray-600"
           >
-            Simple services. Clear prices. Trusted specialists.
-          </motion.p>
+            Legal services across Dubai &amp; the UAE. Clear prices. Vetted specialists.
+          </motion.h2>
 
           <nav aria-label="Services" className="min-w-0">
             <ul className="list-none m-0 p-0 space-y-1 md:space-y-2">

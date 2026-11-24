@@ -1,9 +1,10 @@
 const BADGES = [
-  "Checked UAE lawyers",
+  "Vetted, licensed UAE lawyers",
   "Mainland, DIFC & ADGM",
-  "Reply within 24 hours",
-  "Clear AED pricing",
+  "Reply within 48 hours",
+  "Upfront AED pricing",
   "Confidential handling",
+  "Free to submit a brief",
 ];
 
 export default function TrustBar() {

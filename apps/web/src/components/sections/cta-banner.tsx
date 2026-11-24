@@ -7,39 +7,39 @@ import { ArrowUpRight, BookOpen, Scale, Briefcase, Users } from "lucide-react";
 
 const RESOURCES = [
   {
-    href: "/services",
-    label: "Service catalog",
-    detail: "Ten services with clear AED pricing",
+    href: "/ai/intake",
+    label: "Free lawyer match",
+    detail: "Submit a brief — up to three vetted lawyers within 48 hours",
     icon: Briefcase,
   },
   {
     href: "/pricing",
     label: "Pricing",
-    detail: "Consultations, retainers, drafting, and more",
+    detail: "Clear AED prices for drafting, company setup, Wills and retainers",
     icon: Scale,
   },
   {
     href: "/resources",
-    label: "Resources",
-    detail: "Articles and practice-area guides",
+    label: "UAE legal guides",
+    detail: "Practical articles on contracts, company setup, Wills and more",
     icon: BookOpen,
   },
   {
     href: "/practice",
     label: "For lawyers",
-    detail: "Join the provider network",
+    detail: "Join the network and receive pre-screened client requests",
     icon: Users,
   },
   {
     href: "/about",
-    label: "About",
-    detail: "Meet the founder and our mission",
+    label: "About Barristrly",
+    detail: "Who we are and why we built a better way to hire lawyers",
     icon: BookOpen,
   },
   {
     href: "/request-demo",
-    label: "Contact",
-    detail: "Tell us what service you need",
+    label: "Contact us",
+    detail: "Tell us your situation — we reply within 48 hours",
     icon: ArrowUpRight,
   },
 ];
@@ -59,14 +59,15 @@ export default function CtaBanner() {
             className="max-w-2xl"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary mb-4">
-              Next steps
+              Get started
             </p>
             <h2 className="font-serif text-[clamp(2rem,4vw,3.25rem)] text-ink leading-[1.1] tracking-tight">
-              Choose a service, check pricing, or ask us
+              Get legal help in the UAE today
             </h2>
             <p className="mt-4 text-gray-600 leading-relaxed max-w-lg text-base md:text-lg">
-              Start with a free match, book a consultation, or send a short
-              message — we will guide you to the simplest option.
+              Start with a free brief and get matched with vetted lawyers, check
+              our AED pricing, or send a quick message — we will point you to the
+              simplest, most cost-effective option.
             </p>
           </motion.div>
 
@@ -76,10 +77,10 @@ export default function CtaBanner() {
             transition={{ duration: 0.6, delay: 0.08 }}
           >
             <Link
-              href="/services"
+              href="/ai/intake"
               className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-on-primary hover:bg-primary-hover transition-colors"
             >
-              Browse services
+              Get a free lawyer match
               <ArrowUpRight className="h-4 w-4" aria-hidden />
             </Link>
           </motion.div>

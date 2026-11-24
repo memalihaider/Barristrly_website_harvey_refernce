@@ -11,9 +11,10 @@ import {
 } from "@/components/marketing/section";
 
 export const metadata: Metadata = {
-  title: "For Lawyers | Barristrly",
+  title: "Join Our UAE Lawyer Network — Get Qualified Client Leads",
   description:
-    "Join the Barristrly provider network. Receive carefully reviewed client requests, respond within 24 hours, and grow your practice at no listing fee.",
+    "Lawyers, law firms and legal consultants in the UAE: receive pre-screened client requests, respond within 48 hours, and grow your practice with no listing fee.",
+  alternates: { canonical: "/practice" },
 };
 
 export default function PracticePage() {
@@ -22,14 +23,14 @@ export default function PracticePage() {
       <PageHero
         eyebrow="For lawyers & legal providers"
         title="Join Barristrly at no listing fee"
-        description="Receive carefully reviewed client requests matched to your practice area and location. Respond within 24 hours with a clear proposal."
+        description="Receive carefully reviewed client requests matched to your practice area and location. Respond within 48 hours with a clear proposal."
         aside={
           <ProductMock
             title="How joining works"
             lines={[
               "Upload your licence and practising certificate",
               "Get matched to the right client requests",
-              "Reply within 24 hours with your proposal",
+              "Reply within 48 hours with your proposal",
             ]}
           />
         }
@@ -46,7 +47,7 @@ export default function PracticePage() {
         <StatRow
           stats={[
             { value: "AED 0", label: "Listing fee" },
-            { value: "24h", label: "Time to reply with a proposal" },
+            { value: "48h", label: "Time to reply with a proposal" },
             { value: "3", label: "Maximum lawyers per client request" },
             { value: "UAE", label: "Data handled with care" },
           ]}
@@ -89,8 +90,8 @@ export default function PracticePage() {
         <FeatureList
           items={[
             {
-              title: "24-hour SLA commitment",
-              body: "Acknowledge incoming lead briefs and provide a transparent, itemized fee proposal to the Client within 24 business hours.",
+              title: "48-hour SLA commitment",
+              body: "Acknowledge incoming lead briefs and provide a transparent, itemized fee proposal to the Client within 48 business hours.",
             },
             {
               title: "Administrative fee structure",
@@ -111,7 +112,7 @@ export default function PracticePage() {
       <MarketingCtaBand
         dark
         title="Built for solos and growing firms"
-        description="List free. Get vetted, jurisdiction-matched briefs. Respond within 24 hours. Grow your practice through Barristrly."
+        description="List free. Get vetted, jurisdiction-matched briefs. Respond within 48 hours. Grow your practice through Barristrly."
         primaryHref="/practice/apply"
         primaryLabel="Join the Provider Network"
         secondaryHref="/pricing"

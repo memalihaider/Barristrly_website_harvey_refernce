@@ -32,17 +32,18 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const practice = practiceFromSlug(slug[0] ?? "");
-  if (!practice) return { title: "Lawyers | Barristrly" };
+  if (!practice) return { title: "Lawyers" };
   const city = slug[1] ? cityFromSlug(slug[1]) : null;
   const label = practiceLabel(practice);
   const title = city
-    ? `${label} Lawyers in ${city.label} | Barristrly`
-    : `${label} Lawyers | Barristrly`;
+    ? `${label} Lawyers in ${city.label}`
+    : `${label} Lawyers in Dubai & UAE`;
   return {
     title,
     description: city
-      ? `Find ${label.toLowerCase()} lawyers in ${city.label} on Barristrly Marketplace.`
-      : `Find ${label.toLowerCase()} lawyers on Barristrly Marketplace.`,
+      ? `Looking for a ${label.toLowerCase()} lawyer in ${city.label}? Get matched with vetted, licensed ${label.toLowerCase()} lawyers through Barristrly — free brief, confidential, reply within 48 hours.`
+      : `Find vetted ${label.toLowerCase()} lawyers in Dubai, Abu Dhabi and across the UAE. Submit a free brief and get matched with up to three licensed lawyers within 48 hours.`,
+    alternates: { canonical: `/lawyers/${slug.join("/")}` },
   };
 }
 
@@ -68,12 +69,12 @@ export default async function LawyersSeoPage({ params }: Props) {
         title={title}
         description={
           city
-            ? `Looking for ${label.toLowerCase()} counsel in ${city.label}? Submit a free matching brief or book a consultation.`
-            : `Looking for ${label.toLowerCase()} counsel? Submit a free matching brief or book a fixed-fee consultation with Barristrly.`
+            ? `Looking for ${label.toLowerCase()} counsel in ${city.label}? Tell us what you need and we will connect you with vetted professionals.`
+            : `Looking for ${label.toLowerCase()} counsel? Tell us what you need and Barristrly will connect you with vetted professionals.`
         }
       >
-        <GradientButton href="/services/lawyer-matching#request" size="lg">
-          Free lawyer matching
+        <GradientButton href="/request-demo" size="lg">
+          Contact us
         </GradientButton>
         <GradientButton
           href="/services"
@@ -90,8 +91,8 @@ export default async function LawyersSeoPage({ params }: Props) {
           request and our team matches you with vetted UAE-licensed providers.
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
-          <Link href="/services/lawyer-matching" className="text-primary font-semibold hover:text-primary-hover">
-            How matching works →
+          <Link href="/how-it-works" className="text-primary font-semibold hover:text-primary-hover">
+            How it works →
           </Link>
           {!city
             ? SEO_CITIES.map((c) => (

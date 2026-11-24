@@ -9,9 +9,10 @@ import {
 } from "@/components/marketing/section";
 
 export const metadata: Metadata = {
-  title: "Confidentiality | Barristrly",
+  title: "Confidentiality & Data Protection",
   description:
     "How Barristrly looks after your information when you request matching, consultations, and other legal services.",
+  alternates: { canonical: "/security" },
 };
 
 export default function SecurityPage() {

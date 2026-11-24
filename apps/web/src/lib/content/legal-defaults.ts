@@ -46,7 +46,7 @@ export const TERMS_SECTIONS: Clause[] = [
     title: "4. Service Provider Network Onboarding & Obligations",
     paragraphs: [
       "4.1 Vetting & Licensing. All Advocates, Law Firms, Legal Consultants, Tax Agents, AML Consultants, Notaries, and Sworn Translators seeking to join the Barristrly network must complete our Provider Onboarding Form and upload valid credentials, including active UAE Trade Licenses and practicing certificates from the Ministry of Justice (MOJ), Dubai Legal Affairs Department, ADJD, DIFC Courts, ADGM Courts, or Federal Tax Authority (FTA).",
-      "4.2 24-Hour SLA Commitment. Participating Service Providers agree to acknowledge incoming lead briefs and provide transparent, itemized fee proposals to Clients within 24 business hours.",
+      "4.2 48-Hour SLA Commitment. Participating Service Providers agree to acknowledge incoming lead briefs and provide transparent, itemized fee proposals to Clients within 48 business hours.",
       "4.3 Origination & Administrative Structure. Service Providers participating in the Barristrly network agree that marketing, origination, or administrative platform fees payable to Barristrly are structured strictly in compliance with UAE legal practice frameworks as administrative technology, marketing, and lead generation charges.",
     ],
   },

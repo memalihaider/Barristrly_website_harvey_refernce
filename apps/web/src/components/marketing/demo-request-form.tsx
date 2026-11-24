@@ -147,7 +147,7 @@ export default function DemoRequestForm() {
           id="demo-message"
           name="message"
           rows={4}
-          placeholder="Matching, consultation, retainer, drafting, wills, PRO, banking, PR, VLO, IP…"
+          placeholder="Arbitration, agreements, company formation, wills, drafting, retainer…"
           className={fieldClass}
         />
       </div>

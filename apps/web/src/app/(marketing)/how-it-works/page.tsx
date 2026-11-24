@@ -2,26 +2,27 @@ import type { Metadata } from "next";
 import { PageHero, MarketingSection, MarketingCtaBand } from "@/components/marketing/section";
 
 export const metadata: Metadata = {
-  title: "How It Works | Barristrly",
+  title: "How to Find the Right Lawyer in Dubai in 3 Steps",
   description:
-    "Three simple steps to get legal help with Barristrly — tell us your need, choose a service, and get a clear next step within 24 hours.",
+    "Tell us what you need, choose a service, and get matched with a vetted UAE lawyer or specialist — with a clear quote and next step within 48 hours.",
+  alternates: { canonical: "/how-it-works" },
 };
 
 const STEPS = [
   {
     step: "1",
     title: "Tell us what you need",
-    body: "Share a short summary of your situation — for example a contract, dispute, company issue, or family matter.",
+    body: "Share a short summary — arbitration support, a contract, UAE company setup, a will, or ongoing legal cover.",
   },
   {
     step: "2",
-    title: "Choose how you want to proceed",
-    body: "Start with free lawyer matching, book a paid consultation, or pick another service such as drafting, a retainer, or a will.",
+    title: "Choose a service",
+    body: "Pick from our six services: arbitration, agreements & e-books, company formation & PRO, wills, contract drafting, or a flexible retainer.",
   },
   {
     step: "3",
     title: "Get a clear next step",
-    body: "We confirm within 24 hours with introductions, a meeting time, or a quote — so you always know what happens next.",
+    body: "We confirm within 48 hours with introductions, a quote, or matched professionals — so you always know what happens next.",
   },
 ];
 
@@ -48,11 +49,11 @@ export default function HowItWorksPage() {
 
       <MarketingCtaBand
         title="Ready to begin?"
-        description="Start with a free match, or book a consultation with a clear fee."
-        primaryHref="/services/lawyer-matching#request"
-        primaryLabel="Get matched for free"
-        secondaryHref="/services/consultation#request"
-        secondaryLabel="Book a consultation"
+        description="Browse our six services, or send a short message and we will guide you."
+        primaryHref="/services"
+        primaryLabel="Explore services"
+        secondaryHref="/request-demo"
+        secondaryLabel="Contact us"
       />
     </>
   );

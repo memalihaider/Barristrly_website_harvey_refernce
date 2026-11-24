@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function EnterpriseRedirect() {
-  redirect("/services/vlo-fractional-gc");
+  redirect("/services/retainers");
 }

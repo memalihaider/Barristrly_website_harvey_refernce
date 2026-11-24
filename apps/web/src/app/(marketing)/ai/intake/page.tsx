@@ -7,9 +7,10 @@ import {
 } from "@/components/marketing/section";
 
 export const metadata: Metadata = {
-  title: "Lawyer Matching Intake | Barristrly",
+  title: "Free Lawyer Matching in the UAE — Submit Your Legal Brief",
   description:
-    "Submit a free legal intake brief for matching with up to three vetted UAE-licensed providers, or book a paid consultation.",
+    "Describe your legal issue in a few minutes and get matched with up to three vetted, UAE-licensed lawyers. Free to submit, confidential, and proposals within 48 hours.",
+  alternates: { canonical: "/ai/intake" },
 };
 
 export default function AiIntakePage() {

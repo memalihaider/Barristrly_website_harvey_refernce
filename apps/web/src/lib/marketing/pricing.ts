@@ -70,7 +70,7 @@ export const SUBSCRIPTION_PLANS = [
       "Founder discovery call",
       "Sample retainer available",
     ],
-    cta: { href: "/services/vlo-fractional-gc#request", label: "Book discovery call" },
+    cta: { href: "/services/retainers#request", label: "Enquire about a retainer" },
   },
 ] as const;
 

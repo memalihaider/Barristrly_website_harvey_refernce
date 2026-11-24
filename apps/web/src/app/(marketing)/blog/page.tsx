@@ -4,9 +4,10 @@ import PostCard from "@/components/content/post-card";
 import { listPublishedPosts } from "@/lib/content/blog";
 
 export const metadata: Metadata = {
-  title: "Blog | Barristrly",
+  title: "UAE Legal Insights & Guides Blog",
   description:
-    "Insights from Barristrly on legal matchmaking, UAE and GCC law, and working with the right lawyer.",
+    "Practical articles on UAE law, company setup, contracts, wills, Corporate Tax and choosing the right lawyer in Dubai and the GCC.",
+  alternates: { canonical: "/blog" },
 };
 
 export const revalidate = 300;

@@ -12,9 +12,10 @@ import { LEGAL_SERVICES } from "@/lib/marketing/seo-slugs";
 import { SERVICE_CATALOG } from "@/lib/marketing/service-catalog";
 
 export const metadata: Metadata = {
-  title: "Resources | Barristrly",
+  title: "UAE Legal Guides & Resources",
   description:
-    "Helpful articles and guides for Barristrly legal services in the UAE and GCC.",
+    "Free guides and articles on UAE legal topics — contracts, company formation, wills, retainers and disputes — from the Barristrly team.",
+  alternates: { canonical: "/resources" },
 };
 
 export const revalidate = 300;

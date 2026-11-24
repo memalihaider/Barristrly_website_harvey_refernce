@@ -12,13 +12,15 @@ import type { CatalogService } from "@/lib/marketing/service-catalog";
 import { SERVICE_CATALOG } from "@/lib/marketing/service-catalog";
 
 export default function ServiceLanding({ service }: { service: CatalogService }) {
+  // Icons are functions and cannot cross into the client-side form.
+  const { icon: _icon, ...formService } = service; // eslint-disable-line @typescript-eslint/no-unused-vars
   return (
     <>
       <PageHero
         eyebrow={
           service.isNew
             ? `Service ${service.number} · New`
-            : `Service ${service.number}`
+            : `Service ${service.number} of 6`
         }
         title={service.name}
         description={service.description}
@@ -41,7 +43,7 @@ export default function ServiceLanding({ service }: { service: CatalogService })
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="rounded-2xl border border-[#e5e3dc] bg-white p-5">
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
-              Pricing
+              How it is priced
             </p>
             <p className="mt-2 font-serif text-xl text-ink">{service.pricingModel}</p>
             <p className="mt-2 text-sm text-gray-600">{service.eyebrow}</p>
@@ -60,8 +62,8 @@ export default function ServiceLanding({ service }: { service: CatalogService })
       {service.tiers.length ? (
         <MarketingSection>
           <SectionIntro
-            title="Packages & pricing"
-            description="All prices are in AED. VAT and official government fees are listed separately when they apply."
+            title="What you can request"
+            description="Choose the option that fits. Final fees are confirmed after we understand your matter."
           />
           <ul className="grid md:grid-cols-2 gap-4 list-none p-0 m-0">
             {service.tiers.map((tier) => (
@@ -101,28 +103,62 @@ export default function ServiceLanding({ service }: { service: CatalogService })
         </MarketingSection>
       ) : null}
 
-      <MarketingSection tone="soft">
+      {service.benefits.length ? (
+        <MarketingSection tone="soft">
+          <SectionIntro
+            title="Why clients use this service"
+            description="Practical advantages — without the rush or filler."
+          />
+          <FeatureList
+            items={service.benefits.map((b) => ({
+              title: b.title,
+              body: b.body,
+            }))}
+          />
+        </MarketingSection>
+      ) : null}
+
+      <MarketingSection>
         <SectionIntro
           title="What you get"
-          description="What is included. Government and court fees stay separate when they apply."
+          description="Clear outcomes. Government and court fees stay separate when they apply."
         />
         <FeatureList
           items={service.deliverables.map((d, i) => ({
-            title: `Deliverable ${i + 1}`,
+            title: `Included ${i + 1}`,
             body: d,
           }))}
         />
       </MarketingSection>
 
+      {service.whoFor.length ? (
+        <MarketingSection tone="soft">
+          <SectionIntro
+            title="Who this is for"
+            description="A good fit if any of these sound like you."
+          />
+          <ul className="grid sm:grid-cols-3 gap-4 list-none p-0 m-0">
+            {service.whoFor.map((item) => (
+              <li
+                key={item}
+                className="rounded-2xl border border-[#e5e3dc] bg-white p-5 text-sm text-gray-700 leading-relaxed"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </MarketingSection>
+      ) : null}
+
       <MarketingSection>
-        <ServiceRequestForm service={service} />
+        <ServiceRequestForm service={formService} />
       </MarketingSection>
 
       <MarketingSection tight>
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary mb-6">
-          Service master catalog
+          All Barristrly services
         </p>
-        <ul className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 list-none p-0 m-0">
+        <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 list-none p-0 m-0">
           {SERVICE_CATALOG.map((s) => (
             <li key={s.id}>
               <Link
@@ -147,12 +183,12 @@ export default function ServiceLanding({ service }: { service: CatalogService })
       </MarketingSection>
 
       <MarketingCtaBand
-        title="Need help choosing?"
-        description="Book a consultation or start with free lawyer matching. We reply within 24 hours."
-        primaryHref="/services/consultation#request"
-        primaryLabel="Book a consultation"
-        secondaryHref="/services/lawyer-matching#request"
-        secondaryLabel="Get matched for free"
+        title="Not sure which service fits?"
+        description="Tell us your situation and we will point you to the simplest next step. We reply within 48 hours."
+        primaryHref="/request-demo"
+        primaryLabel="Contact us"
+        secondaryHref="/services"
+        secondaryLabel="Browse all services"
       />
     </>
   );

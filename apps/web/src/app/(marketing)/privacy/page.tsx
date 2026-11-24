@@ -7,9 +7,10 @@ import {
 } from "@/components/marketing/section";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Barristrly",
+  title: "Privacy Policy",
   description:
     "Privacy Policy for Barristrly's legal technology aggregator and client intake concierge platform — how we collect, use, disclose, and protect your data under UAE PDPL.",
+  alternates: { canonical: "/privacy" },
 };
 
 export const revalidate = 300;

@@ -3,9 +3,10 @@ import Link from "next/link";
 import DemoRequestForm from "@/components/marketing/demo-request-form";
 
 export const metadata: Metadata = {
-  title: "Contact | Barristrly",
+  title: "Contact Us — Get Legal Help in Dubai & the UAE",
   description:
-    "Contact Barristrly for lawyer matching, consultations, retainers, drafting, and other legal services in the UAE and GCC.",
+    "Need a lawyer in Dubai or the UAE? Send a short message about your contract, company setup, will, retainer or dispute — we reply within 48 hours with your next step.",
+  alternates: { canonical: "/request-demo" },
 };
 
 export default function ContactPage() {
@@ -21,13 +22,13 @@ export default function ContactPage() {
               Tell us how we can help
             </h1>
             <p className="mt-5 text-lg text-gray-600 leading-relaxed">
-              Share a short note about your situation. We reply within 24 hours
-              with the clearest next step — matching, a consultation, or another
-              service.
+              Share a short note about your situation. We reply within 48 hours
+              with the clearest next step — a service recommendation, quote, or
+              introduction to a vetted professional.
             </p>
             <ul className="mt-10 space-y-4 text-gray-600">
               {[
-                "Reply within 24 hours",
+                "Reply within 48 hours",
                 "Support across the UAE and GCC",
                 "Clear prices before you decide",
               ].map((item) => (
@@ -47,10 +48,10 @@ export default function ContactPage() {
               </Link>
               {" · "}
               <Link
-                href="/services/consultation#request"
+                href="/how-it-works"
                 className="font-semibold text-primary hover:text-primary-hover"
               >
-                Book a consultation
+                How it works
               </Link>
             </p>
             <p className="mt-6 text-sm text-gray-600">

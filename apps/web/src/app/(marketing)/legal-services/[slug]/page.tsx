@@ -20,10 +20,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = serviceFromSlug(slug);
-  if (!service) return { title: "Legal Services | Barristrly" };
+  if (!service) return { title: "Legal Services" };
   return {
-    title: `${service.label} | Barristrly`,
-    description: service.summary,
+    title: `${service.label} Lawyers in Dubai & UAE`,
+    description: `Find vetted UAE lawyers for ${service.label.toLowerCase()}: ${service.summary} Free brief, up to 3 matched providers within 48 hours.`,
+    alternates: { canonical: `/legal-services/${service.slug}` },
   };
 }
 
@@ -52,7 +53,7 @@ export default async function LegalServicePage({ params }: Props) {
           Submit your brief and we curate and transmit it to up to three (3)
           vetted UAE-licensed Service Providers matching your jurisdiction and{" "}
           {service.label.toLowerCase()} practice area — with proposals back
-          within a 24-hour SLA.
+          within a 48-hour SLA.
         </p>
         <div className="mt-10 flex flex-wrap gap-6">
           {LEGAL_SERVICES.filter((s) => s.slug !== slug).map((s) => (

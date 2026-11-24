@@ -2,11 +2,12 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
 import GradientButton from "@/components/ui/gradient-button";
 import { Check } from "lucide-react";
 import { SERVICE_CATALOG } from "@/lib/marketing/service-catalog";
 
-const HOME_IDS = ["lawyer-matching", "consultation", "retainers"] as const;
+const HOME_IDS = ["contract-drafting", "company-formation", "retainers"] as const;
 
 export default function HomePricing() {
   const ref = useRef<HTMLDivElement>(null);
@@ -25,14 +26,15 @@ export default function HomePricing() {
           className="max-w-2xl mb-12 md:mb-14"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary mb-4">
-            Three ways to get started
+            Most requested legal services
           </p>
           <h2 className="font-serif text-[clamp(1.85rem,3.5vw,3rem)] text-ink tracking-tight leading-[1.08]">
-            Start free, book a session, or keep a lawyer on monthly support
+            Contract drafting, UAE company setup and legal retainers — with clear AED pricing
           </h2>
           <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed">
-            Choose what fits you today. Every option has a clear scope and price
-            in AED — no jargon, no hidden steps.
+            Pick what you need today. Every service has a fixed scope, an upfront
+            price or quote, and a vetted UAE professional behind it — no jargon,
+            no surprises.
           </p>
         </motion.div>
 
@@ -84,10 +86,10 @@ export default function HomePricing() {
         </div>
 
         <p className="mt-8 text-center text-sm text-gray-500">
-          <a href="/services" className="font-semibold text-primary hover:underline">
-            See all services
-          </a>{" "}
-          — contracts, wills, PRO help, banking, PR, brand protection, and more.
+          <Link href="/services" className="font-semibold text-primary hover:underline">
+            See all six legal services
+          </Link>{" "}
+          — including arbitration support, Will drafting, and agreement templates.
         </p>
       </div>
     </section>

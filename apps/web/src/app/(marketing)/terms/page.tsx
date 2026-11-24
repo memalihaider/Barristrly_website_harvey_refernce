@@ -6,9 +6,10 @@ import {
 } from "@/components/marketing/section";
 
 export const metadata: Metadata = {
-  title: "Terms and Conditions | Barristrly",
+  title: "Terms and Conditions",
   description:
     "Terms & Conditions for Barristrly's website and MVP matchmaking services — legal technology aggregator and client intake concierge platform operating under UAE law.",
+  alternates: { canonical: "/terms" },
 };
 
 export const revalidate = 300;

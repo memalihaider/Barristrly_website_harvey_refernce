@@ -1,11 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Compass, Scale } from "lucide-react";
+import { ArrowRight, Check, Scale } from "lucide-react";
 import GradientButton from "@/components/ui/gradient-button";
 import LogoTicker from "@/components/ui/logo-ticker";
 
 const partners = [
+  { name: "Dubai" },
+  { name: "Abu Dhabi" },
   { name: "Mainland UAE" },
   { name: "DIFC" },
   { name: "ADGM" },
@@ -40,13 +42,24 @@ export default function Hero() {
 
       <div className="container-wide relative z-10 pt-40 md:pt-48 pb-10 flex-1 flex flex-col justify-center">
         <div className="max-w-3xl">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/90 backdrop-blur-sm"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
+            Vetted UAE lawyers · Dubai · Abu Dhabi · DIFC · ADGM
+          </motion.p>
+
           <motion.h1
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif text-[clamp(2.75rem,7vw,5.5rem)] text-white leading-[1.02] tracking-[-0.03em] mb-6"
+            className="font-serif text-[clamp(2.5rem,6.2vw,5rem)] text-white leading-[1.04] tracking-[-0.03em] mb-6"
           >
-            Find the right legal help in the UAE — clearly and quickly
+            Find the right lawyer in Dubai &amp; the UAE{" "}
+            <span className="italic text-white/80">— matched in 48 hours</span>
           </motion.h1>
 
           <motion.p
@@ -55,9 +68,10 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-2xl text-base md:text-lg text-white leading-relaxed mb-10"
           >
-            Barristrly helps individuals and businesses get matched with vetted
-            lawyers, book fixed-fee consultations, and access retainers,
-            contracts, wills, and specialist support — with plain pricing in AED.
+            Contract drafting, company formation &amp; PRO, Wills, legal retainers
+            and arbitration support. Tell us what you need — we match you with
+            vetted, licensed professionals and show clear AED pricing before you
+            commit.
           </motion.p>
 
           <motion.div
@@ -68,23 +82,39 @@ export default function Hero() {
           >
             <GradientButton
               size="lg"
-              href="/services/lawyer-matching#request"
+              href="/ai/intake"
               variant="primary"
               className="inline-flex items-center gap-2"
             >
-              <Scale className="h-5 w-5" aria-hidden />
-              Get matched for free
+              Get a free lawyer match
+              <ArrowRight className="h-5 w-5" aria-hidden />
             </GradientButton>
             <GradientButton
               size="lg"
-              href="/services/consultation#request"
+              href="/services"
               variant="white"
               className="inline-flex items-center gap-2"
             >
-              <Compass className="h-5 w-5" aria-hidden />
-              Book a consultation
+              <Scale className="h-5 w-5" aria-hidden />
+              Services &amp; pricing
             </GradientButton>
           </motion.div>
+
+          <motion.ul
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="mt-7 flex flex-wrap gap-x-6 gap-y-2 list-none p-0 text-sm text-white/85"
+          >
+            {["Free to submit", "Reply within 48 hours", "Clear AED pricing", "Confidential"].map(
+              (item) => (
+                <li key={item} className="inline-flex items-center gap-1.5">
+                  <Check className="h-4 w-4 text-primary" aria-hidden />
+                  {item}
+                </li>
+              ),
+            )}
+          </motion.ul>
         </div>
       </div>
 

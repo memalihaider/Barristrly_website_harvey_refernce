@@ -14,12 +14,13 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPublishedPost(slug);
-  if (!post) return { title: "Article not found | Barristrly" };
+  if (!post) return { title: "Article not found", robots: { index: false } };
   const title = post.seo_title || post.title;
   const description = post.seo_description || post.excerpt || undefined;
   return {
-    title: `${title} | Barristrly`,
+    title,
     description,
+    alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       title,
       description,
