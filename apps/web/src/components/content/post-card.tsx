@@ -1,8 +1,11 @@
 import Link from "next/link";
 import type { BlogPostSummary } from "@/lib/content/blog";
 import { formatDate } from "@/lib/content/text";
+import { blogCategory } from "@/lib/content/blog-categories";
 
 export default function PostCard({ post }: { post: BlogPostSummary }) {
+  const category = blogCategory(post.category);
+  const label = category ? category.label : post.tags?.slice(0, 2).join(" · ");
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition-shadow hover:shadow-lg">
       <Link href={`/blog/${post.slug}`} className="block">
@@ -10,7 +13,7 @@ export default function PostCard({ post }: { post: BlogPostSummary }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={post.cover_image_url}
-            alt=""
+            alt={post.title}
             loading="lazy"
             className="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           />
@@ -19,9 +22,9 @@ export default function PostCard({ post }: { post: BlogPostSummary }) {
         )}
       </Link>
       <div className="flex flex-1 flex-col p-6">
-        {post.tags?.length ? (
+        {label ? (
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
-            {post.tags.slice(0, 2).join(" · ")}
+            {label}
           </p>
         ) : null}
         <h3 className="mt-2 font-serif text-xl leading-snug text-ink">

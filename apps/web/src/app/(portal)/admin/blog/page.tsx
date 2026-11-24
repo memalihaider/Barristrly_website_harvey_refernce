@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ExternalLink, FilePlus2, PenSquare, Search, Trash2 } from "lucide-react";
 import { usePolling } from "@/lib/hooks/use-polling";
 import { timeAgo } from "@/lib/time";
+import { blogCategory } from "@/lib/content/blog-categories";
 
 type PostRow = {
   id: string;
@@ -13,6 +14,7 @@ type PostRow = {
   excerpt: string | null;
   status: "draft" | "published";
   tags: string[];
+  category?: string | null;
   author_name: string | null;
   reading_minutes: number;
   published_at: string | null;
@@ -147,6 +149,13 @@ export default function AdminBlogPage() {
                     >
                       {p.status === "published" ? "Published" : "Draft"}
                     </span>
+                    {blogCategory(p.category) ? (
+                      <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-[11px] font-semibold text-primary">
+                        {blogCategory(p.category)?.label}
+                      </span>
+                    ) : (
+                      <span className="text-[11px] text-amber-700">No category</span>
+                    )}
                     {p.tags?.slice(0, 4).map((t) => (
                       <span key={t} className="text-[11px] text-gray-500">#{t}</span>
                     ))}

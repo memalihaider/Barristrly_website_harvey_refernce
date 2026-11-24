@@ -17,7 +17,7 @@
 }
 .rich-content h1 { font-size: 2.25rem; margin-top: 1.6em; }
 .rich-content h2 { font-size: 1.75rem; margin-top: 1.8em; scroll-margin-top: 6rem; }
-.rich-content h3 { font-size: 1.35rem; margin-top: 1.5em; }
+.rich-content h3 { font-size: 1.35rem; margin-top: 1.5em; scroll-margin-top: 6rem; }
 .rich-content h4 { font-size: 1.125rem; margin-top: 1.3em; }
 .rich-content > :first-child { margin-top: 0; }
 .rich-content a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px; }

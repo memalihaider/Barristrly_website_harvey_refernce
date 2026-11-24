@@ -3,6 +3,7 @@ import { z } from "zod";
 import type { DbClient } from "@/lib/firebase/db";
 import { htmlToText, sanitizeRichText } from "@/lib/content/sanitize";
 import { readingMinutes, slugify } from "@/lib/content/text";
+import { BLOG_CATEGORY_SLUGS } from "@/lib/content/blog-categories";
 
 export const postSchema = z.object({
   title: z.string().trim().min(1, "Title is required").max(200),
@@ -17,6 +18,7 @@ export const postSchema = z.object({
     .or(z.literal("")),
   contentHtml: z.string().max(1_000_000).default(""),
   tags: z.array(z.string().trim().min(1).max(40)).max(12).default([]),
+  category: z.enum(BLOG_CATEGORY_SLUGS).nullable().optional().or(z.literal("")),
   authorName: z.string().trim().max(120).optional().or(z.literal("")),
   status: z.enum(["draft", "published"]).default("draft"),
   seoTitle: z.string().trim().max(200).optional().or(z.literal("")),
@@ -46,6 +48,7 @@ export function toRow(input: PostInput) {
     cover_image_url: input.coverImageUrl || null,
     content_html: content,
     tags: [...new Set(input.tags.map((t) => t.toLowerCase()))],
+    category: input.category || null,
     author_name: input.authorName || null,
     status: input.status,
     seo_title: input.seoTitle || null,
@@ -57,5 +60,7 @@ export function toRow(input: PostInput) {
 export function revalidateBlog(...slugs: (string | null | undefined)[]) {
   revalidatePath("/blog");
   revalidatePath("/resources");
+  // Service pages list related articles.
+  revalidatePath("/services/[slug]", "page");
   for (const s of slugs) if (s) revalidatePath(`/blog/${s}`);
 }

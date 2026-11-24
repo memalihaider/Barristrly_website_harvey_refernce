@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, ExternalLink, Eye, Save, Send, X } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Circle, ExternalLink, Eye, PenLine, Save, Send, X } from "lucide-react";
 import RichTextEditor from "@/components/editor/rich-text-editor";
 import { slugify } from "@/lib/content/text";
 import { timeAgo } from "@/lib/time";
+import { BLOG_CATEGORIES } from "@/lib/content/blog-categories";
 
 type Post = {
   id: string;
@@ -16,6 +17,7 @@ type Post = {
   cover_image_url: string | null;
   content_html: string;
   tags: string[];
+  category: string | null;
   author_name: string | null;
   status: "draft" | "published";
   seo_title: string | null;
@@ -40,6 +42,8 @@ export default function BlogPostForm({ postId }: { postId?: string }) {
   const [content, setContent] = useState("");
   const [tags, setTags] = useState<string[]>([]);
   const [tagInput, setTagInput] = useState("");
+  const [category, setCategory] = useState("");
+  const [mode, setMode] = useState<"write" | "preview">("write");
   const [author, setAuthor] = useState("");
   const [seoTitle, setSeoTitle] = useState("");
   const [seoDescription, setSeoDescription] = useState("");
@@ -69,6 +73,7 @@ export default function BlogPostForm({ postId }: { postId?: string }) {
         setCover(p.cover_image_url ?? "");
         setContent(p.content_html ?? "");
         setTags(p.tags ?? []);
+        setCategory(p.category ?? "");
         setAuthor(p.author_name ?? "");
         setSeoTitle(p.seo_title ?? "");
         setSeoDescription(p.seo_description ?? "");
@@ -118,6 +123,7 @@ export default function BlogPostForm({ postId }: { postId?: string }) {
         coverImageUrl: cover,
         contentHtml: content,
         tags,
+        category: category || null,
         authorName: author,
         status,
         seoTitle,
@@ -145,6 +151,28 @@ export default function BlogPostForm({ postId }: { postId?: string }) {
       setSaving(null);
     }
   }
+
+  const stats = useMemo(() => {
+    const text = content.replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
+    const words = text ? text.split(" ").length : 0;
+    const h2 = (content.match(/<h2[\s>]/g) ?? []).length;
+    const internal = /<a[^>]+href="(\/|https?:\/\/(www\.)?barristrly\.com)/.test(content);
+    return { words, minutes: Math.max(1, Math.round(words / 200)), h2, internal };
+  }, [content]);
+
+  const effTitle = seoTitle || title;
+  const effDesc = seoDescription || excerpt;
+  const checks = [
+    { ok: effTitle.length >= 30 && effTitle.length <= 65, label: `SEO title 30–65 characters (${effTitle.length})` },
+    { ok: effDesc.length >= 70 && effDesc.length <= 160, label: `Meta description 70–160 characters (${effDesc.length})` },
+    { ok: stats.words >= 600, label: `At least 600 words (${stats.words})` },
+    { ok: stats.h2 >= 2, label: `At least 2 section headings (H2) (${stats.h2})` },
+    { ok: stats.internal, label: "Links to a Barristrly service or page" },
+    { ok: Boolean(category), label: "Category selected" },
+    { ok: /^https?:\/\//.test(cover), label: "Cover image added" },
+    { ok: tags.length >= 2, label: "At least 2 tags" },
+  ];
+  const score = checks.filter((c) => c.ok).length;
 
   if (!loaded) return <p className="text-sm text-gray-600">{error ?? "Loading article…"}</p>;
 
@@ -209,15 +237,106 @@ export default function BlogPostForm({ postId }: { postId?: string }) {
             aria-label="Title"
             className="w-full rounded-2xl border border-[#e5e3dc] bg-white px-5 py-4 font-serif text-2xl text-ink outline-none focus:border-primary md:text-3xl"
           />
-          <RichTextEditor
-            value={content}
-            onChange={touch(setContent)}
-            placeholder="Write the article… Use the toolbar for headings, bullet points, quotes, tables and links."
-          />
+          <div className="flex items-center justify-between gap-3">
+            <div className="inline-flex rounded-full border border-[#e5e3dc] bg-white p-1 text-xs font-semibold">
+              {(["write", "preview"] as const).map((m) => (
+                <button
+                  key={m}
+                  type="button"
+                  onClick={() => setMode(m)}
+                  className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 ${
+                    mode === m ? "bg-ink text-white" : "text-gray-600 hover:text-ink"
+                  }`}
+                >
+                  {m === "write" ? <PenLine className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
+                  {m === "write" ? "Write" : "Preview"}
+                </button>
+              ))}
+            </div>
+            <p className="text-xs text-gray-500">
+              {stats.words} words · {stats.minutes} min read
+            </p>
+          </div>
+          {mode === "write" ? (
+            <RichTextEditor
+              value={content}
+              onChange={touch(setContent)}
+              placeholder="Write the article… Use H2 headings for each section, bullet points for lists, and link to a relevant Barristrly service."
+            />
+          ) : (
+            <div className="rounded-2xl border border-[#e5e3dc] bg-white p-6 md:p-10">
+              {category ? (
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                  {BLOG_CATEGORIES.find((c) => c.slug === category)?.label}
+                </p>
+              ) : null}
+              <h1 className="mt-3 font-serif text-3xl md:text-4xl leading-tight text-ink">
+                {title || "Untitled article"}
+              </h1>
+              {excerpt ? <p className="mt-4 text-lg text-gray-600">{excerpt}</p> : null}
+              {cover && /^https?:\/\//.test(cover) ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={cover} alt="" className="mt-8 aspect-[16/9] w-full rounded-2xl object-cover" />
+              ) : null}
+              <div
+                className="rich-content mt-8"
+                // Preview of the admin's own editor content; sanitized again on save.
+                dangerouslySetInnerHTML={{ __html: content || "<p>Nothing written yet.</p>" }}
+              />
+            </div>
+          )}
         </div>
 
         <aside className="space-y-4">
+          <section className="rounded-2xl border border-[#e5e3dc] bg-white p-5">
+            <div className="flex items-center justify-between">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                Publish checklist
+              </p>
+              <span
+                className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                  score >= 7 ? "bg-emerald-100 text-emerald-800" : score >= 4 ? "bg-amber-100 text-amber-800" : "bg-red-100 text-red-700"
+                }`}
+              >
+                {score}/{checks.length}
+              </span>
+            </div>
+            <ul className="mt-3 space-y-1.5">
+              {checks.map((c) => (
+                <li key={c.label} className="flex items-start gap-2 text-xs text-gray-700">
+                  {c.ok ? (
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" aria-label="Done" />
+                  ) : (
+                    <Circle className="h-4 w-4 shrink-0 text-gray-300" aria-label="To do" />
+                  )}
+                  {c.label}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 text-[11px] text-gray-500">
+              Recommendations for search ranking — you can publish at any time.
+            </p>
+          </section>
+
           <section className="rounded-2xl border border-[#e5e3dc] bg-white p-5 space-y-4">
+            <label className={label}>
+              Category
+              <select
+                value={category}
+                onChange={(e) => touch(setCategory)(e.target.value)}
+                className={`${field} normal-case tracking-normal`}
+              >
+                <option value="">Choose a category…</option>
+                {BLOG_CATEGORIES.map((c) => (
+                  <option key={c.slug} value={c.slug}>
+                    {c.label}
+                  </option>
+                ))}
+              </select>
+              <span className="mt-1 block text-[11px] font-normal normal-case tracking-normal text-gray-500">
+                Shows the article on the matching service page and promotes that service beside it.
+              </span>
+            </label>
             <label className={label}>
               URL slug
               <div className="mt-1.5 flex items-center rounded-xl border border-[#e5e3dc] bg-[#faf9f6] text-sm focus-within:border-primary">

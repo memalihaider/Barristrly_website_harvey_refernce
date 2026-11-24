@@ -19,6 +19,7 @@
     "metadata": {}
   },
   "blog_posts": {
+    "category": null,
     "reading_minutes": 1,
     "status": "draft",
     "tags": []

@@ -10,7 +10,7 @@ export async function GET() {
   const { data, error } = await gate.admin
     .from("blog_posts")
     .select(
-      "id, slug, title, excerpt, status, tags, author_name, cover_image_url, reading_minutes, published_at, created_at, updated_at, updated_by_name"
+      "id, slug, title, excerpt, status, tags, category, author_name, cover_image_url, reading_minutes, published_at, created_at, updated_at, updated_by_name"
     )
     .order("updated_at", { ascending: false });
   if (error) return apiError("internal", error.message, 500);

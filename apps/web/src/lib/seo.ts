@@ -125,3 +125,32 @@ export function serviceJsonLd(input: {
     areaServed: { "@type": "Country", name: "United Arab Emirates" },
   };
 }
+
+export function articleJsonLd(input: {
+  title: string;
+  description?: string | null;
+  path: string;
+  image?: string | null;
+  author?: string | null;
+  publishedAt?: string | null;
+  updatedAt?: string | null;
+  section?: string | null;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: input.title,
+    description: input.description ?? undefined,
+    url: absoluteUrl(input.path),
+    mainEntityOfPage: absoluteUrl(input.path),
+    image: input.image ? [input.image] : [absoluteUrl("/icon-512.png")],
+    datePublished: input.publishedAt ?? undefined,
+    dateModified: input.updatedAt ?? input.publishedAt ?? undefined,
+    articleSection: input.section ?? undefined,
+    author: input.author
+      ? { "@type": "Person", name: input.author }
+      : { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    inLanguage: "en",
+  };
+}

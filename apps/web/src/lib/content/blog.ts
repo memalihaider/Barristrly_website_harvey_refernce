@@ -11,6 +11,7 @@ export type BlogPost = {
   cover_image_url: string | null;
   content_html: string;
   tags: string[];
+  category: string | null;
   author_name: string | null;
   status: BlogStatus;
   seo_title: string | null;

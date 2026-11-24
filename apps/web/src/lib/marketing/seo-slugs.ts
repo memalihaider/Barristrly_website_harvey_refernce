@@ -49,7 +49,7 @@ export const LEGAL_SERVICES = [
     slug: "arbitration-debt-collection",
     label: "Cross-Border Debt Recovery & Arbitration",
     summary: "International commercial arbitration, enforcement of foreign judgments, corporate asset tracing, and out-of-court settlements.",
-    forum: "DIAC, ICC, DIFC-LCIA, ADGM Arbitration Centre",
+    forum: "DIAC, ICC, DIFC & ADGM Courts",
   },
   {
     slug: "private-client-estate",
