@@ -15,7 +15,7 @@ export default function ProviderApplyPage() {
       <PageHero
         eyebrow="Provider onboarding"
         title="Join the Barristrly Network"
-        description="Access vetted corporate & individual client leads, fixed-fee consultation requests (AED 1,000 + VAT), and cross-border referrals. All providers must upload valid professional trade licenses and regulatory practicing certificates prior to activation."
+        description="Access vetted corporate and individual client leads, optional paid consultation bookings, and cross-border referrals. Upload valid trade licences and practising certificates for review. Applying does not create a website login — approved providers receive requests by email."
       />
 
       <MarketingSection tight>

@@ -53,12 +53,12 @@ export default function AiIntakePage() {
               ))}
             </ol>
             <p className="text-sm text-gray-500">
-              Already registered?{" "}
+              No account required. Prefer email?{" "}
               <Link
-                href="/login?next=/client/intake"
+                href="/request-demo"
                 className="font-semibold text-primary hover:text-primary-hover"
               >
-                Log in to continue in the portal
+                Contact us
               </Link>
             </p>
           </div>

@@ -13,7 +13,7 @@ export const HOME_FAQ: { question: string; answer: string }[] = [
   {
     question: "How much does a lawyer cost in the UAE?",
     answer:
-      "It depends on the service. Fixed-scope work such as contract drafting shows clear AED pricing up front, while matters like company formation, Wills or arbitration are quoted by scope before you commit. You never pay for anything you have not agreed to. See our pricing page for current rates.",
+      "Lawyer matching is free. Consultations are fixed by length — AED 299 (15 min), AED 599 (25–30 min), or AED 1,199 (50–60 min detailed). Other work such as drafting, company formation or Wills is quoted by scope before you commit. See our pricing page for current rates.",
   },
   {
     question: "Can you help me set up a company in Dubai from outside the UAE?",

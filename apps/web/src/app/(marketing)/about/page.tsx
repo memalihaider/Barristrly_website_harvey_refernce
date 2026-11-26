@@ -7,6 +7,7 @@ import {
   SectionIntro,
 } from "@/components/marketing/section";
 import FounderSection from "@/components/marketing/founder-section";
+import { FOUNDER } from "@/lib/marketing/founder";
 
 export const metadata: Metadata = {
   title: "About Barristrly — Legal Services Platform for the UAE & GCC",
@@ -31,21 +32,6 @@ const PILLARS = [
   {
     title: "UAE and GCC focus",
     body: "We support matters across mainland UAE, DIFC, ADGM, and related cross-border needs with India and the GCC.",
-  },
-];
-
-const ENTERPRISES = [
-  {
-    title: "Shezz Signature Properties",
-    body: "Real estate and mortgage advisory for private and institutional buyers in the UAE.",
-  },
-  {
-    title: "Shezz Management and Consultancy LLC",
-    body: "Business advisory for strategy, compliance, and restructuring.",
-  },
-  {
-    title: "Shezz One LLC",
-    body: "Trading focused on bringing quality consumer products into the market.",
   },
 ];
 
@@ -87,43 +73,21 @@ export default function AboutPage() {
         <FeatureList items={PILLARS} />
       </MarketingSection>
 
-      <MarketingSection tone="soft">
-        <SectionIntro
-          title="Business leadership"
-          description="Alongside legal practice, Heena is Co-Founder of the Shezz Group of Companies."
-        />
-        <FeatureList items={ENTERPRISES} />
-      </MarketingSection>
-
       <MarketingSection>
         <SectionIntro
-          title="Beyond work"
-          description="Interests that shape a wider view of culture, markets, and responsibility."
+          title="Our motto"
+          description="The belief that guides every Barristrly service."
         />
-        <ul className="max-w-3xl space-y-4 text-gray-600 leading-relaxed list-none p-0 m-0">
-          <li className="border-t border-gray-200 pt-4">
-            <span className="font-semibold text-ink">Art and culture</span> —
-            engaging with contemporary art and cultural institutions across the
-            Middle East and South Asia.
-          </li>
-          <li className="border-t border-gray-200 pt-4">
-            <span className="font-semibold text-ink">Environment</span> —
-            supporting responsible business and sustainability.
-          </li>
-          <li className="border-t border-gray-200 pt-4">
-            <span className="font-semibold text-ink">Reading and research</span>{" "}
-            — following law, business history, and cross-border policy.
-          </li>
-          <li className="border-t border-gray-200 pt-4">
-            <span className="font-semibold text-ink">Travel and markets</span> —
-            learning from how people live, build, and trade across regions.
-          </li>
-        </ul>
+        <blockquote className="max-w-3xl border-l-4 border-primary pl-6">
+          <p className="font-serif text-2xl md:text-3xl text-ink tracking-tight leading-snug">
+            {FOUNDER.motto}
+          </p>
+        </blockquote>
       </MarketingSection>
 
       <MarketingCtaBand
         title="Ready for clear next steps?"
-        description="Explore our six services, or send a short note and we will point you to the simplest option."
+        description="Explore our seven services, or send a short note and we will point you to the simplest option."
         primaryHref="/services"
         primaryLabel="Explore services"
         secondaryHref="/request-demo"

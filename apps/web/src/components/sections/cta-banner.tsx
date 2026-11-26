@@ -7,15 +7,15 @@ import { ArrowUpRight, BookOpen, Scale, Briefcase, Users } from "lucide-react";
 
 const RESOURCES = [
   {
-    href: "/ai/intake",
+    href: "/services/lawyer-matching",
     label: "Free lawyer match",
-    detail: "Submit a brief — up to three vetted lawyers within 48 hours",
+    detail: "Find the right legal professional — absolutely free",
     icon: Briefcase,
   },
   {
-    href: "/pricing",
-    label: "Pricing",
-    detail: "Clear AED prices for drafting, company setup, Wills and retainers",
+    href: "/services/consultation",
+    label: "Legal consultation",
+    detail: "From AED 299 · speak to experts from home",
     icon: Scale,
   },
   {

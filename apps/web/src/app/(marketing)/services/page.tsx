@@ -10,10 +10,9 @@ import {
 import { SERVICE_CATALOG } from "@/lib/marketing/service-catalog";
 
 export const metadata: Metadata = {
-  title: "Legal Services in Dubai & UAE — Contracts, Company Setup, Wills",
+  title: "Legal Services | Barristrly",
   description:
-    "Six fixed-scope legal services in Dubai and across the UAE: contract drafting, company formation & PRO, will drafting, legal retainers, arbitration support, and agreement templates. Vetted lawyers, AED pricing, reply in 48 hours.",
-  alternates: { canonical: "/services" },
+    "Seven legal services: free lawyer matching, fixed-fee consultations, retainers, contract drafting, wills, UAE company formation & PRO, and e-books with templates.",
 };
 
 export default function ServicesPage() {
@@ -21,21 +20,21 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="Services"
-        title="Six clear services. One trusted desk."
-        description="Barristrly connects you with vetted professionals for arbitration support, documents, UAE company setup, wills, contracts, and ongoing retainers — with plain language and clear next steps."
+        title="Seven clear services. One trusted desk."
+        description="Match with vetted legal professionals in the UAE — free matching, remote consultations, retainers, drafting, wills, company setup, and self-serve templates."
       >
-        <GradientButton href="/request-demo" size="lg">
-          Contact us
+        <GradientButton href="/services/lawyer-matching#request" size="lg">
+          Get matched — free
         </GradientButton>
-        <GradientButton href="/how-it-works" size="lg" variant="outline">
-          How it works
+        <GradientButton href="/services/consultation#request" size="lg" variant="outline">
+          Book a consultation
         </GradientButton>
       </PageHero>
 
       <MarketingSection>
         <SectionIntro
           title="What we offer"
-          description="Six practical services. We are a legal technology aggregator — not a law firm. Independent professionals deliver the work."
+          description="Seven practical services. We are a legal technology aggregator — not a law firm. Independent professionals deliver the work."
         />
         <ul className="grid md:grid-cols-2 gap-5 list-none p-0 m-0">
           {SERVICE_CATALOG.map((s) => (
@@ -48,9 +47,9 @@ export default function ServicesPage() {
                   <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
                     Service {String(s.number).padStart(2, "0")}
                   </span>
-                  {s.isNew ? (
+                  {s.number <= 2 ? (
                     <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">
-                      New
+                      Featured
                     </span>
                   ) : null}
                 </div>
@@ -74,11 +73,11 @@ export default function ServicesPage() {
 
       <MarketingCtaBand
         title="Not sure which service fits?"
-        description="Tell us your situation and we will point you to the simplest next step."
-        primaryHref="/request-demo"
-        primaryLabel="Contact us"
-        secondaryHref="/services/retainers#request"
-        secondaryLabel="Ask about a retainer"
+        description="Start with free matching, or book a fixed-fee consultation from home."
+        primaryHref="/services/lawyer-matching#request"
+        primaryLabel="Get matched — free"
+        secondaryHref="/services/consultation#request"
+        secondaryLabel="Book a consultation"
       />
     </>
   );

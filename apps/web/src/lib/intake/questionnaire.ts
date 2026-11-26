@@ -6,16 +6,16 @@
 import type { JurisdictionCode, PracticeArea, UrgencyLevel } from "@/lib/ontology";
 
 export const DATA_PROTECTION_NOTICE =
-  "Data Protection Guardrail: Lead Data Masking is active. Client identities and personal contact details are completely hidden from listed legal practitioners until a consultation concludes and explicit client acceptance is logged.";
+  "Your details are kept confidential and used only to match you with vetted professionals and to contact you about your request. You do not need to create an account.";
 
 export const GREETING_MESSAGE =
-  "Hello. I am your AI Legal Intake Assistant. Let's map your situation to the proper legal track and budget in under two minutes. Your privacy is fully guaranteed: your name and contact details remain entirely anonymous and hidden from lawyers until after your consultation is complete and you choose to share them.";
+  "Hello. I am Barristrly’s AI Legal Intake Assistant. In a few minutes I will map your situation to the right legal track so our team can match you with a vetted professional. No account or dashboard signup is required.";
 
 export const LEAD_CAPTURE_INTRO =
-  "Please confirm your secure identification elements. Your name, email, and phone number will remain entirely hidden from the lawyer during matchmaking and will not be shared until your consultation concludes and you grant explicit permission.";
+  "Please share how we can reach you. Our team uses these details to follow up on your request within 48 hours.";
 
 export const PRIVACY_CONSENT_LABEL =
-  "I acknowledge that my personal details are securely held by the platform and will only be released to the attorney following the conclusion of our meeting and my explicit approval.";
+  "I acknowledge that Barristrly will handle my details confidentially and use them to process my matching request and contact me.";
 
 export interface PracticeCategory {
   id: string;
@@ -297,8 +297,7 @@ export const INTAKE_STEP_SEQUENCE: IntakeStepConfig[] = [
   },
   {
     kind: "contact_preference",
-    prompt:
-      "How should we contact you after matching? (Your details remain masked until you approve release)",
+    prompt: "How should we contact you after matching?",
     options: CONTACT_PREFERENCES,
   },
   {

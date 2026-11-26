@@ -283,7 +283,7 @@ async function handleAiAssistedIntakeFailure(
       return { applied: false, exited: true };
     }
     appendBot(
-      "You must accept the privacy guardrail to continue. Lawyers only receive your contact details after consultation and your explicit approval."
+      "Please confirm that we may use your details confidentially to process your request and contact you."
     );
     return {
       applied: false,
@@ -349,7 +349,7 @@ function finishQuestionnaire(
   syncDraftForMatching(session.intakeDraft);
   session.state = "complete";
   appendBot(
-    "Your secure lead profile is captured under platform masking (e.g. Client #REF — contact fields hidden from attorneys until you authorize release). You can continue to lawyer matches when ready."
+    "Thank you. Your brief is ready. Submit it below and our team will follow up within 48 hours — no account or dashboard signup needed."
   );
 }
 
@@ -513,7 +513,7 @@ export function draftToStructuredIntake(draft: IntakeDraft): StructuredIntake {
       language: draft.language,
       contactPreference: draft.contactPreference,
       leadMaskingConsent: draft.leadMaskingConsent,
-      masked: true,
+      masked: false,
       contactReleased: false,
       clientFullName: draft.clientFullName,
       clientPhone: draft.clientPhone,

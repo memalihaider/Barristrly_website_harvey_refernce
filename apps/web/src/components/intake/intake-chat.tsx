@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Volume2, VolumeX, X } from "lucide-react";
 import {
@@ -11,13 +10,13 @@ import {
 } from "@/features/marketplace/intake-chat";
 import type { StructuredIntake } from "@/features/marketplace/intake";
 import type { ChatSessionData } from "@/lib/intake/types";
-import { HARDCODED_QUICK_QUESTIONS } from "@/lib/intake/hardcoded-questions";
 import { speakSequence, speakText, stopSpeech } from "@/lib/intake/speech";
 
 type Mode = "portal" | "public";
 
 type Props = {
   mode: Mode;
+  /** @deprecated Unused — no account signup at end of chat */
   authRedirect?: string;
   /** Show voice toggle in header (unified BARRI agent). Voice defaults off. */
   showVoiceToggle?: boolean;
@@ -25,12 +24,10 @@ type Props = {
 };
 
 export default function IntakeChat({
-  mode,
-  authRedirect = "/register?role=client&next=/client/intake",
+  mode: _mode,
   showVoiceToggle = false,
   onClose,
 }: Props) {
-  const router = useRouter();
   const bottomRef = useRef<HTMLDivElement>(null);
   const startedRef = useRef(false);
   const voiceEnabledRef = useRef(false);
@@ -40,6 +37,7 @@ export default function IntakeChat({
   const [session, setSession] = useState<ChatSessionData | null>(null);
   const [options, setOptions] = useState<string[]>([]);
   const [complete, setComplete] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -247,7 +245,7 @@ export default function IntakeChat({
     }
   }
 
-  async function findLawyers() {
+  async function submitBrief() {
     if (!draft) return;
     setSaving(true);
     setError(null);
@@ -267,45 +265,27 @@ export default function IntakeChat({
       });
       const json = await res.json();
       if (!json.ok) {
-        setError(json.error?.message ?? "Could not save intake");
+        setError(json.error?.message ?? "Could not save your brief");
         return;
       }
 
-      const leadId = json.data?.lead?.id as string | undefined;
-      const leadDraft = (json.data?.leadDraft ?? draft) as StructuredIntake;
-
-      if (leadId) {
-        try {
-          sessionStorage.removeItem(INTAKE_DRAFT_STORAGE_KEY);
-        } catch {
-          /* ignore */
-        }
-        const params = new URLSearchParams({ leadId });
-        if (leadDraft.practiceArea)
-          params.set("practiceArea", leadDraft.practiceArea);
-        if (leadDraft.jurisdiction)
-          params.set("jurisdiction", leadDraft.jurisdiction);
-        router.push(`/client/matches?${params.toString()}`);
-        return;
+      try {
+        sessionStorage.removeItem(INTAKE_DRAFT_STORAGE_KEY);
+      } catch {
+        /* ignore */
       }
 
-      persist({
-        messages,
-        draft,
-        session,
-        options,
-        complete: true,
-      });
-      if (mode === "public") {
-        router.push(authRedirect);
-        return;
-      }
-      setError(
-        json.data?.message ??
-          "Sign in to save your case and see lawyer matches."
-      );
+      setSubmitted(true);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content:
+            "Thanks — your brief is with our team. We will follow up within 48 hours by email or phone. No account is needed.",
+        },
+      ]);
     } catch {
-      setError("Could not continue to matches.");
+      setError("Could not submit your brief. Please try again or contact us.");
     } finally {
       setSaving(false);
     }
@@ -412,28 +392,6 @@ export default function IntakeChat({
           </div>
         ) : null}
 
-        {/* Hardcoded quick questions */}
-        {!complete && !loading && messages.length > 0 ? (
-          <div className="pt-1">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500 mb-2">
-              Quick questions
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {HARDCODED_QUICK_QUESTIONS.map((q) => (
-                <button
-                  key={q}
-                  type="button"
-                  disabled={loading}
-                  onClick={() => void sendTurn({ text: q })}
-                  className="rounded-full border border-[#e5e3dc] bg-white px-3 py-1.5 text-left text-xs font-medium text-ink hover:border-primary hover:bg-primary/5 transition-colors max-w-full"
-                >
-                  {q}
-                </button>
-              ))}
-            </div>
-          </div>
-        ) : null}
-
         {!complete && options.length > 0 && !loading ? (
           <div className="flex flex-wrap gap-2 pt-1">
             <p className="w-full text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500">
@@ -457,33 +415,52 @@ export default function IntakeChat({
 
       {complete && draft ? (
         <div className="border-t border-gray-100 px-5 py-4 bg-ivory space-y-3">
-          <div className="text-sm text-gray-700">
-            <span className="font-semibold text-ink">Case ready.</span>{" "}
-            {draft.summary.slice(0, 160)}
-            {draft.summary.length > 160 ? "…" : ""}
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <button
-              type="button"
-              disabled={saving}
-              onClick={() => void findLawyers()}
-              className="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-on-primary hover:bg-primary-hover disabled:opacity-50"
-            >
-              {saving
-                ? "Matching…"
-                : mode === "public"
-                  ? "Continue to lawyer matches"
-                  : "Find matched lawyers"}
-            </button>
-            {mode === "public" ? (
-              <Link
-                href="/login?next=/client/intake"
-                className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary-hover"
-              >
-                Already have an account? Log in
-              </Link>
-            ) : null}
-          </div>
+          {submitted ? (
+            <>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                <span className="font-semibold text-ink">Brief submitted.</span>{" "}
+                Our team will contact you within 48 hours. No account needed.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/services/lawyer-matching"
+                  className="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-on-primary hover:bg-primary-hover"
+                >
+                  Lawyer matching
+                </Link>
+                <Link
+                  href="/request-demo"
+                  className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary-hover"
+                >
+                  Contact us
+                </Link>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="text-sm text-gray-700">
+                <span className="font-semibold text-ink">Brief ready.</span>{" "}
+                {draft.summary.slice(0, 160)}
+                {draft.summary.length > 160 ? "…" : ""}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  disabled={saving}
+                  onClick={() => void submitBrief()}
+                  className="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-on-primary hover:bg-primary-hover disabled:opacity-50"
+                >
+                  {saving ? "Submitting…" : "Submit brief — no account needed"}
+                </button>
+                <Link
+                  href="/request-demo"
+                  className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary-hover"
+                >
+                  Prefer to message us?
+                </Link>
+              </div>
+            </>
+          )}
         </div>
       ) : (
         <form

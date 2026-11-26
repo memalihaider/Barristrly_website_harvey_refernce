@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Check, Scale } from "lucide-react";
+import { ArrowRight, Scale } from "lucide-react";
+import Link from "next/link";
 import GradientButton from "@/components/ui/gradient-button";
 import LogoTicker from "@/components/ui/logo-ticker";
 
@@ -14,6 +15,40 @@ const partners = [
   { name: "Corporate & Tax" },
   { name: "Family & Wills" },
   { name: "Disputes" },
+];
+
+const OPTIONS = [
+  {
+    label: "Option 1 — Lawyer Matching",
+    title: "Find the Right Legal Professional — Absolutely Free",
+    href: "/services/lawyer-matching",
+    emphasize: true,
+  },
+  {
+    label: "Option 2 — Legal Consultation",
+    title:
+      "Speak to qualified Legal Experts from the comfort of your home. Access the legal guidance you need, wherever you are.",
+    href: "/services/consultation",
+    emphasize: true,
+    pricing: [
+      "15 min — AED 299",
+      "25–30 min — AED 599",
+      "50–60 min detailed — AED 1,199",
+    ],
+  },
+  {
+    label: "Option 3 — Legal Retainers",
+    title:
+      "Choose an affordable Monthly Lawyers Retainer Plan to meet your ongoing Legal Needs.",
+    href: "/services/retainers",
+    emphasize: false,
+  },
+  {
+    label: "Option 4 — Documentation",
+    title: "Get documentation done at reasonable charges.",
+    href: "/services/contract-drafting",
+    emphasize: false,
+  },
 ];
 
 export default function Hero() {
@@ -40,7 +75,7 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <div className="container-wide relative z-10 pt-40 md:pt-48 pb-10 flex-1 flex flex-col justify-center">
+      <div className="container-wide relative z-10 pt-36 md:pt-44 pb-10 flex-1 flex flex-col justify-center">
         <div className="max-w-3xl">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -49,71 +84,86 @@ export default function Hero() {
             className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/90 backdrop-blur-sm"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
-            Vetted UAE lawyers · Dubai · Abu Dhabi · DIFC · ADGM
+            Dubai · Abu Dhabi · DIFC · ADGM · Mainland UAE
           </motion.p>
 
           <motion.h1
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif text-[clamp(2.5rem,6.2vw,5rem)] text-white leading-[1.04] tracking-[-0.03em] mb-6"
+            className="font-serif text-[clamp(2.35rem,5.8vw,4.5rem)] text-white leading-[1.06] tracking-[-0.03em] mb-5"
           >
-            Find the right lawyer in Dubai &amp; the UAE{" "}
-            <span className="italic text-white/80">— matched in 48 hours</span>
+            Match with vetted Legal Professionals in UAE
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-2xl text-base md:text-lg text-white leading-relaxed mb-10"
+            transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-2xl text-base md:text-lg text-white/90 leading-relaxed mb-8"
           >
-            Contract drafting, company formation &amp; PRO, Wills, legal retainers
-            and arbitration support. Tell us what you need — we match you with
-            vetted, licensed professionals and show clear AED pricing before you
-            commit.
+            Four clear ways to get legal help — start free, book a session, keep
+            monthly support, or get documents drafted at reasonable charges.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-wrap items-center gap-3 sm:gap-4"
+            transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-wrap items-center gap-3 sm:gap-4 mb-10"
           >
             <GradientButton
               size="lg"
-              href="/ai/intake"
+              href="/services/lawyer-matching#request"
               variant="primary"
               className="inline-flex items-center gap-2"
             >
-              Get a free lawyer match
+              Get matched — free
               <ArrowRight className="h-5 w-5" aria-hidden />
             </GradientButton>
             <GradientButton
               size="lg"
-              href="/services"
+              href="/services/consultation#request"
               variant="white"
               className="inline-flex items-center gap-2"
             >
               <Scale className="h-5 w-5" aria-hidden />
-              Services &amp; pricing
+              Book consultation
             </GradientButton>
           </motion.div>
 
           <motion.ul
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="mt-7 flex flex-wrap gap-x-6 gap-y-2 list-none p-0 text-sm text-white/85"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.28 }}
+            className="grid gap-3 list-none p-0 m-0 max-w-2xl"
           >
-            {["Free to submit", "Reply within 48 hours", "Clear AED pricing", "Confidential"].map(
-              (item) => (
-                <li key={item} className="inline-flex items-center gap-1.5">
-                  <Check className="h-4 w-4 text-primary" aria-hidden />
-                  {item}
-                </li>
-              ),
-            )}
+            {OPTIONS.map((opt) => (
+              <li key={opt.label}>
+                <Link
+                  href={opt.href}
+                  className={`block rounded-xl border px-4 py-3.5 transition-colors ${
+                    opt.emphasize
+                      ? "border-primary/50 bg-primary/15 hover:bg-primary/25"
+                      : "border-white/15 bg-white/5 hover:bg-white/10"
+                  }`}
+                >
+                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-primary">
+                    {opt.label}
+                  </p>
+                  <p className="mt-1.5 text-sm md:text-[15px] text-white leading-snug">
+                    {opt.title}
+                  </p>
+                  {opt.pricing ? (
+                    <ul className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1 list-none p-0 text-xs text-white/80">
+                      {opt.pricing.map((p) => (
+                        <li key={p}>{p}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </Link>
+              </li>
+            ))}
           </motion.ul>
         </div>
       </div>

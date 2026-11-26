@@ -247,7 +247,7 @@ export default function MegaMenu({
 
                     <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                       <p className="text-sm text-white/45">
-                        Not sure where to start? Browse our six services or
+                        Not sure where to start? Browse our seven services or
                         message our team.
                       </p>
                       <Link

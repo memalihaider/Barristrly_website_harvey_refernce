@@ -49,7 +49,7 @@ export default function PracticePage() {
             { value: "AED 0", label: "Listing fee" },
             { value: "48h", label: "Time to reply with a proposal" },
             { value: "3", label: "Maximum lawyers per client request" },
-            { value: "UAE", label: "Data handled with care" },
+            { value: "UAE", label: "Credentials reviewed with care" },
           ]}
         />
       </MarketingSection>
@@ -102,8 +102,27 @@ export default function PracticePage() {
               body: "Once matched, the attorney-client relationship and fee arrangement are formed directly between you and the Client — Barristrly is not a party to that engagement.",
             },
             {
-              title: "Dedicated Consultation bookings",
-              body: "For AED 1,000 + 5% VAT Dedicated Consultations, Barristrly handles scheduling and payment; you deliver the 45–60 minute session, pre-meeting document review, and post-meeting roadmap.",
+              title: "Paid consultation sessions",
+              body: "When you opt into paid consultations, Barristrly schedules sessions at published client rates (from AED 299). You deliver the timed session; fees and scope are confirmed before each booking.",
+            },
+          ]}
+        />
+      </MarketingSection>
+
+      <MarketingSection>
+        <SectionIntro
+          title="Documents & access"
+          description="What happens to your uploads — and how you work with Barristrly after you apply."
+        />
+        <FeatureList
+          items={[
+            {
+              title: "Where your documents are kept",
+              body: "Licence and practising-certificate uploads are used only to verify your credentials for the Barristrly network. They are reviewed by our team, stored securely for onboarding and compliance checks, and are not published publicly or shared with clients as open downloads.",
+            },
+            {
+              title: "No automatic login after applying",
+              body: "Submitting an application does not create a public login account. After approval, client requests and updates are sent to the official email you provide. We do not issue website login credentials as part of joining the network.",
             },
           ]}
         />

@@ -139,7 +139,7 @@ export const PRACTICE_DETAILS: Record<string, PracticeDetails> = {
           "Yes. Submitting a brief is free and confidential. You only pay if you choose to hire one of the advocates and agree to their fee.",
       },
     ],
-    relatedServices: ["arbitration", "contract-drafting", "retainers"],
+    relatedServices: ["lawyer-matching", "contract-drafting", "retainers"],
   },
 
   "corporate-structuring": {
@@ -350,7 +350,7 @@ export const PRACTICE_DETAILS: Record<string, PracticeDetails> = {
           "Yes. Many property matters can be handled through a lawyer under a power of attorney, so you do not always need to travel.",
       },
     ],
-    relatedServices: ["contract-drafting", "arbitration", "wills-estate"],
+    relatedServices: ["contract-drafting", "lawyer-matching", "wills-estate"],
   },
 
   "labor-employment": {
@@ -667,7 +667,7 @@ export const PRACTICE_DETAILS: Record<string, PracticeDetails> = {
           "Some debt recovery specialists offer partial success-fee arrangements for suitable cases. You will see each professional's fee model in their proposal.",
       },
     ],
-    relatedServices: ["arbitration", "contract-drafting", "retainers"],
+    relatedServices: ["lawyer-matching", "contract-drafting", "retainers"],
   },
 
   "private-client-estate": {

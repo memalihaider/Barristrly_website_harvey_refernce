@@ -2,27 +2,26 @@ import type { Metadata } from "next";
 import { PageHero, MarketingSection, MarketingCtaBand } from "@/components/marketing/section";
 
 export const metadata: Metadata = {
-  title: "How to Find the Right Lawyer in Dubai in 3 Steps",
+  title: "How It Works | Barristrly",
   description:
-    "Tell us what you need, choose a service, and get matched with a vetted UAE lawyer or specialist — with a clear quote and next step within 48 hours.",
-  alternates: { canonical: "/how-it-works" },
+    "Three simple steps to get legal help with Barristrly — tell us your need, choose a service, and get a clear next step within 48 hours.",
 };
 
 const STEPS = [
   {
     step: "1",
     title: "Tell us what you need",
-    body: "Share a short summary — arbitration support, a contract, UAE company setup, a will, or ongoing legal cover.",
+    body: "Share a short summary — matching a lawyer, a consultation, a contract, UAE company setup, a will, or ongoing legal cover.",
   },
   {
     step: "2",
     title: "Choose a service",
-    body: "Pick from our six services: arbitration, agreements & e-books, company formation & PRO, wills, contract drafting, or a flexible retainer.",
+    body: "Pick from seven services: free lawyer matching, legal consultation, retainers, contract drafting, wills & estate, company formation & PRO, or e-books & templates.",
   },
   {
     step: "3",
     title: "Get a clear next step",
-    body: "We confirm within 48 hours with introductions, a quote, or matched professionals — so you always know what happens next.",
+    body: "We confirm within 48 hours with introductions, a booked session, a quote, or matched professionals — so you always know what happens next.",
   },
 ];
 
@@ -49,11 +48,11 @@ export default function HowItWorksPage() {
 
       <MarketingCtaBand
         title="Ready to begin?"
-        description="Browse our six services, or send a short message and we will guide you."
-        primaryHref="/services"
-        primaryLabel="Explore services"
-        secondaryHref="/request-demo"
-        secondaryLabel="Contact us"
+        description="Start with free matching, or book a consultation from AED 299."
+        primaryHref="/services/lawyer-matching#request"
+        primaryLabel="Get matched — free"
+        secondaryHref="/services/consultation#request"
+        secondaryLabel="Book a consultation"
       />
     </>
   );

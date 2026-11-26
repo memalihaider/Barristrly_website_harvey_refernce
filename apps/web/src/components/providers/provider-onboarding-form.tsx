@@ -62,8 +62,8 @@ const INITIAL_STATE: FormState = {
 };
 
 const PAID_CONSULTATION_OPTIONS = [
-  "YES, our senior practitioners are available to conduct paid 45–60 min strategy meetings (AED 1,000 + VAT) assigned by Barristrly.",
-  "NO, we only accept full case retentions and litigation mandates.",
+  "YES — we can take paid consultation bookings assigned by Barristrly (15 / 25–30 / 50–60 min sessions at published client rates).",
+  "NO — we only accept full case retentions and litigation mandates.",
 ];
 
 export default function ProviderOnboardingForm() {
@@ -303,7 +303,10 @@ export default function ProviderOnboardingForm() {
           />
         </FieldWrapper>
 
-        <FieldWrapper label="Required Verification Uploads" hint="To be attached">
+        <FieldWrapper
+          label="Required Verification Uploads"
+          hint="Used only to verify your credentials. Not published publicly. Applying does not create a login account."
+        >
           <div className="space-y-2">
             {VERIFICATION_UPLOADS.map((label, i) => (
               <label
@@ -330,6 +333,11 @@ export default function ProviderOnboardingForm() {
               </label>
             ))}
           </div>
+          <p className="mt-3 text-xs text-gray-500 leading-relaxed">
+            After you submit, our team reviews your files for onboarding. Client
+            requests are sent to your official email once approved — there is no
+            automatic Barristrly website login for network members.
+          </p>
         </FieldWrapper>
       </section>
 

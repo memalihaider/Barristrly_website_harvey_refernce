@@ -7,19 +7,15 @@ export type NavFeatured = {
   href: string;
   title: string;
   description: string;
-  /** Short label shown on the visual panel */
   badge: string;
-  /** Optional image or video path under /public */
   media?: string;
 };
 
 export type NavGroup = {
   name: string;
   href?: string;
-  /** Flat list split across columns in the mega panel */
   items?: NavLink[];
   columns?: { title?: string; items: NavLink[] }[];
-  /** Overrides the column links in the mobile menu, rendered as bullets */
   mobileItems?: NavLink[];
   featured?: NavFeatured;
 };
@@ -36,16 +32,16 @@ export const PRIMARY_NAV: NavGroup[] = [
     name: "Services",
     href: "/services",
     columns: [
-      { title: "Dispute & documents", items: SERVICE_LINKS.slice(0, 3) },
-      { title: "Family & ongoing support", items: SERVICE_LINKS.slice(3) },
+      { title: "Start here", items: SERVICE_LINKS.slice(0, 4) },
+      { title: "Documents & setup", items: SERVICE_LINKS.slice(4) },
     ],
     mobileItems: SERVICE_LINKS,
     featured: {
       href: "/services",
-      badge: "Six services",
-      title: "Legal services under one roof",
+      badge: "Seven services",
+      title: "Match with vetted Legal Professionals in UAE",
       description:
-        "Arbitration connections, agreements & e-books, UAE company setup, wills, contract drafting, and flexible retainers.",
+        "Free lawyer matching, fixed-fee consultations, retainers, drafting, wills, company formation & PRO, and e-books with templates.",
       media: "/bg-video.mp4",
     },
   },
@@ -57,22 +53,22 @@ export const PRIMARY_NAV: NavGroup[] = [
         title: "Business services",
         items: [
           {
-            name: "Flexible Legal Retainers",
+            name: "Legal Retainers",
             href: "/services/retainers",
-            description: "Ongoing vetted support · switch anytime · pro-rata billing",
+            description: "Affordable monthly plans for ongoing legal needs",
           },
           {
             name: "Contract Drafting",
             href: "/services/contract-drafting",
-            description: "Corporate, commercial & investment agreements",
+            description: "Documentation at reasonable charges",
           },
           {
-            name: "UAE Company Formation & PRO",
+            name: "Company Formation & PRO",
             href: "/services/company-formation",
             description: "Licensing, Corporate Tax, VAT & PRO from anywhere",
           },
           {
-            name: "Agreements & E-Books",
+            name: "E-Books & Templates",
             href: "/services/agreements-ebooks",
             description: "Templates and guides for startups & mid-size teams",
           },
@@ -87,7 +83,7 @@ export const PRIMARY_NAV: NavGroup[] = [
       { name: "Legal Retainers", href: "/services/retainers" },
       { name: "Contract Drafting", href: "/services/contract-drafting" },
       { name: "Company Formation & PRO", href: "/services/company-formation" },
-      { name: "Agreements & E-Books", href: "/services/agreements-ebooks" },
+      { name: "E-Books & Templates", href: "/services/agreements-ebooks" },
     ],
     featured: {
       href: "/services/retainers",
@@ -110,7 +106,7 @@ export const PRIMARY_NAV: NavGroup[] = [
         title: "Learn & explore",
         items: [
           {
-            name: "Agreements & E-Books",
+            name: "E-Books & Templates",
             href: "/services/agreements-ebooks",
             description: "Practical templates and business guides",
           },
@@ -133,7 +129,7 @@ export const PRIMARY_NAV: NavGroup[] = [
       },
     ],
     mobileItems: [
-      { name: "Agreements & E-Books", href: "/services/agreements-ebooks" },
+      { name: "E-Books & Templates", href: "/services/agreements-ebooks" },
       { name: "Resources", href: "/resources" },
       { name: "How it works", href: "/how-it-works" },
       { name: "Blog", href: "/blog" },
@@ -164,11 +160,11 @@ export const FOOTER_COLUMNS: { title: string; links: NavLink[] }[] = [
   {
     title: "For Clients",
     links: [
+      { name: "Lawyer Matching (Free)", href: "/services/lawyer-matching" },
+      { name: "Legal Consultation", href: "/services/consultation" },
       { name: "All services", href: "/services" },
-      { name: "Wills & Estate", href: "/services/wills-estate" },
-      { name: "Company Formation", href: "/services/company-formation" },
-      { name: "Arbitration", href: "/services/arbitration" },
       { name: "Pricing", href: "/pricing" },
+      { name: "Wills & Estate", href: "/services/wills-estate" },
     ],
   },
   {

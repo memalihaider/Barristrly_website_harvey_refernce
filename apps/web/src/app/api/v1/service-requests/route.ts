@@ -6,12 +6,13 @@ import { createServiceClient, isDbConfigured } from "@/lib/db/client";
 import { SERVICE_CATALOG } from "@/lib/marketing/service-catalog";
 
 const serviceIdSchema = z.enum([
-  "arbitration",
-  "agreements-ebooks",
-  "company-formation",
-  "wills-estate",
-  "contract-drafting",
+  "lawyer-matching",
+  "consultation",
   "retainers",
+  "contract-drafting",
+  "wills-estate",
+  "company-formation",
+  "agreements-ebooks",
 ]);
 
 const payloadSchema = z.object({

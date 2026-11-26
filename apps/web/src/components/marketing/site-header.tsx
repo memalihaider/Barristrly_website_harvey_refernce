@@ -47,10 +47,6 @@ export default function SiteHeader() {
   const logoClass =
     "font-serif text-[1.35rem] lg:text-[1.55rem] xl:text-[1.8rem] font-extrabold tracking-wider text-primary transition-colors duration-200 whitespace-nowrap";
 
-  const loginClass = onDark
-    ? "text-[15px] font-medium !text-white/90 hover:!text-white transition-colors duration-200 whitespace-nowrap"
-    : "text-[15px] font-medium text-ink/80 hover:text-ink transition-colors duration-200 whitespace-nowrap";
-
   const mobileBtnClass = onDark
     ? "text-white hover:text-white/80"
     : "text-ink hover:text-primary";
@@ -80,17 +76,13 @@ export default function SiteHeader() {
           </div>
 
           <div className="hidden lg:flex items-center justify-end gap-2 xl:gap-3 shrink-0 z-[1]">
-            <Link href="/login" className={loginClass}>
-              Log In
-            </Link>
-
             <GradientButton
               size="sm"
-              href="/services"
+              href="/services/lawyer-matching#request"
               className={`inline-flex items-center gap-1.5 ${ctaClass}`}
             >
               <CalendarDays className="h-4 w-4 shrink-0" aria-hidden />
-              <span>Explore Services</span>
+              <span>Get matched — free</span>
             </GradientButton>
           </div>
 
@@ -163,22 +155,14 @@ export default function SiteHeader() {
             </nav>
             <div className="h-px bg-white/10" />
             <div className="flex flex-col gap-3">
-              <Link
-                href="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-center py-2 text-base font-semibold !text-white hover:text-primary"
-              >
-                Log In
-              </Link>
-
               <GradientButton
-                href="/services"
+                href="/services/lawyer-matching#request"
                 size="md"
                 className="w-full text-center inline-flex items-center justify-center gap-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <CalendarDays className="h-4 w-4" aria-hidden />
-                Explore Services
+                Get matched — free
               </GradientButton>
             </div>
           </motion.div>

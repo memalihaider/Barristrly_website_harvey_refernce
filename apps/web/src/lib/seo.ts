@@ -10,10 +10,10 @@ export const SITE_URL = (
 export const SITE_NAME = "Barristrly";
 
 export const DEFAULT_TITLE =
-  "Find Vetted Lawyers & Legal Services in Dubai, UAE | Barristrly";
+  "Match with vetted Legal Professionals in UAE | Barristrly";
 
 export const DEFAULT_DESCRIPTION =
-  "Get matched with vetted UAE lawyers in 48 hours. Contract drafting, company formation & PRO, wills, legal retainers and arbitration support across Dubai, Abu Dhabi, DIFC & ADGM — with clear AED pricing.";
+  "Match with vetted legal professionals in the UAE. Free lawyer matching, consultations from AED 299, retainers, contract drafting, wills, company formation & PRO, and e-books & templates.";
 
 export const SEO_KEYWORDS = [
   "lawyers in Dubai",

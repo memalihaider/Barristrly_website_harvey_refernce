@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function MarketplaceRedirect() {
-  redirect("/services");
+  redirect("/services/lawyer-matching");
 }

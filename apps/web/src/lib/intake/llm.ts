@@ -31,7 +31,8 @@ export interface IntakeClassifyResult {
 const SYSTEM_GUARDRAIL = `You are Barristrly's UAE legal intake assistant (not a licensed lawyer).
 Rules:
 - Never invent lawyer names, fees, court outcomes, or legal advice.
-- Never claim contact details are shared with lawyers before consultation + explicit client release.
+- Never mention anonymous matching, identity masking, COI screening, account signup, login, or a client dashboard.
+- Explain that matching is free, consultations have clear AED rates, and the team follows up by email/phone — no account required.
 - Keep replies short (2-4 sentences max).
 - Prefer platform process facts from the FAQ context.
 - If unsure, say so and invite the user to continue the intake options.`;
@@ -206,7 +207,7 @@ Return ONLY valid JSON with this shape:
 {"intent":"answer_question"|"provide_slot"|"select_option"|"unclear","selectedOption":string|null,"slotValue":string|null,"answer":string|null}
 
 intent meanings:
-- answer_question: user is asking about process/privacy/fees/COI/jurisdiction (not filling the current step)
+- answer_question: user is asking about process/privacy/fees/jurisdiction/matching (not filling the current step)
 - select_option: user is choosing one of the allowed options (selectedOption must be an exact option string)
 - provide_slot: user is providing free-text for the current step (slotValue)
 - unclear: cannot tell
@@ -255,7 +256,7 @@ ${optionBlock}`,
     const answer =
       parsed.answer?.trim() ||
       matchFaq(userText) ||
-      "I can help with how Barristrly intake, privacy masking, COI screening, and matching work. Choose an option below to continue, or ask another process question.";
+      "I can help with how Barristrly matching, consultations, fees, and intake work. Choose an option below to continue, or ask another process question.";
     return { intent: "answer_question", answer };
   }
 
@@ -272,7 +273,7 @@ export async function answerUserQuestion(params: {
   if (!isLlmConfigured()) {
     return (
       faq ??
-      "I can answer questions about privacy masking, fees, jurisdictions, COI screening, and matching. I cannot give legal advice on your specific matter — continue the intake so we can route you to a verified specialist."
+      "I can answer questions about matching, consultations, fees, and jurisdictions. I cannot give legal advice on your specific matter — continue the intake so we can route you to a vetted specialist. No account is required."
     );
   }
 
@@ -281,9 +282,9 @@ export async function answerUserQuestion(params: {
       role: "system",
       content: `${SYSTEM_GUARDRAIL}
 
-Answer the user's process question using ONLY this FAQ context and anonymity rules.
+Answer the user's process question using ONLY this FAQ context.
 If the question seeks legal advice on their case facts, politely decline and invite them to continue intake.
-Remind them that contact details stay masked from lawyers until after consultation and explicit release.
+Remind them that no account signup is needed and our team follows up within 48 hours.
 
 FAQ:
 ${faqContextBlock()}
@@ -297,6 +298,6 @@ Draft practice area: ${session.intakeDraft.primaryCategory ?? "not set yet"}`,
   if (content && content.length < 800) return content;
   return (
     faq ??
-    "Your details stay masked from lawyers until after consultation and your explicit approval. Choose an option below to continue intake, or ask another process question."
+    "Your details are kept confidential. Continue intake so we can match you with a vetted professional — no account required."
   );
 }

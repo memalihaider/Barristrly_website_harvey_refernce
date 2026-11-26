@@ -17,9 +17,9 @@ export const SERVICE_ROUTES = [
   },
   {
     value: "dedicated-consultation",
-    label: "Option 2: Dedicated 45–60 Minute Legal Consultation",
+    label: "Option 2: Legal Consultation (from home or office)",
     detail:
-      "Private 1-on-1 strategy meeting with a specialized senior attorney. Fee: AED 1,000 + 5% VAT = AED 1,050 total. Includes pre-meeting document audit & written summary roadmap.",
+      "Speak to a qualified legal expert online or by phone. 15 min AED 299 · 25–30 min AED 599 · 50–60 min detailed AED 1,199.",
   },
 ] as const;
 

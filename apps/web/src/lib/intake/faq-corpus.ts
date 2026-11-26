@@ -5,39 +5,29 @@ export interface FaqEntry {
 
 export const FAQ_ENTRIES: FaqEntry[] = [
   {
-    keywords: ["anonymous", "privacy", "identity", "who sees", "hidden", "mask", "masked"],
+    keywords: ["privacy", "confidential", "identity", "who sees", "safe", "secure"],
     answer:
-      "Lead Data Masking is active. Your name, phone, and email stay completely hidden from lawyers during matching and the first consultation. They only unlock after the meeting ends and you explicitly authorize release.",
+      "Your details are handled confidentially. Barristrly uses them to match you with vetted professionals and to contact you about your request — we do not publish your information.",
   },
   {
     keywords: ["phone", "email", "contact details", "personal details", "will lawyers see"],
     answer:
-      "Lawyers never receive your phone or email during matchmaking. The directory shows placeholders such as Client #DXB-**** until you click Accept/Authorize Release after your consultation.",
+      "We collect your contact details so our team can follow up. Matched professionals only receive what is needed to help with your matter after we arrange the introduction.",
   },
   {
     keywords: ["fee", "cost", "price", "pay", "charge", "how much", "budget"],
     answer:
-      "During intake we capture your budget tier (Premium / Mid-Range / Budget / Quote Collection) so we route to firms aligned with your fee expectations. Platform consult fees are shown before payment; law-firm retainers are separate and quoted by the matched specialist.",
-  },
-  {
-    keywords: ["coi", "conflict", "conflict of interest", "quarantine"],
-    answer:
-      "After intake we run conflict-of-interest screening before identity reveal. Matching uses a two-gate flow: party data first, then blind firm affirmation — narrative and docs stay locked until clearance.",
-  },
-  {
-    keywords: ["when", "share", "release", "unmask", "after consultation"],
-    answer:
-      "Contact release is Stage 3 of our pipeline: only after the consultation concludes and you grant explicit permission does the platform unlock your unmasked contact details for that attorney.",
+      "Lawyer matching is free. Consultations are fixed by length — AED 299 (15 min), AED 599 (25–30 min), or AED 1,199 (50–60 min detailed). Other services are quoted before you commit. See the Pricing page for details.",
   },
   {
     keywords: ["match", "matching", "how does matching", "lawyer pick", "assign", "routing"],
     answer:
-      "We map your practice area, sub-category, jurisdiction, budget tier, and urgency flags to verified lawyer profiles. You then choose from ranked matches — identities stay masked until you approve.",
+      "Tell us your practice area, location preference, and a short summary. We match you with vetted UAE professionals suited to your matter and reply within 48 hours.",
   },
   {
     keywords: ["meeting", "video", "call", "consultation", "voip"],
     answer:
-      "Initial consultations run through the platform’s masked VoIP or in-app video portal so the lawyer can advise without storing your direct contact identifiers.",
+      "You can book a legal consultation online or by phone from wherever you are — 15, 25–30, or 50–60 minutes at clear AED rates.",
   },
   {
     keywords: [
@@ -52,27 +42,32 @@ export const FAQ_ENTRIES: FaqEntry[] = [
       "court",
     ],
     answer:
-      "UAE matters split between Mainland civil-law forums (Dubai Courts, ADJD, MoHRE, RDC, GDRFA/ICP, Police) and English common-law free zones (DIFC / ADGM). If you are unsure, choose Automated Matching and we infer the forum from your description.",
+      "We cover mainland UAE (including Dubai and Abu Dhabi), DIFC, and ADGM. If you are unsure which forum applies, describe your situation and we will route you accordingly.",
   },
   {
     keywords: ["immigration", "visa", "golden visa", "absconding", "overstay"],
     answer:
-      "Immigration matters are routed using federal ICP vs Emirate GDRFA tags — including Golden Visa, employment/green/partner visas, absconding clearance, overstay fines, and security clearance updates.",
+      "Immigration and visa matters can be included in your brief — including Golden Visa, employment/partner visas, overstay issues, and related applications. We match you with suitable professionals.",
   },
   {
     keywords: ["travel ban", "border", "interpol", "arrest warrant", "detained"],
     answer:
-      "Travel ban and border matters are high-priority. Tell us if you are detained or facing a border restriction — we flag urgency and route to criminal / execution-court specialists while keeping your identity masked.",
+      "Travel ban and border matters are treated as high priority. Tell us if you are detained or facing a border restriction so we can flag urgency in your request.",
   },
   {
     keywords: ["legal notice", "notice", "cease and desist", "notary"],
     answer:
-      "Legal notice matters cover drafting/sending notices, replies to received notices, cease-and-desist, and notary attestation. We tag whether the posture is offensive or defensive for drafting desks.",
+      "Legal notices, replies, cease-and-desist drafts, and notary attestation can all be requested through intake — we match you to the right specialist.",
   },
   {
     keywords: ["how long", "2 minutes", "time", "duration"],
     answer:
-      "The structured intake is designed to finish in under two minutes: practice area → engagement model → jurisdiction → budget → short details → secure contact (still masked from lawyers).",
+      "The structured intake is designed to finish in a few minutes: practice area → service type → jurisdiction → budget → short details → contact information.",
+  },
+  {
+    keywords: ["account", "login", "register", "sign up", "dashboard"],
+    answer:
+      "You do not need to create an account. Submit your brief here and our team will follow up by email or phone within 48 hours.",
   },
 ];
 
